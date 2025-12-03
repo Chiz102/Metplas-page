@@ -28,17 +28,17 @@ import { CompanyInfo } from '../../core/models/catalog.model';
             </p>
             <div class="social-links">
               @if (company?.facebook) {
-                <a [href]="company.facebook" target="_blank" rel="noopener" aria-label="Facebook">
+                <a [href]="company?.facebook" target="_blank" rel="noopener" aria-label="Facebook">
                   <span class="material-icons-outlined">facebook</span>
                 </a>
               }
               @if (company?.instagram) {
-                <a [href]="company.instagram" target="_blank" rel="noopener" aria-label="Instagram">
+                <a [href]="company?.instagram" target="_blank" rel="noopener" aria-label="Instagram">
                   <span class="material-icons-outlined">photo_camera</span>
                 </a>
               }
               @if (company?.linkedin) {
-                <a [href]="company.linkedin" target="_blank" rel="noopener" aria-label="LinkedIn">
+                <a [href]="company?.linkedin" target="_blank" rel="noopener" aria-label="LinkedIn">
                   <span class="material-icons-outlined">work</span>
                 </a>
               }
@@ -71,11 +71,11 @@ import { CompanyInfo } from '../../core/models/catalog.model';
           <div class="footer-section">
             <h4>Contacto</h4>
             <div class="contact-info">
-              <a [href]="'tel:' + company?.phone?.replace(/\\s/g, '')">
+              <a [href]="phoneHref">
                 <span class="material-icons-outlined">phone</span>
                 {{ company?.phone || '+569 9615 4315' }}
               </a>
-              <a [href]="'mailto:' + company?.email">
+              <a [href]="'mailto:' + (company?.email || 'contacto@metplastech.cl')">
                 <span class="material-icons-outlined">mail</span>
                 {{ company?.email || 'contacto@metplastech.cl' }}
               </a>
@@ -286,6 +286,11 @@ export class FooterComponent implements OnInit {
   private api = inject(ApiService);
   company: CompanyInfo | null = null;
   currentYear = new Date().getFullYear();
+
+  get phoneHref(): string {
+    const phone = this.company?.phone || '+569 9615 4315';
+    return 'tel:' + phone.replace(/\s/g, '');
+  }
 
   ngOnInit() {
     this.api.getCompanyInfo().subscribe(info => {
