@@ -96,7 +96,7 @@ import { CompanyInfo } from '../../core/models/catalog.model';
   `,
   styles: [`
     footer {
-      background: var(--color-primary-dark);
+      background: var(--color-primary-light);
       border-top: 1px solid var(--color-border);
       padding: var(--space-4xl) 0 var(--space-xl);
       margin-top: var(--space-4xl);

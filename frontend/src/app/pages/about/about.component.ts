@@ -144,7 +144,7 @@ import { RouterLink } from '@angular/router';
       padding: calc(80px + var(--space-4xl)) 0 var(--space-4xl);
       text-align: center;
       background: 
-        radial-gradient(ellipse 80% 50% at 50% 0%, rgba(0, 212, 255, 0.1) 0%, transparent 60%);
+        radial-gradient(ellipse 80% 50% at 50% 0%, rgba(34, 197, 94, 0.1) 0%, transparent 60%);
     }
     
     .hero-label {
@@ -152,7 +152,7 @@ import { RouterLink } from '@angular/router';
       align-items: center;
       gap: var(--space-sm);
       padding: var(--space-sm) var(--space-md);
-      background: rgba(0, 212, 255, 0.1);
+      background: rgba(34, 197, 94, 0.1);
       border: 1px solid var(--color-border-strong);
       border-radius: var(--radius-full);
       font-size: 0.875rem;
@@ -312,7 +312,7 @@ import { RouterLink } from '@angular/router';
     }
     
     .mission-section {
-      background: linear-gradient(180deg, rgba(0, 212, 255, 0.03) 0%, transparent 100%);
+      background: linear-gradient(180deg, rgba(34, 197, 94, 0.03) 0%, transparent 100%);
     }
     
     .mission-grid {

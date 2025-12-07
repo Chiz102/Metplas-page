@@ -168,7 +168,7 @@ import { Category } from '../../core/models/catalog.model';
       padding: calc(80px + var(--space-4xl)) 0 var(--space-2xl);
       text-align: center;
       background: 
-        radial-gradient(ellipse 80% 50% at 50% 0%, rgba(0, 212, 255, 0.1) 0%, transparent 60%);
+        radial-gradient(ellipse 80% 50% at 50% 0%, rgba(34, 197, 94, 0.1) 0%, transparent 60%);
     }
     
     .hero-label {
@@ -176,7 +176,7 @@ import { Category } from '../../core/models/catalog.model';
       align-items: center;
       gap: var(--space-sm);
       padding: var(--space-sm) var(--space-md);
-      background: rgba(0, 212, 255, 0.1);
+      background: rgba(34, 197, 94, 0.1);
       border: 1px solid var(--color-border-strong);
       border-radius: var(--radius-full);
       font-size: 0.875rem;
@@ -245,7 +245,7 @@ import { Category } from '../../core/models/catalog.model';
       }
       
       &.active {
-        background: linear-gradient(135deg, var(--color-accent) 0%, #00a8cc 100%);
+        background: linear-gradient(135deg, var(--color-accent) 0%, #10b981 100%);
         border-color: var(--color-accent);
         color: var(--color-primary);
       }
@@ -441,7 +441,7 @@ import { Category } from '../../core/models/catalog.model';
         display: flex;
         align-items: center;
         justify-content: center;
-        background: rgba(0, 212, 255, 0.1);
+        background: rgba(34, 197, 94, 0.1);
         border-radius: var(--radius-lg);
         transition: all var(--transition-base);
         

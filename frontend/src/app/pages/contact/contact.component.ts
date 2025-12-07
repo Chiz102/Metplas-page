@@ -51,7 +51,7 @@ import { ContactMessage, CompanyInfo } from '../../core/models/catalog.model';
             <form (ngSubmit)="submitForm()" #contactForm="ngForm">
               <div class="form-row">
                 <div class="form-group">
-                  <label for="name">Nombre completo *</label>
+                  <label for="name">Nombre completo</label>
                   <input 
                     type="text" 
                     id="name" 
@@ -62,7 +62,7 @@ import { ContactMessage, CompanyInfo } from '../../core/models/catalog.model';
                 </div>
                 
                 <div class="form-group">
-                  <label for="email">Correo electrónico *</label>
+                  <label for="email">Correo electrónico</label>
                   <input 
                     type="email" 
                     id="email" 
@@ -96,7 +96,7 @@ import { ContactMessage, CompanyInfo } from '../../core/models/catalog.model';
               </div>
 
               <div class="form-group">
-                <label for="subject">Asunto *</label>
+                <label for="subject">Asunto</label>
                 <input 
                   type="text" 
                   id="subject" 
@@ -107,7 +107,7 @@ import { ContactMessage, CompanyInfo } from '../../core/models/catalog.model';
               </div>
 
               <div class="form-group">
-                <label for="message">Mensaje *</label>
+                <label for="message">Mensaje</label>
                 <textarea 
                   id="message" 
                   name="message"
@@ -212,21 +212,48 @@ import { ContactMessage, CompanyInfo } from '../../core/models/catalog.model';
     .page-hero {
       padding: calc(80px + var(--space-4xl)) 0 var(--space-2xl);
       text-align: center;
-      background: 
-        radial-gradient(ellipse 80% 50% at 50% 0%, rgba(0, 212, 255, 0.1) 0%, transparent 60%);
+      background: linear-gradient(135deg, #1e293b 0%, #1e40af 50%, #3b82f6 100%);
+      position: relative;
+      overflow: hidden;
+      color: #ffffff;
+      
+      &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: 
+          radial-gradient(ellipse 100% 80% at 50% 0%, rgba(255, 255, 255, 0.15) 0%, transparent 60%),
+          radial-gradient(ellipse 80% 60% at 100% 100%, rgba(59, 130, 246, 0.25) 0%, transparent 50%);
+        pointer-events: none;
+      }
+      
+      h1 {
+        color: #ffffff;
+        text-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      }
+      
+      .hero-description {
+        color: rgba(255, 255, 255, 0.95);
+      }
     }
     
     .hero-label {
       display: inline-flex;
       align-items: center;
       gap: var(--space-sm);
-      padding: var(--space-sm) var(--space-md);
-      background: rgba(0, 212, 255, 0.1);
-      border: 1px solid var(--color-border-strong);
+      padding: var(--space-md) var(--space-lg);
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      border: 2px solid rgba(255, 255, 255, 0.3);
       border-radius: var(--radius-full);
       font-size: 0.875rem;
-      color: var(--color-accent);
+      font-weight: 700;
+      color: #ffffff;
       margin-bottom: var(--space-lg);
+      position: relative;
+      z-index: 1;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
       
       .material-icons-outlined {
         font-size: 16px;
@@ -263,9 +290,22 @@ import { ContactMessage, CompanyInfo } from '../../core/models/catalog.model';
     
     .contact-form-wrapper {
       padding: var(--space-2xl);
-      background: var(--color-surface);
-      border: 1px solid var(--color-border);
+      background: linear-gradient(135deg, var(--color-blue-bg) 0%, var(--color-blue-bg-light) 50%, rgba(59, 130, 246, 0.08) 100%);
+      border: 2px solid var(--color-blue);
       border-radius: var(--radius-xl);
+      box-shadow: 0 8px 32px rgba(30, 64, 175, 0.15);
+      position: relative;
+      
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: var(--color-blue-gradient-light);
+        border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+      }
       
       .form-header {
         margin-bottom: var(--space-2xl);
@@ -293,8 +333,8 @@ import { ContactMessage, CompanyInfo } from '../../core/models/catalog.model';
       }
       
       &-success {
-        background: rgba(0, 255, 157, 0.1);
-        border: 1px solid rgba(0, 255, 157, 0.3);
+        background: rgba(52, 211, 153, 0.1);
+        border: 1px solid rgba(52, 211, 153, 0.3);
         color: var(--color-accent-secondary);
       }
       
@@ -321,21 +361,29 @@ import { ContactMessage, CompanyInfo } from '../../core/models/catalog.model';
       label {
         display: block;
         font-size: 0.95rem;
-        font-weight: 500;
-        color: var(--color-text-primary);
+        font-weight: 600;
+        color: var(--color-blue);
         margin-bottom: var(--space-sm);
+      }
+      
+      label[for="name"]::after,
+      label[for="email"]::after,
+      label[for="subject"]::after,
+      label[for="message"]::after {
+        content: ' *';
+        color: var(--color-accent);
       }
       
       input, textarea {
         width: 100%;
-        padding: var(--space-md);
+        padding: var(--space-md) var(--space-lg);
         font-family: var(--font-primary);
         font-size: 1rem;
         color: var(--color-text-primary);
-        background: var(--color-surface-elevated);
-        border: 1px solid var(--color-border);
+        background: #ffffff;
+        border: 2px solid var(--color-border-blue);
         border-radius: var(--radius-md);
-        transition: all var(--transition-fast);
+        transition: all var(--transition-base);
         
         &::placeholder {
           color: var(--color-text-muted);
@@ -343,8 +391,14 @@ import { ContactMessage, CompanyInfo } from '../../core/models/catalog.model';
         
         &:focus {
           outline: none;
-          border-color: var(--color-accent);
-          box-shadow: 0 0 0 3px var(--color-accent-glow);
+          border-color: var(--color-blue);
+          box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.15), 0 0 0 1px var(--color-blue);
+          background: #ffffff;
+        }
+        
+        &:focus:invalid {
+          border-color: #ef4444;
+          box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
         }
       }
       
@@ -356,6 +410,13 @@ import { ContactMessage, CompanyInfo } from '../../core/models/catalog.model';
     
     .submit-btn {
       width: 100%;
+      margin-top: var(--space-md);
+      
+      &:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        transform: none !important;
+      }
       
       .spinning {
         animation: spin 1s linear infinite;
@@ -375,9 +436,10 @@ import { ContactMessage, CompanyInfo } from '../../core/models/catalog.model';
     
     .info-card {
       padding: var(--space-2xl);
-      background: var(--color-surface);
-      border: 1px solid var(--color-border);
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(34, 197, 94, 0.05) 100%);
+      border: 2px solid var(--color-accent);
       border-radius: var(--radius-xl);
+      box-shadow: 0 8px 32px rgba(16, 185, 129, 0.15);
       
       h3 {
         margin-bottom: var(--space-sm);
@@ -414,7 +476,7 @@ import { ContactMessage, CompanyInfo } from '../../core/models/catalog.model';
         display: flex;
         align-items: center;
         justify-content: center;
-        background: rgba(0, 212, 255, 0.1);
+        background: rgba(34, 197, 94, 0.1);
         border: 1px solid var(--color-border);
         border-radius: var(--radius-md);
         
