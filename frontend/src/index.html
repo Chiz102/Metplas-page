@@ -8,6 +8,15 @@
   <meta name="description" content="Metplastech Technologies SPA - Equipos Trimmer, Rectificadores, Insumos industriales, EPP y servicios de innovación en Curicó, Chile.">
   <meta name="keywords" content="metplastech, equipos industriales, trimmer, rectificadores, insumos, EPP, Curicó, Chile">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <!-- Apply saved theme early to avoid FOUC -->
+  <script>
+    (function(){
+      try {
+        var t = localStorage.getItem('metplas:theme');
+        if (t) document.documentElement.setAttribute('data-theme', t);
+      } catch(e) { /* ignore */ }
+    })();
+  </script>
   
   <!-- Google Fonts - Distinctive Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
