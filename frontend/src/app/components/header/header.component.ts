@@ -79,15 +79,17 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
         content: '';
         position: absolute;
         inset: 0;
-        background: rgba(10, 22, 40, 0.8);
-        backdrop-filter: blur(20px);
+        background: rgba(255, 255, 255, 0.92);
+        backdrop-filter: blur(20px) saturate(180%);
+        -webkit-backdrop-filter: blur(20px) saturate(180%);
         border-bottom: 1px solid transparent;
         transition: all var(--transition-base);
       }
       
       &.scrolled::before {
-        background: rgba(10, 22, 40, 0.95);
-        border-bottom-color: var(--color-border);
+        background: rgba(255, 255, 255, 0.98);
+        border-bottom-color: rgba(30, 64, 175, 0.1);
+        box-shadow: 0 4px 16px rgba(30, 64, 175, 0.08);
       }
     }
     
@@ -110,7 +112,8 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
         color: var(--color-text-primary);
         
         .logo-icon {
-          box-shadow: var(--shadow-glow);
+          box-shadow: 0 4px 16px rgba(16, 185, 129, 0.4);
+          transform: scale(1.05);
         }
       }
     }
@@ -121,10 +124,11 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
       display: flex;
       align-items: center;
       justify-content: center;
-      background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-secondary) 100%);
+      background: var(--color-green-gradient);
       border-radius: var(--radius-md);
-      color: var(--color-primary);
-      transition: box-shadow var(--transition-base);
+      color: #ffffff;
+      transition: all var(--transition-base);
+      box-shadow: 0 2px 8px rgba(16, 185, 129, 0.2);
       
       .material-icons-outlined {
         font-size: 24px;
@@ -169,7 +173,8 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
         
         &:hover, &.active {
           color: var(--color-accent);
-          background: rgba(0, 212, 255, 0.1);
+          background: rgba(16, 185, 129, 0.12);
+          transform: translateY(-1px);
         }
         
         .material-icons-outlined {
@@ -221,7 +226,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
         transition: all var(--transition-fast);
         
         &:hover {
-          background: rgba(0, 212, 255, 0.1);
+          background: rgba(34, 197, 94, 0.1);
           color: var(--color-accent);
         }
         
@@ -250,7 +255,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
       transition: all var(--transition-fast);
       
       &:hover {
-        background: rgba(0, 212, 255, 0.1);
+        background: rgba(34, 197, 94, 0.1);
         border-color: var(--color-accent);
       }
       

@@ -22,7 +22,7 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
         <div class="hero-text">
           <span class="hero-badge animate-fade-in-up">
             <span class="material-icons-outlined">verified</span>
-            Soluciones Industriales Premium
+            Soluciones Industriales
           </span>
           
           <h1 class="animate-fade-in-up delay-1">
@@ -93,7 +93,7 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
     <app-carousel [items]="carouselItems" [itemsVisible]="3"></app-carousel>
 
     <!-- Categories Section -->
-    <section class="section categories-section">
+    <section class="section section-blue categories-section">
       <div class="container">
         <div class="section-header">
           <span class="section-label">Nuestras Soluciones</span>
@@ -287,9 +287,11 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
       border: 1px solid var(--color-border-strong);
       border-radius: var(--radius-full);
       font-size: 0.875rem;
-      font-weight: 500;
-      color: var(--color-accent);
+      font-weight: 700;
+      color: #ffffff;
       margin-bottom: var(--space-xl);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
       
       .material-icons-outlined {
         font-size: 16px;
@@ -298,20 +300,24 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
     
     h1 {
       margin-bottom: var(--space-xl);
+      color: #ffffff;
+      text-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
       
       .text-gradient {
         background: var(--gradient-accent-full);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
+        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
       }
     }
     
     .hero-description {
       font-size: 1.25rem;
-      color: var(--color-text-secondary);
+      color: rgba(255, 255, 255, 0.95);
       margin-bottom: var(--space-2xl);
       max-width: 500px;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
       
       @media (max-width: 1024px) {
         margin: 0 auto var(--space-2xl);
@@ -489,12 +495,31 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
       display: flex;
       flex-direction: column;
       padding: var(--space-xl);
-      background: var(--color-surface);
-      border: 1px solid var(--color-border);
+      background: #ffffff;
+      border: 2px solid var(--color-blue);
       border-radius: var(--radius-lg);
       text-decoration: none;
       transition: all var(--transition-base);
       animation: fadeInUp 0.6s ease forwards;
+      box-shadow: 0 4px 16px rgba(30, 64, 175, 0.12);
+      position: relative;
+      overflow: hidden;
+      
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: var(--color-blue-gradient-light);
+        transform: scaleX(0);
+        transition: transform var(--transition-base);
+      }
+      
+      &:hover::before {
+        transform: scaleX(1);
+      }
       opacity: 0;
       
       &:hover {
@@ -689,15 +714,36 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
     // CTA Section
     .cta-section {
       padding-bottom: 0;
+      background: var(--color-blue-gradient);
+      color: #ffffff;
+      position: relative;
+      overflow: hidden;
+      
+      &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: 
+          radial-gradient(ellipse 100% 80% at 50% 20%, rgba(255, 255, 255, 0.15) 0%, transparent 50%),
+          radial-gradient(ellipse 80% 60% at 100% 80%, rgba(59, 130, 246, 0.25) 0%, transparent 40%);
+        pointer-events: none;
+      }
+      
+      h2, p {
+        color: #ffffff;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
     }
     
     .cta-card {
       position: relative;
       padding: var(--space-4xl);
-      background: linear-gradient(135deg, var(--color-surface) 0%, var(--color-surface-elevated) 100%);
-      border: 1px solid var(--color-border-strong);
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(20px);
+      border: 2px solid rgba(255, 255, 255, 0.3);
       border-radius: var(--radius-xl);
       overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
       
       @media (max-width: 768px) {
         padding: var(--space-2xl);
