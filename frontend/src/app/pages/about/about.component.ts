@@ -144,7 +144,7 @@ import { RouterLink } from '@angular/router';
       padding: calc(80px + var(--space-4xl)) 0 var(--space-4xl);
       text-align: center;
       background: 
-        radial-gradient(ellipse 80% 50% at 50% 0%, rgba(34, 197, 94, 0.1) 0%, transparent 60%);
+        radial-gradient(ellipse 80% 50% at 50% 0%, var(--color-accent-light) 0%, transparent 60%);
     }
     
     .hero-label {
@@ -152,7 +152,7 @@ import { RouterLink } from '@angular/router';
       align-items: center;
       gap: var(--space-sm);
       padding: var(--space-sm) var(--space-md);
-      background: rgba(34, 197, 94, 0.1);
+      background: var(--color-accent-light);
       border: 1px solid var(--color-border-strong);
       border-radius: var(--radius-full);
       font-size: 0.875rem;
@@ -168,7 +168,7 @@ import { RouterLink } from '@angular/router';
       margin-bottom: var(--space-lg);
       
       .text-gradient {
-        background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-secondary) 100%);
+        background: var(--gradient-accent-full);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
@@ -234,7 +234,7 @@ import { RouterLink } from '@angular/router';
         display: flex;
         align-items: center;
         justify-content: center;
-        background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-secondary) 100%);
+        background: var(--gradient-accent-full);
         border-radius: var(--radius-md);
         margin-bottom: var(--space-md);
         
@@ -302,7 +302,7 @@ import { RouterLink } from '@angular/router';
         left: 0;
         width: 150px;
         height: 150px;
-        background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-secondary) 100%);
+        background: var(--gradient-accent-full);
         
         .material-icons-outlined {
           font-size: 60px;
@@ -312,7 +312,7 @@ import { RouterLink } from '@angular/router';
     }
     
     .mission-section {
-      background: linear-gradient(180deg, rgba(34, 197, 94, 0.03) 0%, transparent 100%);
+      background: linear-gradient(180deg, var(--color-accent-light) 0%, transparent 100%);
     }
     
     .mission-grid {
@@ -337,7 +337,7 @@ import { RouterLink } from '@angular/router';
         display: flex;
         align-items: center;
         justify-content: center;
-        background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-secondary) 100%);
+        background: var(--gradient-accent-full);
         border-radius: var(--radius-lg);
         margin-bottom: var(--space-lg);
         

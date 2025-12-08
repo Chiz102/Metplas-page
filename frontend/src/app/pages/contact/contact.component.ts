@@ -212,39 +212,17 @@ import { ContactMessage, CompanyInfo } from '../../core/models/catalog.model';
     .page-hero {
       padding: calc(80px + var(--space-4xl)) 0 var(--space-2xl);
       text-align: center;
-      background: linear-gradient(135deg, #1e293b 0%, #1e40af 50%, #3b82f6 100%);
-      position: relative;
-      overflow: hidden;
-      color: #ffffff;
-      
-      &::before {
-        content: '';
-        position: absolute;
-        inset: 0;
-        background: 
-          radial-gradient(ellipse 100% 80% at 50% 0%, rgba(255, 255, 255, 0.15) 0%, transparent 60%),
-          radial-gradient(ellipse 80% 60% at 100% 100%, rgba(59, 130, 246, 0.25) 0%, transparent 50%);
-        pointer-events: none;
-      }
-      
-      h1 {
-        color: #ffffff;
-        text-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-      }
-      
-      .hero-description {
-        color: rgba(255, 255, 255, 0.95);
-      }
+      background: 
+        radial-gradient(ellipse 80% 50% at 50% 0%, var(--color-accent-light) 0%, transparent 60%);
     }
     
     .hero-label {
       display: inline-flex;
       align-items: center;
       gap: var(--space-sm);
-      padding: var(--space-md) var(--space-lg);
-      background: rgba(255, 255, 255, 0.2);
-      backdrop-filter: blur(10px);
-      border: 2px solid rgba(255, 255, 255, 0.3);
+      padding: var(--space-sm) var(--space-md);
+      background: var(--color-accent-light);
+      border: 1px solid var(--color-border-strong);
       border-radius: var(--radius-full);
       font-size: 0.875rem;
       font-weight: 700;
@@ -264,7 +242,7 @@ import { ContactMessage, CompanyInfo } from '../../core/models/catalog.model';
       margin-bottom: var(--space-md);
       
       .text-gradient {
-        background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-secondary) 100%);
+        background: var(--gradient-accent-full);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
@@ -333,8 +311,8 @@ import { ContactMessage, CompanyInfo } from '../../core/models/catalog.model';
       }
       
       &-success {
-        background: rgba(52, 211, 153, 0.1);
-        border: 1px solid rgba(52, 211, 153, 0.3);
+        background: var(--color-accent-secondary-medium);
+        border: 1px solid var(--color-accent-secondary);
         color: var(--color-accent-secondary);
       }
       
@@ -476,7 +454,7 @@ import { ContactMessage, CompanyInfo } from '../../core/models/catalog.model';
         display: flex;
         align-items: center;
         justify-content: center;
-        background: rgba(34, 197, 94, 0.1);
+        background: var(--color-accent-light);
         border: 1px solid var(--color-border);
         border-radius: var(--radius-md);
         
