@@ -5,7 +5,8 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class ThemeService {
   private readonly storageKey = 'metplas:theme';
   private readonly modeStorageKey = 'metplas:theme-mode';
-  private readonly defaultTheme = 'teal-red';
+  // Default palette when no user selection exists
+  private readonly defaultTheme = 'light';
   private readonly defaultMode = 'auto'; // 'auto', 'light', 'dark'
 
   private modeSubject = new BehaviorSubject<'light' | 'dark' | 'auto'>('auto');
@@ -76,6 +77,16 @@ export class ThemeService {
       this.modeSubject.next(mode);
       localStorage.setItem(this.modeStorageKey, mode);
       this.applyMode(mode);
+      // Ensure the active palette matches the chosen mode so "light" actually uses the light palette
+      if (mode === 'light') {
+        this.set('light');
+      } else if (mode === 'dark') {
+        // If the currently selected palette is a light palette, switch to a dark-friendly one
+        const current = this.get();
+        if (current === 'light') {
+          this.set('teal-red');
+        }
+      }
     } catch (e) {
       // silent
     }

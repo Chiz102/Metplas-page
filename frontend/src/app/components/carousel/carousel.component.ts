@@ -7,6 +7,7 @@ export interface CarouselItem {
   title: string;
   description: string;
   price: string;
+  image?: string;
   isClone?: boolean;
 }
 
@@ -27,18 +28,10 @@ export interface CarouselItem {
             <div class="carousel-track" [style.transform]="'translateX(' + carouselOffset + ')'" [style.transition]="carouselTransition">
               @for (item of carouselItemsWithClones; track item.id + '-' + item.isClone; let i = $index) {
                 <div class="carousel-item">
-                  <div class="carousel-card">
-                    <div class="carousel-icon">
-                      <span class="material-icons-outlined">{{ item.icon }}</span>
-                    </div>
-                    <h3>{{ item.title }}</h3>
-                    <p>{{ item.description }}</p>
-                    <div class="carousel-footer">
-                      <span class="carousel-price">{{ item.price }}</span>
-                      <a href="#" class="carousel-link">
-                        Ver más
-                        <span class="material-icons-outlined">arrow_forward</span>
-                      </a>
+                  <div class="carousel-image-wrap">
+                    <img class="carousel-image" src="{{ item.image }}" alt="{{ item.title }}" />
+                    <div class="carousel-caption">
+                      <h3>{{ item.title }}</h3>
                     </div>
                   </div>
                 </div>
@@ -87,106 +80,38 @@ export interface CarouselItem {
     
     .carousel-item {
       flex: 0 0 calc(100% / var(--carousel-items-visible));
-      padding: var(--space-lg);
+      padding: 0;
       display: flex;
-      align-items: center;
+      align-items: stretch;
       justify-content: center;
     }
-    
-    .carousel-card {
-      display: flex;
-      flex-direction: column;
+
+    .carousel-image-wrap {
       width: 100%;
-      max-width: 100%;
       height: 100%;
-      padding: var(--space-lg);
-      background: linear-gradient(135deg, var(--color-surface) 0%, var(--color-surface-elevated) 100%);
-      border: 1px solid var(--color-border);
+      position: relative;
+      overflow: hidden;
       border-radius: var(--radius-lg);
-      transition: all var(--transition-base);
-      box-shadow: var(--shadow-card);
-      
-      &:hover {
-        border-color: var(--color-accent);
-        box-shadow: var(--shadow-elevated);
-        transform: scale(1.02);
-        
-        .carousel-icon {
-          background: var(--gradient-accent-full);
-          transform: scale(1.1);
-          
-          .material-icons-outlined {
-            color: var(--color-primary);
-          }
-        }
-      }
+    }
+
+    .carousel-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .carousel-caption {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: var(--space-md);
+      background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.45) 100%);
+      color: #fff;
     }
     
-    .carousel-icon {
-      width: 60px;
-      height: 60px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: var(--color-accent-light);
-      border-radius: var(--radius-lg);
-      margin-bottom: var(--space-lg);
-      transition: all var(--transition-base);
-      
-      .material-icons-outlined {
-        font-size: 32px;
-        color: var(--color-accent);
-        transition: color var(--transition-base);
-      }
-    }
-    
-    .carousel-card h3 {
-      font-size: 1.2rem;
-      font-weight: 700;
-      color: var(--color-text-primary);
-      margin-bottom: var(--space-sm);
-    }
-    
-    .carousel-card p {
-      font-size: 0.95rem;
-      color: var(--color-text-secondary);
-      flex: 1;
-      margin-bottom: var(--space-md);
-      line-height: 1.5;
-    }
-    
-    .carousel-footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: var(--space-md);
-      margin-top: var(--space-md);
-    }
-    
-    .carousel-price {
-      font-size: 1rem;
-      font-weight: 600;
-      color: var(--color-accent);
-    }
-    
-    .carousel-link {
-      display: flex;
-      align-items: center;
-      gap: var(--space-xs);
-      font-size: 0.9rem;
-      font-weight: 500;
-      color: var(--color-text-primary);
-      transition: color var(--transition-fast);
-      text-decoration: none;
-      
-      .material-icons-outlined {
-        font-size: 18px;
-      }
-      
-      &:hover {
-        color: var(--color-accent);
-      }
-    }
+    /* old card styles removed - images used instead */
     
     .carousel-indicators {
       display: none;

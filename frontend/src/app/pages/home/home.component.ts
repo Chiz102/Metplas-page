@@ -288,7 +288,7 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
       border-radius: var(--radius-full);
       font-size: 0.875rem;
       font-weight: 700;
-      color: #ffffff;
+      color: var(--color-text-primary);
       margin-bottom: var(--space-xl);
       box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
       text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -300,8 +300,8 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
     
     h1 {
       margin-bottom: var(--space-xl);
-      color: #ffffff;
-      text-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      color: var(--color-text-primary);
+      text-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
       
       .text-gradient {
         background: var(--gradient-accent-full);
@@ -314,10 +314,10 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
     
     .hero-description {
       font-size: 1.25rem;
-      color: rgba(255, 255, 255, 0.95);
+      color: var(--color-text-secondary);
       margin-bottom: var(--space-2xl);
       max-width: 500px;
-      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
       
       @media (max-width: 1024px) {
         margin: 0 auto var(--space-2xl);
@@ -817,42 +817,48 @@ export class HomeComponent implements OnInit {
       icon: 'precision_manufacturing',
       title: 'Equipos Trimmer',
       description: 'Maquinaria de corte de precisión para aplicaciones industriales complejas.',
-      price: 'Consultar'
+      price: 'Consultar',
+      image: 'https://picsum.photos/seed/metplas1/1200/800'
     },
     {
       id: 2,
       icon: 'bolt',
       title: 'Rectificadores Industrial',
       description: 'Equipos de rectificación de alta potencia para procesos de manufactura.',
-      price: 'Consultar'
+      price: 'Consultar',
+      image: 'https://picsum.photos/seed/metplas2/1200/800'
     },
     {
       id: 3,
       icon: 'inventory_2',
       title: 'Insumos Industriales',
       description: 'Repuestos y consumibles de calidad para mantenimiento continuo.',
-      price: 'Desde $5.000'
+      price: 'Desde $5.000',
+      image: 'https://picsum.photos/seed/metplas3/1200/800'
     },
     {
       id: 4,
       icon: 'shield_admin',
       title: 'Equipos de Protección',
       description: 'EPP certificados y equipos de seguridad para ambientes industriales.',
-      price: 'Desde $2.500'
+      price: 'Desde $2.500',
+      image: 'https://picsum.photos/seed/metplas4/1200/800'
     },
     {
       id: 5,
       icon: 'engineering',
       title: 'Servicios Técnicos',
       description: 'Instalación, mantenimiento y asesoría técnica especializada.',
-      price: 'Según servicio'
+      price: 'Según servicio',
+      image: 'https://picsum.photos/seed/metplas5/1200/800'
     },
     {
       id: 6,
       icon: 'lightbulb',
       title: 'Soluciones Personalizadas',
       description: 'Diseño y desarrollo de soluciones a medida para tu operación.',
-      price: 'Presupuesto'
+      price: 'Presupuesto',
+      image: 'https://picsum.photos/seed/metplas6/1200/800'
     }
   ];
 

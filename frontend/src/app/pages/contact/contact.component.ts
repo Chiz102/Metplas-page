@@ -226,7 +226,7 @@ import { ContactMessage, CompanyInfo } from '../../core/models/catalog.model';
       border-radius: var(--radius-full);
       font-size: 0.875rem;
       font-weight: 700;
-      color: #ffffff;
+      color: var(--color-text-primary);
       margin-bottom: var(--space-lg);
       position: relative;
       z-index: 1;

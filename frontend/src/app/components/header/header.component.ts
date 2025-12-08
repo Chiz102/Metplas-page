@@ -82,7 +82,7 @@ import { ThemeToggleComponent } from '../theme-toggle/theme-toggle.component';
         content: '';
         position: absolute;
         inset: 0;
-        background: rgba(255, 255, 255, 0.92);
+        background: var(--color-header-bg);
         backdrop-filter: blur(20px) saturate(180%);
         -webkit-backdrop-filter: blur(20px) saturate(180%);
         border-bottom: 1px solid transparent;
@@ -90,7 +90,7 @@ import { ThemeToggleComponent } from '../theme-toggle/theme-toggle.component';
       }
       
       &.scrolled::before {
-        background: rgba(255, 255, 255, 0.98);
+        background: var(--color-header-bg);
         border-bottom-color: rgba(30, 64, 175, 0.1);
         box-shadow: 0 4px 16px rgba(30, 64, 175, 0.08);
       }
