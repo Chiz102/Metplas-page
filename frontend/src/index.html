@@ -12,8 +12,16 @@
   <script>
     (function(){
       try {
+        // Apply saved theme
         var t = localStorage.getItem('metplas:theme');
         if (t) document.documentElement.setAttribute('data-theme', t);
+        
+        // Apply saved color mode (light/dark/auto)
+        var m = localStorage.getItem('metplas:theme-mode') || 'auto';
+        var actualMode = m === 'auto' 
+          ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
+          : m;
+        document.documentElement.setAttribute('data-color-mode', actualMode);
       } catch(e) { /* ignore */ }
     })();
   </script>

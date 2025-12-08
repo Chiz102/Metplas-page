@@ -1,11 +1,12 @@
 import { Component, signal, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { ThemeToggleComponent } from '../theme-toggle/theme-toggle.component';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule, RouterLink, RouterLinkActive],
+  imports: [CommonModule, RouterLink, RouterLinkActive, ThemeToggleComponent],
   template: `
     <header [class.scrolled]="isScrolled()">
       <nav class="container">
@@ -53,6 +54,8 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
         </div>
 
         <div class="header-actions">
+          <app-theme-toggle></app-theme-toggle>
+          
           <a href="tel:+56996154315" class="phone-link">
             <span class="material-icons-outlined">phone</span>
             <span class="phone-text">+569 9615 4315</span>
