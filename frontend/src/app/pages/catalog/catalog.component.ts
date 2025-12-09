@@ -1,26 +1,27 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink, ActivatedRoute } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 import { ApiService } from '../../core/services/api.service';
 import { Category } from '../../core/models/catalog.model';
 
 @Component({
   selector: 'app-catalog',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, TranslateModule],
   template: `
     <!-- Hero -->
     <section class="page-hero">
       <div class="container">
         <span class="hero-label animate-fade-in-up">
           <span class="material-icons-outlined">inventory_2</span>
-          {{ currentCategory ? currentCategory.name : 'Nuestros Productos' }}
+          {{ currentCategory ? currentCategory.name : ('catalog.ourProducts' | translate) }}
         </span>
         <h1 class="animate-fade-in-up delay-1">
-          {{ currentCategory ? currentCategory.name : 'Catálogo' }}
+          {{ currentCategory ? currentCategory.name : ('catalog.catalog' | translate) }}
         </h1>
         <p class="hero-description animate-fade-in-up delay-2">
-          {{ currentCategory?.description || 'Explora nuestra completa gama de equipos, insumos y servicios para tu industria.' }}
+          {{ currentCategory?.description || ('catalog.catalogDescription' | translate) }}
         </p>
       </div>
     </section>
@@ -34,7 +35,7 @@ import { Category } from '../../core/models/catalog.model';
             class="filter-tab"
             [class.active]="!currentCategory">
             <span class="material-icons-outlined">grid_view</span>
-            Todos
+            {{ 'catalog.all' | translate }}
           </a>
           @for (cat of categories; track cat.id) {
             <a 
@@ -80,7 +81,7 @@ import { Category } from '../../core/models/catalog.model';
                       <h3>{{ sub.name }}</h3>
                       <p>{{ sub.description || 'Productos de alta calidad' }}</p>
                       <span class="product-count">
-                        {{ sub.products_count || 0 }} productos disponibles
+                        {{ sub.products_count || 0 }} {{ 'catalog.productsAvailable' | translate }}
                       </span>
                     </div>
                   </div>
@@ -89,11 +90,11 @@ import { Category } from '../../core/models/catalog.model';
             } @else {
               <div class="empty-state">
                 <span class="material-icons-outlined">inventory_2</span>
-                <h3>Próximamente</h3>
-                <p>Estamos preparando el catálogo de productos. Contáctanos para más información.</p>
+                <h3>{{ 'catalog.comingSoon' | translate }}</h3>
+                <p>{{ 'catalog.comingSoonDesc' | translate }}</p>
                 <a routerLink="/contacto" class="btn btn-primary">
                   <span class="material-icons-outlined">mail</span>
-                  Contactar
+                  {{ 'catalog.contact' | translate }}
                 </a>
               </div>
             }
@@ -107,7 +108,7 @@ import { Category } from '../../core/models/catalog.model';
                   <div class="card-icon">
                     <span class="material-icons-outlined">{{ cat.icon || 'category' }}</span>
                   </div>
-                  <span class="card-badge">{{ cat.subcategories_count || 0 }} subcategorías</span>
+                  <span class="card-badge">{{ cat.subcategories_count || 0 }} {{ 'catalog.subcategories' | translate }}</span>
                 </div>
                 <h3>{{ cat.name }}</h3>
                 <p>{{ cat.description }}</p>
@@ -126,7 +127,7 @@ import { Category } from '../../core/models/catalog.model';
                 }
                 
                 <span class="card-link">
-                  Ver categoría
+                  {{ 'catalog.viewCategory' | translate }}
                   <span class="material-icons-outlined">arrow_forward</span>
                 </span>
               </a>
@@ -143,14 +144,14 @@ import { Category } from '../../core/models/catalog.model';
           <div class="cta-icon">
             <span class="material-icons-outlined">support_agent</span>
           </div>
-          <h2>¿No encuentras lo que buscas?</h2>
+          <h2>{{ 'catalog.cantFind' | translate }}</h2>
           <p>
-            Nuestro equipo está listo para ayudarte a encontrar la solución perfecta para tu industria.
+            {{ 'catalog.cantFindDesc' | translate }}
           </p>
           <div class="cta-actions">
             <a routerLink="/contacto" class="btn btn-primary btn-lg">
               <span class="material-icons-outlined">chat</span>
-              Solicitar Asesoría
+              {{ 'catalog.requestConsultation' | translate }}
             </a>
             <a href="https://wa.me/56996154315" target="_blank" class="btn btn-secondary btn-lg">
               <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">

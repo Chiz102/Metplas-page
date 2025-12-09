@@ -1,24 +1,25 @@
 import { Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
 import { ApiService } from '../../core/services/api.service';
 import { ContactMessage, CompanyInfo } from '../../core/models/catalog.model';
 
 @Component({
   selector: 'app-contact',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, TranslateModule],
   template: `
     <!-- Hero -->
     <section class="page-hero">
       <div class="container">
         <span class="hero-label animate-fade-in-up">
           <span class="material-icons-outlined">mail</span>
-          Contáctanos
+          {{ 'contact.contactUs' | translate }}
         </span>
-        <h1 class="animate-fade-in-up delay-1">¿Cómo podemos <span class="text-gradient">ayudarte</span>?</h1>
+        <h1 class="animate-fade-in-up delay-1">{{ 'contact.howCanWeHelp' | translate }} <span class="text-gradient">{{ 'contact.help' | translate }}</span>?</h1>
         <p class="hero-description animate-fade-in-up delay-2">
-          Estamos aquí para responder tus preguntas y brindarte la mejor asesoría.
+          {{ 'contact.helpDescription' | translate }}
         </p>
       </div>
     </section>
@@ -30,8 +31,8 @@ import { ContactMessage, CompanyInfo } from '../../core/models/catalog.model';
           <!-- Contact Form -->
           <div class="contact-form-wrapper">
             <div class="form-header">
-              <h2>Envíanos un mensaje</h2>
-              <p>Completa el formulario y te responderemos a la brevedad.</p>
+              <h2>{{ 'contact.sendMessage' | translate }}</h2>
+              <p>{{ 'contact.formDescription' | translate }}</p>
             </div>
 
             @if (successMessage()) {
@@ -51,70 +52,70 @@ import { ContactMessage, CompanyInfo } from '../../core/models/catalog.model';
             <form (ngSubmit)="submitForm()" #contactForm="ngForm">
               <div class="form-row">
                 <div class="form-group">
-                  <label for="name">Nombre completo</label>
+                  <label for="name">{{ 'contact.fullName' | translate }}</label>
                   <input 
                     type="text" 
                     id="name" 
                     name="name"
                     [(ngModel)]="formData.name"
                     required
-                    placeholder="Tu nombre">
+                    [placeholder]="'contact.namePlaceholder' | translate">
                 </div>
                 
                 <div class="form-group">
-                  <label for="email">Correo electrónico</label>
+                  <label for="email">{{ 'contact.email' | translate }}</label>
                   <input 
                     type="email" 
                     id="email" 
                     name="email"
                     [(ngModel)]="formData.email"
                     required
-                    placeholder="tu@email.com">
+                    [placeholder]="'contact.emailPlaceholder' | translate">
                 </div>
               </div>
 
               <div class="form-row">
                 <div class="form-group">
-                  <label for="phone">Teléfono</label>
+                  <label for="phone">{{ 'contact.phone' | translate }}</label>
                   <input 
                     type="tel" 
                     id="phone" 
                     name="phone"
                     [(ngModel)]="formData.phone"
-                    placeholder="+56 9 1234 5678">
+                    [placeholder]="'contact.phonePlaceholder' | translate">
                 </div>
                 
                 <div class="form-group">
-                  <label for="company">Empresa</label>
+                  <label for="company">{{ 'contact.company' | translate }}</label>
                   <input 
                     type="text" 
                     id="company" 
                     name="company"
                     [(ngModel)]="formData.company"
-                    placeholder="Nombre de tu empresa">
+                    [placeholder]="'contact.companyPlaceholder' | translate">
                 </div>
               </div>
 
               <div class="form-group">
-                <label for="subject">Asunto</label>
+                <label for="subject">{{ 'contact.subject' | translate }}</label>
                 <input 
                   type="text" 
                   id="subject" 
                   name="subject"
                   [(ngModel)]="formData.subject"
                   required
-                  placeholder="¿En qué podemos ayudarte?">
+                  [placeholder]="'contact.subjectPlaceholder' | translate">
               </div>
 
               <div class="form-group">
-                <label for="message">Mensaje</label>
+                <label for="message">{{ 'contact.message' | translate }}</label>
                 <textarea 
                   id="message" 
                   name="message"
                   [(ngModel)]="formData.message"
                   required
                   rows="5"
-                  placeholder="Cuéntanos más detalles..."></textarea>
+                  [placeholder]="'contact.messagePlaceholder' | translate"></textarea>
               </div>
 
               <button 
@@ -123,10 +124,10 @@ import { ContactMessage, CompanyInfo } from '../../core/models/catalog.model';
                 [disabled]="isSubmitting() || !contactForm.valid">
                 @if (isSubmitting()) {
                   <span class="material-icons-outlined spinning">sync</span>
-                  Enviando...
+                  {{ 'contact.sending' | translate }}
                 } @else {
                   <span class="material-icons-outlined">send</span>
-                  Enviar mensaje
+                  {{ 'contact.send' | translate }}
                 }
               </button>
             </form>
@@ -135,8 +136,8 @@ import { ContactMessage, CompanyInfo } from '../../core/models/catalog.model';
           <!-- Contact Info -->
           <div class="contact-info">
             <div class="info-card">
-              <h3>Información de contacto</h3>
-              <p>También puedes comunicarte con nosotros directamente:</p>
+              <h3>{{ 'contact.contactInfo' | translate }}</h3>
+              <p>{{ 'contact.contactInfoDesc' | translate }}</p>
 
               <div class="info-items">
                 <a [href]="'tel:' + (company?.phone?.replace(' ', '') || '+56996154315')" class="info-item">
@@ -144,7 +145,7 @@ import { ContactMessage, CompanyInfo } from '../../core/models/catalog.model';
                     <span class="material-icons-outlined">phone</span>
                   </span>
                   <div>
-                    <span class="info-label">Teléfono</span>
+                    <span class="info-label">{{ 'common.phone' | translate }}</span>
                     <span class="info-value">{{ company?.phone || '+569 9615 4315' }}</span>
                   </div>
                 </a>
@@ -154,7 +155,7 @@ import { ContactMessage, CompanyInfo } from '../../core/models/catalog.model';
                     <span class="material-icons-outlined">mail</span>
                   </span>
                   <div>
-                    <span class="info-label">Email</span>
+                    <span class="info-label">{{ 'common.email' | translate }}</span>
                     <span class="info-value">{{ company?.email || 'contacto@metplastech.cl' }}</span>
                   </div>
                 </a>
@@ -167,7 +168,7 @@ import { ContactMessage, CompanyInfo } from '../../core/models/catalog.model';
                   </span>
                   <div>
                     <span class="info-label">WhatsApp</span>
-                    <span class="info-value">Escríbenos directo</span>
+                    <span class="info-value">{{ 'contact.writeUsDirect' | translate }}</span>
                   </div>
                 </a>
 
@@ -176,7 +177,7 @@ import { ContactMessage, CompanyInfo } from '../../core/models/catalog.model';
                     <span class="material-icons-outlined">location_on</span>
                   </span>
                   <div>
-                    <span class="info-label">Ubicación</span>
+                    <span class="info-label">{{ 'contact.location' | translate }}</span>
                     <span class="info-value">{{ company?.address || 'Curicó – Región del Maule – Chile' }}</span>
                   </div>
                 </div>
@@ -186,20 +187,20 @@ import { ContactMessage, CompanyInfo } from '../../core/models/catalog.model';
             <div class="hours-card">
               <h4>
                 <span class="material-icons-outlined">schedule</span>
-                Horario de atención
+                {{ 'contact.businessHours' | translate }}
               </h4>
               <div class="hours-list">
                 <div class="hours-row">
-                  <span>Lunes - Viernes</span>
+                  <span>{{ 'contact.mondayFriday' | translate }}</span>
                   <span>9:00 - 18:00</span>
                 </div>
                 <div class="hours-row">
-                  <span>Sábado</span>
+                  <span>{{ 'contact.saturday' | translate }}</span>
                   <span>9:00 - 13:00</span>
                 </div>
                 <div class="hours-row">
-                  <span>Domingo</span>
-                  <span>Cerrado</span>
+                  <span>{{ 'contact.sunday' | translate }}</span>
+                  <span>{{ 'contact.closed' | translate }}</span>
                 </div>
               </div>
             </div>

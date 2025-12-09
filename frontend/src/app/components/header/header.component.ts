@@ -1,11 +1,13 @@
-import { Component, signal, HostListener } from '@angular/core';
+import { Component, signal, HostListener, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { LanguageService } from '../../core/services/language.service';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule, RouterLink, RouterLinkActive],
+  imports: [CommonModule, RouterLink, RouterLinkActive, TranslateModule],
   template: `
     <header [class.scrolled]="isScrolled()">
       <nav class="container">
@@ -21,38 +23,55 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 
         <div class="nav-links" [class.active]="menuOpen()">
           <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" 
-             (click)="closeMenu()">Inicio</a>
-          <a routerLink="/somos" routerLinkActive="active" (click)="closeMenu()">Somos</a>
+             (click)="closeMenu()">{{ 'nav.home' | translate }}</a>
+          <a routerLink="/somos" routerLinkActive="active" (click)="closeMenu()">{{ 'nav.about' | translate }}</a>
           
           <div class="dropdown">
             <a routerLink="/catalogo" routerLinkActive="active" class="dropdown-trigger">
-              Catálogo
+              {{ 'nav.catalog' | translate }}
               <span class="material-icons-outlined">expand_more</span>
             </a>
             <div class="dropdown-menu">
               <a routerLink="/catalogo/equipos" (click)="closeMenu()">
                 <span class="material-icons-outlined">precision_manufacturing</span>
-                Equipos
+                {{ 'nav.equipment' | translate }}
               </a>
               <a routerLink="/catalogo/insumos" (click)="closeMenu()">
                 <span class="material-icons-outlined">inventory_2</span>
-                Insumos
+                {{ 'nav.supplies' | translate }}
               </a>
               <a routerLink="/catalogo/servicios" (click)="closeMenu()">
                 <span class="material-icons-outlined">engineering</span>
-                Servicios
+                {{ 'nav.services' | translate }}
               </a>
               <a routerLink="/catalogo/innovacion" (click)="closeMenu()">
                 <span class="material-icons-outlined">lightbulb</span>
-                Innovación y Desarrollo
+                {{ 'nav.innovation' | translate }}
               </a>
             </div>
           </div>
           
-          <a routerLink="/contacto" routerLinkActive="active" (click)="closeMenu()">Contacto</a>
+          <a routerLink="/contacto" routerLinkActive="active" (click)="closeMenu()">{{ 'nav.contact' | translate }}</a>
         </div>
 
         <div class="header-actions">
+          <div class="language-selector">
+            <button 
+              class="lang-btn" 
+              [class.active]="languageService.currentLanguage() === 'es'"
+              (click)="setLanguage('es')"
+              [attr.aria-label]="'Español'">
+              ES
+            </button>
+            <button 
+              class="lang-btn" 
+              [class.active]="languageService.currentLanguage() === 'en'"
+              (click)="setLanguage('en')"
+              [attr.aria-label]="'English'">
+              EN
+            </button>
+          </div>
+          
           <a href="tel:+56996154315" class="phone-link">
             <span class="material-icons-outlined">phone</span>
             <span class="phone-text">+569 9615 4315</span>
@@ -99,6 +118,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
       align-items: center;
       justify-content: space-between;
       gap: var(--space-xl);
+      z-index: 1;
     }
     
     .logo {
@@ -238,9 +258,54 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
     }
     
     .header-actions {
-      display: flex;
+      display: flex !important;
       align-items: center;
       gap: var(--space-md);
+      position: relative;
+      z-index: 1001;
+    }
+    
+    .language-selector {
+      display: flex !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      align-items: center;
+      gap: 0;
+      padding: 2px;
+      background: var(--color-primary-light);
+      border: 1px solid var(--color-border-blue);
+      border-radius: var(--radius-full);
+      position: relative;
+      z-index: 1002;
+      box-shadow: 0 1px 3px rgba(30, 64, 175, 0.08);
+      
+      .lang-btn {
+        padding: var(--space-xs) var(--space-sm);
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: var(--color-text-secondary);
+        background: transparent;
+        border: none;
+        border-radius: var(--radius-full);
+        cursor: pointer;
+        transition: all var(--transition-fast);
+        min-width: 32px;
+        text-align: center;
+        line-height: 1.2;
+        letter-spacing: 0.02em;
+        
+        &:hover {
+          color: var(--color-blue);
+          background: rgba(30, 64, 175, 0.08);
+        }
+        
+        &.active {
+          color: #ffffff;
+          background: linear-gradient(135deg, var(--color-blue) 0%, var(--color-blue-light) 100%);
+          box-shadow: 0 2px 6px rgba(30, 64, 175, 0.25);
+          font-weight: 700;
+        }
+      }
     }
     
     .phone-link {
@@ -296,6 +361,10 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
       .phone-link {
         padding: var(--space-sm);
       }
+      
+      .language-selector {
+        order: -1;
+      }
     }
     
     @media (max-width: 768px) {
@@ -347,8 +416,13 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   `]
 })
 export class HeaderComponent {
+  languageService = inject(LanguageService);
   isScrolled = signal(false);
   menuOpen = signal(false);
+  
+  setLanguage(lang: 'es' | 'en') {
+    this.languageService.setLanguage(lang);
+  };
 
   @HostListener('window:scroll')
   onScroll() {

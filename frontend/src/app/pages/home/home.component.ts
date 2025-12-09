@@ -1,13 +1,14 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 import { ApiService } from '../../core/services/api.service';
 import { Category } from '../../core/models/catalog.model';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, TranslateModule],
   template: `
     <!-- Hero Section -->
     <section class="hero">
@@ -21,43 +22,42 @@ import { Category } from '../../core/models/catalog.model';
         <div class="hero-text">
           <span class="hero-badge animate-fade-in-up">
             <span class="material-icons-outlined">verified</span>
-            Soluciones Industriales
+            {{ 'home.badge' | translate }}
           </span>
           
           <h1 class="animate-fade-in-up delay-1">
-            Tecnología e<br>
-            <span class="text-gradient">Innovación</span><br>
-            Industrial
+            {{ 'home.title' | translate }}<br>
+            <span class="text-gradient">{{ 'home.titleHighlight' | translate }}</span><br>
+            {{ 'home.titleEnd' | translate }}
           </h1>
           
           <p class="hero-description animate-fade-in-up delay-2">
-            Equipos de alta precisión, insumos de calidad y servicios especializados 
-            para impulsar la productividad de tu industria.
+            {{ 'home.description' | translate }}
           </p>
           
           <div class="hero-actions animate-fade-in-up delay-3">
             <a routerLink="/catalogo" class="btn btn-primary btn-lg">
               <span class="material-icons-outlined">grid_view</span>
-              Ver Catálogo
+              {{ 'home.viewCatalog' | translate }}
             </a>
             <a routerLink="/contacto" class="btn btn-secondary btn-lg">
               <span class="material-icons-outlined">send</span>
-              Contáctanos
+              {{ 'home.contactUs' | translate }}
             </a>
           </div>
           
           <div class="hero-stats animate-fade-in-up delay-4">
             <div class="stat">
               <span class="stat-value">10+</span>
-              <span class="stat-label">Años de experiencia</span>
+              <span class="stat-label">{{ 'home.yearsExperience' | translate }}</span>
             </div>
             <div class="stat">
               <span class="stat-value">500+</span>
-              <span class="stat-label">Clientes satisfechos</span>
+              <span class="stat-label">{{ 'home.satisfiedClients' | translate }}</span>
             </div>
             <div class="stat">
               <span class="stat-value">100%</span>
-              <span class="stat-label">Calidad garantizada</span>
+              <span class="stat-label">{{ 'home.guaranteedQuality' | translate }}</span>
             </div>
           </div>
         </div>
@@ -66,7 +66,7 @@ import { Category } from '../../core/models/catalog.model';
           <div class="hero-card">
             <div class="card-inner">
               <span class="material-icons-outlined">precision_manufacturing</span>
-              <span>Precisión Industrial</span>
+              <span>{{ 'home.industrialPrecision' | translate }}</span>
             </div>
           </div>
           <div class="floating-elements">
@@ -92,10 +92,10 @@ import { Category } from '../../core/models/catalog.model';
     <section class="section section-blue categories-section">
       <div class="container">
         <div class="section-header">
-          <span class="section-label">Nuestras Soluciones</span>
-          <h2 class="section-title">Catálogo Completo</h2>
+          <span class="section-label">{{ 'home.solutions' | translate }}</span>
+          <h2 class="section-title">{{ 'home.fullCatalog' | translate }}</h2>
           <p class="section-description">
-            Descubre nuestra amplia gama de productos y servicios diseñados para optimizar tu operación industrial.
+            {{ 'home.catalogDescription' | translate }}
           </p>
         </div>
 
@@ -108,7 +108,7 @@ import { Category } from '../../core/models/catalog.model';
               <h3>{{ category.name }}</h3>
               <p>{{ category.description }}</p>
               <span class="category-link">
-                Explorar
+                {{ 'home.explore' | translate }}
                 <span class="material-icons-outlined">arrow_forward</span>
               </span>
             </a>
@@ -122,12 +122,10 @@ import { Category } from '../../core/models/catalog.model';
       <div class="container">
         <div class="features-grid">
           <div class="feature-content">
-            <span class="section-label">¿Por qué elegirnos?</span>
-            <h2>Compromiso con la <span class="text-gradient">Excelencia</span></h2>
+            <span class="section-label">{{ 'home.whyChooseUs' | translate }}</span>
+            <h2>{{ 'home.excellenceCommitment' | translate }} <span class="text-gradient">{{ 'home.excellence' | translate }}</span></h2>
             <p>
-              En Metplastech Technologies nos dedicamos a proporcionar soluciones 
-              industriales de la más alta calidad, respaldadas por años de experiencia 
-              y un equipo altamente capacitado.
+              {{ 'home.excellenceDescription' | translate }}
             </p>
             
             <div class="features-list">
@@ -136,8 +134,8 @@ import { Category } from '../../core/models/catalog.model';
                   <span class="material-icons-outlined">verified</span>
                 </span>
                 <div>
-                  <h4>Calidad Certificada</h4>
-                  <p>Productos que cumplen con los más altos estándares de la industria.</p>
+                  <h4>{{ 'home.certifiedQuality' | translate }}</h4>
+                  <p>{{ 'home.certifiedQualityDesc' | translate }}</p>
                 </div>
               </div>
               
@@ -146,8 +144,8 @@ import { Category } from '../../core/models/catalog.model';
                   <span class="material-icons-outlined">support_agent</span>
                 </span>
                 <div>
-                  <h4>Soporte Técnico</h4>
-                  <p>Asesoría especializada y soporte post-venta permanente.</p>
+                  <h4>{{ 'home.technicalSupport' | translate }}</h4>
+                  <p>{{ 'home.technicalSupportDesc' | translate }}</p>
                 </div>
               </div>
               
@@ -156,14 +154,14 @@ import { Category } from '../../core/models/catalog.model';
                   <span class="material-icons-outlined">local_shipping</span>
                 </span>
                 <div>
-                  <h4>Entrega Nacional</h4>
-                  <p>Despacho a todo Chile con tiempos de entrega competitivos.</p>
+                  <h4>{{ 'home.nationalDelivery' | translate }}</h4>
+                  <p>{{ 'home.nationalDeliveryDesc' | translate }}</p>
                 </div>
               </div>
             </div>
             
             <a routerLink="/somos" class="btn btn-secondary">
-              Conocer más
+              {{ 'home.learnMore' | translate }}
               <span class="material-icons-outlined">arrow_forward</span>
             </a>
           </div>
@@ -186,15 +184,14 @@ import { Category } from '../../core/models/catalog.model';
       <div class="container">
         <div class="cta-card">
           <div class="cta-content">
-            <h2>¿Listo para optimizar tu operación?</h2>
+            <h2>{{ 'home.readyToOptimize' | translate }}</h2>
             <p>
-              Contáctanos hoy y descubre cómo nuestras soluciones pueden 
-              transformar tu industria.
+              {{ 'home.readyDescription' | translate }}
             </p>
             <div class="cta-actions">
               <a routerLink="/contacto" class="btn btn-cta btn-lg">
                 <span class="material-icons-outlined">chat</span>
-                Solicitar Cotización
+                {{ 'home.requestQuote' | translate }}
               </a>
               <a href="tel:+56996154315" class="btn btn-secondary btn-lg">
                 <span class="material-icons-outlined">phone</span>
@@ -334,6 +331,24 @@ import { Category } from '../../core/models/catalog.model';
       
       @media (max-width: 480px) {
         flex-direction: column;
+      }
+      
+      .btn-secondary {
+        background: transparent;
+        color: #ffffff;
+        border: 2px solid #ffffff;
+        font-weight: 600;
+        
+        &:hover {
+          background: rgba(255, 255, 255, 0.15);
+          border-color: #ffffff;
+          color: #ffffff;
+          backdrop-filter: blur(10px);
+        }
+        
+        .material-icons-outlined {
+          color: #ffffff;
+        }
       }
     }
     

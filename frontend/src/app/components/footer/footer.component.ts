@@ -1,13 +1,14 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 import { ApiService } from '../../core/services/api.service';
 import { CompanyInfo } from '../../core/models/catalog.model';
 
 @Component({
   selector: 'app-footer',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, TranslateModule],
   template: `
     <footer>
       <div class="container">
@@ -24,7 +25,7 @@ import { CompanyInfo } from '../../core/models/catalog.model';
               </span>
             </a>
             <p class="footer-description">
-              Soluciones tecnológicas e industriales de alta calidad para la industria chilena.
+              {{ 'footer.description' | translate }}
             </p>
             <div class="social-links">
               @if (company?.facebook) {
@@ -47,29 +48,29 @@ import { CompanyInfo } from '../../core/models/catalog.model';
           
           <!-- Quick Links -->
           <div class="footer-section">
-            <h4>Navegación</h4>
+            <h4>{{ 'footer.navigation' | translate }}</h4>
             <nav>
-              <a routerLink="/">Inicio</a>
-              <a routerLink="/somos">Somos</a>
-              <a routerLink="/catalogo">Catálogo</a>
-              <a routerLink="/contacto">Contacto</a>
+              <a routerLink="/">{{ 'nav.home' | translate }}</a>
+              <a routerLink="/somos">{{ 'nav.about' | translate }}</a>
+              <a routerLink="/catalogo">{{ 'nav.catalog' | translate }}</a>
+              <a routerLink="/contacto">{{ 'nav.contact' | translate }}</a>
             </nav>
           </div>
           
           <!-- Catalog -->
           <div class="footer-section">
-            <h4>Catálogo</h4>
+            <h4>{{ 'footer.catalog' | translate }}</h4>
             <nav>
-              <a routerLink="/catalogo/equipos">Equipos</a>
-              <a routerLink="/catalogo/insumos">Insumos</a>
-              <a routerLink="/catalogo/servicios">Servicios</a>
-              <a routerLink="/catalogo/innovacion">Innovación y Desarrollo</a>
+              <a routerLink="/catalogo/equipos">{{ 'nav.equipment' | translate }}</a>
+              <a routerLink="/catalogo/insumos">{{ 'nav.supplies' | translate }}</a>
+              <a routerLink="/catalogo/servicios">{{ 'nav.services' | translate }}</a>
+              <a routerLink="/catalogo/innovacion">{{ 'nav.innovation' | translate }}</a>
             </nav>
           </div>
           
           <!-- Contact -->
           <div class="footer-section">
-            <h4>Contacto</h4>
+            <h4>{{ 'footer.contact' | translate }}</h4>
             <div class="contact-info">
               <a [href]="phoneHref">
                 <span class="material-icons-outlined">phone</span>
@@ -88,8 +89,8 @@ import { CompanyInfo } from '../../core/models/catalog.model';
         </div>
         
         <div class="footer-bottom">
-          <p>&copy; {{ currentYear }} Metplastech Technologies SPA. Todos los derechos reservados.</p>
-          <p class="credits">Sitio desarrollado con <span class="heart">♥</span> en Chile</p>
+          <p>&copy; {{ currentYear }} {{ 'footer.rightsReserved' | translate }}</p>
+          <p class="credits">{{ 'footer.developedWith' | translate }} <span class="heart">♥</span> {{ 'footer.inChile' | translate }}</p>
         </div>
       </div>
     </footer>
