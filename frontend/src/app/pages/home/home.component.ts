@@ -4,11 +4,12 @@ import { RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { ApiService } from '../../core/services/api.service';
 import { Category } from '../../core/models/catalog.model';
+import { CarouselComponent, CarouselItem } from '../../components/carousel/carousel.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, RouterLink, TranslateModule],
+  imports: [CommonModule, RouterLink, TranslateModule, CarouselComponent],
   template: `
     <!-- Hero Section -->
     <section class="hero">
@@ -87,6 +88,9 @@ import { Category } from '../../core/models/catalog.model';
         <span class="material-icons-outlined">expand_more</span>
       </div>
     </section>
+
+    <!-- Carousel Section -->
+    <app-carousel [items]="carouselItems" [itemsVisible]="3"></app-carousel>
 
     <!-- Categories Section -->
     <section class="section section-blue categories-section">
@@ -228,18 +232,16 @@ import { Category } from '../../core/models/catalog.model';
       position: absolute;
       inset: 0;
       background: 
-        linear-gradient(135deg, #1e293b 0%, #1e40af 40%, #3b82f6 100%),
-        radial-gradient(ellipse 100% 80% at 70% 20%, rgba(30, 64, 175, 0.25) 0%, transparent 50%),
-        radial-gradient(ellipse 80% 60% at 20% 80%, rgba(59, 130, 246, 0.2) 0%, transparent 40%);
-      opacity: 0.98;
+        radial-gradient(ellipse 100% 80% at 70% 20%, var(--color-accent-medium) 0%, transparent 50%),
+        radial-gradient(ellipse 80% 60% at 20% 80%, var(--color-accent-secondary-light) 0%, transparent 40%);
     }
     
     .hero-pattern {
       position: absolute;
       inset: 0;
       background-image: 
-        linear-gradient(rgba(34, 197, 94, 0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(34, 197, 94, 0.05) 1px, transparent 1px);
+        linear-gradient(var(--color-accent-light) 1px, transparent 1px),
+        linear-gradient(90deg, var(--color-accent-light) 1px, transparent 1px);
       background-size: 80px 80px;
       mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, black 30%, transparent 70%);
     }
@@ -250,7 +252,7 @@ import { Category } from '../../core/models/catalog.model';
       right: 10%;
       width: 500px;
       height: 500px;
-      background: radial-gradient(circle, rgba(34, 197, 94, 0.15) 0%, transparent 60%);
+      background: radial-gradient(circle, var(--color-accent-medium) 0%, transparent 60%);
       filter: blur(60px);
       animation: pulse-glow 4s ease-in-out infinite;
     }
@@ -277,10 +279,9 @@ import { Category } from '../../core/models/catalog.model';
       display: inline-flex;
       align-items: center;
       gap: var(--space-sm);
-      padding: var(--space-md) var(--space-lg);
-      background: rgba(255, 255, 255, 0.2);
-      backdrop-filter: blur(10px);
-      border: 2px solid rgba(255, 255, 255, 0.3);
+      padding: var(--space-sm) var(--space-md);
+      background: var(--color-accent-light);
+      border: 1px solid var(--color-border-strong);
       border-radius: var(--radius-full);
       font-size: 0.875rem;
       font-weight: 700;
@@ -300,7 +301,7 @@ import { Category } from '../../core/models/catalog.model';
       text-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
       
       .text-gradient {
-        background: linear-gradient(135deg, #ffffff 0%, #dbeafe 50%, #bfdbfe 100%);
+        background: var(--gradient-accent-full);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
@@ -488,18 +489,7 @@ import { Category } from '../../core/models/catalog.model';
     
     // Categories Section
     .categories-section {
-      background: linear-gradient(135deg, var(--color-blue-bg) 0%, var(--color-blue-bg-light) 50%, rgba(59, 130, 246, 0.06) 100%);
-      position: relative;
-      
-      &::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 2px;
-        background: linear-gradient(90deg, transparent 0%, var(--color-blue-light) 20%, var(--color-blue) 50%, var(--color-blue-light) 80%, transparent 100%);
-      }
+      background: linear-gradient(180deg, transparent 0%, var(--color-accent-light) 50%, transparent 100%);
     }
     
     .categories-grid {
@@ -553,7 +543,7 @@ import { Category } from '../../core/models/catalog.model';
         box-shadow: var(--shadow-glow);
         
         .category-icon {
-          background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-secondary) 100%);
+          background: var(--gradient-accent-full);
           
           .material-icons-outlined {
             color: var(--color-primary);
@@ -573,7 +563,7 @@ import { Category } from '../../core/models/catalog.model';
       display: flex;
       align-items: center;
       justify-content: center;
-      background: rgba(34, 197, 94, 0.1);
+      background: var(--color-accent-light);
       border-radius: var(--radius-lg);
       margin-bottom: var(--space-lg);
       transition: all var(--transition-base);
@@ -630,7 +620,7 @@ import { Category } from '../../core/models/catalog.model';
         margin-bottom: var(--space-lg);
         
         .text-gradient {
-          background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-secondary) 100%);
+          background: var(--gradient-accent-full);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           background-clip: text;
@@ -660,7 +650,7 @@ import { Category } from '../../core/models/catalog.model';
         display: flex;
         align-items: center;
         justify-content: center;
-        background: rgba(34, 197, 94, 0.1);
+        background: var(--color-accent-light);
         border: 1px solid var(--color-border);
         border-radius: var(--radius-md);
         flex-shrink: 0;
@@ -835,6 +825,51 @@ import { Category } from '../../core/models/catalog.model';
 export class HomeComponent implements OnInit {
   private api = inject(ApiService);
   categories: Category[] = [];
+  
+  carouselItems: CarouselItem[] = [
+    {
+      id: 1,
+      icon: 'precision_manufacturing',
+      title: 'Equipos Trimmer',
+      description: 'Maquinaria de corte de precisión para aplicaciones industriales complejas.',
+      price: 'Consultar'
+    },
+    {
+      id: 2,
+      icon: 'bolt',
+      title: 'Rectificadores Industrial',
+      description: 'Equipos de rectificación de alta potencia para procesos de manufactura.',
+      price: 'Consultar'
+    },
+    {
+      id: 3,
+      icon: 'inventory_2',
+      title: 'Insumos Industriales',
+      description: 'Repuestos y consumibles de calidad para mantenimiento continuo.',
+      price: 'Desde $5.000'
+    },
+    {
+      id: 4,
+      icon: 'shield_admin',
+      title: 'Equipos de Protección',
+      description: 'EPP certificados y equipos de seguridad para ambientes industriales.',
+      price: 'Desde $2.500'
+    },
+    {
+      id: 5,
+      icon: 'engineering',
+      title: 'Servicios Técnicos',
+      description: 'Instalación, mantenimiento y asesoría técnica especializada.',
+      price: 'Según servicio'
+    },
+    {
+      id: 6,
+      icon: 'lightbulb',
+      title: 'Soluciones Personalizadas',
+      description: 'Diseño y desarrollo de soluciones a medida para tu operación.',
+      price: 'Presupuesto'
+    }
+  ];
 
   ngOnInit() {
     this.api.getCategories().subscribe(cats => {

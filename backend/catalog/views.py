@@ -2,8 +2,6 @@ from rest_framework import viewsets, status
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from django.core.mail import send_mail
-from django.conf import settings
 from .models import Category, SubCategory, Product, ContactMessage, CompanyInfo
 from .serializers import (
     CategorySerializer, CategoryListSerializer,
@@ -87,46 +85,7 @@ class ContactMessageView(APIView):
     def post(self, request):
         serializer = ContactMessageSerializer(data=request.data)
         if serializer.is_valid():
-            contact_message = serializer.save()
-            
-            # Obtener email de destino desde CompanyInfo o usar el default
-            company = CompanyInfo.objects.first()
-            recipient_email = company.email if company and company.email else getattr(settings, 'CONTACT_EMAIL', 'contacto@metplastech.cl')
-            
-            # Preparar el contenido del email
-            subject = f'Nuevo mensaje de contacto: {contact_message.subject}'
-            message_body = f"""
-Has recibido un nuevo mensaje de contacto desde el sitio web de Metplastech Technologies.
-
-Información del contacto:
-- Nombre: {contact_message.name}
-- Email: {contact_message.email}
-- Teléfono: {contact_message.phone or 'No proporcionado'}
-- Empresa: {contact_message.company or 'No proporcionada'}
-- Asunto: {contact_message.subject}
-
-Mensaje:
-{contact_message.message}
-
----
-Este mensaje fue enviado desde el formulario de contacto del sitio web.
-Fecha: {contact_message.created_at.strftime('%d/%m/%Y %H:%M:%S')}
-            """
-            
-            # Enviar email
-            try:
-                send_mail(
-                    subject=subject,
-                    message=message_body,
-                    from_email=getattr(settings, 'DEFAULT_FROM_EMAIL', 'contacto@metplastech.cl'),
-                    recipient_list=[recipient_email],
-                    fail_silently=False,
-                )
-            except Exception as e:
-                # Si falla el envío de email, aún guardamos el mensaje
-                # pero podríamos loguear el error en producción
-                pass
-            
+            serializer.save()
             return Response(
                 {'message': 'Mensaje enviado correctamente. Nos pondremos en contacto pronto.'},
                 status=status.HTTP_201_CREATED
