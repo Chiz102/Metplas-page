@@ -5,8 +5,10 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build:ghpages": "ng build --base-href /Metplas-page/",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "deploy": "ng build --base-href /Metplas-page/ && npx angular-cli-ghpages --dir=dist/metplas-frontend/browser"
   },
   "private": true,
   "dependencies": {
@@ -29,6 +31,7 @@
     "@angular/cli": "^17.0.0",
     "@angular/compiler-cli": "^17.0.0",
     "@types/node": "^20.9.0",
+    "angular-cli-ghpages": "^2.0.3",
     "typescript": "~5.2.2"
   }
 }

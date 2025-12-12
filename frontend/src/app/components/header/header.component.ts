@@ -98,7 +98,7 @@ import { LanguageService } from '../../core/services/language.service';
         content: '';
         position: absolute;
         inset: 0;
-        background: rgba(255, 255, 255, 0.92);
+        background: linear-gradient(180deg, rgba(248, 251, 255, 0.95) 0%, rgba(248, 251, 255, 0.9) 100%);
         backdrop-filter: blur(20px) saturate(180%);
         -webkit-backdrop-filter: blur(20px) saturate(180%);
         border-bottom: 1px solid transparent;
@@ -106,9 +106,11 @@ import { LanguageService } from '../../core/services/language.service';
       }
       
       &.scrolled::before {
-        background: rgba(255, 255, 255, 0.98);
-        border-bottom-color: rgba(30, 64, 175, 0.1);
-        box-shadow: 0 4px 16px rgba(30, 64, 175, 0.08);
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(248, 251, 255, 0.96) 100%);
+        border-bottom-color: rgba(21, 101, 192, 0.15);
+        box-shadow: 
+          0 4px 20px rgba(21, 101, 192, 0.1),
+          0 2px 8px rgba(0, 137, 123, 0.08);
       }
     }
     
@@ -144,11 +146,13 @@ import { LanguageService } from '../../core/services/language.service';
       display: flex;
       align-items: center;
       justify-content: center;
-      background: var(--color-green-gradient);
+      background: linear-gradient(135deg, #1565c0 0%, #00897b 100%);
       border-radius: var(--radius-md);
       color: #ffffff;
       transition: all var(--transition-base);
-      box-shadow: 0 2px 8px rgba(16, 185, 129, 0.2);
+      box-shadow: 
+        0 4px 16px rgba(21, 101, 192, 0.35),
+        0 2px 8px rgba(0, 137, 123, 0.25);
       
       .material-icons-outlined {
         font-size: 24px;
@@ -165,13 +169,17 @@ import { LanguageService } from '../../core/services/language.service';
       font-size: 1.125rem;
       font-weight: 700;
       letter-spacing: 0.05em;
+      background: linear-gradient(135deg, #1565c0 0%, #00897b 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
     
     .logo-tagline {
       font-size: 0.75rem;
-      font-weight: 400;
-      color: var(--color-accent);
-      letter-spacing: 0.1em;
+      font-weight: 500;
+      color: #1565c0;
+      letter-spacing: 0.08em;
     }
     
     .nav-links {
@@ -186,15 +194,22 @@ import { LanguageService } from '../../core/services/language.service';
         padding: var(--space-sm) var(--space-md);
         font-size: 0.95rem;
         font-weight: 500;
-        color: var(--color-text-secondary);
+        color: #2c4a6b;
         text-decoration: none;
         border-radius: var(--radius-md);
         transition: all var(--transition-fast);
         
-        &:hover, &.active {
-          color: var(--color-accent);
-          background: rgba(16, 185, 129, 0.12);
+        &:hover {
+          color: #1565c0;
+          background: linear-gradient(145deg, rgba(227, 242, 253, 0.8) 0%, rgba(224, 242, 241, 0.6) 100%);
           transform: translateY(-1px);
+        }
+        
+        &.active {
+          color: #00897b;
+          background: linear-gradient(145deg, rgba(224, 242, 241, 0.9) 0%, rgba(227, 242, 253, 0.7) 100%);
+          font-weight: 600;
+          box-shadow: 0 2px 8px rgba(0, 137, 123, 0.15);
         }
         
         .material-icons-outlined {
@@ -224,12 +239,14 @@ import { LanguageService } from '../../core/services/language.service';
       position: absolute;
       top: 100%;
       left: 0;
-      min-width: 240px;
+      min-width: 260px;
       padding: var(--space-sm);
-      background: var(--color-surface);
-      border: 1px solid var(--color-border);
+      background: linear-gradient(145deg, #ffffff 0%, #f8fbff 100%);
+      border: 2px solid rgba(21, 101, 192, 0.15);
       border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-elevated);
+      box-shadow: 
+        0 8px 30px rgba(21, 101, 192, 0.15),
+        0 4px 12px rgba(0, 137, 123, 0.1);
       opacity: 0;
       visibility: hidden;
       transform: translateY(10px);
@@ -240,19 +257,25 @@ import { LanguageService } from '../../core/services/language.service';
         align-items: center;
         gap: var(--space-md);
         padding: var(--space-md);
-        color: var(--color-text-secondary);
+        color: #2c4a6b;
         text-decoration: none;
         border-radius: var(--radius-md);
         transition: all var(--transition-fast);
         
         &:hover {
-          background: rgba(34, 197, 94, 0.1);
-          color: var(--color-accent);
+          background: linear-gradient(145deg, rgba(224, 242, 241, 0.8) 0%, rgba(227, 242, 253, 0.6) 100%);
+          color: #00897b;
+          
+          .material-icons-outlined {
+            transform: scale(1.1);
+            color: #00897b;
+          }
         }
         
         .material-icons-outlined {
-          font-size: 20px;
-          color: var(--color-accent);
+          font-size: 22px;
+          color: #1565c0;
+          transition: all var(--transition-fast);
         }
       }
     }
@@ -271,19 +294,19 @@ import { LanguageService } from '../../core/services/language.service';
       opacity: 1 !important;
       align-items: center;
       gap: 0;
-      padding: 2px;
-      background: var(--color-primary-light);
-      border: 1px solid var(--color-border-blue);
+      padding: 3px;
+      background: linear-gradient(145deg, #f8fbff 0%, #ffffff 100%);
+      border: 2px solid rgba(21, 101, 192, 0.2);
       border-radius: var(--radius-full);
       position: relative;
       z-index: 1002;
-      box-shadow: 0 1px 3px rgba(30, 64, 175, 0.08);
+      box-shadow: 0 2px 8px rgba(21, 101, 192, 0.1);
       
       .lang-btn {
         padding: var(--space-xs) var(--space-sm);
         font-size: 0.75rem;
         font-weight: 600;
-        color: var(--color-text-secondary);
+        color: #5c7a99;
         background: transparent;
         border: none;
         border-radius: var(--radius-full);
@@ -295,14 +318,14 @@ import { LanguageService } from '../../core/services/language.service';
         letter-spacing: 0.02em;
         
         &:hover {
-          color: var(--color-blue);
-          background: rgba(30, 64, 175, 0.08);
+          color: #1565c0;
+          background: rgba(21, 101, 192, 0.1);
         }
         
         &.active {
           color: #ffffff;
-          background: linear-gradient(135deg, var(--color-blue) 0%, var(--color-blue-light) 100%);
-          box-shadow: 0 2px 6px rgba(30, 64, 175, 0.25);
+          background: linear-gradient(135deg, #1565c0 0%, #2196f3 100%);
+          box-shadow: 0 2px 8px rgba(21, 101, 192, 0.3);
           font-weight: 700;
         }
       }
@@ -313,24 +336,34 @@ import { LanguageService } from '../../core/services/language.service';
       align-items: center;
       gap: var(--space-sm);
       padding: var(--space-sm) var(--space-md);
-      color: var(--color-accent);
+      color: #00897b;
       text-decoration: none;
-      border: 1px solid var(--color-border-strong);
+      background: linear-gradient(145deg, #e0f2f1 0%, #ffffff 100%);
+      border: 2px solid rgba(0, 137, 123, 0.25);
       border-radius: var(--radius-full);
       transition: all var(--transition-fast);
       
       &:hover {
-        background: rgba(34, 197, 94, 0.1);
-        border-color: var(--color-accent);
+        background: linear-gradient(135deg, #00897b 0%, #26a69a 100%);
+        border-color: #00897b;
+        color: #ffffff;
+        box-shadow: 0 4px 16px rgba(0, 137, 123, 0.35);
+        transform: translateY(-2px);
+        
+        .material-icons-outlined {
+          color: #ffffff;
+        }
       }
       
       .material-icons-outlined {
         font-size: 18px;
+        color: #00897b;
+        transition: color var(--transition-fast);
       }
       
       .phone-text {
         font-size: 0.875rem;
-        font-weight: 500;
+        font-weight: 600;
       }
     }
     

@@ -213,29 +213,39 @@ import { ContactMessage, CompanyInfo } from '../../core/models/catalog.model';
     .page-hero {
       padding: calc(80px + var(--space-4xl)) 0 var(--space-2xl);
       text-align: center;
-      background: 
-        radial-gradient(ellipse 80% 50% at 50% 0%, var(--color-accent-light) 0%, transparent 60%);
+      background: linear-gradient(180deg, var(--color-surface-green) 0%, #ffffff 100%);
+      position: relative;
+      
+      &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: 
+          radial-gradient(ellipse 80% 60% at 20% 0%, rgba(5, 150, 105, 0.1) 0%, transparent 50%),
+          radial-gradient(ellipse 100% 50% at 80% 100%, rgba(14, 165, 233, 0.08) 0%, transparent 40%);
+        pointer-events: none;
+      }
     }
     
     .hero-label {
       display: inline-flex;
       align-items: center;
       gap: var(--space-sm);
-      padding: var(--space-sm) var(--space-md);
-      background: var(--color-accent-light);
-      border: 1px solid var(--color-border-strong);
+      padding: var(--space-sm) var(--space-lg);
+      background: #ffffff;
+      border: 2px solid var(--color-border);
       border-radius: var(--radius-full);
       font-size: 0.875rem;
-      font-weight: 700;
-      color: #ffffff;
+      font-weight: 600;
+      color: var(--color-accent);
       margin-bottom: var(--space-lg);
       position: relative;
       z-index: 1;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      box-shadow: var(--shadow-md);
       
       .material-icons-outlined {
-        font-size: 16px;
+        font-size: 18px;
+        color: var(--color-blue);
       }
     }
     
@@ -243,7 +253,7 @@ import { ContactMessage, CompanyInfo } from '../../core/models/catalog.model';
       margin-bottom: var(--space-md);
       
       .text-gradient {
-        background: var(--gradient-accent-full);
+        background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-blue) 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
@@ -255,6 +265,7 @@ import { ContactMessage, CompanyInfo } from '../../core/models/catalog.model';
       color: var(--color-text-secondary);
       max-width: 500px;
       margin: 0 auto;
+      line-height: 1.7;
     }
     
     .contact-grid {
@@ -415,13 +426,26 @@ import { ContactMessage, CompanyInfo } from '../../core/models/catalog.model';
     
     .info-card {
       padding: var(--space-2xl);
-      background: linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(34, 197, 94, 0.05) 100%);
-      border: 2px solid var(--color-accent);
+      background: #ffffff;
+      border: 2px solid var(--color-border);
       border-radius: var(--radius-xl);
-      box-shadow: 0 8px 32px rgba(16, 185, 129, 0.15);
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      overflow: hidden;
+      
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: var(--color-green-gradient);
+      }
       
       h3 {
         margin-bottom: var(--space-sm);
+        color: var(--color-text-primary);
       }
       
       > p {
@@ -444,24 +468,31 @@ import { ContactMessage, CompanyInfo } from '../../core/models/catalog.model';
       text-decoration: none;
       border-radius: var(--radius-md);
       transition: all var(--transition-fast);
+      border: 1px solid transparent;
       
       &:hover {
-        background: var(--color-surface-elevated);
+        background: var(--color-surface-green);
+        border-color: var(--color-border);
+        
+        .info-icon {
+          transform: scale(1.05);
+        }
       }
       
       .info-icon {
-        width: 48px;
-        height: 48px;
+        width: 52px;
+        height: 52px;
         display: flex;
         align-items: center;
         justify-content: center;
-        background: var(--color-accent-light);
-        border: 1px solid var(--color-border);
+        background: var(--color-surface-blue);
+        border: 2px solid var(--color-border-blue);
         border-radius: var(--radius-md);
+        transition: all var(--transition-fast);
         
         .material-icons-outlined {
           font-size: 24px;
-          color: var(--color-accent);
+          color: var(--color-blue);
         }
         
         &.whatsapp-icon {
@@ -484,11 +515,12 @@ import { ContactMessage, CompanyInfo } from '../../core/models/catalog.model';
       .info-label {
         font-size: 0.85rem;
         color: var(--color-text-muted);
+        font-weight: 500;
       }
       
       .info-value {
         font-size: 1rem;
-        font-weight: 500;
+        font-weight: 600;
         color: var(--color-text-primary);
       }
       
@@ -499,8 +531,8 @@ import { ContactMessage, CompanyInfo } from '../../core/models/catalog.model';
     
     .hours-card {
       padding: var(--space-xl);
-      background: linear-gradient(135deg, var(--color-surface) 0%, var(--color-surface-elevated) 100%);
-      border: 1px solid var(--color-border-strong);
+      background: var(--color-surface-blue);
+      border: 2px solid var(--color-border-blue);
       border-radius: var(--radius-xl);
       
       h4 {
@@ -509,9 +541,10 @@ import { ContactMessage, CompanyInfo } from '../../core/models/catalog.model';
         gap: var(--space-sm);
         font-size: 1.1rem;
         margin-bottom: var(--space-lg);
+        color: var(--color-text-primary);
         
         .material-icons-outlined {
-          color: var(--color-accent);
+          color: var(--color-blue);
         }
       }
     }

@@ -144,23 +144,38 @@ import { RouterLink } from '@angular/router';
       padding: calc(80px + var(--space-4xl)) 0 var(--space-4xl);
       text-align: center;
       background: 
-        radial-gradient(ellipse 80% 50% at 50% 0%, var(--color-accent-light) 0%, transparent 60%);
+        linear-gradient(180deg, var(--color-surface-blue) 0%, #ffffff 100%);
+      position: relative;
+      
+      &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: 
+          radial-gradient(ellipse 100% 60% at 80% 0%, rgba(14, 165, 233, 0.1) 0%, transparent 50%),
+          radial-gradient(ellipse 80% 50% at 20% 100%, rgba(5, 150, 105, 0.08) 0%, transparent 40%);
+        pointer-events: none;
+      }
     }
     
     .hero-label {
       display: inline-flex;
       align-items: center;
       gap: var(--space-sm);
-      padding: var(--space-sm) var(--space-md);
-      background: var(--color-accent-light);
-      border: 1px solid var(--color-border-strong);
+      padding: var(--space-sm) var(--space-lg);
+      background: #ffffff;
+      border: 2px solid var(--color-border-blue);
       border-radius: var(--radius-full);
       font-size: 0.875rem;
-      color: var(--color-accent);
+      font-weight: 600;
+      color: var(--color-blue);
       margin-bottom: var(--space-lg);
+      box-shadow: var(--shadow-md);
+      position: relative;
       
       .material-icons-outlined {
-        font-size: 16px;
+        font-size: 18px;
+        color: var(--color-accent);
       }
     }
     
@@ -168,7 +183,7 @@ import { RouterLink } from '@angular/router';
       margin-bottom: var(--space-lg);
       
       .text-gradient {
-        background: var(--gradient-accent-full);
+        background: linear-gradient(135deg, var(--color-blue) 0%, var(--color-accent) 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
@@ -180,6 +195,7 @@ import { RouterLink } from '@angular/router';
       color: var(--color-text-secondary);
       max-width: 600px;
       margin: 0 auto;
+      line-height: 1.7;
     }
     
     .about-grid {
@@ -217,35 +233,44 @@ import { RouterLink } from '@angular/router';
     }
     
     .value-card {
-      padding: var(--space-lg);
-      background: var(--color-surface);
-      border: 1px solid var(--color-border);
+      padding: var(--space-xl);
+      background: #ffffff;
+      border: 2px solid var(--color-border-light);
       border-radius: var(--radius-lg);
       transition: all var(--transition-base);
+      box-shadow: var(--shadow-sm);
       
       &:hover {
         border-color: var(--color-accent);
         transform: translateY(-4px);
+        box-shadow: var(--shadow-green);
+        
+        .value-icon {
+          transform: scale(1.1);
+        }
       }
       
       .value-icon {
-        width: 48px;
-        height: 48px;
+        width: 52px;
+        height: 52px;
         display: flex;
         align-items: center;
         justify-content: center;
-        background: var(--gradient-accent-full);
+        background: linear-gradient(135deg, var(--color-blue) 0%, var(--color-accent) 100%);
         border-radius: var(--radius-md);
         margin-bottom: var(--space-md);
+        transition: all var(--transition-base);
+        box-shadow: 0 4px 12px rgba(3, 105, 161, 0.25);
         
         .material-icons-outlined {
-          font-size: 24px;
-          color: var(--color-primary);
+          font-size: 26px;
+          color: #ffffff;
         }
       }
       
       h4 {
         font-size: 1.1rem;
+        font-weight: 600;
         color: var(--color-text-primary);
         margin-bottom: var(--space-sm);
       }
@@ -254,6 +279,7 @@ import { RouterLink } from '@angular/router';
         font-size: 0.9rem;
         color: var(--color-text-muted);
         margin: 0;
+        line-height: 1.6;
       }
     }
     
@@ -275,25 +301,34 @@ import { RouterLink } from '@angular/router';
       align-items: center;
       justify-content: center;
       gap: var(--space-md);
-      background: var(--color-surface);
-      border: 1px solid var(--color-border-strong);
+      background: #ffffff;
+      border: 2px solid var(--color-border-blue);
       border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-lg);
       
       &.main {
         top: 0;
         right: 0;
         width: 300px;
         height: 300px;
+        background: linear-gradient(135deg, #ffffff 0%, var(--color-surface-blue) 100%);
         
         .material-icons-outlined {
           font-size: 80px;
-          color: var(--color-accent);
+          background: linear-gradient(135deg, var(--color-blue) 0%, var(--color-accent) 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
         }
         
         span:last-child {
           font-size: 1.5rem;
           font-weight: 700;
           letter-spacing: 0.1em;
+          background: linear-gradient(135deg, var(--color-blue) 0%, var(--color-accent) 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
         }
       }
       
@@ -302,17 +337,19 @@ import { RouterLink } from '@angular/router';
         left: 0;
         width: 150px;
         height: 150px;
-        background: var(--gradient-accent-full);
+        background: linear-gradient(135deg, var(--color-blue) 0%, var(--color-accent) 100%);
+        border-color: transparent;
+        box-shadow: var(--shadow-glow);
         
         .material-icons-outlined {
           font-size: 60px;
-          color: var(--color-primary);
+          color: #ffffff;
         }
       }
     }
     
     .mission-section {
-      background: linear-gradient(180deg, var(--color-accent-light) 0%, transparent 100%);
+      background: linear-gradient(180deg, var(--color-surface-green) 0%, #ffffff 50%, var(--color-surface-blue) 100%);
     }
     
     .mission-grid {
@@ -327,53 +364,80 @@ import { RouterLink } from '@angular/router';
     
     .mission-card {
       padding: var(--space-2xl);
-      background: var(--color-surface);
-      border: 1px solid var(--color-border);
+      background: #ffffff;
+      border: 2px solid var(--color-border-light);
       border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-md);
+      transition: all var(--transition-base);
+      
+      &:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-lg);
+        border-color: var(--color-blue);
+      }
       
       .mission-icon {
-        width: 64px;
-        height: 64px;
+        width: 68px;
+        height: 68px;
         display: flex;
         align-items: center;
         justify-content: center;
-        background: var(--gradient-accent-full);
+        background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-blue) 100%);
         border-radius: var(--radius-lg);
         margin-bottom: var(--space-lg);
+        box-shadow: 0 4px 16px rgba(5, 150, 105, 0.3);
         
         .material-icons-outlined {
-          font-size: 32px;
-          color: var(--color-primary);
+          font-size: 34px;
+          color: #ffffff;
         }
       }
       
       h3 {
         font-size: 1.5rem;
         margin-bottom: var(--space-md);
+        color: var(--color-text-primary);
       }
       
       p {
         font-size: 1rem;
-        line-height: 1.7;
+        line-height: 1.8;
         margin: 0;
+        color: var(--color-text-secondary);
       }
     }
     
     .cta-banner {
       text-align: center;
       padding: var(--space-3xl);
-      background: var(--color-surface);
-      border: 1px solid var(--color-border);
+      background: linear-gradient(135deg, var(--color-blue-darker) 0%, var(--color-blue) 50%, var(--color-accent) 100%);
       border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-xl);
+      position: relative;
+      overflow: hidden;
+      
+      &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: 
+          radial-gradient(ellipse 80% 60% at 80% 20%, rgba(52, 211, 153, 0.2) 0%, transparent 50%),
+          radial-gradient(ellipse 60% 50% at 20% 80%, rgba(56, 189, 248, 0.2) 0%, transparent 40%);
+        pointer-events: none;
+      }
       
       h2 {
         margin-bottom: var(--space-md);
+        color: #ffffff;
+        position: relative;
       }
       
       p {
         font-size: 1.1rem;
         max-width: 500px;
         margin: 0 auto var(--space-xl);
+        color: rgba(255, 255, 255, 0.9);
+        position: relative;
       }
     }
     

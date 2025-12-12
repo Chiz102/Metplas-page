@@ -99,44 +99,64 @@ export interface CarouselItem {
       width: 100%;
       max-width: 100%;
       height: 100%;
-      padding: var(--space-lg);
-      background: linear-gradient(135deg, var(--color-surface) 0%, var(--color-surface-elevated) 100%);
-      border: 1px solid var(--color-border);
+      padding: var(--space-xl);
+      background: #ffffff;
+      border: 2px solid var(--color-border-light);
       border-radius: var(--radius-lg);
       transition: all var(--transition-base);
-      box-shadow: var(--shadow-card);
+      box-shadow: var(--shadow-md);
+      position: relative;
+      overflow: hidden;
+      
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, var(--color-blue) 0%, var(--color-accent) 100%);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform var(--transition-base);
+      }
       
       &:hover {
         border-color: var(--color-accent);
-        box-shadow: var(--shadow-elevated);
-        transform: scale(1.02);
+        box-shadow: var(--shadow-green);
+        transform: scale(1.03);
+        
+        &::before {
+          transform: scaleX(1);
+        }
         
         .carousel-icon {
-          background: var(--gradient-accent-full);
+          background: var(--color-green-gradient);
           transform: scale(1.1);
           
           .material-icons-outlined {
-            color: var(--color-primary);
+            color: #ffffff;
           }
         }
       }
     }
     
     .carousel-icon {
-      width: 60px;
-      height: 60px;
+      width: 64px;
+      height: 64px;
       display: flex;
       align-items: center;
       justify-content: center;
-      background: var(--color-accent-light);
+      background: var(--color-surface-blue);
+      border: 2px solid var(--color-border-blue);
       border-radius: var(--radius-lg);
       margin-bottom: var(--space-lg);
       transition: all var(--transition-base);
       
       .material-icons-outlined {
         font-size: 32px;
-        color: var(--color-accent);
-        transition: color var(--transition-base);
+        color: var(--color-blue);
+        transition: all var(--transition-base);
       }
     }
     
@@ -152,7 +172,7 @@ export interface CarouselItem {
       color: var(--color-text-secondary);
       flex: 1;
       margin-bottom: var(--space-md);
-      line-height: 1.5;
+      line-height: 1.6;
     }
     
     .carousel-footer {
@@ -161,11 +181,13 @@ export interface CarouselItem {
       align-items: center;
       gap: var(--space-md);
       margin-top: var(--space-md);
+      padding-top: var(--space-md);
+      border-top: 1px solid var(--color-border-light);
     }
     
     .carousel-price {
-      font-size: 1rem;
-      font-weight: 600;
+      font-size: 1.1rem;
+      font-weight: 700;
       color: var(--color-accent);
     }
     
@@ -174,17 +196,22 @@ export interface CarouselItem {
       align-items: center;
       gap: var(--space-xs);
       font-size: 0.9rem;
-      font-weight: 500;
-      color: var(--color-text-primary);
-      transition: color var(--transition-fast);
+      font-weight: 600;
+      color: var(--color-blue);
+      transition: all var(--transition-fast);
       text-decoration: none;
       
       .material-icons-outlined {
         font-size: 18px;
+        transition: transform var(--transition-fast);
       }
       
       &:hover {
         color: var(--color-accent);
+        
+        .material-icons-outlined {
+          transform: translateX(4px);
+        }
       }
     }
     
@@ -201,21 +228,35 @@ export interface CarouselItem {
       text-align: center;
       
       .section-label {
-        display: inline-block;
-        padding: var(--space-xs) var(--space-md);
-        background: var(--color-accent-light);
-        border: 1px solid var(--color-border);
+        display: inline-flex;
+        align-items: center;
+        gap: var(--space-sm);
+        padding: var(--space-sm) var(--space-lg);
+        background: var(--color-surface-blue);
+        border: 2px solid var(--color-border-blue);
         border-radius: var(--radius-full);
         font-size: 0.875rem;
-        font-weight: 500;
-        color: var(--color-accent);
+        font-weight: 600;
+        color: var(--color-blue);
         margin-bottom: var(--space-lg);
+        
+        &::before, &::after {
+          content: '';
+          width: 24px;
+          height: 2px;
+          background: var(--color-blue);
+          border-radius: 2px;
+        }
       }
       
       .section-title {
         font-size: 2.5rem;
         font-weight: 700;
         margin-bottom: var(--space-md);
+        background: linear-gradient(135deg, var(--color-text-primary) 0%, var(--color-blue) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
       }
       
       .section-description {
