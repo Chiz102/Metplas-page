@@ -1,0 +1,43 @@
+# Dependencies
+node_modules/
+frontend/node_modules/
+backend/venv/
+
+# Build outputs
+frontend/dist/
+backend/__pycache__/
+*.pyc
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+.env.local
+*.log
+
+# Angular cache
+.angular/
+frontend/.angular/
+**/.angular/
+
+# Python
+*.egg-info/
+.eggs/
+*.egg
+
+# Database
+*.sqlite3
+db.sqlite3
+
+# Temp files
+*.tmp
+*.temp
+
