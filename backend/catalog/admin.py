@@ -1,5 +1,28 @@
 from django.contrib import admin
-from .models import Category, SubCategory, Product, ContactMessage, CompanyInfo
+from .models import Supplier, Category, Product, ContactMessage, CompanyInfo
+
+
+@admin.register(Supplier)
+class SupplierAdmin(admin.ModelAdmin):
+    list_display = ['name', 'country', 'order', 'is_active']
+    list_filter = ['is_active', 'country']
+    prepopulated_fields = {'slug': ('name',)}
+    ordering = ['order', 'name']
+    fieldsets = (
+        ('Información General', {
+            'fields': ('name', 'slug', 'logo', 'website', 'country', 'icon', 'color')
+        }),
+        ('Descripción (Español)', {
+            'fields': ('description_es',)
+        }),
+        ('Description (English)', {
+            'fields': ('description_en',),
+            'classes': ('collapse',)
+        }),
+        ('Configuración', {
+            'fields': ('order', 'is_active')
+        }),
+    )
 
 
 @admin.register(Category)
@@ -8,48 +31,19 @@ class CategoryAdmin(admin.ModelAdmin):
     list_filter = ['category_type', 'is_active']
     prepopulated_fields = {'slug': ('name_es',)}
     ordering = ['order', 'name_es']
-    fieldsets = (
-        ('Español', {
-            'fields': ('name_es', 'description_es')
-        }),
-        ('English', {
-            'fields': ('name_en', 'description_en'),
-            'classes': ('collapse',)
-        }),
-        ('Configuración', {
-            'fields': ('slug', 'category_type', 'icon', 'image', 'order', 'is_active')
-        }),
-    )
-
-
-@admin.register(SubCategory)
-class SubCategoryAdmin(admin.ModelAdmin):
-    list_display = ['name_es', 'name_en', 'category', 'order', 'is_active']
-    list_filter = ['category', 'is_active']
-    prepopulated_fields = {'slug': ('name_es',)}
-    ordering = ['category', 'order', 'name_es']
-    fieldsets = (
-        ('Español', {
-            'fields': ('name_es', 'description_es')
-        }),
-        ('English', {
-            'fields': ('name_en', 'description_en'),
-            'classes': ('collapse',)
-        }),
-        ('Configuración', {
-            'fields': ('category', 'slug', 'image', 'order', 'is_active')
-        }),
-    )
 
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ['name_es', 'name_en', 'subcategory', 'is_featured', 'is_active', 'order']
-    list_filter = ['subcategory__category', 'subcategory', 'is_featured', 'is_active']
+    list_display = ['name_es', 'supplier', 'category', 'sku', 'is_featured', 'is_active', 'order']
+    list_filter = ['supplier', 'category', 'is_featured', 'is_active']
     prepopulated_fields = {'slug': ('name_es',)}
-    search_fields = ['name_es', 'name_en', 'description_es', 'description_en']
-    ordering = ['subcategory', 'order', 'name_es']
+    search_fields = ['name_es', 'name_en', 'sku', 'description_es', 'description_en']
+    ordering = ['supplier', 'order', 'name_es']
     fieldsets = (
+        ('Proveedor y Categoría', {
+            'fields': ('supplier', 'category', 'sku')
+        }),
         ('Español', {
             'fields': ('name_es', 'short_description_es', 'description_es')
         }),
@@ -57,8 +51,15 @@ class ProductAdmin(admin.ModelAdmin):
             'fields': ('name_en', 'short_description_en', 'description_en'),
             'classes': ('collapse',)
         }),
+        ('Imágenes', {
+            'fields': ('image', 'gallery')
+        }),
+        ('Especificaciones', {
+            'fields': ('specifications',),
+            'classes': ('collapse',)
+        }),
         ('Configuración', {
-            'fields': ('subcategory', 'slug', 'specifications', 'image', 'gallery', 'is_featured', 'is_active', 'order')
+            'fields': ('slug', 'is_featured', 'is_active', 'order')
         }),
     )
 

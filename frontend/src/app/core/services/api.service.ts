@@ -2,7 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { Category, SubCategory, Product, ContactMessage, CompanyInfo } from '../models/catalog.model';
+import { Supplier, Category, Product, ContactMessage, CompanyInfo } from '../models/catalog.model';
 import { LanguageService } from './language.service';
 
 @Injectable({
@@ -23,7 +23,18 @@ export class ApiService {
     return `${url}${separator}lang=${lang}`;
   }
 
-  // Categories
+  // Suppliers (Proveedores)
+  getSuppliers(): Observable<Supplier[]> {
+    return this.http.get<Supplier[]>(this.withLang(`${this.apiUrl}/suppliers/`)).pipe(
+      catchError(() => of(this.getMockSuppliers()))
+    );
+  }
+
+  getSupplierBySlug(slug: string): Observable<Supplier> {
+    return this.http.get<Supplier>(this.withLang(`${this.apiUrl}/suppliers/${slug}/`));
+  }
+
+  // Categories (para filtrado adicional)
   getCategories(): Observable<Category[]> {
     return this.http.get<Category[]>(this.withLang(`${this.apiUrl}/categories/`)).pipe(
       catchError(() => of(this.getMockCategories()))
@@ -34,26 +45,10 @@ export class ApiService {
     return this.http.get<Category>(this.withLang(`${this.apiUrl}/categories/${slug}/`));
   }
 
-  getCategoriesByType(type: string): Observable<Category[]> {
-    return this.http.get<Category[]>(this.withLang(`${this.apiUrl}/categories/by_type/?type=${type}`));
-  }
-
-  // SubCategories
-  getSubCategories(categorySlug?: string): Observable<SubCategory[]> {
-    const url = categorySlug 
-      ? `${this.apiUrl}/subcategories/?category=${categorySlug}`
-      : `${this.apiUrl}/subcategories/`;
-    return this.http.get<SubCategory[]>(this.withLang(url));
-  }
-
-  getSubCategoryBySlug(slug: string): Observable<SubCategory> {
-    return this.http.get<SubCategory>(this.withLang(`${this.apiUrl}/subcategories/${slug}/`));
-  }
-
   // Products
-  getProducts(subcategorySlug?: string): Observable<Product[]> {
-    const url = subcategorySlug
-      ? `${this.apiUrl}/products/?subcategory=${subcategorySlug}`
+  getProducts(supplierSlug?: string): Observable<Product[]> {
+    const url = supplierSlug
+      ? `${this.apiUrl}/products/?supplier=${supplierSlug}`
       : `${this.apiUrl}/products/`;
     return this.http.get<Product[]>(this.withLang(url));
   }
@@ -80,7 +75,55 @@ export class ApiService {
     );
   }
 
-  // Mock data for development (bilingüe)
+  // Mock data for development
+  private getMockSuppliers(): Supplier[] {
+    const lang = this.languageService.getCurrentLanguage();
+    const isEn = lang === 'en';
+    
+    return [
+      {
+        id: 1,
+        name: 'Jarvis',
+        slug: 'jarvis',
+        description: isEn ? 'Leading supplier of high-precision industrial equipment.' : 'Proveedor líder en equipos industriales de alta precisión.',
+        country: isEn ? 'Germany' : 'Alemania',
+        icon: 'precision_manufacturing',
+        color: '#1565c0',
+        products_count: 5
+      },
+      {
+        id: 2,
+        name: 'Freund',
+        slug: 'freund',
+        description: isEn ? 'Specialists in industrial cutlery and cutting tools.' : 'Especialistas en cuchillería industrial y herramientas de corte.',
+        country: isEn ? 'Germany' : 'Alemania',
+        icon: 'content_cut',
+        color: '#d32f2f',
+        products_count: 8
+      },
+      {
+        id: 3,
+        name: 'Dick',
+        slug: 'dick',
+        description: isEn ? 'Premium manufacturer of professional knives and tools.' : 'Fabricante premium de cuchillos y herramientas profesionales.',
+        country: isEn ? 'Germany' : 'Alemania',
+        icon: 'hardware',
+        color: '#2e7d32',
+        products_count: 12
+      },
+      {
+        id: 4,
+        name: 'Proveedor Ejemplo',
+        slug: 'proveedor-ejemplo',
+        description: isEn ? 'Example supplier description.' : 'Descripción del proveedor ejemplo.',
+        country: 'Chile',
+        icon: 'business',
+        color: '#7b1fa2',
+        products_count: 3
+      }
+    ];
+  }
+
   private getMockCategories(): Category[] {
     const lang = this.languageService.getCurrentLanguage();
     const isEn = lang === 'en';
@@ -93,7 +136,7 @@ export class ApiService {
         category_type: 'equipos',
         description: isEn ? 'High-precision equipment for industry' : 'Equipos de alta precisión para la industria',
         icon: 'precision_manufacturing',
-        subcategories_count: 2
+        products_count: 10
       },
       {
         id: 2,
@@ -102,25 +145,7 @@ export class ApiService {
         category_type: 'insumos',
         description: isEn ? 'First-quality industrial supplies' : 'Insumos industriales de primera calidad',
         icon: 'inventory_2',
-        subcategories_count: 3
-      },
-      {
-        id: 3,
-        name: isEn ? 'Services' : 'Servicios',
-        slug: 'servicios',
-        category_type: 'servicios',
-        description: isEn ? 'Specialized technical services' : 'Servicios técnicos especializados',
-        icon: 'engineering',
-        subcategories_count: 0
-      },
-      {
-        id: 4,
-        name: isEn ? 'Innovation & Development' : 'Innovación y Desarrollo',
-        slug: 'innovacion',
-        category_type: 'innovacion',
-        description: isEn ? 'Innovative solutions for your industry' : 'Soluciones innovadoras para tu industria',
-        icon: 'lightbulb',
-        subcategories_count: 0
+        products_count: 15
       }
     ];
   }

@@ -44,11 +44,15 @@
   },
   "catalog": {
     "ourProducts": "Nuestros Productos",
+    "ourSuppliers": "Nuestros Proveedores",
     "catalog": "Catálogo",
-    "catalogDescription": "Explora nuestra completa gama de equipos, insumos y servicios para tu industria.",
+    "catalogDescription": "Trabajamos con los mejores proveedores del mundo para ofrecerte equipos e insumos de la más alta calidad.",
     "all": "Todos",
+    "allSuppliers": "Todos los Proveedores",
     "subcategories": "subcategorías",
+    "products": "productos",
     "viewCategory": "Ver categoría",
+    "viewProducts": "Ver productos",
     "productsAvailable": "productos disponibles",
     "comingSoon": "Próximamente",
     "comingSoonDesc": "Estamos preparando el catálogo de productos. Contáctanos para más información.",
@@ -56,6 +60,9 @@
     "cantFind": "¿No encuentras lo que buscas?",
     "cantFindDesc": "Nuestro equipo está listo para ayudarte a encontrar la solución perfecta para tu industria.",
     "requestConsultation": "Solicitar Asesoría",
+    "visitWebsite": "Visitar sitio web",
+    "featured": "Destacado",
+    "moreInfo": "Más información",
     "subcats": {
       "trimmer": "Equipos Trimmer",
       "rectifiers": "Rectificadores",
@@ -144,6 +151,3 @@
     }
   }
 }
-
-
-

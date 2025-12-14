@@ -38,22 +38,38 @@
     "learnMore": "Conocer más",
     "readyToOptimize": "¿Listo para optimizar tu operación?",
     "readyDescription": "Contáctanos hoy y descubre cómo nuestras soluciones pueden transformar tu industria.",
-    "requestQuote": "Solicitar Cotización"
+    "requestQuote": "Solicitar Cotización",
+    "trustedBy": "Empresas que confían en nosotros",
+    "ourSuppliers": "Nuestros proveedores"
   },
   "catalog": {
     "ourProducts": "Nuestros Productos",
+    "ourSuppliers": "Nuestros Proveedores",
     "catalog": "Catálogo",
-    "catalogDescription": "Explora nuestra completa gama de equipos, insumos y servicios para tu industria.",
+    "catalogDescription": "Trabajamos con los mejores proveedores del mundo para ofrecerte equipos e insumos de la más alta calidad.",
     "all": "Todos",
+    "allSuppliers": "Todos los Proveedores",
     "subcategories": "subcategorías",
+    "products": "productos",
     "viewCategory": "Ver categoría",
+    "viewProducts": "Ver productos",
     "productsAvailable": "productos disponibles",
     "comingSoon": "Próximamente",
     "comingSoonDesc": "Estamos preparando el catálogo de productos. Contáctanos para más información.",
     "contact": "Contactar",
     "cantFind": "¿No encuentras lo que buscas?",
     "cantFindDesc": "Nuestro equipo está listo para ayudarte a encontrar la solución perfecta para tu industria.",
-    "requestConsultation": "Solicitar Asesoría"
+    "requestConsultation": "Solicitar Asesoría",
+    "visitWebsite": "Visitar sitio web",
+    "featured": "Destacado",
+    "moreInfo": "Más información",
+    "subcats": {
+      "trimmer": "Equipos Trimmer",
+      "rectifiers": "Rectificadores",
+      "needles": "Agujas Inyectoras",
+      "ppe": "EPP",
+      "knives": "Cuchillos de Empuñadura"
+    }
   },
   "contact": {
     "contactUs": "Contáctanos",
@@ -98,8 +114,40 @@
   "common": {
     "phone": "Teléfono",
     "email": "Email"
+  },
+  "carousel": {
+    "featuredProducts": "Productos Destacados",
+    "ourSolutions": "Nuestras Soluciones",
+    "viewMore": "Ver más",
+    "item1": {
+      "title": "Equipos Trimmer",
+      "description": "Maquinaria de corte de precisión para aplicaciones industriales complejas.",
+      "price": "Consultar"
+    },
+    "item2": {
+      "title": "Rectificadores Industrial",
+      "description": "Equipos de rectificación de alta potencia para procesos de manufactura.",
+      "price": "Consultar"
+    },
+    "item3": {
+      "title": "Insumos Industriales",
+      "description": "Repuestos y consumibles de calidad para mantenimiento continuo.",
+      "price": "Desde $5.000"
+    },
+    "item4": {
+      "title": "Equipos de Protección",
+      "description": "EPP certificados y equipos de seguridad para ambientes industriales.",
+      "price": "Desde $2.500"
+    },
+    "item5": {
+      "title": "Servicios Técnicos",
+      "description": "Instalación, mantenimiento y asesoría técnica especializada.",
+      "price": "Según servicio"
+    },
+    "item6": {
+      "title": "Soluciones Personalizadas",
+      "description": "Diseño y desarrollo de soluciones a medida para tu operación.",
+      "price": "Presupuesto"
+    }
   }
 }
-
-
-

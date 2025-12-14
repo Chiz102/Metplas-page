@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterLink, ActivatedRoute } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { ApiService } from '../../core/services/api.service';
-import { Category } from '../../core/models/catalog.model';
+import { Supplier, Product } from '../../core/models/catalog.model';
 
 @Component({
   selector: 'app-catalog',
@@ -14,36 +14,43 @@ import { Category } from '../../core/models/catalog.model';
     <section class="page-hero">
       <div class="container">
         <span class="hero-label animate-fade-in-up">
-          <span class="material-icons-outlined">inventory_2</span>
-          {{ currentCategory ? currentCategory.name : ('catalog.ourProducts' | translate) }}
+          <span class="material-icons-outlined">storefront</span>
+          {{ currentSupplier ? currentSupplier.name : ('catalog.ourSuppliers' | translate) }}
         </span>
         <h1 class="animate-fade-in-up delay-1">
-          {{ currentCategory ? currentCategory.name : ('catalog.catalog' | translate) }}
+          {{ currentSupplier ? currentSupplier.name : ('catalog.catalog' | translate) }}
         </h1>
         <p class="hero-description animate-fade-in-up delay-2">
-          {{ currentCategory?.description || ('catalog.catalogDescription' | translate) }}
+          {{ currentSupplier?.description || ('catalog.catalogDescription' | translate) }}
         </p>
+        @if (currentSupplier?.country) {
+          <div class="supplier-origin animate-fade-in-up delay-3">
+            <span class="material-icons-outlined">public</span>
+            {{ currentSupplier?.country }}
+          </div>
+        }
       </div>
     </section>
 
-    <!-- Category Filter -->
+    <!-- Supplier Filter -->
     <section class="filter-section">
       <div class="container">
         <div class="filter-tabs">
           <a 
             routerLink="/catalogo" 
             class="filter-tab"
-            [class.active]="!currentCategory">
+            [class.active]="!currentSupplier">
             <span class="material-icons-outlined">grid_view</span>
-            {{ 'catalog.all' | translate }}
+            {{ 'catalog.allSuppliers' | translate }}
           </a>
-          @for (cat of categories; track cat.id) {
+          @for (supplier of suppliers; track supplier.id) {
             <a 
-              [routerLink]="['/catalogo', cat.slug]" 
+              [routerLink]="['/catalogo', supplier.slug]" 
               class="filter-tab"
-              [class.active]="currentCategory?.slug === cat.slug">
-              <span class="material-icons-outlined">{{ cat.icon || 'category' }}</span>
-              {{ cat.name }}
+              [class.active]="currentSupplier?.slug === supplier.slug"
+              [style.--supplier-color]="supplier.color">
+              <span class="material-icons-outlined">{{ supplier.icon || 'business' }}</span>
+              {{ supplier.name }}
             </a>
           }
         </div>
@@ -53,36 +60,56 @@ import { Category } from '../../core/models/catalog.model';
     <!-- Catalog Grid -->
     <section class="section">
       <div class="container">
-        @if (currentCategory) {
-          <!-- Single Category View -->
-          <div class="category-detail">
-            <div class="category-header">
-              <div class="category-icon">
-                <span class="material-icons-outlined">{{ currentCategory.icon || 'category' }}</span>
+        @if (currentSupplier) {
+          <!-- Single Supplier View with Products -->
+          <div class="supplier-detail">
+            <div class="supplier-header" [style.--supplier-color]="currentSupplier.color">
+              <div class="supplier-logo">
+                @if (currentSupplier.logo) {
+                  <img [src]="currentSupplier.logo" [alt]="currentSupplier.name">
+                } @else {
+                  <span class="material-icons-outlined">{{ currentSupplier.icon || 'business' }}</span>
+                }
               </div>
-              <div>
-                <h2>{{ currentCategory.name }}</h2>
-                <p>{{ currentCategory.description }}</p>
+              <div class="supplier-info">
+                <h2>{{ currentSupplier.name }}</h2>
+                <p>{{ currentSupplier.description }}</p>
+                @if (currentSupplier.website) {
+                  <a [href]="currentSupplier.website" target="_blank" class="supplier-website">
+                    <span class="material-icons-outlined">language</span>
+                    {{ 'catalog.visitWebsite' | translate }}
+                  </a>
+                }
               </div>
             </div>
 
-            @if (currentCategory.subcategories && currentCategory.subcategories.length > 0) {
-              <div class="subcategories-grid">
-                @for (sub of currentCategory.subcategories; track sub.id; let i = $index) {
-                  <div class="subcategory-card" [style.animation-delay]="i * 100 + 'ms'">
-                    <div class="subcategory-image">
-                      @if (sub.image) {
-                        <img [src]="sub.image" [alt]="sub.name">
+            @if (currentSupplier.products && currentSupplier.products.length > 0) {
+              <div class="products-grid">
+                @for (product of currentSupplier.products; track product.id; let i = $index) {
+                  <div class="product-card" [style.animation-delay]="i * 80 + 'ms'" [style.--supplier-color]="currentSupplier.color">
+                    <div class="product-image">
+                      @if (product.image) {
+                        <img [src]="product.image" [alt]="product.name">
                       } @else {
-                        <span class="material-icons-outlined">{{ currentCategory.icon || 'category' }}</span>
+                        <span class="material-icons-outlined">{{ currentSupplier.icon || 'inventory_2' }}</span>
+                      }
+                      @if (product.is_featured) {
+                        <span class="featured-badge">
+                          <span class="material-icons-outlined">star</span>
+                          {{ 'catalog.featured' | translate }}
+                        </span>
                       }
                     </div>
-                    <div class="subcategory-content">
-                      <h3>{{ sub.name }}</h3>
-                      <p>{{ sub.description || 'Productos de alta calidad' }}</p>
-                      <span class="product-count">
-                        {{ sub.products_count || 0 }} {{ 'catalog.productsAvailable' | translate }}
-                      </span>
+                    <div class="product-content">
+                      <h3>{{ product.name }}</h3>
+                      <p>{{ product.short_description || product.description }}</p>
+                      @if (product.sku) {
+                        <span class="product-sku">SKU: {{ product.sku }}</span>
+                      }
+                      <button class="btn btn-outline btn-sm product-btn">
+                        <span class="material-icons-outlined">info</span>
+                        {{ 'catalog.moreInfo' | translate }}
+                      </button>
                     </div>
                   </div>
                 }
@@ -100,34 +127,32 @@ import { Category } from '../../core/models/catalog.model';
             }
           </div>
         } @else {
-          <!-- All Categories Grid -->
-          <div class="categories-overview">
-            @for (cat of categories; track cat.id; let i = $index) {
-              <a [routerLink]="['/catalogo', cat.slug]" class="category-overview-card" [style.animation-delay]="i * 100 + 'ms'">
+          <!-- All Suppliers Grid -->
+          <div class="suppliers-overview">
+            @for (supplier of suppliers; track supplier.id; let i = $index) {
+              <a [routerLink]="['/catalogo', supplier.slug]" class="supplier-card" [style.animation-delay]="i * 100 + 'ms'" [style.--supplier-color]="supplier.color">
                 <div class="card-header">
-                  <div class="card-icon">
-                    <span class="material-icons-outlined">{{ cat.icon || 'category' }}</span>
+                  <div class="card-logo">
+                    @if (supplier.logo) {
+                      <img [src]="supplier.logo" [alt]="supplier.name">
+                    } @else {
+                      <span class="material-icons-outlined">{{ supplier.icon || 'business' }}</span>
+                    }
                   </div>
-                  <span class="card-badge">{{ cat.subcategories_count || 0 }} {{ 'catalog.subcategories' | translate }}</span>
+                  <span class="card-badge">
+                    {{ supplier.products_count || 0 }} {{ 'catalog.products' | translate }}
+                  </span>
                 </div>
-                <h3>{{ cat.name }}</h3>
-                <p>{{ cat.description }}</p>
-                
-                @if (cat.slug === 'equipos') {
-                  <div class="subcategory-preview">
-                    <span><span class="material-icons-outlined">chevron_right</span> {{ 'catalog.subcats.trimmer' | translate }}</span>
-                    <span><span class="material-icons-outlined">chevron_right</span> {{ 'catalog.subcats.rectifiers' | translate }}</span>
-                  </div>
-                } @else if (cat.slug === 'insumos') {
-                  <div class="subcategory-preview">
-                    <span><span class="material-icons-outlined">chevron_right</span> {{ 'catalog.subcats.needles' | translate }}</span>
-                    <span><span class="material-icons-outlined">chevron_right</span> {{ 'catalog.subcats.ppe' | translate }}</span>
-                    <span><span class="material-icons-outlined">chevron_right</span> {{ 'catalog.subcats.knives' | translate }}</span>
+                <h3>{{ supplier.name }}</h3>
+                <p>{{ supplier.description }}</p>
+                @if (supplier.country) {
+                  <div class="supplier-country">
+                    <span class="material-icons-outlined">public</span>
+                    {{ supplier.country }}
                   </div>
                 }
-                
                 <span class="card-link">
-                  {{ 'catalog.viewCategory' | translate }}
+                  {{ 'catalog.viewProducts' | translate }}
                   <span class="material-icons-outlined">arrow_forward</span>
                 </span>
               </a>
@@ -145,9 +170,7 @@ import { Category } from '../../core/models/catalog.model';
             <span class="material-icons-outlined">support_agent</span>
           </div>
           <h2>{{ 'catalog.cantFind' | translate }}</h2>
-          <p>
-            {{ 'catalog.cantFindDesc' | translate }}
-          </p>
+          <p>{{ 'catalog.cantFindDesc' | translate }}</p>
           <div class="cta-actions">
             <a routerLink="/contacto" class="btn btn-primary btn-lg">
               <span class="material-icons-outlined">chat</span>
@@ -200,6 +223,24 @@ import { Category } from '../../core/models/catalog.model';
       margin: 0 auto;
     }
     
+    .supplier-origin {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+      margin-top: var(--space-lg);
+      padding: var(--space-sm) var(--space-md);
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-full);
+      font-size: 0.9rem;
+      color: var(--color-text-secondary);
+      
+      .material-icons-outlined {
+        font-size: 18px;
+        color: var(--color-accent);
+      }
+    }
+    
     .filter-section {
       padding: var(--space-lg) 0;
       border-bottom: 1px solid var(--color-border);
@@ -241,48 +282,81 @@ import { Category } from '../../core/models/catalog.model';
       }
       
       &:hover {
-        border-color: var(--color-accent);
-        color: var(--color-accent);
+        border-color: var(--supplier-color, var(--color-accent));
+        color: var(--supplier-color, var(--color-accent));
       }
       
       &.active {
-        background: var(--gradient-accent);
-        border-color: var(--color-accent);
-        color: var(--color-primary);
+        background: var(--supplier-color, var(--color-accent));
+        border-color: var(--supplier-color, var(--color-accent));
+        color: white;
       }
     }
     
-    .category-detail {
-      .category-header {
+    .supplier-detail {
+      .supplier-header {
         display: flex;
         align-items: center;
         gap: var(--space-xl);
         margin-bottom: var(--space-3xl);
-        padding-bottom: var(--space-xl);
-        border-bottom: 1px solid var(--color-border);
+        padding: var(--space-2xl);
+        background: linear-gradient(135deg, var(--color-surface) 0%, var(--color-surface-elevated) 100%);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-xl);
+        border-left: 4px solid var(--supplier-color, var(--color-accent));
         
-        .category-icon {
-          width: 80px;
-          height: 80px;
+        .supplier-logo {
+          width: 100px;
+          height: 100px;
           display: flex;
           align-items: center;
           justify-content: center;
-          background: var(--gradient-accent-full);
-          border-radius: var(--radius-xl);
+          background: white;
+          border-radius: var(--radius-lg);
+          overflow: hidden;
+          flex-shrink: 0;
+          
+          img {
+            width: 80%;
+            height: 80%;
+            object-fit: contain;
+          }
           
           .material-icons-outlined {
-            font-size: 40px;
-            color: var(--color-primary);
+            font-size: 48px;
+            color: var(--supplier-color, var(--color-accent));
           }
         }
         
-        h2 {
-          margin-bottom: var(--space-sm);
+        .supplier-info {
+          flex: 1;
+          
+          h2 {
+            margin-bottom: var(--space-sm);
+            color: var(--supplier-color, var(--color-accent));
+          }
+          
+          p {
+            font-size: 1.1rem;
+            margin-bottom: var(--space-md);
+          }
         }
         
-        p {
-          font-size: 1.1rem;
-          margin: 0;
+        .supplier-website {
+          display: inline-flex;
+          align-items: center;
+          gap: var(--space-sm);
+          font-size: 0.9rem;
+          color: var(--color-accent);
+          text-decoration: none;
+          
+          &:hover {
+            text-decoration: underline;
+          }
+          
+          .material-icons-outlined {
+            font-size: 18px;
+          }
         }
         
         @media (max-width: 640px) {
@@ -292,12 +366,16 @@ import { Category } from '../../core/models/catalog.model';
       }
     }
     
-    .subcategories-grid {
+    .products-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       gap: var(--space-xl);
       
-      @media (max-width: 1024px) {
+      @media (max-width: 1200px) {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      
+      @media (max-width: 900px) {
         grid-template-columns: repeat(2, 1fr);
       }
       
@@ -306,7 +384,7 @@ import { Category } from '../../core/models/catalog.model';
       }
     }
     
-    .subcategory-card {
+    .product-card {
       background: var(--color-surface);
       border: 1px solid var(--color-border);
       border-radius: var(--radius-lg);
@@ -316,50 +394,95 @@ import { Category } from '../../core/models/catalog.model';
       opacity: 0;
       
       &:hover {
-        border-color: var(--color-accent);
+        border-color: var(--supplier-color, var(--color-accent));
         transform: translateY(-4px);
-        box-shadow: var(--shadow-glow);
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+        
+        .product-image img {
+          transform: scale(1.05);
+        }
       }
       
-      .subcategory-image {
-        height: 160px;
+      .product-image {
+        position: relative;
+        height: 180px;
         display: flex;
         align-items: center;
         justify-content: center;
-        background: linear-gradient(135deg, var(--color-surface-elevated) 0%, var(--color-surface) 100%);
-        border-bottom: 1px solid var(--color-border);
+        background: linear-gradient(135deg, #1a2744 0%, #0d1829 100%);
+        overflow: hidden;
         
         img {
           width: 100%;
           height: 100%;
           object-fit: cover;
+          transition: transform var(--transition-base);
         }
         
         .material-icons-outlined {
           font-size: 64px;
-          color: var(--color-accent);
-          opacity: 0.5;
+          color: var(--supplier-color, var(--color-accent));
+          opacity: 0.4;
+        }
+        
+        .featured-badge {
+          position: absolute;
+          top: var(--space-sm);
+          right: var(--space-sm);
+          display: flex;
+          align-items: center;
+          gap: 4px;
+          padding: 4px 10px;
+          background: linear-gradient(135deg, #f59e0b, #d97706);
+          border-radius: var(--radius-full);
+          font-size: 0.75rem;
+          font-weight: 600;
+          color: white;
+          
+          .material-icons-outlined {
+            font-size: 14px;
+            color: white;
+            opacity: 1;
+          }
         }
       }
       
-      .subcategory-content {
-        padding: var(--space-xl);
+      .product-content {
+        padding: var(--space-lg);
         
         h3 {
-          font-size: 1.25rem;
+          font-size: 1.1rem;
           margin-bottom: var(--space-sm);
+          color: var(--color-text-primary);
         }
         
         p {
-          font-size: 0.95rem;
+          font-size: 0.9rem;
           color: var(--color-text-muted);
           margin-bottom: var(--space-md);
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
         }
         
-        .product-count {
-          font-size: 0.85rem;
-          color: var(--color-accent);
-          font-weight: 500;
+        .product-sku {
+          display: block;
+          font-size: 0.8rem;
+          color: var(--color-text-muted);
+          margin-bottom: var(--space-md);
+          font-family: monospace;
+        }
+        
+        .product-btn {
+          width: 100%;
+          border-color: var(--supplier-color, var(--color-accent));
+          color: var(--supplier-color, var(--color-accent));
+          
+          &:hover {
+            background: var(--supplier-color, var(--color-accent));
+            color: white;
+          }
         }
       }
     }
@@ -388,7 +511,7 @@ import { Category } from '../../core/models/catalog.model';
       }
     }
     
-    .categories-overview {
+    .suppliers-overview {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: var(--space-xl);
@@ -398,7 +521,7 @@ import { Category } from '../../core/models/catalog.model';
       }
     }
     
-    .category-overview-card {
+    .supplier-card {
       display: flex;
       flex-direction: column;
       padding: var(--space-2xl);
@@ -409,22 +532,19 @@ import { Category } from '../../core/models/catalog.model';
       transition: all var(--transition-base);
       animation: fadeInUp 0.6s ease forwards;
       opacity: 0;
+      border-top: 4px solid var(--supplier-color, var(--color-accent));
       
       &:hover {
-        border-color: var(--color-accent);
+        border-color: var(--supplier-color, var(--color-accent));
         transform: translateY(-8px);
-        box-shadow: var(--shadow-glow);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
         
-        .card-icon {
-          background: var(--gradient-accent-full);
-          
-          .material-icons-outlined {
-            color: var(--color-primary);
-          }
+        .card-logo {
+          transform: scale(1.1);
         }
         
         .card-link {
-          color: var(--color-accent);
+          color: var(--supplier-color, var(--color-accent));
           gap: var(--space-md);
         }
       }
@@ -436,20 +556,26 @@ import { Category } from '../../core/models/catalog.model';
         margin-bottom: var(--space-lg);
       }
       
-      .card-icon {
-        width: 64px;
-        height: 64px;
+      .card-logo {
+        width: 72px;
+        height: 72px;
         display: flex;
         align-items: center;
         justify-content: center;
-        background: var(--color-accent-light);
+        background: white;
         border-radius: var(--radius-lg);
-        transition: all var(--transition-base);
+        transition: transform var(--transition-base);
+        overflow: hidden;
+        
+        img {
+          width: 80%;
+          height: 80%;
+          object-fit: contain;
+        }
         
         .material-icons-outlined {
-          font-size: 32px;
-          color: var(--color-accent);
-          transition: color var(--transition-base);
+          font-size: 36px;
+          color: var(--supplier-color, var(--color-accent));
         }
       }
       
@@ -464,35 +590,27 @@ import { Category } from '../../core/models/catalog.model';
       
       h3 {
         font-size: 1.5rem;
-        color: var(--color-text-primary);
+        color: var(--supplier-color, var(--color-text-primary));
         margin-bottom: var(--space-sm);
       }
       
       > p {
         color: var(--color-text-muted);
         margin-bottom: var(--space-lg);
+        flex: 1;
       }
       
-      .subcategory-preview {
+      .supplier-country {
         display: flex;
-        flex-direction: column;
+        align-items: center;
         gap: var(--space-sm);
+        font-size: 0.9rem;
+        color: var(--color-text-secondary);
         margin-bottom: var(--space-lg);
-        padding: var(--space-md);
-        background: var(--color-surface-elevated);
-        border-radius: var(--radius-md);
         
-        span {
-          display: flex;
-          align-items: center;
-          gap: var(--space-sm);
-          font-size: 0.9rem;
-          color: var(--color-text-secondary);
-          
-          .material-icons-outlined {
-            font-size: 16px;
-            color: var(--color-accent);
-          }
+        .material-icons-outlined {
+          font-size: 18px;
+          color: var(--supplier-color, var(--color-accent));
         }
       }
       
@@ -503,7 +621,6 @@ import { Category } from '../../core/models/catalog.model';
         font-size: 0.95rem;
         font-weight: 500;
         color: var(--color-text-secondary);
-        margin-top: auto;
         transition: all var(--transition-fast);
         
         .material-icons-outlined {
@@ -564,31 +681,41 @@ import { Category } from '../../core/models/catalog.model';
         margin-right: var(--space-sm);
       }
     }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
   `]
 })
 export class CatalogComponent implements OnInit {
   private api = inject(ApiService);
   private route = inject(ActivatedRoute);
   
-  categories: Category[] = [];
-  currentCategory: Category | null = null;
+  suppliers: Supplier[] = [];
+  currentSupplier: Supplier | null = null;
 
   ngOnInit() {
-    this.api.getCategories().subscribe(cats => {
-      this.categories = cats;
+    this.api.getSuppliers().subscribe(suppliers => {
+      this.suppliers = suppliers;
     });
 
     this.route.params.subscribe(params => {
-      const categorySlug = params['category'];
-      if (categorySlug) {
-        this.api.getCategoryBySlug(categorySlug).subscribe({
-          next: cat => this.currentCategory = cat,
-          error: () => this.currentCategory = null
+      const supplierSlug = params['category']; // Reutilizamos el parámetro existente
+      if (supplierSlug) {
+        this.api.getSupplierBySlug(supplierSlug).subscribe({
+          next: supplier => this.currentSupplier = supplier,
+          error: () => this.currentSupplier = null
         });
       } else {
-        this.currentCategory = null;
+        this.currentSupplier = null;
       }
     });
   }
 }
-

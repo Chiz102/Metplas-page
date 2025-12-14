@@ -1,8 +1,40 @@
 from django.db import models
 
 
+class Supplier(models.Model):
+    """Proveedor de productos"""
+    # Campos bilingües
+    name = models.CharField(max_length=100, verbose_name="Nombre del Proveedor")
+    description_es = models.TextField(blank=True, verbose_name="Descripción (Español)")
+    description_en = models.TextField(blank=True, verbose_name="Description (English)")
+    
+    slug = models.SlugField(unique=True)
+    logo = models.ImageField(upload_to='suppliers/', blank=True, null=True)
+    website = models.URLField(blank=True, verbose_name="Sitio web")
+    country = models.CharField(max_length=100, blank=True, verbose_name="País de origen")
+    icon = models.CharField(max_length=50, default='business', help_text="Nombre del icono Material")
+    color = models.CharField(max_length=7, default='#0369a1', help_text="Color hexadecimal del proveedor")
+    order = models.PositiveIntegerField(default=0)
+    is_active = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    
+    class Meta:
+        verbose_name = "Supplier"
+        verbose_name_plural = "Suppliers"
+        ordering = ['order', 'name']
+    
+    def __str__(self):
+        return self.name
+    
+    def get_description(self, lang='es'):
+        if lang == 'en' and self.description_en:
+            return self.description_en
+        return self.description_es
+
+
 class Category(models.Model):
-    """Categoría principal de productos (Equipos, Insumos, Servicios, I+D)"""
+    """Categoría de productos (para filtrado adicional)"""
     CATEGORY_TYPES = [
         ('equipos', 'Equipos'),
         ('insumos', 'Insumos'),
@@ -10,7 +42,6 @@ class Category(models.Model):
         ('innovacion', 'Innovación y Desarrollo'),
     ]
     
-    # Campos bilingües
     name_es = models.CharField(max_length=100, verbose_name="Nombre (Español)")
     name_en = models.CharField(max_length=100, verbose_name="Name (English)", blank=True)
     description_es = models.TextField(blank=True, verbose_name="Descripción (Español)")
@@ -18,7 +49,7 @@ class Category(models.Model):
     
     slug = models.SlugField(unique=True)
     category_type = models.CharField(max_length=20, choices=CATEGORY_TYPES)
-    icon = models.CharField(max_length=50, blank=True, help_text="Nombre del icono (ej: settings, build)")
+    icon = models.CharField(max_length=50, blank=True)
     image = models.ImageField(upload_to='categories/', blank=True, null=True)
     order = models.PositiveIntegerField(default=0)
     is_active = models.BooleanField(default=True)
@@ -33,42 +64,6 @@ class Category(models.Model):
         return self.name_es
     
     def get_name(self, lang='es'):
-        """Retorna el nombre en el idioma especificado"""
-        if lang == 'en' and self.name_en:
-            return self.name_en
-        return self.name_es
-    
-    def get_description(self, lang='es'):
-        """Retorna la descripción en el idioma especificado"""
-        if lang == 'en' and self.description_en:
-            return self.description_en
-        return self.description_es
-
-
-class SubCategory(models.Model):
-    """Subcategoría de productos"""
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='subcategories')
-    
-    # Campos bilingües
-    name_es = models.CharField(max_length=100, verbose_name="Nombre (Español)")
-    name_en = models.CharField(max_length=100, verbose_name="Name (English)", blank=True)
-    description_es = models.TextField(blank=True, verbose_name="Descripción (Español)")
-    description_en = models.TextField(blank=True, verbose_name="Description (English)")
-    
-    slug = models.SlugField()
-    image = models.ImageField(upload_to='subcategories/', blank=True, null=True)
-    order = models.PositiveIntegerField(default=0)
-    is_active = models.BooleanField(default=True)
-    
-    class Meta:
-        verbose_name_plural = "Subcategories"
-        ordering = ['order', 'name_es']
-        unique_together = ['category', 'slug']
-    
-    def __str__(self):
-        return f"{self.category.name_es} - {self.name_es}"
-    
-    def get_name(self, lang='es'):
         if lang == 'en' and self.name_en:
             return self.name_en
         return self.name_es
@@ -80,8 +75,9 @@ class SubCategory(models.Model):
 
 
 class Product(models.Model):
-    """Producto o servicio"""
-    subcategory = models.ForeignKey(SubCategory, on_delete=models.CASCADE, related_name='products')
+    """Producto - organizado por proveedor"""
+    supplier = models.ForeignKey(Supplier, on_delete=models.CASCADE, related_name='products')
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True, related_name='products')
     
     # Campos bilingües
     name_es = models.CharField(max_length=200, verbose_name="Nombre (Español)")
@@ -92,9 +88,10 @@ class Product(models.Model):
     description_en = models.TextField(blank=True, verbose_name="Description (English)")
     
     slug = models.SlugField()
+    sku = models.CharField(max_length=50, blank=True, verbose_name="SKU/Código")
     specifications = models.JSONField(default=dict, blank=True)
     image = models.ImageField(upload_to='products/', blank=True, null=True)
-    gallery = models.JSONField(default=list, blank=True, help_text="Lista de URLs de imágenes adicionales")
+    gallery = models.JSONField(default=list, blank=True)
     is_featured = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     order = models.PositiveIntegerField(default=0)
@@ -103,10 +100,10 @@ class Product(models.Model):
     
     class Meta:
         ordering = ['order', 'name_es']
-        unique_together = ['subcategory', 'slug']
+        unique_together = ['supplier', 'slug']
     
     def __str__(self):
-        return self.name_es
+        return f"{self.supplier.name} - {self.name_es}"
     
     def get_name(self, lang='es'):
         if lang == 'en' and self.name_en:
@@ -146,7 +143,6 @@ class CompanyInfo(models.Model):
     """Información de la empresa"""
     name = models.CharField(max_length=200, default="Metplastech Technologies SPA")
     
-    # Campos bilingües
     slogan_es = models.CharField(max_length=300, blank=True, verbose_name="Slogan (Español)")
     slogan_en = models.CharField(max_length=300, blank=True, verbose_name="Slogan (English)")
     description_es = models.TextField(blank=True, verbose_name="Descripción (Español)")

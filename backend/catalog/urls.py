@@ -1,13 +1,13 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from .views import (
-    CategoryViewSet, SubCategoryViewSet, ProductViewSet,
+    SupplierViewSet, CategoryViewSet, ProductViewSet,
     ContactMessageView, CompanyInfoView
 )
 
 router = DefaultRouter()
+router.register(r'suppliers', SupplierViewSet)
 router.register(r'categories', CategoryViewSet)
-router.register(r'subcategories', SubCategoryViewSet)
 router.register(r'products', ProductViewSet)
 
 urlpatterns = [
@@ -15,4 +15,3 @@ urlpatterns = [
     path('contact/', ContactMessageView.as_view(), name='contact'),
     path('company/', CompanyInfoView.as_view(), name='company-info'),
 ]
-

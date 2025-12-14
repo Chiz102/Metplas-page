@@ -1,19 +1,16 @@
 from rest_framework import serializers
-from .models import Category, SubCategory, Product, ContactMessage, CompanyInfo
+from .models import Supplier, Category, Product, ContactMessage, CompanyInfo
 
 
 class TranslatedSerializerMixin:
     """Mixin para manejar traducciones en serializers"""
     
     def get_language(self):
-        """Obtiene el idioma de la request"""
         request = self.context.get('request')
         if request:
-            # Primero intenta obtener de query params (?lang=en)
             lang = request.query_params.get('lang')
             if lang in ['es', 'en']:
                 return lang
-            # Luego intenta obtener del header Accept-Language
             accept_lang = request.headers.get('Accept-Language', '')
             if 'en' in accept_lang.lower():
                 return 'en'
@@ -24,12 +21,15 @@ class ProductSerializer(TranslatedSerializerMixin, serializers.ModelSerializer):
     name = serializers.SerializerMethodField()
     short_description = serializers.SerializerMethodField()
     description = serializers.SerializerMethodField()
+    supplier_name = serializers.SerializerMethodField()
+    category_name = serializers.SerializerMethodField()
     
     class Meta:
         model = Product
         fields = [
-            'id', 'name', 'slug', 'short_description', 'description',
-            'specifications', 'image', 'gallery', 'is_featured', 'order'
+            'id', 'name', 'slug', 'sku', 'short_description', 'description',
+            'specifications', 'image', 'gallery', 'is_featured', 'order',
+            'supplier_name', 'category_name'
         ]
     
     def get_name(self, obj):
@@ -40,20 +40,45 @@ class ProductSerializer(TranslatedSerializerMixin, serializers.ModelSerializer):
     
     def get_description(self, obj):
         return obj.get_description(self.get_language())
+    
+    def get_supplier_name(self, obj):
+        return obj.supplier.name if obj.supplier else None
+    
+    def get_category_name(self, obj):
+        if obj.category:
+            return obj.category.get_name(self.get_language())
+        return None
 
 
-class SubCategorySerializer(TranslatedSerializerMixin, serializers.ModelSerializer):
-    name = serializers.SerializerMethodField()
+class SupplierSerializer(TranslatedSerializerMixin, serializers.ModelSerializer):
+    description = serializers.SerializerMethodField()
+    products_count = serializers.SerializerMethodField()
+    
+    class Meta:
+        model = Supplier
+        fields = [
+            'id', 'name', 'slug', 'description', 'logo', 'website',
+            'country', 'icon', 'color', 'order', 'products_count'
+        ]
+    
+    def get_description(self, obj):
+        return obj.get_description(self.get_language())
+    
+    def get_products_count(self, obj):
+        return obj.products.filter(is_active=True).count()
+
+
+class SupplierDetailSerializer(TranslatedSerializerMixin, serializers.ModelSerializer):
     description = serializers.SerializerMethodField()
     products = serializers.SerializerMethodField()
     products_count = serializers.SerializerMethodField()
     
     class Meta:
-        model = SubCategory
-        fields = ['id', 'name', 'slug', 'description', 'image', 'products', 'products_count']
-    
-    def get_name(self, obj):
-        return obj.get_name(self.get_language())
+        model = Supplier
+        fields = [
+            'id', 'name', 'slug', 'description', 'logo', 'website',
+            'country', 'icon', 'color', 'order', 'products', 'products_count'
+        ]
     
     def get_description(self, obj):
         return obj.get_description(self.get_language())
@@ -66,15 +91,17 @@ class SubCategorySerializer(TranslatedSerializerMixin, serializers.ModelSerializ
         return obj.products.filter(is_active=True).count()
 
 
-class SubCategoryListSerializer(TranslatedSerializerMixin, serializers.ModelSerializer):
-    """Serializer simplificado para listados"""
+class CategorySerializer(TranslatedSerializerMixin, serializers.ModelSerializer):
     name = serializers.SerializerMethodField()
     description = serializers.SerializerMethodField()
     products_count = serializers.SerializerMethodField()
     
     class Meta:
-        model = SubCategory
-        fields = ['id', 'name', 'slug', 'description', 'image', 'products_count']
+        model = Category
+        fields = [
+            'id', 'name', 'slug', 'category_type', 'description',
+            'icon', 'image', 'order', 'products_count'
+        ]
     
     def get_name(self, obj):
         return obj.get_name(self.get_language())
@@ -84,49 +111,6 @@ class SubCategoryListSerializer(TranslatedSerializerMixin, serializers.ModelSeri
     
     def get_products_count(self, obj):
         return obj.products.filter(is_active=True).count()
-
-
-class CategorySerializer(TranslatedSerializerMixin, serializers.ModelSerializer):
-    name = serializers.SerializerMethodField()
-    description = serializers.SerializerMethodField()
-    subcategories = serializers.SerializerMethodField()
-    
-    class Meta:
-        model = Category
-        fields = [
-            'id', 'name', 'slug', 'category_type', 'description',
-            'icon', 'image', 'subcategories'
-        ]
-    
-    def get_name(self, obj):
-        return obj.get_name(self.get_language())
-    
-    def get_description(self, obj):
-        return obj.get_description(self.get_language())
-    
-    def get_subcategories(self, obj):
-        subcategories = obj.subcategories.filter(is_active=True)
-        return SubCategoryListSerializer(subcategories, many=True, context=self.context).data
-
-
-class CategoryListSerializer(TranslatedSerializerMixin, serializers.ModelSerializer):
-    """Serializer simplificado para listados"""
-    name = serializers.SerializerMethodField()
-    description = serializers.SerializerMethodField()
-    subcategories_count = serializers.SerializerMethodField()
-    
-    class Meta:
-        model = Category
-        fields = ['id', 'name', 'slug', 'category_type', 'description', 'icon', 'image', 'subcategories_count']
-    
-    def get_name(self, obj):
-        return obj.get_name(self.get_language())
-    
-    def get_description(self, obj):
-        return obj.get_description(self.get_language())
-    
-    def get_subcategories_count(self, obj):
-        return obj.subcategories.filter(is_active=True).count()
 
 
 class ContactMessageSerializer(serializers.ModelSerializer):

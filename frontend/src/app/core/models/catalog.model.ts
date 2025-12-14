@@ -1,3 +1,17 @@
+export interface Supplier {
+  id: number;
+  name: string;
+  slug: string;
+  description: string;
+  logo?: string;
+  website?: string;
+  country?: string;
+  icon: string;
+  color: string;
+  products?: Product[];
+  products_count?: number;
+}
+
 export interface Category {
   id: number;
   name: string;
@@ -6,17 +20,6 @@ export interface Category {
   description: string;
   icon: string;
   image?: string;
-  subcategories?: SubCategory[];
-  subcategories_count?: number;
-}
-
-export interface SubCategory {
-  id: number;
-  name: string;
-  slug: string;
-  description: string;
-  image?: string;
-  products?: Product[];
   products_count?: number;
 }
 
@@ -24,6 +27,7 @@ export interface Product {
   id: number;
   name: string;
   slug: string;
+  sku?: string;
   short_description: string;
   description: string;
   specifications: Record<string, string>;
@@ -31,6 +35,8 @@ export interface Product {
   gallery: string[];
   is_featured: boolean;
   order: number;
+  supplier_name?: string;
+  category_name?: string;
 }
 
 export interface ContactMessage {
@@ -58,4 +64,3 @@ export interface CompanyInfo {
   instagram?: string;
   linkedin?: string;
 }
-

@@ -2,23 +2,40 @@ from rest_framework import viewsets, status
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from .models import Category, SubCategory, Product, ContactMessage, CompanyInfo
+from .models import Supplier, Category, Product, ContactMessage, CompanyInfo
 from .serializers import (
-    CategorySerializer, CategoryListSerializer,
-    SubCategorySerializer, SubCategoryListSerializer,
-    ProductSerializer, ContactMessageSerializer, CompanyInfoSerializer
+    SupplierSerializer, SupplierDetailSerializer,
+    CategorySerializer, ProductSerializer,
+    ContactMessageSerializer, CompanyInfoSerializer
 )
+
+
+class SupplierViewSet(viewsets.ReadOnlyModelViewSet):
+    """API endpoint para proveedores"""
+    queryset = Supplier.objects.filter(is_active=True)
+    lookup_field = 'slug'
+    
+    def get_serializer_class(self):
+        if self.action == 'retrieve':
+            return SupplierDetailSerializer
+        return SupplierSerializer
+    
+    def get_serializer_context(self):
+        context = super().get_serializer_context()
+        context['request'] = self.request
+        return context
 
 
 class CategoryViewSet(viewsets.ReadOnlyModelViewSet):
     """API endpoint para categorías"""
     queryset = Category.objects.filter(is_active=True)
+    serializer_class = CategorySerializer
     lookup_field = 'slug'
     
-    def get_serializer_class(self):
-        if self.action == 'list':
-            return CategoryListSerializer
-        return CategorySerializer
+    def get_serializer_context(self):
+        context = super().get_serializer_context()
+        context['request'] = self.request
+        return context
     
     @action(detail=False, methods=['get'])
     def by_type(self, request):
@@ -28,26 +45,8 @@ class CategoryViewSet(viewsets.ReadOnlyModelViewSet):
             categories = self.queryset.filter(category_type=category_type)
         else:
             categories = self.queryset
-        serializer = CategorySerializer(categories, many=True)
+        serializer = CategorySerializer(categories, many=True, context={'request': request})
         return Response(serializer.data)
-
-
-class SubCategoryViewSet(viewsets.ReadOnlyModelViewSet):
-    """API endpoint para subcategorías"""
-    queryset = SubCategory.objects.filter(is_active=True)
-    lookup_field = 'slug'
-    
-    def get_serializer_class(self):
-        if self.action == 'list':
-            return SubCategoryListSerializer
-        return SubCategorySerializer
-    
-    def get_queryset(self):
-        queryset = self.queryset
-        category_slug = self.request.query_params.get('category', None)
-        if category_slug:
-            queryset = queryset.filter(category__slug=category_slug)
-        return queryset
 
 
 class ProductViewSet(viewsets.ReadOnlyModelViewSet):
@@ -56,16 +55,21 @@ class ProductViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = ProductSerializer
     lookup_field = 'slug'
     
+    def get_serializer_context(self):
+        context = super().get_serializer_context()
+        context['request'] = self.request
+        return context
+    
     def get_queryset(self):
         queryset = self.queryset
-        subcategory_slug = self.request.query_params.get('subcategory', None)
+        supplier_slug = self.request.query_params.get('supplier', None)
         category_slug = self.request.query_params.get('category', None)
         featured = self.request.query_params.get('featured', None)
         
-        if subcategory_slug:
-            queryset = queryset.filter(subcategory__slug=subcategory_slug)
+        if supplier_slug:
+            queryset = queryset.filter(supplier__slug=supplier_slug)
         if category_slug:
-            queryset = queryset.filter(subcategory__category__slug=category_slug)
+            queryset = queryset.filter(category__slug=category_slug)
         if featured:
             queryset = queryset.filter(is_featured=True)
         
@@ -99,9 +103,8 @@ class CompanyInfoView(APIView):
     def get(self, request):
         company = CompanyInfo.objects.first()
         if company:
-            serializer = CompanyInfoSerializer(company)
+            serializer = CompanyInfoSerializer(company, context={'request': request})
             return Response(serializer.data)
-        # Devolver datos por defecto si no hay configuración
         return Response({
             'name': 'Metplastech Technologies SPA',
             'phone': '+569 9615 4315',
@@ -109,4 +112,3 @@ class CompanyInfoView(APIView):
             'email': 'contacto@metplastech.cl',
             'address': 'Curicó – Región del Maule – Chile',
         })
-
