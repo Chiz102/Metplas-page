@@ -12,13 +12,7 @@ import { LanguageService } from '../../core/services/language.service';
     <header [class.scrolled]="isScrolled()">
       <nav class="container">
         <a routerLink="/" class="logo">
-          <span class="logo-icon">
-            <span class="material-icons-outlined">hub</span>
-          </span>
-          <span class="logo-text">
-            <span class="logo-name">METPLASTECH</span>
-            <span class="logo-tagline">Technologies</span>
-          </span>
+          <img src="assets/images/logo.png" alt="Metplas Technologies" class="logo-image">
         </a>
 
         <div class="nav-links" [class.active]="menuOpen()">
@@ -126,60 +120,20 @@ import { LanguageService } from '../../core/services/language.service';
     .logo {
       display: flex;
       align-items: center;
-      gap: var(--space-sm);
       text-decoration: none;
-      color: var(--color-text-primary);
       
       &:hover {
-        color: var(--color-text-primary);
-        
-        .logo-icon {
-          box-shadow: 0 4px 16px rgba(16, 185, 129, 0.4);
-          transform: scale(1.05);
+        .logo-image {
+          filter: drop-shadow(0 4px 12px rgba(16, 79, 142, 0.3));
+          transform: translateY(-2px);
         }
       }
     }
     
-    .logo-icon {
-      width: 44px;
-      height: 44px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: linear-gradient(135deg, #1565c0 0%, #00897b 100%);
-      border-radius: var(--radius-md);
-      color: #ffffff;
+    .logo-image {
+      height: 48px;
+      width: auto;
       transition: all var(--transition-base);
-      box-shadow: 
-        0 4px 16px rgba(21, 101, 192, 0.35),
-        0 2px 8px rgba(0, 137, 123, 0.25);
-      
-      .material-icons-outlined {
-        font-size: 24px;
-      }
-    }
-    
-    .logo-text {
-      display: flex;
-      flex-direction: column;
-      line-height: 1.1;
-    }
-    
-    .logo-name {
-      font-size: 1.125rem;
-      font-weight: 700;
-      letter-spacing: 0.05em;
-      background: linear-gradient(135deg, #1565c0 0%, #00897b 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    
-    .logo-tagline {
-      font-size: 0.75rem;
-      font-weight: 500;
-      color: #1565c0;
-      letter-spacing: 0.08em;
     }
     
     .nav-links {

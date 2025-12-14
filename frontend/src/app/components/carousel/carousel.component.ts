@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 
 export interface CarouselItem {
   id: number;
@@ -13,13 +14,13 @@ export interface CarouselItem {
 @Component({
   selector: 'app-carousel',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TranslateModule],
   template: `
     <section class="section carousel-section">
       <div class="container">
         <div class="section-header">
-          <span class="section-label">Productos Destacados</span>
-          <h2 class="section-title">Nuestras Soluciones</h2>
+          <span class="section-label">{{ 'carousel.featuredProducts' | translate }}</span>
+          <h2 class="section-title">{{ 'carousel.ourSolutions' | translate }}</h2>
         </div>
 
         <div class="carousel-wrapper" (mouseenter)="onCarouselHover(true)" (mouseleave)="onCarouselHover(false)">
@@ -31,12 +32,12 @@ export interface CarouselItem {
                     <div class="carousel-icon">
                       <span class="material-icons-outlined">{{ item.icon }}</span>
                     </div>
-                    <h3>{{ item.title }}</h3>
-                    <p>{{ item.description }}</p>
+                    <h3>{{ item.title | translate }}</h3>
+                    <p>{{ item.description | translate }}</p>
                     <div class="carousel-footer">
-                      <span class="carousel-price">{{ item.price }}</span>
+                      <span class="carousel-price">{{ item.price | translate }}</span>
                       <a href="#" class="carousel-link">
-                        Ver más
+                        {{ 'carousel.viewMore' | translate }}
                         <span class="material-icons-outlined">arrow_forward</span>
                       </a>
                     </div>

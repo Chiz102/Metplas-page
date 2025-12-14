@@ -10,7 +10,7 @@ import { routes } from './app/app.routes';
 
 // Factory function for TranslateHttpLoader
 export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+  return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
 }
 
 bootstrapApplication(AppComponent, {

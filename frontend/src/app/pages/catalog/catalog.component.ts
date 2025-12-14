@@ -115,14 +115,14 @@ import { Category } from '../../core/models/catalog.model';
                 
                 @if (cat.slug === 'equipos') {
                   <div class="subcategory-preview">
-                    <span><span class="material-icons-outlined">chevron_right</span> Equipos Trimmer</span>
-                    <span><span class="material-icons-outlined">chevron_right</span> Rectificadores</span>
+                    <span><span class="material-icons-outlined">chevron_right</span> {{ 'catalog.subcats.trimmer' | translate }}</span>
+                    <span><span class="material-icons-outlined">chevron_right</span> {{ 'catalog.subcats.rectifiers' | translate }}</span>
                   </div>
                 } @else if (cat.slug === 'insumos') {
                   <div class="subcategory-preview">
-                    <span><span class="material-icons-outlined">chevron_right</span> Agujas Inyectoras</span>
-                    <span><span class="material-icons-outlined">chevron_right</span> EPP</span>
-                    <span><span class="material-icons-outlined">chevron_right</span> Cuchillos de Empuñadura</span>
+                    <span><span class="material-icons-outlined">chevron_right</span> {{ 'catalog.subcats.needles' | translate }}</span>
+                    <span><span class="material-icons-outlined">chevron_right</span> {{ 'catalog.subcats.ppe' | translate }}</span>
+                    <span><span class="material-icons-outlined">chevron_right</span> {{ 'catalog.subcats.knives' | translate }}</span>
                   </div>
                 }
                 

@@ -47,20 +47,6 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
             </a>
           </div>
           
-          <div class="hero-stats animate-fade-in-up delay-4">
-            <div class="stat">
-              <span class="stat-value">10+</span>
-              <span class="stat-label">{{ 'home.yearsExperience' | translate }}</span>
-            </div>
-            <div class="stat">
-              <span class="stat-value">500+</span>
-              <span class="stat-label">{{ 'home.satisfiedClients' | translate }}</span>
-            </div>
-            <div class="stat">
-              <span class="stat-value">100%</span>
-              <span class="stat-label">{{ 'home.guaranteedQuality' | translate }}</span>
-            </div>
-          </div>
         </div>
         
         <div class="hero-visual animate-fade-in delay-2">
@@ -87,10 +73,63 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
       <div class="scroll-indicator">
         <span class="material-icons-outlined">expand_more</span>
       </div>
+      
+      <!-- Clients Carousel - Full Width -->
+      <div class="clients-section animate-fade-in-up delay-4">
+        <span class="clients-label">{{ 'home.trustedBy' | translate }}</span>
+        <div class="clients-carousel">
+          <div class="clients-track">
+            @for (client of clients; track client.name) {
+              <div class="client-item">
+                <div class="client-logo">
+                  <span class="material-icons-outlined">business</span>
+                </div>
+                <span class="client-name">{{ client.name }}</span>
+              </div>
+            }
+            @for (client of clients; track client.name + '-clone') {
+              <div class="client-item">
+                <div class="client-logo">
+                  <span class="material-icons-outlined">business</span>
+                </div>
+                <span class="client-name">{{ client.name }}</span>
+              </div>
+            }
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- Carousel Section -->
     <app-carousel [items]="carouselItems" [itemsVisible]="3"></app-carousel>
+
+    <!-- Suppliers Carousel Section -->
+    <section class="suppliers-section">
+      <div class="suppliers-header">
+        <span class="material-icons-outlined">factory</span>
+        <span>{{ 'home.ourSuppliers' | translate }}</span>
+      </div>
+      <div class="suppliers-carousel">
+        <div class="suppliers-track">
+          @for (supplier of suppliers; track supplier.name) {
+            <div class="supplier-item">
+              <div class="supplier-logo">
+                <span class="material-icons-outlined">business</span>
+              </div>
+              <span class="supplier-name">{{ supplier.name }}</span>
+            </div>
+          }
+          @for (supplier of suppliers; track supplier.name + '-clone') {
+            <div class="supplier-item">
+              <div class="supplier-logo">
+                <span class="material-icons-outlined">business</span>
+              </div>
+              <span class="supplier-name">{{ supplier.name }}</span>
+            </div>
+          }
+        </div>
+      </div>
+    </section>
 
     <!-- Categories Section -->
     <section class="section section-blue categories-section">
@@ -218,9 +257,9 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
       min-height: 100vh;
       display: flex;
       align-items: center;
-      padding: var(--space-4xl) 0;
+      padding: var(--space-4xl) 0 140px;
       overflow: hidden;
-      background: linear-gradient(135deg, #0a3d8f 0%, #1565c0 25%, #0d47a1 50%, #00695c 75%, #00897b 100%);
+      background: linear-gradient(135deg, #093562 0%, #104F8E 30%, #0d4278 60%, #1a7335 85%, #229443 100%);
     }
     
     .hero-bg {
@@ -233,8 +272,8 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
       position: absolute;
       inset: 0;
       background: 
-        radial-gradient(ellipse 120% 80% at 80% 0%, rgba(100, 181, 246, 0.35) 0%, transparent 50%),
-        radial-gradient(ellipse 100% 70% at 0% 100%, rgba(38, 166, 154, 0.4) 0%, transparent 50%),
+        radial-gradient(ellipse 120% 80% at 80% 0%, rgba(16, 79, 142, 0.35) 0%, transparent 50%),
+        radial-gradient(ellipse 100% 70% at 0% 100%, rgba(34, 148, 67, 0.4) 0%, transparent 50%),
         radial-gradient(ellipse 60% 50% at 50% 50%, rgba(255, 255, 255, 0.08) 0%, transparent 60%);
     }
     
@@ -254,7 +293,7 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
       right: 5%;
       width: 600px;
       height: 600px;
-      background: radial-gradient(circle, rgba(38, 166, 154, 0.3) 0%, rgba(0, 137, 123, 0.15) 40%, transparent 60%);
+      background: radial-gradient(circle, rgba(34, 148, 67, 0.3) 0%, rgba(34, 148, 67, 0.15) 40%, transparent 60%);
       filter: blur(80px);
       animation: pulse-glow 5s ease-in-out infinite;
     }
@@ -305,11 +344,11 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
       text-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
       
       .text-gradient {
-        background: linear-gradient(135deg, #4db6ac 0%, #64b5f6 50%, #26a69a 100%);
+        background: linear-gradient(135deg, #45c768 0%, #3d8bd4 50%, #2eb556 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
-        filter: drop-shadow(0 2px 10px rgba(77, 182, 172, 0.4));
+        filter: drop-shadow(0 2px 10px rgba(34, 148, 67, 0.4));
       }
     }
     
@@ -357,44 +396,114 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
       }
     }
     
-    .hero-stats {
-      display: flex;
-      gap: var(--space-2xl);
+    .clients-section {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.35) 100%);
+      padding: var(--space-xl) 0 var(--space-2xl);
+      z-index: 10;
+    }
+    
+    .clients-label {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.6);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      text-align: center;
+      margin-bottom: var(--space-md);
+    }
+    
+    .clients-carousel {
+      overflow: hidden;
+      position: relative;
       
-      @media (max-width: 1024px) {
-        justify-content: center;
+      &::before,
+      &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 120px;
+        z-index: 2;
+        pointer-events: none;
       }
       
-      @media (max-width: 480px) {
-        flex-direction: column;
-        gap: var(--space-lg);
+      &::before {
+        left: 0;
+        background: linear-gradient(90deg, rgba(10, 50, 80, 0.98) 0%, transparent 100%);
+      }
+      
+      &::after {
+        right: 0;
+        background: linear-gradient(270deg, rgba(10, 80, 60, 0.95) 0%, transparent 100%);
       }
     }
     
-    .stat {
+    .clients-track {
       display: flex;
-      flex-direction: column;
-      padding: var(--space-md) var(--space-lg);
-      background: rgba(255, 255, 255, 0.12);
+      gap: var(--space-2xl);
+      animation: scrollClients 30s linear infinite;
+      width: max-content;
+      padding: var(--space-sm) 0;
+      
+      &:hover {
+        animation-play-state: paused;
+      }
+    }
+    
+    @keyframes scrollClients {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+    
+    .client-item {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      padding: var(--space-md) var(--space-xl);
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: var(--radius-full);
+      white-space: nowrap;
+      transition: all var(--transition-fast);
+      
+      &:hover {
+        background: rgba(255, 255, 255, 0.15);
+        border-color: rgba(255, 255, 255, 0.3);
+        transform: translateY(-2px);
+      }
+    }
+    
+    .client-logo {
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.08) 100%);
       border-radius: var(--radius-md);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
       
-      .stat-value {
-        font-size: 2.25rem;
-        font-weight: 700;
-        color: #4db6ac;
-        line-height: 1;
-        text-shadow: 0 2px 12px rgba(77, 182, 172, 0.5);
+      .material-icons-outlined {
+        font-size: 20px;
+        color: #34d399;
       }
-      
-      .stat-label {
-        font-size: 0.875rem;
-        color: rgba(255, 255, 255, 0.9);
-        margin-top: var(--space-xs);
-        font-weight: 500;
-      }
+    }
+    
+    .client-name {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.95);
+      letter-spacing: 0.01em;
     }
     
     .hero-visual {
@@ -428,7 +537,7 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
         position: absolute;
         inset: -3px;
         border-radius: var(--radius-xl);
-        background: linear-gradient(135deg, rgba(77, 182, 172, 0.5) 0%, rgba(100, 181, 246, 0.5) 100%);
+        background: linear-gradient(135deg, rgba(34, 148, 67, 0.5) 0%, rgba(16, 79, 142, 0.5) 100%);
         z-index: -1;
         opacity: 0.7;
       }
@@ -441,8 +550,8 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
         
         .material-icons-outlined {
           font-size: 90px;
-          color: #4db6ac;
-          filter: drop-shadow(0 4px 16px rgba(77, 182, 172, 0.5));
+          color: #45c768;
+          filter: drop-shadow(0 4px 16px rgba(34, 148, 67, 0.5));
         }
         
         span:last-child {
@@ -476,26 +585,26 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
       
       .material-icons-outlined {
         font-size: 28px;
-        color: #4db6ac;
+        color: #45c768;
       }
       
       &.float-1 {
         top: 8%;
         left: -12%;
         animation-delay: 0s;
-        background: rgba(77, 182, 172, 0.25);
-        border-color: rgba(77, 182, 172, 0.35);
+        background: rgba(34, 148, 67, 0.25);
+        border-color: rgba(34, 148, 67, 0.35);
       }
       
       &.float-2 {
         top: 45%;
         right: -18%;
         animation-delay: 1s;
-        background: rgba(100, 181, 246, 0.25);
-        border-color: rgba(100, 181, 246, 0.35);
+        background: rgba(16, 79, 142, 0.25);
+        border-color: rgba(16, 79, 142, 0.35);
         
         .material-icons-outlined {
-          color: #64b5f6;
+          color: #3d8bd4;
         }
       }
       
@@ -503,39 +612,159 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
         bottom: 8%;
         left: 8%;
         animation-delay: 2s;
-        background: rgba(38, 166, 154, 0.28);
-        border-color: rgba(38, 166, 154, 0.4);
+        background: rgba(46, 181, 86, 0.28);
+        border-color: rgba(46, 181, 86, 0.4);
       }
     }
     
     .scroll-indicator {
-      position: absolute;
-      bottom: var(--space-xl);
-      left: 50%;
-      transform: translateX(-50%);
-      animation: bounce 2s infinite;
+      display: none; // Oculto ya que el carrusel de clientes ocupa ese espacio
+    }
+    
+    // Suppliers Section
+    .suppliers-section {
+      padding: var(--space-2xl) 0;
+      background: linear-gradient(180deg, #ffffff 0%, #f0f9ff 50%, #ecfdf5 100%);
+      overflow: hidden;
+      position: relative;
       
-      .material-icons-outlined {
-        font-size: 32px;
-        color: var(--color-text-muted);
+      &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: 
+          radial-gradient(ellipse 80% 50% at 20% 0%, rgba(3, 105, 161, 0.08) 0%, transparent 50%),
+          radial-gradient(ellipse 60% 40% at 80% 100%, rgba(5, 150, 105, 0.06) 0%, transparent 40%);
+        pointer-events: none;
       }
     }
     
-    @keyframes bounce {
-      0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
-      40% { transform: translateX(-50%) translateY(-10px); }
-      60% { transform: translateX(-50%) translateY(-5px); }
+    .suppliers-header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-xl);
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--color-blue);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      
+      .material-icons-outlined {
+        font-size: 20px;
+        color: var(--color-accent);
+      }
     }
     
+    .suppliers-carousel {
+      overflow: hidden;
+      position: relative;
+      
+      &::before,
+      &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 150px;
+        z-index: 2;
+        pointer-events: none;
+      }
+      
+      &::before {
+        left: 0;
+        background: linear-gradient(90deg, #f0f9ff 0%, transparent 100%);
+      }
+      
+      &::after {
+        right: 0;
+        background: linear-gradient(270deg, #ecfdf5 0%, transparent 100%);
+      }
+    }
+    
+    .suppliers-track {
+      display: flex;
+      gap: var(--space-xl);
+      animation: scrollSuppliers 35s linear infinite;
+      width: max-content;
+      padding: var(--space-sm) 0;
+      
+      &:hover {
+        animation-play-state: paused;
+      }
+    }
+    
+    @keyframes scrollSuppliers {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+    
+    .supplier-item {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      padding: var(--space-md) var(--space-xl);
+      background: #ffffff;
+      border: 2px solid var(--color-border-blue);
+      border-radius: var(--radius-lg);
+      white-space: nowrap;
+      transition: all var(--transition-fast);
+      box-shadow: var(--shadow-sm);
+      
+      &:hover {
+        border-color: var(--color-blue);
+        transform: translateY(-3px);
+        box-shadow: var(--shadow-md), 0 0 20px rgba(3, 105, 161, 0.15);
+        
+        .supplier-logo {
+          background: linear-gradient(135deg, var(--color-blue) 0%, var(--color-accent) 100%);
+          
+          .material-icons-outlined {
+            color: #ffffff;
+          }
+        }
+      }
+    }
+    
+    .supplier-logo {
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--color-surface-blue);
+      border: 2px solid var(--color-border-blue);
+      border-radius: var(--radius-md);
+      transition: all var(--transition-fast);
+      
+      .material-icons-outlined {
+        font-size: 22px;
+        color: var(--color-blue);
+        transition: all var(--transition-fast);
+      }
+    }
+    
+    .supplier-name {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--color-text-primary);
+      letter-spacing: 0.01em;
+    }
+
     // Categories Section
     .categories-section {
       background: 
         linear-gradient(180deg, 
-          #f8fbff 0%, 
-          rgba(227, 242, 253, 0.9) 20%, 
-          rgba(224, 242, 241, 0.85) 50%, 
-          rgba(241, 248, 254, 0.9) 80%, 
-          #f8fbff 100%
+          #f8fafc 0%, 
+          rgba(232, 241, 248, 0.9) 20%, 
+          rgba(232, 245, 235, 0.85) 50%, 
+          rgba(240, 246, 251, 0.9) 80%, 
+          #f8fafc 100%
         );
       position: relative;
       
@@ -548,9 +777,9 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
         height: 5px;
         background: linear-gradient(90deg, 
           transparent 0%, 
-          #00897b 15%, 
-          #1565c0 50%, 
-          #26a69a 85%, 
+          #229443 15%, 
+          #104F8E 50%, 
+          #2eb556 85%, 
           transparent 100%
         );
       }
@@ -564,9 +793,9 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
         height: 5px;
         background: linear-gradient(90deg, 
           transparent 0%, 
-          #2196f3 15%, 
-          #00897b 50%, 
-          #1565c0 85%, 
+          #1a6bc4 15%, 
+          #229443 50%, 
+          #104F8E 85%, 
           transparent 100%
         );
       }
@@ -610,7 +839,7 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
         left: 0;
         right: 0;
         height: 4px;
-        background: linear-gradient(90deg, #00897b 0%, #1565c0 50%, #26a69a 100%);
+        background: linear-gradient(90deg, #229443 0%, #104F8E 50%, #2eb556 100%);
         transform: scaleX(0);
         transform-origin: left;
         transition: transform var(--transition-base);
@@ -620,15 +849,15 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
         border-color: var(--color-accent);
         transform: translateY(-8px);
         box-shadow: 
-          0 12px 35px rgba(0, 137, 123, 0.2),
-          0 6px 16px rgba(21, 101, 192, 0.15);
+          0 12px 35px rgba(34, 148, 67, 0.2),
+          0 6px 16px rgba(16, 79, 142, 0.15);
         
         &::before {
           transform: scaleX(1);
         }
         
         .category-icon {
-          background: linear-gradient(135deg, #00897b 0%, #1565c0 100%);
+          background: linear-gradient(135deg, #229443 0%, #104F8E 100%);
           transform: scale(1.08);
           border-color: transparent;
           
@@ -650,16 +879,16 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
       display: flex;
       align-items: center;
       justify-content: center;
-      background: linear-gradient(145deg, #e0f2f1 0%, #e3f2fd 100%);
-      border: 2px solid rgba(0, 137, 123, 0.2);
+      background: linear-gradient(145deg, #e8f5eb 0%, #e8f1f8 100%);
+      border: 2px solid rgba(34, 148, 67, 0.2);
       border-radius: var(--radius-lg);
       margin-bottom: var(--space-lg);
       transition: all var(--transition-base);
-      box-shadow: 0 2px 8px rgba(0, 137, 123, 0.1);
+      box-shadow: 0 2px 8px rgba(34, 148, 67, 0.1);
       
       .material-icons-outlined {
         font-size: 32px;
-        color: #00897b;
+        color: #229443;
         transition: all var(--transition-base);
       }
     }
@@ -861,7 +1090,7 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
     // CTA Section
     .cta-section {
       padding-bottom: 0;
-      background: linear-gradient(135deg, #0a3d8f 0%, #1565c0 30%, #00695c 70%, #00897b 100%);
+      background: linear-gradient(135deg, #093562 0%, #104F8E 30%, #1a7335 70%, #229443 100%);
       color: #ffffff;
       position: relative;
       overflow: hidden;
@@ -871,8 +1100,8 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
         position: absolute;
         inset: 0;
         background: 
-          radial-gradient(ellipse 120% 80% at 80% 20%, rgba(77, 182, 172, 0.3) 0%, transparent 50%),
-          radial-gradient(ellipse 100% 70% at 0% 80%, rgba(100, 181, 246, 0.25) 0%, transparent 40%),
+          radial-gradient(ellipse 120% 80% at 80% 20%, rgba(34, 148, 67, 0.3) 0%, transparent 50%),
+          radial-gradient(ellipse 100% 70% at 0% 80%, rgba(16, 79, 142, 0.25) 0%, transparent 40%),
           radial-gradient(ellipse 60% 40% at 50% 50%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
         pointer-events: none;
       }
@@ -924,15 +1153,15 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
       
       .btn-cta {
         background: #ffffff;
-        color: #0a3d8f;
+        color: #104F8E;
         font-weight: 700;
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
         
         &:hover {
-          background: linear-gradient(135deg, #4db6ac 0%, #26a69a 100%);
+          background: linear-gradient(135deg, #45c768 0%, #2eb556 100%);
           color: #ffffff;
           transform: translateY(-3px);
-          box-shadow: 0 8px 28px rgba(77, 182, 172, 0.5);
+          box-shadow: 0 8px 28px rgba(34, 148, 67, 0.5);
         }
       }
       
@@ -968,8 +1197,8 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
           height: 450px;
           right: -120px;
           top: -120px;
-          background: radial-gradient(circle, rgba(77, 182, 172, 0.15) 0%, transparent 70%);
-          border-color: rgba(77, 182, 172, 0.25);
+          background: radial-gradient(circle, rgba(34, 148, 67, 0.15) 0%, transparent 70%);
+          border-color: rgba(34, 148, 67, 0.25);
         }
         
         &:last-child {
@@ -977,8 +1206,8 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
           height: 320px;
           right: 40px;
           bottom: -60px;
-          border-color: rgba(100, 181, 246, 0.35);
-          background: radial-gradient(circle, rgba(100, 181, 246, 0.12) 0%, transparent 70%);
+          border-color: rgba(16, 79, 142, 0.35);
+          background: radial-gradient(circle, rgba(16, 79, 142, 0.12) 0%, transparent 70%);
         }
       }
       
@@ -992,48 +1221,72 @@ export class HomeComponent implements OnInit {
   private api = inject(ApiService);
   categories: Category[] = [];
   
+  // Lista de clientes para el carrusel del hero
+  clients = [
+    { name: 'Agroindustrial del Sur' },
+    { name: 'Frigorífico Nacional' },
+    { name: 'Procesadora Austral' },
+    { name: 'Carnes Premium Chile' },
+    { name: 'Embutidos San Martín' },
+    { name: 'Industria Alimentaria Central' },
+    { name: 'Faenadora Los Andes' },
+    { name: 'Exportadora Pacífico' }
+  ];
+  
+  // Lista de proveedores para el carrusel del hero
+  suppliers = [
+    { name: 'Proveedor Internacional A' },
+    { name: 'Tech Industrial Corp' },
+    { name: 'Global Equipment Ltd' },
+    { name: 'Premium Supplies Co' },
+    { name: 'Industrial Parts SA' },
+    { name: 'Quality Tools Inc' },
+    { name: 'European Machinery' },
+    { name: 'Asian Tech Solutions' }
+  ];
+  
   carouselItems: CarouselItem[] = [
     {
       id: 1,
       icon: 'precision_manufacturing',
-      title: 'Equipos Trimmer',
-      description: 'Maquinaria de corte de precisión para aplicaciones industriales complejas.',
-      price: 'Consultar'
+      title: 'carousel.item1.title',
+      description: 'carousel.item1.description',
+      price: 'carousel.item1.price'
     },
     {
       id: 2,
       icon: 'bolt',
-      title: 'Rectificadores Industrial',
-      description: 'Equipos de rectificación de alta potencia para procesos de manufactura.',
-      price: 'Consultar'
+      title: 'carousel.item2.title',
+      description: 'carousel.item2.description',
+      price: 'carousel.item2.price'
     },
     {
       id: 3,
       icon: 'inventory_2',
-      title: 'Insumos Industriales',
-      description: 'Repuestos y consumibles de calidad para mantenimiento continuo.',
-      price: 'Desde $5.000'
+      title: 'carousel.item3.title',
+      description: 'carousel.item3.description',
+      price: 'carousel.item3.price'
     },
     {
       id: 4,
       icon: 'shield_admin',
-      title: 'Equipos de Protección',
-      description: 'EPP certificados y equipos de seguridad para ambientes industriales.',
-      price: 'Desde $2.500'
+      title: 'carousel.item4.title',
+      description: 'carousel.item4.description',
+      price: 'carousel.item4.price'
     },
     {
       id: 5,
       icon: 'engineering',
-      title: 'Servicios Técnicos',
-      description: 'Instalación, mantenimiento y asesoría técnica especializada.',
-      price: 'Según servicio'
+      title: 'carousel.item5.title',
+      description: 'carousel.item5.description',
+      price: 'carousel.item5.price'
     },
     {
       id: 6,
       icon: 'lightbulb',
-      title: 'Soluciones Personalizadas',
-      description: 'Diseño y desarrollo de soluciones a medida para tu operación.',
-      price: 'Presupuesto'
+      title: 'carousel.item6.title',
+      description: 'carousel.item6.description',
+      price: 'carousel.item6.price'
     }
   ];
 

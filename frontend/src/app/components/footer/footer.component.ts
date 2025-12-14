@@ -16,13 +16,7 @@ import { CompanyInfo } from '../../core/models/catalog.model';
           <!-- Company Info -->
           <div class="footer-brand">
             <a routerLink="/" class="footer-logo">
-              <span class="logo-icon">
-                <span class="material-icons-outlined">hub</span>
-              </span>
-              <span class="logo-text">
-                <span class="logo-name">METPLASTECH</span>
-                <span class="logo-tagline">Technologies SPA</span>
-              </span>
+              <img src="assets/images/logo.png" alt="Metplas Technologies" class="logo-image">
             </a>
             <p class="footer-description">
               {{ 'footer.description' | translate }}
@@ -98,13 +92,13 @@ import { CompanyInfo } from '../../core/models/catalog.model';
   styles: [`
     footer {
       background: linear-gradient(180deg, 
-        rgba(227, 242, 253, 0.9) 0%, 
-        rgba(224, 242, 241, 0.8) 30%, 
-        rgba(248, 251, 255, 0.95) 70%, 
-        #f8fbff 100%
+        rgba(232, 241, 248, 0.9) 0%, 
+        rgba(232, 245, 235, 0.8) 30%, 
+        rgba(248, 250, 252, 0.95) 70%, 
+        #f8fafc 100%
       );
       border-top: 5px solid transparent;
-      border-image: linear-gradient(90deg, #1565c0 0%, #00897b 50%, #2196f3 100%) 1;
+      border-image: linear-gradient(90deg, #104F8E 0%, #229443 50%, #1a6bc4 100%) 1;
       padding: var(--space-4xl) 0 var(--space-xl);
       margin-top: var(--space-4xl);
       position: relative;
@@ -129,63 +123,22 @@ import { CompanyInfo } from '../../core/models/catalog.model';
       .footer-logo {
         display: inline-flex;
         align-items: center;
-        gap: var(--space-sm);
         text-decoration: none;
-        color: var(--color-text-primary);
         margin-bottom: var(--space-lg);
+        transition: all var(--transition-base);
         
         &:hover {
-          color: var(--color-text-primary);
-          
-          .logo-icon {
-            transform: scale(1.05);
-            box-shadow: 
-              0 6px 20px rgba(21, 101, 192, 0.35),
-              0 3px 10px rgba(0, 137, 123, 0.25);
+          .logo-image {
+            filter: drop-shadow(0 4px 12px rgba(16, 79, 142, 0.3));
+            transform: translateY(-2px);
           }
         }
       }
       
-      .logo-icon {
-        width: 44px;
-        height: 44px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: linear-gradient(135deg, #1565c0 0%, #00897b 100%);
-        border-radius: var(--radius-md);
-        color: #ffffff;
+      .logo-image {
+        height: 48px;
+        width: auto;
         transition: all var(--transition-base);
-        box-shadow: 
-          0 4px 16px rgba(21, 101, 192, 0.3),
-          0 2px 8px rgba(0, 137, 123, 0.2);
-        
-        .material-icons-outlined {
-          font-size: 24px;
-        }
-      }
-      
-      .logo-text {
-        display: flex;
-        flex-direction: column;
-        line-height: 1.1;
-      }
-      
-      .logo-name {
-        font-size: 1.1rem;
-        font-weight: 700;
-        letter-spacing: 0.05em;
-        background: linear-gradient(135deg, #1565c0 0%, #00897b 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-      }
-      
-      .logo-tagline {
-        font-size: 0.7rem;
-        font-weight: 500;
-        color: #1565c0;
-        letter-spacing: 0.08em;
       }
     }
     

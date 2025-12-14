@@ -144,7 +144,7 @@ import { RouterLink } from '@angular/router';
       padding: calc(80px + var(--space-4xl)) 0 var(--space-4xl);
       text-align: center;
       background: 
-        linear-gradient(180deg, var(--color-surface-blue) 0%, #ffffff 100%);
+        linear-gradient(135deg, #0c4a6e 0%, #0369a1 40%, #059669 100%);
       position: relative;
       
       &::before {
@@ -152,8 +152,8 @@ import { RouterLink } from '@angular/router';
         position: absolute;
         inset: 0;
         background: 
-          radial-gradient(ellipse 100% 60% at 80% 0%, rgba(14, 165, 233, 0.1) 0%, transparent 50%),
-          radial-gradient(ellipse 80% 50% at 20% 100%, rgba(5, 150, 105, 0.08) 0%, transparent 40%);
+          radial-gradient(ellipse 100% 60% at 80% 0%, rgba(56, 189, 248, 0.3) 0%, transparent 50%),
+          radial-gradient(ellipse 80% 50% at 20% 100%, rgba(52, 211, 153, 0.25) 0%, transparent 40%);
         pointer-events: none;
       }
     }
@@ -163,27 +163,28 @@ import { RouterLink } from '@angular/router';
       align-items: center;
       gap: var(--space-sm);
       padding: var(--space-sm) var(--space-lg);
-      background: #ffffff;
-      border: 2px solid var(--color-border-blue);
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
       border-radius: var(--radius-full);
       font-size: 0.875rem;
       font-weight: 600;
-      color: var(--color-blue);
+      color: #ffffff;
       margin-bottom: var(--space-lg);
-      box-shadow: var(--shadow-md);
       position: relative;
       
       .material-icons-outlined {
         font-size: 18px;
-        color: var(--color-accent);
+        color: #34d399;
       }
     }
     
     h1 {
       margin-bottom: var(--space-lg);
+      color: #ffffff;
       
       .text-gradient {
-        background: linear-gradient(135deg, var(--color-blue) 0%, var(--color-accent) 100%);
+        background: linear-gradient(135deg, #38bdf8 0%, #34d399 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
@@ -192,7 +193,7 @@ import { RouterLink } from '@angular/router';
     
     .hero-description {
       font-size: 1.25rem;
-      color: var(--color-text-secondary);
+      color: rgba(255, 255, 255, 0.9);
       max-width: 600px;
       margin: 0 auto;
       line-height: 1.7;
@@ -212,12 +213,14 @@ import { RouterLink } from '@angular/router';
     .about-content {
       h2 {
         margin-bottom: var(--space-xl);
+        color: var(--color-blue-dark);
       }
       
       > p {
         font-size: 1.1rem;
         line-height: 1.8;
         margin-bottom: var(--space-lg);
+        color: var(--color-text-secondary);
       }
     }
     
@@ -234,50 +237,56 @@ import { RouterLink } from '@angular/router';
     
     .value-card {
       padding: var(--space-xl);
-      background: #ffffff;
-      border: 2px solid var(--color-border-light);
+      background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%);
+      border: 2px solid rgba(3, 105, 161, 0.2);
       border-radius: var(--radius-lg);
       transition: all var(--transition-base);
-      box-shadow: var(--shadow-sm);
+      box-shadow: 0 4px 15px rgba(3, 105, 161, 0.1);
       
       &:hover {
         border-color: var(--color-accent);
-        transform: translateY(-4px);
-        box-shadow: var(--shadow-green);
+        background: linear-gradient(135deg, #ecfdf5 0%, #f0f9ff 100%);
+        transform: translateY(-6px);
+        box-shadow: 0 12px 30px rgba(5, 150, 105, 0.2);
         
         .value-icon {
-          transform: scale(1.1);
+          transform: scale(1.1) rotate(5deg);
+        }
+        
+        h4 {
+          color: var(--color-accent);
         }
       }
       
       .value-icon {
-        width: 52px;
-        height: 52px;
+        width: 56px;
+        height: 56px;
         display: flex;
         align-items: center;
         justify-content: center;
-        background: linear-gradient(135deg, var(--color-blue) 0%, var(--color-accent) 100%);
+        background: linear-gradient(135deg, #0369a1 0%, #059669 100%);
         border-radius: var(--radius-md);
         margin-bottom: var(--space-md);
         transition: all var(--transition-base);
-        box-shadow: 0 4px 12px rgba(3, 105, 161, 0.25);
+        box-shadow: 0 6px 20px rgba(3, 105, 161, 0.3);
         
         .material-icons-outlined {
-          font-size: 26px;
+          font-size: 28px;
           color: #ffffff;
         }
       }
       
       h4 {
-        font-size: 1.1rem;
-        font-weight: 600;
-        color: var(--color-text-primary);
+        font-size: 1.15rem;
+        font-weight: 700;
+        color: var(--color-blue-dark);
         margin-bottom: var(--space-sm);
+        transition: color var(--transition-base);
       }
       
       p {
         font-size: 0.9rem;
-        color: var(--color-text-muted);
+        color: var(--color-text-secondary);
         margin: 0;
         line-height: 1.6;
       }
@@ -301,34 +310,28 @@ import { RouterLink } from '@angular/router';
       align-items: center;
       justify-content: center;
       gap: var(--space-md);
-      background: #ffffff;
-      border: 2px solid var(--color-border-blue);
       border-radius: var(--radius-xl);
-      box-shadow: var(--shadow-lg);
       
       &.main {
         top: 0;
         right: 0;
         width: 300px;
         height: 300px;
-        background: linear-gradient(135deg, #ffffff 0%, var(--color-surface-blue) 100%);
+        background: linear-gradient(135deg, #0c4a6e 0%, #0369a1 50%, #059669 100%);
+        border: none;
+        box-shadow: 0 20px 60px rgba(3, 105, 161, 0.4);
         
         .material-icons-outlined {
           font-size: 80px;
-          background: linear-gradient(135deg, var(--color-blue) 0%, var(--color-accent) 100%);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          background-clip: text;
+          color: #ffffff;
+          filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.2));
         }
         
         span:last-child {
           font-size: 1.5rem;
           font-weight: 700;
           letter-spacing: 0.1em;
-          background: linear-gradient(135deg, var(--color-blue) 0%, var(--color-accent) 100%);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          background-clip: text;
+          color: #ffffff;
         }
       }
       
@@ -337,9 +340,9 @@ import { RouterLink } from '@angular/router';
         left: 0;
         width: 150px;
         height: 150px;
-        background: linear-gradient(135deg, var(--color-blue) 0%, var(--color-accent) 100%);
-        border-color: transparent;
-        box-shadow: var(--shadow-glow);
+        background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+        border: none;
+        box-shadow: 0 15px 40px rgba(5, 150, 105, 0.4);
         
         .material-icons-outlined {
           font-size: 60px;
@@ -349,13 +352,25 @@ import { RouterLink } from '@angular/router';
     }
     
     .mission-section {
-      background: linear-gradient(180deg, var(--color-surface-green) 0%, #ffffff 50%, var(--color-surface-blue) 100%);
+      background: linear-gradient(180deg, #f0f9ff 0%, #ecfdf5 50%, #f0f9ff 100%);
+      position: relative;
+      
+      &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: 
+          radial-gradient(ellipse 80% 60% at 20% 0%, rgba(5, 150, 105, 0.1) 0%, transparent 50%),
+          radial-gradient(ellipse 60% 50% at 80% 100%, rgba(3, 105, 161, 0.1) 0%, transparent 40%);
+        pointer-events: none;
+      }
     }
     
     .mission-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: var(--space-xl);
+      position: relative;
       
       @media (max-width: 768px) {
         grid-template-columns: 1fr;
@@ -365,42 +380,49 @@ import { RouterLink } from '@angular/router';
     .mission-card {
       padding: var(--space-2xl);
       background: #ffffff;
-      border: 2px solid var(--color-border-light);
+      border: 2px solid rgba(3, 105, 161, 0.15);
       border-radius: var(--radius-xl);
-      box-shadow: var(--shadow-md);
+      box-shadow: 0 8px 30px rgba(3, 105, 161, 0.1);
       transition: all var(--transition-base);
+      position: relative;
       
       &:hover {
-        transform: translateY(-4px);
-        box-shadow: var(--shadow-lg);
+        transform: translateY(-6px);
+        box-shadow: 0 15px 40px rgba(3, 105, 161, 0.2);
         border-color: var(--color-blue);
+        
+        .mission-icon {
+          transform: scale(1.1);
+        }
       }
       
       .mission-icon {
-        width: 68px;
-        height: 68px;
+        width: 72px;
+        height: 72px;
         display: flex;
         align-items: center;
         justify-content: center;
-        background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-blue) 100%);
+        background: linear-gradient(135deg, #059669 0%, #0369a1 100%);
         border-radius: var(--radius-lg);
         margin-bottom: var(--space-lg);
-        box-shadow: 0 4px 16px rgba(5, 150, 105, 0.3);
+        box-shadow: 0 8px 25px rgba(5, 150, 105, 0.35);
+        transition: all var(--transition-base);
         
         .material-icons-outlined {
-          font-size: 34px;
+          font-size: 36px;
           color: #ffffff;
         }
       }
       
       h3 {
-        font-size: 1.5rem;
+        font-size: 1.6rem;
         margin-bottom: var(--space-md);
-        color: var(--color-text-primary);
+        color: var(--color-blue-dark);
+        font-weight: 700;
       }
       
       p {
-        font-size: 1rem;
+        font-size: 1.05rem;
         line-height: 1.8;
         margin: 0;
         color: var(--color-text-secondary);
@@ -410,9 +432,9 @@ import { RouterLink } from '@angular/router';
     .cta-banner {
       text-align: center;
       padding: var(--space-3xl);
-      background: linear-gradient(135deg, var(--color-blue-darker) 0%, var(--color-blue) 50%, var(--color-accent) 100%);
+      background: linear-gradient(135deg, #0c4a6e 0%, #0369a1 50%, #059669 100%);
       border-radius: var(--radius-xl);
-      box-shadow: var(--shadow-xl);
+      box-shadow: 0 20px 60px rgba(3, 105, 161, 0.35);
       position: relative;
       overflow: hidden;
       
@@ -421,8 +443,8 @@ import { RouterLink } from '@angular/router';
         position: absolute;
         inset: 0;
         background: 
-          radial-gradient(ellipse 80% 60% at 80% 20%, rgba(52, 211, 153, 0.2) 0%, transparent 50%),
-          radial-gradient(ellipse 60% 50% at 20% 80%, rgba(56, 189, 248, 0.2) 0%, transparent 40%);
+          radial-gradient(ellipse 80% 60% at 80% 20%, rgba(52, 211, 153, 0.25) 0%, transparent 50%),
+          radial-gradient(ellipse 60% 50% at 20% 80%, rgba(56, 189, 248, 0.25) 0%, transparent 40%);
         pointer-events: none;
       }
       
@@ -430,11 +452,12 @@ import { RouterLink } from '@angular/router';
         margin-bottom: var(--space-md);
         color: #ffffff;
         position: relative;
+        font-size: 2rem;
       }
       
       p {
-        font-size: 1.1rem;
-        max-width: 500px;
+        font-size: 1.15rem;
+        max-width: 550px;
         margin: 0 auto var(--space-xl);
         color: rgba(255, 255, 255, 0.9);
         position: relative;
@@ -446,8 +469,31 @@ import { RouterLink } from '@angular/router';
       justify-content: center;
       gap: var(--space-md);
       flex-wrap: wrap;
+      position: relative;
+      
+      .btn-primary {
+        background: #ffffff;
+        color: #0369a1;
+        border: none;
+        
+        &:hover {
+          background: #f0f9ff;
+          transform: translateY(-2px);
+          box-shadow: 0 8px 25px rgba(255, 255, 255, 0.3);
+        }
+      }
+      
+      .btn-secondary {
+        background: transparent;
+        color: #ffffff;
+        border: 2px solid rgba(255, 255, 255, 0.5);
+        
+        &:hover {
+          background: rgba(255, 255, 255, 0.15);
+          border-color: #ffffff;
+        }
+      }
     }
   `]
 })
 export class AboutComponent {}
-
