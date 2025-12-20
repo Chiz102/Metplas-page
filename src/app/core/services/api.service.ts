@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 import { Supplier, Category, Product, ContactMessage, CompanyInfo } from '../models/catalog.model';
 import { LanguageService } from './language.service';
 
@@ -24,14 +24,32 @@ export class ApiService {
   }
 
   // Suppliers (Proveedores)
-  getSuppliers(): Observable<Supplier[]> {
-    return this.http.get<Supplier[]>(this.withLang(`${this.apiUrl}/suppliers/`)).pipe(
-      catchError(() => of(this.getMockSuppliers()))
+
+  getSuppliers(): Observable<any[]> {
+    // Fetches supplier metadata from assets and returns as array
+    return this.http.get<any>(`assets/catalog/__metadata__.json`).pipe(
+      catchError(() => of({ suppliers: {} })),
+      // Map the suppliers object to an array of suppliers with slug
+      // (slug is the key in the suppliers object)
+      // Example: { suppliers: { zeigler: { ... } } } => [ { slug: 'zeigler', ... } ]
+      // Use RxJS map operator
+      map((data: any) => {
+        if (!data || !data.suppliers) return [];
+        return Object.entries(data.suppliers).map(([slug, supplier]: [string, any]) => ({ slug, ...supplier }));
+      })
     );
   }
 
-  getSupplierBySlug(slug: string): Observable<Supplier> {
-    return this.http.get<Supplier>(this.withLang(`${this.apiUrl}/suppliers/${slug}/`));
+  getSupplierBySlug(slug: string): Observable<any> {
+    // Fetches a single supplier by slug from the metadata
+    return this.http.get<any>(`assets/catalog/__metadata__.json`).pipe(
+      catchError(() => of({ suppliers: {} })),
+      map((data: any) => {
+        if (!data || !data.suppliers) return null;
+        const supplier = data.suppliers[slug];
+        return supplier ? { slug, ...supplier } : null;
+      })
+    );
   }
 
   // Categories (para filtrado adicional)
@@ -73,6 +91,27 @@ export class ApiService {
     return this.http.get<CompanyInfo>(this.withLang(`${this.apiUrl}/company/`)).pipe(
       catchError(() => of(this.getDefaultCompanyInfo()))
     );
+  }
+
+  // Categories by Supplier Slug
+  getCategoriesBySupplierSlug(supplierSlug: string, lang: 'eng' | 'esp' = 'esp'): string[] {
+    // Loads categories from the supplier in __metadata__.json
+    // Returns an array of category names in the requested language
+    const req = new XMLHttpRequest();
+    req.open('GET', 'assets/catalog/__metadata__.json', false); // synchronous
+    req.send(null);
+    if (req.status === 200) {
+      try {
+        const data = JSON.parse(req.responseText);
+        const supplier = data.suppliers?.[supplierSlug];
+        if (supplier && supplier.available_categories && supplier.available_categories[lang]) {
+          return supplier.available_categories[lang];
+        }
+      } catch (e) {
+        return [];
+      }
+    }
+    return [];
   }
 
   // Mock data for development

@@ -1,0 +1,48 @@
+{
+  "suppliers": {
+    "zeigler": {
+      "name": "Zeigler",
+      "files": [
+        "ziegler-metallgewebe.com_Aprons.json",
+        "ziegler-metallgewebe.com_Belts and Straps.json",
+        "ziegler-metallgewebe.com_Boleros.json",
+        "ziegler-metallgewebe.com_Cotton Gloves.json",
+        "ziegler-metallgewebe.com_further.json",
+        "ziegler-metallgewebe.com_Glove Stretcher.json",
+        "ziegler-metallgewebe.com_Gloves.json",
+        "ziegler-metallgewebe.com_Replacement Straps.json",
+        "ziegler-metallgewebe.com_Sleeves.json",
+        "ziegler-metallgewebe.com_Ultralight RS.json"
+      ],
+      "metadata": "catalog/zeigler/__metadata__.json",
+      "metadata_url": "assets/catalog/zeigler/__metadata__.json",
+      "icon_url": "assets/images/zeigler-icon.png",
+      "available_categories": {
+        "eng": [
+          "Aprons",
+          "Belts and Straps",
+          "Boleros",
+          "Cotton Gloves",
+          "further",
+          "Glove Stretcher",
+          "Gloves",
+          "Replacement Straps",
+          "Sleeves",
+          "Ultralight RS"
+        ],
+        "esp": [
+          "Delantales",
+          "Cinturones y Correas",
+          "Boleros",
+          "Guantes de Algodón",
+          "Otros",
+          "Estirador de Guantes",
+          "Guantes",
+          "Correas de Repuesto",
+          "Mangas",
+          "Ultralight RS"
+        ]
+      }
+    }
+  }
+}

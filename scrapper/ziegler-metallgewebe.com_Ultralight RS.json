@@ -1,0 +1,23 @@
+[
+    {
+        "provider": "ziegler-metallgewebe.com",
+        "category": "Ultralight RS",
+        "item_name": "Ultralight RS Apron",
+        "image_path": "images/Ultralight RS Apron.jpg",
+        "image_url": "https://ziegler-metallgewebe.com/static/images/_fb6f83bb16c1c84ebcdb9c2e1c5d5276.json; charset=utf-8"
+    },
+    {
+        "provider": "ziegler-metallgewebe.com",
+        "category": "Ultralight RS",
+        "item_name": "Euroflex Bolero Ultralight RS",
+        "image_path": "images/Euroflex Bolero Ultralight RS.jpg",
+        "image_url": "https://ziegler-metallgewebe.com/static/images/1750411394263_6855346ac9307d10f9bbc031_22cd44f6e6f643dc8a705614ac3d4dfa.jpeg"
+    },
+    {
+        "provider": "ziegler-metallgewebe.com",
+        "category": "Ultralight RS",
+        "item_name": "Ultralight RS Hybridbolero",
+        "image_path": "images/Ultralight RS Hybridbolero.jpg",
+        "image_url": "https://ziegler-metallgewebe.com/static/images/1750411413397_68553cd4c9307defdcbbc032_71d64ee157afc1a9e6112f20fec847cd.jpeg"
+    }
+]

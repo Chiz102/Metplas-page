@@ -4,11 +4,12 @@ import { RouterLink, ActivatedRoute } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { ApiService } from '../../core/services/api.service';
 import { Supplier, Product } from '../../core/models/catalog.model';
+import { CatalogFilterTabsComponent } from './components/catalog-filter-tabs.component';
 
 @Component({
   selector: 'app-catalog',
   standalone: true,
-  imports: [CommonModule, RouterLink, TranslateModule],
+  imports: [CommonModule, RouterLink, TranslateModule, CatalogFilterTabsComponent],
   template: `
     <!-- Hero -->
     <section class="page-hero">
@@ -35,56 +36,48 @@ import { Supplier, Product } from '../../core/models/catalog.model';
     <!-- Supplier Filter -->
     <section class="filter-section">
       <div class="container">
-        <div class="filter-tabs">
-          <a 
-            routerLink="/catalogo" 
-            class="filter-tab"
-            [class.active]="!currentSupplier">
-            <span class="material-icons-outlined">grid_view</span>
-            {{ 'catalog.allSuppliers' | translate }}
-          </a>
-          @for (supplier of suppliers; track supplier.id) {
-            <a 
-              [routerLink]="['/catalogo', supplier.slug]" 
-              class="filter-tab"
-              [class.active]="currentSupplier?.slug === supplier.slug"
-              [style.--supplier-color]="supplier.color">
-              <span class="material-icons-outlined">{{ supplier.icon || 'business' }}</span>
-              {{ supplier.name }}
-            </a>
-          }
-        </div>
+        <app-catalog-filter-tabs [currentSupplier]="currentSupplier"></app-catalog-filter-tabs>
       </div>
     </section>
 
     <!-- Catalog Grid -->
     <section class="section">
       <div class="container">
-        @if (currentSupplier) {
-          <!-- Single Supplier View with Products -->
-          <div class="supplier-detail">
-            <div class="supplier-header" [style.--supplier-color]="currentSupplier.color">
-              <div class="supplier-logo">
-                @if (currentSupplier.logo) {
-                  <img [src]="currentSupplier.logo" [alt]="currentSupplier.name">
-                } @else {
-                  <span class="material-icons-outlined">{{ currentSupplier.icon || 'business' }}</span>
-                }
+        <div class="suppliers-overview">
+          @if (currentSupplier) {
+            <a class="supplier-card expanded" [style.--supplier-color]="currentSupplier.color">
+              <div class="card-header">
+                <div class="card-logo">
+                  @if (currentSupplier.logo) {
+                    <img [src]="currentSupplier.logo" [alt]="currentSupplier.name">
+                  } @else {
+                    <span class="material-icons-outlined">{{ currentSupplier.icon || 'business' }}</span>
+                  }
+                </div>
+                <span class="card-badge">
+                  {{ currentSupplier.products_count || 0 }} {{ 'catalog.products' | translate }}
+                </span>
               </div>
-              <div class="supplier-info">
-                <h2>{{ currentSupplier.name }}</h2>
-                <p>{{ currentSupplier.description }}</p>
-                @if (currentSupplier.website) {
-                  <a [href]="currentSupplier.website" target="_blank" class="supplier-website">
-                    <span class="material-icons-outlined">language</span>
-                    {{ 'catalog.visitWebsite' | translate }}
-                  </a>
-                }
+              <h3>{{ currentSupplier.name }}</h3>
+              <p>{{ currentSupplier.description }}</p>
+              @if (currentSupplier.country) {
+                <div class="supplier-country">
+                  <span class="material-icons-outlined">public</span>
+                  {{ currentSupplier.country }}
+                </div>
+              }
+              <span class="card-link">
+                {{ 'catalog.viewProducts' | translate }}
+                <span class="material-icons-outlined">arrow_forward</span>
+              </span>
+              <!-- Categories for current supplier -->
+              <div class="supplier-categories" *ngIf="currentSupplier">
+                <h4>{{ 'catalog.categories' | translate }}</h4>
+                <ul>
+                  <li *ngFor="let category of supplierCategories">{{ category }}</li>
+                </ul>
               </div>
-            </div>
-
-            @if (currentSupplier.products && currentSupplier.products.length > 0) {
-              <div class="products-grid">
+              <div class="products-grid" *ngIf="currentSupplier.products && currentSupplier.products.length > 0">
                 @for (product of currentSupplier.products; track product.id; let i = $index) {
                   <div class="product-card" [style.animation-delay]="i * 80 + 'ms'" [style.--supplier-color]="currentSupplier.color">
                     <div class="product-image">
@@ -114,21 +107,8 @@ import { Supplier, Product } from '../../core/models/catalog.model';
                   </div>
                 }
               </div>
-            } @else {
-              <div class="empty-state">
-                <span class="material-icons-outlined">inventory_2</span>
-                <h3>{{ 'catalog.comingSoon' | translate }}</h3>
-                <p>{{ 'catalog.comingSoonDesc' | translate }}</p>
-                <a routerLink="/contacto" class="btn btn-primary">
-                  <span class="material-icons-outlined">mail</span>
-                  {{ 'catalog.contact' | translate }}
-                </a>
-              </div>
-            }
-          </div>
-        } @else {
-          <!-- All Suppliers Grid -->
-          <div class="suppliers-overview">
+            </a>
+          } @else {
             @for (supplier of suppliers; track supplier.id; let i = $index) {
               <a [routerLink]="['/catalogo', supplier.slug]" class="supplier-card" [style.animation-delay]="i * 100 + 'ms'" [style.--supplier-color]="supplier.color">
                 <div class="card-header">
@@ -155,10 +135,17 @@ import { Supplier, Product } from '../../core/models/catalog.model';
                   {{ 'catalog.viewProducts' | translate }}
                   <span class="material-icons-outlined">arrow_forward</span>
                 </span>
+                <!-- Categories for each supplier -->
+                <div class="supplier-categories">
+                  <h4>{{ 'catalog.categories' | translate }}</h4>
+                  <ul>
+                    <li *ngFor="let category of getCategoriesForSupplier(supplier.slug)">{{ category }}</li>
+                  </ul>
+                </div>
               </a>
             }
-          </div>
-        }
+          }
+        </div>
       </div>
     </section>
 
@@ -282,13 +269,13 @@ import { Supplier, Product } from '../../core/models/catalog.model';
       }
       
       &:hover {
-        border-color: var(--supplier-color, var(--color-accent));
-        color: var(--supplier-color, var(--color-accent));
+        border-color: var(--supplier-color, var,--color-accent);
+        color: var(--supplier-color, var,--color-accent);
       }
       
       &.active {
-        background: var(--supplier-color, var(--color-accent));
-        border-color: var(--supplier-color, var(--color-accent));
+        background: var(--supplier-color, var,--color-accent);
+        border-color: var(--supplier-color, var,--color-accent);
         color: white;
       }
     }
@@ -303,7 +290,7 @@ import { Supplier, Product } from '../../core/models/catalog.model';
         background: linear-gradient(135deg, var(--color-surface) 0%, var(--color-surface-elevated) 100%);
         border: 1px solid var(--color-border);
         border-radius: var(--radius-xl);
-        border-left: 4px solid var(--supplier-color, var(--color-accent));
+        border-left: 4px solid var(--supplier-color, var,--color-accent);
         
         .supplier-logo {
           width: 100px;
@@ -324,7 +311,7 @@ import { Supplier, Product } from '../../core/models/catalog.model';
           
           .material-icons-outlined {
             font-size: 48px;
-            color: var(--supplier-color, var(--color-accent));
+            color: var(--supplier-color, var,--color-accent);
           }
         }
         
@@ -333,7 +320,7 @@ import { Supplier, Product } from '../../core/models/catalog.model';
           
           h2 {
             margin-bottom: var(--space-sm);
-            color: var(--supplier-color, var(--color-accent));
+            color: var(--supplier-color, var,--color-accent);
           }
           
           p {
@@ -394,7 +381,7 @@ import { Supplier, Product } from '../../core/models/catalog.model';
       opacity: 0;
       
       &:hover {
-        border-color: var(--supplier-color, var(--color-accent));
+        border-color: var(--supplier-color, var,--color-accent);
         transform: translateY(-4px);
         box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
         
@@ -421,7 +408,7 @@ import { Supplier, Product } from '../../core/models/catalog.model';
         
         .material-icons-outlined {
           font-size: 64px;
-          color: var(--supplier-color, var(--color-accent));
+          color: var(--supplier-color, var,--color-accent);
           opacity: 0.4;
         }
         
@@ -476,11 +463,11 @@ import { Supplier, Product } from '../../core/models/catalog.model';
         
         .product-btn {
           width: 100%;
-          border-color: var(--supplier-color, var(--color-accent));
-          color: var(--supplier-color, var(--color-accent));
+          border-color: var(--supplier-color, var,--color-accent);
+          color: var(--supplier-color, var,--color-accent);
           
           &:hover {
-            background: var(--supplier-color, var(--color-accent));
+            background: var(--supplier-color, var,--color-accent);
             color: white;
           }
         }
@@ -532,10 +519,10 @@ import { Supplier, Product } from '../../core/models/catalog.model';
       transition: all var(--transition-base);
       animation: fadeInUp 0.6s ease forwards;
       opacity: 0;
-      border-top: 4px solid var(--supplier-color, var(--color-accent));
+      border-top: 4px solid var(--supplier-color, var,--color-accent);
       
       &:hover {
-        border-color: var(--supplier-color, var(--color-accent));
+        border-color: var(--supplier-color, var,--color-accent);
         transform: translateY(-8px);
         box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
         
@@ -544,7 +531,7 @@ import { Supplier, Product } from '../../core/models/catalog.model';
         }
         
         .card-link {
-          color: var(--supplier-color, var(--color-accent));
+          color: var(--supplier-color, var,--color-accent);
           gap: var(--space-md);
         }
       }
@@ -575,7 +562,7 @@ import { Supplier, Product } from '../../core/models/catalog.model';
         
         .material-icons-outlined {
           font-size: 36px;
-          color: var(--supplier-color, var(--color-accent));
+          color: var(--supplier-color, var,--color-accent);
         }
       }
       
@@ -590,7 +577,7 @@ import { Supplier, Product } from '../../core/models/catalog.model';
       
       h3 {
         font-size: 1.5rem;
-        color: var(--supplier-color, var(--color-text-primary));
+        color: var(--supplier-color, var,--color-text-primary);
         margin-bottom: var(--space-sm);
       }
       
@@ -610,7 +597,7 @@ import { Supplier, Product } from '../../core/models/catalog.model';
         
         .material-icons-outlined {
           font-size: 18px;
-          color: var(--supplier-color, var(--color-accent));
+          color: var(--supplier-color, var,--color-accent);
         }
       }
       
@@ -700,6 +687,7 @@ export class CatalogComponent implements OnInit {
   
   suppliers: Supplier[] = [];
   currentSupplier: Supplier | null = null;
+  supplierCategories: string[] = []; // Agregado para almacenar las categorías del proveedor actual
 
   ngOnInit() {
     this.api.getSuppliers().subscribe(suppliers => {
@@ -710,12 +698,23 @@ export class CatalogComponent implements OnInit {
       const supplierSlug = params['category']; // Reutilizamos el parámetro existente
       if (supplierSlug) {
         this.api.getSupplierBySlug(supplierSlug).subscribe({
-          next: supplier => this.currentSupplier = supplier,
-          error: () => this.currentSupplier = null
+          next: supplier => {
+            this.currentSupplier = supplier;
+            this.supplierCategories = this.api.getCategoriesBySupplierSlug(supplierSlug);
+          },
+          error: () => {
+            this.currentSupplier = null;
+            this.supplierCategories = [];
+          }
         });
       } else {
         this.currentSupplier = null;
+        this.supplierCategories = [];
       }
     });
+  }
+
+  getCategoriesForSupplier(slug: string): string[] {
+    return this.api.getCategoriesBySupplierSlug(slug);
   }
 }

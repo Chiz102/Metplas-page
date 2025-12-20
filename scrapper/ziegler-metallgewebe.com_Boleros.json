@@ -1,0 +1,23 @@
+[
+    {
+        "provider": "ziegler-metallgewebe.com",
+        "category": "Boleros",
+        "item_name": "Euroflex Bolero Twice",
+        "image_path": "images/Euroflex Bolero Twice.jpg",
+        "image_url": "https://ziegler-metallgewebe.com/static/images/1552387010603_5e466e8bef84353f46d0aa7a_d38c31be1fb45b48f54649e6189ca3a0.jpeg"
+    },
+    {
+        "provider": "ziegler-metallgewebe.com",
+        "category": "Boleros",
+        "item_name": "Euroflex Bolero Light",
+        "image_path": "images/Euroflex Bolero Light.jpg",
+        "image_url": "https://ziegler-metallgewebe.com/static/images/1552387093627_5e466a88ef84356de1d0aa69_89ead80fe15e47982677e2fc4613bde9.jpeg"
+    },
+    {
+        "provider": "ziegler-metallgewebe.com",
+        "category": "Boleros",
+        "item_name": "Euroflex Bolero Hybrid",
+        "image_path": "images/Euroflex Bolero Hybrid.jpg",
+        "image_url": "https://ziegler-metallgewebe.com/static/images/1753705850077_68877d4cf6d03ce34680ee11_ffe9aac1e5d6cd75c233925c8ea57c43.jpeg"
+    }
+]
