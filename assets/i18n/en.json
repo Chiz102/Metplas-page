@@ -53,16 +53,25 @@
     "products": "products",
     "viewCategory": "View category",
     "viewProducts": "View products",
+    "viewProduct": "View product",
     "productsAvailable": "products available",
+    "productCategories": "Product Categories",
+    "selectCategory": "Select a category to see the available products",
+    "backToCategories": "Back to categories",
+    "noProducts": "No products available",
+    "noProductsDesc": "There are no products in this category yet. Contact us for more information.",
     "comingSoon": "Coming Soon",
     "comingSoonDesc": "We are preparing the product catalog. Contact us for more information.",
     "contact": "Contact",
+    "contactUs": "Contact Us",
     "cantFind": "Can't find what you're looking for?",
     "cantFindDesc": "Our team is ready to help you find the perfect solution for your industry.",
     "requestConsultation": "Request Consultation",
     "visitWebsite": "Visit website",
     "featured": "Featured",
     "moreInfo": "More info",
+    "needHelp": "Need help?",
+    "needHelpDesc": "Our specialists can advise you to find the ideal product.",
     "subcats": {
       "trimmer": "Trimmer Equipment",
       "rectifiers": "Rectifiers",
@@ -70,6 +79,13 @@
       "ppe": "PPE",
       "knives": "Handle Knives"
     }
+  },
+  "product": {
+    "description": "Description",
+    "specifications": "Specifications",
+    "requestQuote": "Request Quote",
+    "contactUs": "Contact Us",
+    "relatedProducts": "Related Products"
   },
   "contact": {
     "contactUs": "Contact Us",

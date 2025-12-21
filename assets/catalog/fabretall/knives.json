@@ -1,0 +1,74 @@
+[
+  {
+    "provider": "fabretall",
+    "category": "Knives",
+    "category_es": "Cuchillos",
+    "item_name": "Cuchillo carnicero 3Claveles",
+    "item_name_es": "Cuchillo carnicero 3Claveles",
+    "image_path": "images/cuchillo-carnicero-3claveles.jpg",
+    "image_url": ""
+  },
+  {
+    "provider": "fabretall",
+    "category": "Knives",
+    "category_es": "Cuchillos",
+    "item_name": "Cuchillo filetear 3Claveles",
+    "item_name_es": "Cuchillo filetear 3Claveles",
+    "image_path": "images/cuchillo-filetear-3claveles.jpg",
+    "image_url": ""
+  },
+  {
+    "provider": "fabretall",
+    "category": "Knives",
+    "category_es": "Cuchillos",
+    "item_name": "Cuchillo degollar / pulir 3Claveles",
+    "item_name_es": "Cuchillo degollar / pulir 3Claveles",
+    "image_path": "images/cuchillo-degollar-pulir-3claveles.jpg",
+    "image_url": ""
+  },
+  {
+    "provider": "fabretall",
+    "category": "Knives",
+    "category_es": "Cuchillos",
+    "item_name": "Cuchillo deshuesar curvado 3Claveles",
+    "item_name_es": "Cuchillo deshuesar curvado 3Claveles",
+    "image_path": "images/cuchillo-deshuesar-curvado-3claveles.jpg",
+    "image_url": ""
+  },
+  {
+    "provider": "fabretall",
+    "category": "Knives",
+    "category_es": "Cuchillos",
+    "item_name": "Cuchillo carnicero SécuriCoupe",
+    "item_name_es": "Cuchillo carnicero SécuriCoupe",
+    "image_path": "images/cuchillo-carnicero-sécuricoupe.jpg",
+    "image_url": ""
+  },
+  {
+    "provider": "fabretall",
+    "category": "Knives",
+    "category_es": "Cuchillos",
+    "item_name": "Cuchillo deshuesar ancho Caribou",
+    "item_name_es": "Cuchillo deshuesar ancho Caribou",
+    "image_path": "images/cuchillo-deshuesar-ancho-caribou.jpg",
+    "image_url": ""
+  },
+  {
+    "provider": "fabretall",
+    "category": "Knives",
+    "category_es": "Cuchillos",
+    "item_name": "Cuchillo degollador SécuriCoupe",
+    "item_name_es": "Cuchillo degollador SécuriCoupe",
+    "image_path": "images/cuchillo-degollador-sécuricoupe.jpg",
+    "image_url": ""
+  },
+  {
+    "provider": "fabretall",
+    "category": "Knives",
+    "category_es": "Cuchillos",
+    "item_name": "Cuchillo deshuesar recto estrecho 3Claveles",
+    "item_name_es": "Cuchillo deshuesar recto estrecho 3Claveles",
+    "image_path": "images/cuchillo-deshuesar-recto-estrecho-3claveles.jpg",
+    "image_url": ""
+  }
+]

@@ -1,0 +1,29 @@
+[
+    {
+        "provider": "ziegler-metallgewebe.com",
+        "category": "Aprons",
+        "category_es": "Delantales",
+        "item_name": "Resipure Apron 150µm",
+        "item_name_es": "Delantal Resipure 150µm",
+        "image_path": "images/Resipure Apron 150µm.jpg",
+        "image_url": "https://ziegler-metallgewebe.com/static/images/1552390073376_5e467e64398fde9c16f7e591_a967feba0507c31e15c4b83641dce120.jpeg"
+    },
+    {
+        "provider": "ziegler-metallgewebe.com",
+        "category": "Aprons",
+        "category_es": "Delantales",
+        "item_name": "Resipure Apron 300µm",
+        "item_name_es": "Delantal Resipure 300µm",
+        "image_path": "images/Resipure Apron 300µm.jpg",
+        "image_url": "https://ziegler-metallgewebe.com/static/images/1552390094222_5e467fab398fde9c5cf7e59b_30d0ef85599223dbf6ffbcca624d4169.jpeg"
+    },
+    {
+        "provider": "ziegler-metallgewebe.com",
+        "category": "Aprons",
+        "category_es": "Delantales",
+        "item_name": "Resipure Sleeve Apron",
+        "item_name_es": "Delantal con Mangas Resipure",
+        "image_path": "images/Resipure Sleeve Apron.jpg",
+        "image_url": "https://ziegler-metallgewebe.com/static/images/1552390106042_5e468021398fdeffb9f7e59e_72f08f33316a49590e8690346463ebae.jpeg"
+    }
+]

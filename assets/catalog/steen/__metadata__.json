@@ -1,0 +1,16 @@
+{
+  "name": "Steen",
+  "slug": "steen",
+  "description": "Fabricante belga especializado en equipos de procesamiento para pescado y aves",
+  "description_en": "Belgian manufacturer specialized in fish and poultry processing equipment",
+  "icon": "set_meal",
+  "color": "#1976d2",
+  "categories": [
+    {
+      "file": "fish-poultry-equipment.json",
+      "name_es": "Equipos para Pescado y Aves",
+      "name_en": "Fish & Poultry Equipment",
+      "icon": "set_meal"
+    }
+  ]
+}

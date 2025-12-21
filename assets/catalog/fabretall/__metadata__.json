@@ -1,0 +1,40 @@
+{
+  "name": "Fabretall",
+  "slug": "fabretall",
+  "description": "Especialistas en cuchillería industrial y equipos de corte para la industria alimentaria",
+  "description_en": "Specialists in industrial cutlery and cutting equipment for the food industry",
+  "icon": "content_cut",
+  "color": "#d32f2f",
+  "categories": [
+    {
+      "file": "accessories.json",
+      "name_es": "Accesorios",
+      "name_en": "Accessories",
+      "icon": "handyman"
+    },
+    {
+      "file": "sharpeners.json",
+      "name_es": "Afiladores",
+      "name_en": "Sharpeners",
+      "icon": "build"
+    },
+    {
+      "file": "cutting-equipment.json",
+      "name_es": "Equipos de Corte",
+      "name_en": "Cutting Equipment",
+      "icon": "precision_manufacturing"
+    },
+    {
+      "file": "automation.json",
+      "name_es": "Automatización",
+      "name_en": "Automation",
+      "icon": "smart_toy"
+    },
+    {
+      "file": "knives.json",
+      "name_es": "Cuchillos",
+      "name_en": "Knives",
+      "icon": "content_cut"
+    }
+  ]
+}
