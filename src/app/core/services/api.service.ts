@@ -65,7 +65,7 @@ export class ApiService {
   // Categories (para filtrado adicional)
   getCategories(): Observable<Category[]> {
     return this.http.get<Category[]>(this.withLang(`${this.apiUrl}/categories/`)).pipe(
-      catchError(() => of(this.getMockCategories()))
+      catchError(() => of([]))
     );
   }
 
@@ -179,6 +179,72 @@ export class ApiService {
     );
   }
 
+  /**
+   * Obtiene las categorías de un proveedor desde su metadata específico
+   */
+  getSupplierCategories(supplierSlug: string): Observable<any[]> {
+    return this.http.get<any>(`assets/catalog/${supplierSlug}/__metadata__.json`).pipe(
+      catchError(() => of({ categories: [] })),
+      map((data: any) => {
+        if (!data || !data.categories) return [];
+        return data.categories;
+      })
+    );
+  }
+
+  /**
+   * Obtiene productos de una categoría específica de un proveedor
+   */
+  getProductsByCategory(supplierSlug: string, categorySlug: string): Observable<{ products: Product[], categoryName: string }> {
+    const lang = this.languageService.getCurrentLanguage();
+    const isEn = lang === 'en';
+    
+    return this.http.get<any>(`assets/catalog/${supplierSlug}/__metadata__.json`).pipe(
+      catchError(() => of({ categories: [] })),
+      switchMap((metadata: any) => {
+        if (!metadata || !metadata.categories) {
+          return of({ products: [], categoryName: categorySlug });
+        }
+        
+        // Encontrar la categoría por slug
+        const category = metadata.categories.find((c: any) => {
+          const catSlug = c.file.match(/ziegler-metallgewebe\.com_(.+)\.json/)?.[1]?.toLowerCase().replace(/\s+/g, '-');
+          return catSlug === categorySlug;
+        });
+        
+        if (!category) {
+          return of({ products: [], categoryName: categorySlug });
+        }
+        
+        const categoryName = isEn ? category.name_en : category.name_es;
+        
+        // Cargar productos del archivo de la categoría
+        return this.http.get<any[]>(`assets/catalog/${supplierSlug}/${category.file}`).pipe(
+          catchError(() => of([])),
+          map((products: any[]) => {
+            let id = 1;
+            const mappedProducts: Product[] = products.map((p: any) => ({
+              id: id++,
+              name: isEn ? (p.item_name || p.item_name_es) : (p.item_name_es || p.item_name),
+              slug: this.slugify(p.item_name || p.item_name_es),
+              short_description: isEn ? (p.category || '') : (p.category_es || p.category || ''),
+              description: '',
+              specifications: {},
+              image: this.transformImagePath(p.image_path),
+              gallery: [],
+              is_featured: false,
+              order: id,
+              supplier_name: supplierSlug,
+              category_name: categoryName
+            }));
+            
+            return { products: mappedProducts, categoryName };
+          })
+        );
+      })
+    );
+  }
+
   // Contact
   sendContactMessage(message: ContactMessage): Observable<{ message: string }> {
     return this.http.post<{ message: string }>(`${this.apiUrl}/contact/`, message);
@@ -210,81 +276,6 @@ export class ApiService {
       }
     }
     return [];
-  }
-
-  // Mock data for development
-  private getMockSuppliers(): Supplier[] {
-    const lang = this.languageService.getCurrentLanguage();
-    const isEn = lang === 'en';
-    
-    return [
-      {
-        id: 1,
-        name: 'Jarvis',
-        slug: 'jarvis',
-        description: isEn ? 'Leading supplier of high-precision industrial equipment.' : 'Proveedor líder en equipos industriales de alta precisión.',
-        country: isEn ? 'Germany' : 'Alemania',
-        icon: 'precision_manufacturing',
-        color: '#1565c0',
-        products_count: 5
-      },
-      {
-        id: 2,
-        name: 'Freund',
-        slug: 'freund',
-        description: isEn ? 'Specialists in industrial cutlery and cutting tools.' : 'Especialistas en cuchillería industrial y herramientas de corte.',
-        country: isEn ? 'Germany' : 'Alemania',
-        icon: 'content_cut',
-        color: '#d32f2f',
-        products_count: 8
-      },
-      {
-        id: 3,
-        name: 'Dick',
-        slug: 'dick',
-        description: isEn ? 'Premium manufacturer of professional knives and tools.' : 'Fabricante premium de cuchillos y herramientas profesionales.',
-        country: isEn ? 'Germany' : 'Alemania',
-        icon: 'hardware',
-        color: '#2e7d32',
-        products_count: 12
-      },
-      {
-        id: 4,
-        name: 'Proveedor Ejemplo',
-        slug: 'proveedor-ejemplo',
-        description: isEn ? 'Example supplier description.' : 'Descripción del proveedor ejemplo.',
-        country: 'Chile',
-        icon: 'business',
-        color: '#7b1fa2',
-        products_count: 3
-      }
-    ];
-  }
-
-  private getMockCategories(): Category[] {
-    const lang = this.languageService.getCurrentLanguage();
-    const isEn = lang === 'en';
-    
-    return [
-      {
-        id: 1,
-        name: isEn ? 'Equipment' : 'Equipos',
-        slug: 'equipos',
-        category_type: 'equipos',
-        description: isEn ? 'High-precision equipment for industry' : 'Equipos de alta precisión para la industria',
-        icon: 'precision_manufacturing',
-        products_count: 10
-      },
-      {
-        id: 2,
-        name: isEn ? 'Supplies' : 'Insumos',
-        slug: 'insumos',
-        category_type: 'insumos',
-        description: isEn ? 'First-quality industrial supplies' : 'Insumos industriales de primera calidad',
-        icon: 'inventory_2',
-        products_count: 15
-      }
-    ];
   }
 
   private getDefaultCompanyInfo(): CompanyInfo {

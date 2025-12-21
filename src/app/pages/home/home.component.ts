@@ -111,21 +111,35 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
       </div>
       <div class="suppliers-carousel">
         <div class="suppliers-track">
-          @for (supplier of suppliers; track supplier.name) {
-            <div class="supplier-item">
+          @for (supplier of suppliers; track supplier.slug) {
+            <a [routerLink]="['/catalogo', supplier.slug]" class="supplier-item" [style.--supplier-color]="supplier.color">
               <div class="supplier-logo">
-                <span class="material-icons-outlined">business</span>
+                @if (supplier.logo) {
+                  <img [src]="supplier.logo" [alt]="supplier.name">
+                } @else {
+                  <span class="material-icons-outlined">{{ supplier.icon || 'business' }}</span>
+                }
               </div>
               <span class="supplier-name">{{ supplier.name }}</span>
-            </div>
+              @if (supplier.country) {
+                <span class="supplier-country">{{ supplier.country }}</span>
+              }
+            </a>
           }
-          @for (supplier of suppliers; track supplier.name + '-clone') {
-            <div class="supplier-item">
+          @for (supplier of suppliers; track supplier.slug + '-clone') {
+            <a [routerLink]="['/catalogo', supplier.slug]" class="supplier-item" [style.--supplier-color]="supplier.color">
               <div class="supplier-logo">
-                <span class="material-icons-outlined">business</span>
+                @if (supplier.logo) {
+                  <img [src]="supplier.logo" [alt]="supplier.name">
+                } @else {
+                  <span class="material-icons-outlined">{{ supplier.icon || 'business' }}</span>
+                }
               </div>
               <span class="supplier-name">{{ supplier.name }}</span>
-            </div>
+              @if (supplier.country) {
+                <span class="supplier-country">{{ supplier.country }}</span>
+              }
+            </a>
           }
         </div>
       </div>
@@ -732,19 +746,26 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
     }
     
     .supplier-logo {
-      width: 44px;
-      height: 44px;
+      width: 56px;
+      height: 56px;
       display: flex;
       align-items: center;
       justify-content: center;
-      background: var(--color-surface-blue);
+      background: white;
       border: 2px solid var(--color-border-blue);
-      border-radius: var(--radius-md);
+      border-radius: var(--radius-lg);
       transition: all var(--transition-fast);
+      overflow: hidden;
+      
+      img {
+        width: 80%;
+        height: 80%;
+        object-fit: contain;
+      }
       
       .material-icons-outlined {
-        font-size: 22px;
-        color: var(--color-blue);
+        font-size: 28px;
+        color: var(--supplier-color, var(--color-blue));
         transition: all var(--transition-fast);
       }
     }
@@ -754,6 +775,19 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
       font-weight: 600;
       color: var(--color-text-primary);
       letter-spacing: 0.01em;
+    }
+    
+    .supplier-country {
+      font-size: 0.75rem;
+      color: var(--color-text-muted);
+      opacity: 0;
+      transform: translateY(-5px);
+      transition: all var(--transition-fast);
+    }
+    
+    .supplier-item:hover .supplier-country {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     // Categories Section
@@ -1221,7 +1255,7 @@ export class HomeComponent implements OnInit {
   private api = inject(ApiService);
   categories: Category[] = [];
   
-  // Lista de clientes para el carrusel del hero
+  // Lista de clientes para el carrusel del hero (estos puedes actualizarlos con clientes reales)
   clients = [
     { name: 'Agroindustrial del Sur' },
     { name: 'Frigorífico Nacional' },
@@ -1233,17 +1267,8 @@ export class HomeComponent implements OnInit {
     { name: 'Exportadora Pacífico' }
   ];
   
-  // Lista de proveedores para el carrusel del hero
-  suppliers = [
-    { name: 'Proveedor Internacional A' },
-    { name: 'Tech Industrial Corp' },
-    { name: 'Global Equipment Ltd' },
-    { name: 'Premium Supplies Co' },
-    { name: 'Industrial Parts SA' },
-    { name: 'Quality Tools Inc' },
-    { name: 'European Machinery' },
-    { name: 'Asian Tech Solutions' }
-  ];
+  // Proveedores reales cargados del catálogo
+  suppliers: any[] = [];
   
   carouselItems: CarouselItem[] = [
     {
@@ -1291,8 +1316,14 @@ export class HomeComponent implements OnInit {
   ];
 
   ngOnInit() {
+    // Cargar categorías
     this.api.getCategories().subscribe(cats => {
       this.categories = cats;
+    });
+    
+    // Cargar proveedores reales del catálogo
+    this.api.getSuppliers().subscribe(suppliers => {
+      this.suppliers = suppliers;
     });
   }
 }

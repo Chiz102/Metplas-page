@@ -1,7 +1,7 @@
 {
   "suppliers": {
     "zeigler": {
-      "name": "Zeigler",
+      "name": "Ziegler",
       "description": "Fabricante alemán líder en equipos de protección personal para la industria alimentaria",
       "description_en": "Leading German manufacturer of personal protective equipment for the food industry",
       "country": "Alemania",
@@ -9,6 +9,7 @@
       "website": "https://ziegler-metallgewebe.com",
       "icon": "security",
       "color": "#0d47a1",
+      "logo": "assets/images/suppliers/ziegler-logo.png",
       "products_count": 33,
       "files": [
         "ziegler-metallgewebe.com_Aprons.json",
@@ -49,6 +50,121 @@
           "Correas de Repuesto",
           "Mangas",
           "Ultralight RS"
+        ]
+      }
+    },
+    "steen": {
+      "name": "Steen",
+      "description": "Fabricante belga especializado en equipos de procesamiento para pescado y aves",
+      "description_en": "Belgian manufacturer specialized in fish and poultry processing equipment",
+      "country": "Bélgica",
+      "country_en": "Belgium",
+      "website": "https://www.steen.be",
+      "icon": "set_meal",
+      "color": "#1976d2",
+      "logo": "assets/images/suppliers/steen-logo.png",
+      "products_count": 5,
+      "files": [
+        "fish-poultry-equipment.json"
+      ],
+      "available_categories": {
+        "eng": [
+          "Fish & Poultry Equipment"
+        ],
+        "esp": [
+          "Equipos para Pescado y Aves"
+        ]
+      }
+    },
+    "fabretall": {
+      "name": "Fabretall",
+      "description": "Especialistas en cuchillería industrial y equipos de corte para la industria alimentaria",
+      "description_en": "Specialists in industrial cutlery and cutting equipment for the food industry",
+      "country": "España",
+      "country_en": "Spain",
+      "website": "https://fabretall.com",
+      "icon": "content_cut",
+      "color": "#d32f2f",
+      "logo": "assets/images/suppliers/fabretall-logo.png",
+      "products_count": 13,
+      "files": [
+        "cutting-equipment.json",
+        "automation.json",
+        "knives.json",
+        "accessories.json",
+        "sharpeners.json"
+      ],
+      "available_categories": {
+        "eng": [
+          "Accessories",
+          "Sharpeners",
+          "Cutting Equipment",
+          "Automation",
+          "Knives"
+        ],
+        "esp": [
+          "Accesorios",
+          "Afiladores",
+          "Equipos de Corte",
+          "Automatización",
+          "Cuchillos"
+        ]
+      }
+    },
+    "bobet": {
+      "name": "Bobet",
+      "description": "Fabricante francés de accesorios profesionales para cuchillería industrial",
+      "description_en": "French manufacturer of professional accessories for industrial cutlery",
+      "country": "Francia",
+      "country_en": "France",
+      "website": "https://bobet-materiel.com",
+      "icon": "handyman",
+      "color": "#6a1b9a",
+      "logo": "assets/images/suppliers/bobet-logo.png",
+      "products_count": 2,
+      "files": [
+        "knife-scabbards.json",
+        "knife-holders.json"
+      ],
+      "available_categories": {
+        "eng": [
+          "Knife Scabbards",
+          "Screwing",
+          "Knife Holders"
+        ],
+        "esp": [
+          "Fundas para Cuchillos",
+          "Tornillería",
+          "Portacuchillos"
+        ]
+      }
+    },
+    "panacheind": {
+      "name": "PanacheIND",
+      "description": "Proveedor y exportador de productos de acero inoxidable de alta calidad",
+      "description_en": "Supplier and exporter of high-quality stainless steel products",
+      "country": "India",
+      "country_en": "India",
+      "website": "https://www.panacheind.com",
+      "icon": "hardware",
+      "color": "#455a64",
+      "logo": "assets/images/suppliers/panacheind-logo.png",
+      "products_count": 3,
+      "files": [
+        "stainless-steel-fasteners.json",
+        "round-bars-wires.json",
+        "capillary-tubes.json"
+      ],
+      "available_categories": {
+        "eng": [
+          "Fasteners",
+          "Round Bars & Wires",
+          "Capillary Tubes"
+        ],
+        "esp": [
+          "Sujetadores",
+          "Barras y Alambres",
+          "Tubos Capilares"
         ]
       }
     }

@@ -14,8 +14,16 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/catalog/catalog.component').then(m => m.CatalogComponent)
   },
   {
-    path: 'catalogo/:category',
-    loadComponent: () => import('./pages/catalog/catalog.component').then(m => m.CatalogComponent)
+    path: 'catalogo/:supplier',
+    loadComponent: () => import('./pages/catalog/supplier-detail/supplier-detail.component').then(m => m.SupplierDetailComponent)
+  },
+  {
+    path: 'catalogo/:supplier/:category',
+    loadComponent: () => import('./pages/catalog/category-products/category-products.component').then(m => m.CategoryProductsComponent)
+  },
+  {
+    path: 'producto/:supplier/:slug',
+    loadComponent: () => import('./pages/catalog/product-detail/product-detail.component').then(m => m.ProductDetailComponent)
   },
   {
     path: 'contacto',
@@ -26,4 +34,3 @@ export const routes: Routes = [
     redirectTo: ''
   }
 ];
-
