@@ -1,0 +1,76 @@
+{
+  "name": "Zeigler",
+  "slug": "zeigler",
+  "description": "Fabricante alemán líder en equipos de protección personal para la industria alimentaria",
+  "description_en": "Leading German manufacturer of personal protective equipment for the food industry",
+  "country": "Alemania",
+  "country_en": "Germany",
+  "website": "https://ziegler-metallgewebe.com",
+  "icon": "security",
+  "color": "#0d47a1",
+  "logo": "assets/images/zeigler-logo.png",
+  "categories": [
+    {
+      "file": "ziegler-metallgewebe.com_Gloves.json",
+      "name_es": "Guantes",
+      "name_en": "Gloves",
+      "icon": "back_hand"
+    },
+    {
+      "file": "ziegler-metallgewebe.com_Aprons.json",
+      "name_es": "Delantales",
+      "name_en": "Aprons",
+      "icon": "checkroom"
+    },
+    {
+      "file": "ziegler-metallgewebe.com_Boleros.json",
+      "name_es": "Boleros",
+      "name_en": "Boleros",
+      "icon": "dry_cleaning"
+    },
+    {
+      "file": "ziegler-metallgewebe.com_Sleeves.json",
+      "name_es": "Mangas",
+      "name_en": "Sleeves",
+      "icon": "style"
+    },
+    {
+      "file": "ziegler-metallgewebe.com_Cotton Gloves.json",
+      "name_es": "Guantes de Algodón",
+      "name_en": "Cotton Gloves",
+      "icon": "pan_tool"
+    },
+    {
+      "file": "ziegler-metallgewebe.com_Belts and Straps.json",
+      "name_es": "Cinturones y Correas",
+      "name_en": "Belts and Straps",
+      "icon": "cable"
+    },
+    {
+      "file": "ziegler-metallgewebe.com_Glove Stretcher.json",
+      "name_es": "Estirador de Guantes",
+      "name_en": "Glove Stretcher",
+      "icon": "open_with"
+    },
+    {
+      "file": "ziegler-metallgewebe.com_Replacement Straps.json",
+      "name_es": "Correas de Repuesto",
+      "name_en": "Replacement Straps",
+      "icon": "sync_alt"
+    },
+    {
+      "file": "ziegler-metallgewebe.com_Ultralight RS.json",
+      "name_es": "Ultralight RS",
+      "name_en": "Ultralight RS",
+      "icon": "diamond"
+    },
+    {
+      "file": "ziegler-metallgewebe.com_further.json",
+      "name_es": "Otros",
+      "name_en": "Other",
+      "icon": "more_horiz"
+    }
+  ],
+  "image_base_path": "assets/images/products/"
+}
+

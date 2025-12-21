@@ -1,0 +1,29 @@
+[
+    {
+        "provider": "ziegler-metallgewebe.com",
+        "category": "Belts and Straps",
+        "category_es": "Cinturones y Correas",
+        "item_name": "Apron Straps",
+        "item_name_es": "Correas para Delantal",
+        "image_path": "images/Apron Straps.jpg",
+        "image_url": "https://ziegler-metallgewebe.com/static/images/1553709399554_5e7a2333ae9d9aa57a60417f_1d6039a64ad64c8833dbab1481f11a46.jpeg"
+    },
+    {
+        "provider": "ziegler-metallgewebe.com",
+        "category": "Belts and Straps",
+        "category_es": "Cinturones y Correas",
+        "item_name": "Bolero Straps",
+        "item_name_es": "Correas para Bolero",
+        "image_path": "images/Bolero Straps.jpg",
+        "image_url": "https://ziegler-metallgewebe.com/static/images/1553709413799_5e46833d398fdee339f7e5b2_fc7aced6f26d52843619b66eca5ab56c.jpeg"
+    },
+    {
+        "provider": "ziegler-metallgewebe.com",
+        "category": "Belts and Straps",
+        "category_es": "Cinturones y Correas",
+        "item_name": "All-Arm Guard Straps",
+        "item_name_es": "Correas para Protector de Brazo Completo",
+        "image_path": "images/All-Arm Guard Straps.jpg",
+        "image_url": "https://ziegler-metallgewebe.com/static/images/1592914715911_5ef20551e3289c4ffb9b5e89_4e5166b9d046bfec89dd908559b67aa6.jpeg"
+    }
+]

@@ -1,0 +1,29 @@
+[
+    {
+        "provider": "ziegler-metallgewebe.com",
+        "category": "Replacement Straps",
+        "category_es": "Correas de Repuesto",
+        "item_name": "Wave Comfort Spare Parts Set",
+        "item_name_es": "Set de Repuestos Wave Comfort",
+        "image_path": "images/Wave Comfort Spare Parts Set.jpg",
+        "image_url": "https://ziegler-metallgewebe.com/static/images/1552906972159_5e93407a0a9049762bc7a74a_521956da032870e4462c1fde3358bfb0.png"
+    },
+    {
+        "provider": "ziegler-metallgewebe.com",
+        "category": "Replacement Straps",
+        "category_es": "Correas de Repuesto",
+        "item_name": "Ergosafe Spare Parts Set",
+        "item_name_es": "Set de Repuestos Ergosafe",
+        "image_path": "images/Ergosafe Spare Parts Set.jpg",
+        "image_url": "https://ziegler-metallgewebe.com/static/images/1552906984439_5e8215caa5f6b3601dff2062_ef0daa9c48eb70aeea429dcbd2c2f601.jpeg"
+    },
+    {
+        "provider": "ziegler-metallgewebe.com",
+        "category": "Replacement Straps",
+        "category_es": "Correas de Repuesto",
+        "item_name": "Standard/Comfort Spare Parts Set",
+        "item_name_es": "Set de Repuestos Standard/Comfort",
+        "image_path": "images/Standard/Comfort Spare Parts Set.jpg",
+        "image_url": "https://ziegler-metallgewebe.com/static/images/1552907057725_5e4683e7398fde7f71f7e5b3_c4f53ff192c6744400548cd1e84e15af.png"
+    }
+]

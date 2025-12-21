@@ -1,0 +1,56 @@
+{
+  "suppliers": {
+    "zeigler": {
+      "name": "Zeigler",
+      "description": "Fabricante alemán líder en equipos de protección personal para la industria alimentaria",
+      "description_en": "Leading German manufacturer of personal protective equipment for the food industry",
+      "country": "Alemania",
+      "country_en": "Germany",
+      "website": "https://ziegler-metallgewebe.com",
+      "icon": "security",
+      "color": "#0d47a1",
+      "products_count": 33,
+      "files": [
+        "ziegler-metallgewebe.com_Aprons.json",
+        "ziegler-metallgewebe.com_Belts and Straps.json",
+        "ziegler-metallgewebe.com_Boleros.json",
+        "ziegler-metallgewebe.com_Cotton Gloves.json",
+        "ziegler-metallgewebe.com_further.json",
+        "ziegler-metallgewebe.com_Glove Stretcher.json",
+        "ziegler-metallgewebe.com_Gloves.json",
+        "ziegler-metallgewebe.com_Replacement Straps.json",
+        "ziegler-metallgewebe.com_Sleeves.json",
+        "ziegler-metallgewebe.com_Ultralight RS.json"
+      ],
+      "metadata": "catalog/zeigler/__metadata__.json",
+      "metadata_url": "assets/catalog/zeigler/__metadata__.json",
+      "icon_url": "assets/images/zeigler-icon.png",
+      "available_categories": {
+        "eng": [
+          "Aprons",
+          "Belts and Straps",
+          "Boleros",
+          "Cotton Gloves",
+          "Other",
+          "Glove Stretcher",
+          "Gloves",
+          "Replacement Straps",
+          "Sleeves",
+          "Ultralight RS"
+        ],
+        "esp": [
+          "Delantales",
+          "Cinturones y Correas",
+          "Boleros",
+          "Guantes de Algodón",
+          "Otros",
+          "Estirador de Guantes",
+          "Guantes",
+          "Correas de Repuesto",
+          "Mangas",
+          "Ultralight RS"
+        ]
+      }
+    }
+  }
+}
