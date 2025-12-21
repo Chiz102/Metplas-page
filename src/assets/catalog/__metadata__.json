@@ -2,6 +2,14 @@
   "suppliers": {
     "zeigler": {
       "name": "Zeigler",
+      "description": "Fabricante alemán líder en equipos de protección personal para la industria alimentaria",
+      "description_en": "Leading German manufacturer of personal protective equipment for the food industry",
+      "country": "Alemania",
+      "country_en": "Germany",
+      "website": "https://ziegler-metallgewebe.com",
+      "icon": "security",
+      "color": "#0d47a1",
+      "products_count": 33,
       "files": [
         "ziegler-metallgewebe.com_Aprons.json",
         "ziegler-metallgewebe.com_Belts and Straps.json",
@@ -23,7 +31,7 @@
           "Belts and Straps",
           "Boleros",
           "Cotton Gloves",
-          "further",
+          "Other",
           "Glove Stretcher",
           "Gloves",
           "Replacement Straps",

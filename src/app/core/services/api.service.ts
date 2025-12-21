@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { Observable, of, forkJoin } from 'rxjs';
+import { catchError, map, switchMap } from 'rxjs/operators';
 import { Supplier, Category, Product, ContactMessage, CompanyInfo } from '../models/catalog.model';
 import { LanguageService } from './language.service';
 
@@ -41,13 +41,23 @@ export class ApiService {
   }
 
   getSupplierBySlug(slug: string): Observable<any> {
-    // Fetches a single supplier by slug from the metadata
+    // Fetches a single supplier by slug from the metadata and loads its products
     return this.http.get<any>(`assets/catalog/__metadata__.json`).pipe(
       catchError(() => of({ suppliers: {} })),
-      map((data: any) => {
-        if (!data || !data.suppliers) return null;
+      switchMap((data: any) => {
+        if (!data || !data.suppliers) return of(null);
         const supplier = data.suppliers[slug];
-        return supplier ? { slug, ...supplier } : null;
+        if (!supplier) return of(null);
+        
+        // Cargar los productos del proveedor
+        return this.getProductsBySupplier(slug).pipe(
+          map(products => ({
+            slug,
+            ...supplier,
+            products,
+            products_count: products.length
+          }))
+        );
       })
     );
   }
@@ -63,22 +73,110 @@ export class ApiService {
     return this.http.get<Category>(this.withLang(`${this.apiUrl}/categories/${slug}/`));
   }
 
-  // Products
+  // Products - Carga desde archivos JSON locales
   getProducts(supplierSlug?: string): Observable<Product[]> {
-    const url = supplierSlug
-      ? `${this.apiUrl}/products/?supplier=${supplierSlug}`
-      : `${this.apiUrl}/products/`;
-    return this.http.get<Product[]>(this.withLang(url));
+    if (!supplierSlug) {
+      // Cargar todos los productos de todos los proveedores
+      return this.getSuppliers().pipe(
+        switchMap(suppliers => {
+          if (suppliers.length === 0) return of([]);
+          const requests = suppliers.map(s => this.getProductsBySupplier(s.slug));
+          return forkJoin(requests).pipe(
+            map(results => results.flat())
+          );
+        })
+      );
+    }
+    return this.getProductsBySupplier(supplierSlug);
+  }
+
+  /**
+   * Carga productos de un proveedor específico desde sus archivos JSON
+   */
+  getProductsBySupplier(supplierSlug: string): Observable<Product[]> {
+    const lang = this.languageService.getCurrentLanguage();
+    const isEn = lang === 'en';
+    
+    return this.http.get<any>(`assets/catalog/__metadata__.json`).pipe(
+      catchError(() => of({ suppliers: {} })),
+      switchMap((metadata: any) => {
+        const supplier = metadata.suppliers?.[supplierSlug];
+        if (!supplier || !supplier.files) return of([]);
+        
+        // Cargar cada archivo de productos del proveedor
+        const productRequests: Observable<any[]>[] = supplier.files.map((file: string) =>
+          this.http.get<any[]>(`assets/catalog/${supplierSlug}/${file}`).pipe(
+            catchError(() => of([] as any[]))
+          )
+        );
+        
+        if (productRequests.length === 0) return of([]);
+        
+        return forkJoin(productRequests).pipe(
+          map((results) => {
+            const allProducts: Product[] = [];
+            let id = 1;
+            
+            results.forEach(products => {
+              products.forEach((p: any) => {
+                allProducts.push({
+                  id: id++,
+                  name: isEn ? (p.item_name || p.item_name_es) : (p.item_name_es || p.item_name),
+                  slug: this.slugify(p.item_name || p.item_name_es),
+                  short_description: isEn ? (p.category || '') : (p.category_es || p.category || ''),
+                  description: '',
+                  specifications: {},
+                  image: this.transformImagePath(p.image_path),
+                  gallery: [],
+                  is_featured: false,
+                  order: id,
+                  supplier_name: supplierSlug,
+                  category_name: isEn ? p.category : (p.category_es || p.category)
+                });
+              });
+            });
+            
+            return allProducts;
+          })
+        );
+      })
+    );
+  }
+
+  /**
+   * Transforma la ruta de imagen del JSON a la ruta correcta en assets
+   */
+  private transformImagePath(imagePath: string | undefined): string {
+    if (!imagePath) return '';
+    // Transforma "images/Resicut Basic.jpg" a "assets/images/products/Resicut Basic.jpg"
+    if (imagePath.startsWith('images/')) {
+      return `assets/images/products/${imagePath.substring(7)}`;
+    }
+    return imagePath;
+  }
+
+  /**
+   * Genera un slug a partir de un nombre
+   */
+  private slugify(text: string): string {
+    return text
+      .toLowerCase()
+      .replace(/[^\w\s-]/g, '')
+      .replace(/\s+/g, '-')
+      .trim();
   }
 
   getFeaturedProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>(this.withLang(`${this.apiUrl}/products/featured/`)).pipe(
+    return this.getProducts().pipe(
+      map(products => products.slice(0, 6)),
       catchError(() => of([]))
     );
   }
 
   getProductBySlug(slug: string): Observable<Product> {
-    return this.http.get<Product>(this.withLang(`${this.apiUrl}/products/${slug}/`));
+    return this.getProducts().pipe(
+      map(products => products.find(p => p.slug === slug) || products[0])
+    );
   }
 
   // Contact
