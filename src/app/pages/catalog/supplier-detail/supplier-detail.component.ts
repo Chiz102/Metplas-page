@@ -407,12 +407,10 @@ export class SupplierDetailComponent implements OnInit {
   }
 
   getCategorySlug(category: SupplierCategory): string {
-    // Extraer el nombre de la categoría del archivo
-    const match = category.file.match(/ziegler-metallgewebe\.com_(.+)\.json/);
-    if (match) {
-      return match[1].toLowerCase().replace(/\s+/g, '-');
-    }
-    return category.name_en.toLowerCase().replace(/\s+/g, '-');
+    // Usar el nombre del archivo sin la extensión como slug, reemplazando espacios con guiones
+    return category.file.replace('.json', '').toLowerCase().replace(/\s+/g, '-');
   }
 }
+
+
 

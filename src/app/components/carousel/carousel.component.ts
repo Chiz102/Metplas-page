@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
 export interface CarouselItem {
@@ -7,14 +8,13 @@ export interface CarouselItem {
   icon: string;
   title: string;
   description: string;
-  price: string;
   isClone?: boolean;
 }
 
 @Component({
   selector: 'app-carousel',
   standalone: true,
-  imports: [CommonModule, TranslateModule],
+  imports: [CommonModule, RouterLink, TranslateModule],
   template: `
     <section class="section carousel-section">
       <div class="container">
@@ -35,8 +35,7 @@ export interface CarouselItem {
                     <h3>{{ item.title | translate }}</h3>
                     <p>{{ item.description | translate }}</p>
                     <div class="carousel-footer">
-                      <span class="carousel-price">{{ item.price | translate }}</span>
-                      <a href="#" class="carousel-link">
+                      <a routerLink="/catalogo" class="carousel-link">
                         {{ 'carousel.viewMore' | translate }}
                         <span class="material-icons-outlined">arrow_forward</span>
                       </a>
@@ -178,18 +177,12 @@ export interface CarouselItem {
     
     .carousel-footer {
       display: flex;
-      justify-content: space-between;
+      justify-content: flex-end;
       align-items: center;
       gap: var(--space-md);
       margin-top: var(--space-md);
       padding-top: var(--space-md);
       border-top: 1px solid var(--color-border-light);
-    }
-    
-    .carousel-price {
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--color-accent);
     }
     
     .carousel-link {

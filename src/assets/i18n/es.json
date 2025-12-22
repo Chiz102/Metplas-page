@@ -137,33 +137,27 @@
     "viewMore": "Ver más",
     "item1": {
       "title": "Equipos Trimmer",
-      "description": "Maquinaria de corte de precisión para aplicaciones industriales complejas.",
-      "price": "Consultar"
+      "description": "Sistemas de recorte eléctricos y neumáticos de alta precisión para procesamiento de carne."
     },
     "item2": {
-      "title": "Rectificadores Industrial",
-      "description": "Equipos de rectificación de alta potencia para procesos de manufactura.",
-      "price": "Consultar"
+      "title": "Cuchillería Industrial",
+      "description": "Cuchillos profesionales, afiladores y accesorios de corte para la industria alimentaria."
     },
     "item3": {
-      "title": "Insumos Industriales",
-      "description": "Repuestos y consumibles de calidad para mantenimiento continuo.",
-      "price": "Desde $5.000"
+      "title": "Equipos de Protección",
+      "description": "Guantes de malla metálica, delantales y EPP certificados para plantas de procesamiento."
     },
     "item4": {
-      "title": "Equipos de Protección",
-      "description": "EPP certificados y equipos de seguridad para ambientes industriales.",
-      "price": "Desde $2.500"
+      "title": "Máquinas Afiladoras",
+      "description": "Equipos de afilado profesional para mantener el filo óptimo de tus herramientas de corte."
     },
     "item5": {
-      "title": "Servicios Técnicos",
-      "description": "Instalación, mantenimiento y asesoría técnica especializada.",
-      "price": "Según servicio"
+      "title": "Equipos de Procesamiento",
+      "description": "Maquinaria especializada para pescado, aves y procesamiento cárnico de alta eficiencia."
     },
     "item6": {
-      "title": "Soluciones Personalizadas",
-      "description": "Diseño y desarrollo de soluciones a medida para tu operación.",
-      "price": "Presupuesto"
+      "title": "Accesorios y Repuestos",
+      "description": "Cabezales, cuchillas, correas y repuestos originales para tus equipos industriales."
     }
   }
 }

@@ -33,17 +33,17 @@ import { Product } from '../../../core/models/catalog.model';
             <!-- Image Section -->
             <div class="product-gallery">
               <div class="main-image">
-                @if (product.image) {
-                  <img [src]="product.image" [alt]="product.name">
+                @if (currentImage || product.image) {
+                  <img [src]="currentImage || product.image" [alt]="product.name">
                 } @else {
                   <div class="placeholder">
                     <span class="material-icons-outlined">{{ supplier?.icon || 'inventory_2' }}</span>
                   </div>
                 }
               </div>
-              @if (product.gallery && product.gallery.length > 0) {
+              @if (getAllImages().length > 1) {
                 <div class="thumbnail-strip">
-                  @for (img of product.gallery; track img) {
+                  @for (img of getAllImages(); track img) {
                     <button class="thumbnail" (click)="selectImage(img)" [class.active]="currentImage === img">
                       <img [src]="img" [alt]="product.name">
                     </button>
@@ -493,6 +493,14 @@ export class ProductDetailComponent implements OnInit {
     this.currentImage = img;
   }
 
+  getAllImages(): string[] {
+    if (!this.product) return [];
+    const images: string[] = [];
+    if (this.product.image) images.push(this.product.image);
+    if (this.product.gallery) images.push(...this.product.gallery);
+    return images;
+  }
+
   hasSpecifications(): boolean {
     return this.product?.specifications ? Object.keys(this.product.specifications).length > 0 : false;
   }
@@ -507,4 +515,6 @@ export class ProductDetailComponent implements OnInit {
     return encodeURIComponent(msg);
   }
 }
+
+
 

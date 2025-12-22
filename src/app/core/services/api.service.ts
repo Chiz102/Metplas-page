@@ -123,11 +123,11 @@ export class ApiService {
                   id: id++,
                   name: isEn ? (p.item_name || p.item_name_es) : (p.item_name_es || p.item_name),
                   slug: this.slugify(p.item_name || p.item_name_es),
-                  short_description: isEn ? (p.category || '') : (p.category_es || p.category || ''),
-                  description: '',
+                  short_description: isEn ? (p.description || p.category || '') : (p.description_es || p.category_es || p.category || ''),
+                  description: isEn ? (p.description || '') : (p.description_es || ''),
                   specifications: {},
                   image: this.transformImagePath(p.image_path),
-                  gallery: [],
+                  gallery: (p.gallery || []).map((img: string) => this.transformImagePath(img)),
                   is_featured: false,
                   order: id,
                   supplier_name: supplierSlug,
@@ -206,9 +206,9 @@ export class ApiService {
           return of({ products: [], categoryName: categorySlug });
         }
         
-        // Encontrar la categoría por slug
+        // Encontrar la categoría por slug (el nombre del archivo sin .json, con espacios como guiones)
         const category = metadata.categories.find((c: any) => {
-          const catSlug = c.file.match(/ziegler-metallgewebe\.com_(.+)\.json/)?.[1]?.toLowerCase().replace(/\s+/g, '-');
+          const catSlug = c.file.replace('.json', '').toLowerCase().replace(/\s+/g, '-');
           return catSlug === categorySlug;
         });
         
@@ -227,11 +227,11 @@ export class ApiService {
               id: id++,
               name: isEn ? (p.item_name || p.item_name_es) : (p.item_name_es || p.item_name),
               slug: this.slugify(p.item_name || p.item_name_es),
-              short_description: isEn ? (p.category || '') : (p.category_es || p.category || ''),
-              description: '',
+              short_description: isEn ? (p.description || p.category || '') : (p.description_es || p.category_es || p.category || ''),
+              description: isEn ? (p.description || '') : (p.description_es || ''),
               specifications: {},
               image: this.transformImagePath(p.image_path),
-              gallery: [],
+              gallery: (p.gallery || []).map((img: string) => this.transformImagePath(img)),
               is_featured: false,
               order: id,
               supplier_name: supplierSlug,

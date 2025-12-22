@@ -53,16 +53,25 @@
     "products": "productos",
     "viewCategory": "Ver categoría",
     "viewProducts": "Ver productos",
+    "viewProduct": "Ver producto",
     "productsAvailable": "productos disponibles",
+    "productCategories": "Categorías de Productos",
+    "selectCategory": "Selecciona una categoría para ver los productos disponibles",
+    "backToCategories": "Volver a categorías",
+    "noProducts": "Sin productos disponibles",
+    "noProductsDesc": "Aún no hay productos en esta categoría. Contáctanos para más información.",
     "comingSoon": "Próximamente",
     "comingSoonDesc": "Estamos preparando el catálogo de productos. Contáctanos para más información.",
     "contact": "Contactar",
+    "contactUs": "Contáctanos",
     "cantFind": "¿No encuentras lo que buscas?",
     "cantFindDesc": "Nuestro equipo está listo para ayudarte a encontrar la solución perfecta para tu industria.",
     "requestConsultation": "Solicitar Asesoría",
     "visitWebsite": "Visitar sitio web",
     "featured": "Destacado",
     "moreInfo": "Más información",
+    "needHelp": "¿Necesitas ayuda?",
+    "needHelpDesc": "Nuestros especialistas pueden asesorarte para encontrar el producto ideal.",
     "subcats": {
       "trimmer": "Equipos Trimmer",
       "rectifiers": "Rectificadores",
@@ -70,6 +79,13 @@
       "ppe": "EPP",
       "knives": "Cuchillos de Empuñadura"
     }
+  },
+  "product": {
+    "description": "Descripción",
+    "specifications": "Especificaciones",
+    "requestQuote": "Solicitar Cotización",
+    "contactUs": "Contactar",
+    "relatedProducts": "Productos Relacionados"
   },
   "contact": {
     "contactUs": "Contáctanos",

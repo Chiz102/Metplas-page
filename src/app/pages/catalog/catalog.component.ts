@@ -143,8 +143,23 @@ import { ApiService } from '../../core/services/api.service';
       position: relative;
       padding: calc(100px + var(--space-3xl)) 0 var(--space-3xl);
       text-align: center;
-      background: linear-gradient(180deg, var(--color-blue-bg) 0%, var(--color-primary) 100%);
+      background: linear-gradient(135deg, #093562 0%, #104F8E 40%, #1565c0 70%, #1976d2 100%);
       overflow: hidden;
+      
+      h1, .hero-description {
+        color: #ffffff;
+      }
+      
+      h1 .text-gradient {
+        background: linear-gradient(135deg, #4ade80 0%, #34d399 50%, #2dd4bf 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      
+      .hero-description {
+        color: rgba(255, 255, 255, 0.9);
+      }
     }
     
     .hero-decoration {
@@ -153,17 +168,26 @@ import { ApiService } from '../../core/services/api.service';
       overflow: hidden;
       pointer-events: none;
       
+      &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: 
+          radial-gradient(ellipse 80% 60% at 80% 0%, rgba(34, 148, 67, 0.25) 0%, transparent 50%),
+          radial-gradient(ellipse 100% 80% at 0% 100%, rgba(16, 79, 142, 0.3) 0%, transparent 40%);
+      }
+      
       .deco-circle {
         position: absolute;
         border-radius: 50%;
-        border: 2px solid var(--color-border-blue);
+        border: 2px solid rgba(255, 255, 255, 0.15);
         
         &.deco-1 {
           width: 500px;
           height: 500px;
           top: -200px;
           right: -100px;
-          background: radial-gradient(circle, rgba(14, 165, 233, 0.08) 0%, transparent 70%);
+          background: radial-gradient(circle, rgba(52, 211, 153, 0.15) 0%, transparent 70%);
         }
         
         &.deco-2 {
@@ -171,8 +195,8 @@ import { ApiService } from '../../core/services/api.service';
           height: 300px;
           bottom: -100px;
           left: -50px;
-          background: radial-gradient(circle, rgba(5, 150, 105, 0.08) 0%, transparent 70%);
-          border-color: var(--color-border);
+          background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, transparent 70%);
+          border-color: rgba(255, 255, 255, 0.1);
         }
       }
     }
@@ -182,18 +206,19 @@ import { ApiService } from '../../core/services/api.service';
       align-items: center;
       gap: var(--space-sm);
       padding: var(--space-sm) var(--space-lg);
-      background: var(--color-surface);
-      border: 2px solid var(--color-blue);
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      border: 2px solid rgba(255, 255, 255, 0.3);
       border-radius: var(--radius-full);
       font-size: 0.9rem;
       font-weight: 600;
-      color: var(--color-blue);
+      color: #ffffff;
       margin-bottom: var(--space-lg);
-      box-shadow: var(--shadow-md);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
       
       .material-icons-outlined {
         font-size: 18px;
-        color: var(--color-accent);
+        color: #4ade80;
       }
     }
     
@@ -222,10 +247,11 @@ import { ApiService } from '../../core/services/api.service';
       align-items: center;
       gap: var(--space-xl);
       padding: var(--space-lg) var(--space-2xl);
-      background: var(--color-surface);
-      border: 2px solid var(--color-border);
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(10px);
+      border: 2px solid rgba(255, 255, 255, 0.2);
       border-radius: var(--radius-xl);
-      box-shadow: var(--shadow-lg);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
       
       .stat-item {
         text-align: center;
@@ -234,12 +260,12 @@ import { ApiService } from '../../core/services/api.service';
           display: block;
           font-size: 2rem;
           font-weight: 700;
-          color: var(--color-blue);
+          color: #4ade80;
         }
         
         .stat-label {
           font-size: 0.85rem;
-          color: var(--color-text-muted);
+          color: rgba(255, 255, 255, 0.8);
           text-transform: uppercase;
           letter-spacing: 0.05em;
         }
@@ -248,7 +274,7 @@ import { ApiService } from '../../core/services/api.service';
       .stat-divider {
         width: 2px;
         height: 40px;
-        background: var(--color-border);
+        background: rgba(255, 255, 255, 0.2);
         border-radius: 1px;
       }
       
@@ -266,7 +292,18 @@ import { ApiService } from '../../core/services/api.service';
     
     /* ===== SUPPLIERS SECTION ===== */
     .suppliers-section {
-      background: var(--color-primary);
+      background: linear-gradient(180deg, #f0f9ff 0%, #ffffff 30%, #f8fafc 70%, #ecfdf5 100%);
+      position: relative;
+      
+      &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: 
+          radial-gradient(ellipse 60% 40% at 10% 20%, rgba(3, 105, 161, 0.06) 0%, transparent 50%),
+          radial-gradient(ellipse 50% 30% at 90% 80%, rgba(5, 150, 105, 0.05) 0%, transparent 40%);
+        pointer-events: none;
+      }
     }
     
     .suppliers-grid {
@@ -457,6 +494,11 @@ import { ApiService } from '../../core/services/api.service';
     /* ===== CTA SECTION ===== */
     .cta-section {
       padding: var(--space-3xl) 0;
+      background: linear-gradient(135deg, #093562 0%, #104F8E 50%, #1565c0 100%);
+      
+      .cta-wrapper {
+        background: rgba(255, 255, 255, 0.95);
+      }
     }
     
     .cta-wrapper {

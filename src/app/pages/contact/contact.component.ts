@@ -213,7 +213,7 @@ import { ContactMessage, CompanyInfo } from '../../core/models/catalog.model';
     .page-hero {
       padding: calc(80px + var(--space-4xl)) 0 var(--space-2xl);
       text-align: center;
-      background: linear-gradient(180deg, var(--color-surface-green) 0%, #ffffff 100%);
+      background: linear-gradient(135deg, #093562 0%, #104F8E 40%, #1565c0 70%, #1a7335 100%);
       position: relative;
       
       &::before {
@@ -221,9 +221,13 @@ import { ContactMessage, CompanyInfo } from '../../core/models/catalog.model';
         position: absolute;
         inset: 0;
         background: 
-          radial-gradient(ellipse 80% 60% at 20% 0%, rgba(5, 150, 105, 0.1) 0%, transparent 50%),
-          radial-gradient(ellipse 100% 50% at 80% 100%, rgba(14, 165, 233, 0.08) 0%, transparent 40%);
+          radial-gradient(ellipse 80% 60% at 80% 0%, rgba(34, 148, 67, 0.2) 0%, transparent 50%),
+          radial-gradient(ellipse 100% 50% at 20% 100%, rgba(16, 79, 142, 0.25) 0%, transparent 40%);
         pointer-events: none;
+      }
+      
+      h1 {
+        color: #ffffff;
       }
     }
     
@@ -232,20 +236,21 @@ import { ContactMessage, CompanyInfo } from '../../core/models/catalog.model';
       align-items: center;
       gap: var(--space-sm);
       padding: var(--space-sm) var(--space-lg);
-      background: #ffffff;
-      border: 2px solid var(--color-border);
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      border: 2px solid rgba(255, 255, 255, 0.3);
       border-radius: var(--radius-full);
       font-size: 0.875rem;
       font-weight: 600;
-      color: var(--color-accent);
+      color: #ffffff;
       margin-bottom: var(--space-lg);
       position: relative;
       z-index: 1;
-      box-shadow: var(--shadow-md);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
       
       .material-icons-outlined {
         font-size: 18px;
-        color: var(--color-blue);
+        color: #4ade80;
       }
     }
     
@@ -253,7 +258,7 @@ import { ContactMessage, CompanyInfo } from '../../core/models/catalog.model';
       margin-bottom: var(--space-md);
       
       .text-gradient {
-        background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-blue) 100%);
+        background: linear-gradient(135deg, #4ade80 0%, #34d399 50%, #2dd4bf 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
@@ -262,7 +267,7 @@ import { ContactMessage, CompanyInfo } from '../../core/models/catalog.model';
     
     .hero-description {
       font-size: 1.125rem;
-      color: var(--color-text-secondary);
+      color: rgba(255, 255, 255, 0.9);
       max-width: 500px;
       margin: 0 auto;
       line-height: 1.7;

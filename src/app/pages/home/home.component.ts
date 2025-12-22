@@ -1275,43 +1275,37 @@ export class HomeComponent implements OnInit {
       id: 1,
       icon: 'precision_manufacturing',
       title: 'carousel.item1.title',
-      description: 'carousel.item1.description',
-      price: 'carousel.item1.price'
+      description: 'carousel.item1.description'
     },
     {
       id: 2,
-      icon: 'bolt',
+      icon: 'content_cut',
       title: 'carousel.item2.title',
-      description: 'carousel.item2.description',
-      price: 'carousel.item2.price'
+      description: 'carousel.item2.description'
     },
     {
       id: 3,
-      icon: 'inventory_2',
+      icon: 'security',
       title: 'carousel.item3.title',
-      description: 'carousel.item3.description',
-      price: 'carousel.item3.price'
+      description: 'carousel.item3.description'
     },
     {
       id: 4,
-      icon: 'shield_admin',
+      icon: 'auto_fix_high',
       title: 'carousel.item4.title',
-      description: 'carousel.item4.description',
-      price: 'carousel.item4.price'
+      description: 'carousel.item4.description'
     },
     {
       id: 5,
       icon: 'engineering',
       title: 'carousel.item5.title',
-      description: 'carousel.item5.description',
-      price: 'carousel.item5.price'
+      description: 'carousel.item5.description'
     },
     {
       id: 6,
-      icon: 'lightbulb',
+      icon: 'handyman',
       title: 'carousel.item6.title',
-      description: 'carousel.item6.description',
-      price: 'carousel.item6.price'
+      description: 'carousel.item6.description'
     }
   ];
 
