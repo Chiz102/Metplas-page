@@ -7,10 +7,16 @@
   "color": "#1976d2",
   "categories": [
     {
-      "file": "fish-poultry-equipment.json",
-      "name_es": "Equipos para Pescado y Aves",
-      "name_en": "Fish & Poultry Equipment",
+      "file": "fish-equipment.json",
+      "name_es": "Equipos para Pescado",
+      "name_en": "Fish Equipment",
       "icon": "set_meal"
+    },
+    {
+      "file": "poultry-equipment.json",
+      "name_es": "Equipos para Aves",
+      "name_en": "Poultry Equipment",
+      "icon": "egg_alt"
     }
   ]
 }

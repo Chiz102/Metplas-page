@@ -7,22 +7,10 @@
   "color": "#455a64",
   "categories": [
     {
-      "file": "fasteners.json",
-      "name_es": "Sujetadores",
-      "name_en": "Fasteners",
-      "icon": "settings"
-    },
-    {
-      "file": "bars-wires.json",
-      "name_es": "Barras y Alambres",
-      "name_en": "Round Bars & Wires",
-      "icon": "linear_scale"
-    },
-    {
-      "file": "capillary-tubes.json",
-      "name_es": "Tubos Capilares",
-      "name_en": "Capillary Tubes",
-      "icon": "radio_button_unchecked"
+      "file": "metal-fasteners.json",
+      "name_es": "Sujetadores Metálicos",
+      "name_en": "Metal Fasteners",
+      "icon": "hardware"
     }
   ]
 }

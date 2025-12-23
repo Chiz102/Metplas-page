@@ -7,22 +7,10 @@
   "color": "#6a1b9a",
   "categories": [
     {
-      "file": "knife-scabbards.json",
-      "name_es": "Fundas para Cuchillos",
-      "name_en": "Knife Scabbards",
-      "icon": "handyman"
-    },
-    {
-      "file": "screwing.json",
-      "name_es": "Tornillería",
-      "name_en": "Screwing",
-      "icon": "handyman"
-    },
-    {
-      "file": "knife-holders.json",
-      "name_es": "Portacuchillos",
-      "name_en": "Knife Holders",
-      "icon": "handyman"
+      "file": "screws-fasteners.json",
+      "name_es": "Tornillería y Sujetadores",
+      "name_en": "Screws & Fasteners",
+      "icon": "hardware"
     }
   ]
 }
