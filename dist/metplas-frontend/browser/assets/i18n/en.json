@@ -137,33 +137,27 @@
     "viewMore": "View more",
     "item1": {
       "title": "Trimmer Equipment",
-      "description": "Precision cutting machinery for complex industrial applications.",
-      "price": "Request quote"
+      "description": "High-precision electric and pneumatic trimming systems for meat processing."
     },
     "item2": {
-      "title": "Industrial Rectifiers",
-      "description": "High-power rectification equipment for manufacturing processes.",
-      "price": "Request quote"
+      "title": "Industrial Cutlery",
+      "description": "Professional knives, sharpeners and cutting accessories for the food industry."
     },
     "item3": {
-      "title": "Industrial Supplies",
-      "description": "Quality spare parts and consumables for continuous maintenance.",
-      "price": "From $5.000"
+      "title": "Protective Equipment",
+      "description": "Metal mesh gloves, aprons and certified PPE for processing plants."
     },
     "item4": {
-      "title": "Protective Equipment",
-      "description": "Certified PPE and safety equipment for industrial environments.",
-      "price": "From $2.500"
+      "title": "Sharpening Machines",
+      "description": "Professional sharpening equipment to maintain optimal edge on your cutting tools."
     },
     "item5": {
-      "title": "Technical Services",
-      "description": "Installation, maintenance and specialized technical advice.",
-      "price": "Per service"
+      "title": "Processing Equipment",
+      "description": "Specialized machinery for fish, poultry and high-efficiency meat processing."
     },
     "item6": {
-      "title": "Custom Solutions",
-      "description": "Design and development of tailored solutions for your operation.",
-      "price": "Quote"
+      "title": "Accessories & Spare Parts",
+      "description": "Heads, blades, straps and original spare parts for your industrial equipment."
     }
   }
 }

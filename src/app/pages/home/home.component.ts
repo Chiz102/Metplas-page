@@ -82,17 +82,15 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
             @for (client of clients; track client.name) {
               <div class="client-item">
                 <div class="client-logo">
-                  <span class="material-icons-outlined">business</span>
+                  <img [src]="client.logo" [alt]="client.name" />
                 </div>
-                <span class="client-name">{{ client.name }}</span>
               </div>
             }
             @for (client of clients; track client.name + '-clone') {
               <div class="client-item">
                 <div class="client-logo">
-                  <span class="material-icons-outlined">business</span>
+                  <img [src]="client.logo" [alt]="client.name" />
                 </div>
-                <span class="client-name">{{ client.name }}</span>
               </div>
             }
           </div>
@@ -499,25 +497,21 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
     }
     
     .client-logo {
-      width: 36px;
-      height: 36px;
+      height: 50px;
       display: flex;
       align-items: center;
       justify-content: center;
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.08) 100%);
+      padding: 8px 16px;
+      background: rgba(255, 255, 255, 0.95);
       border-radius: var(--radius-md);
       
-      .material-icons-outlined {
-        font-size: 20px;
-        color: #34d399;
+      img {
+        max-height: 40px;
+        max-width: 120px;
+        width: auto;
+        object-fit: contain;
+        filter: none;
       }
-    }
-    
-    .client-name {
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: rgba(255, 255, 255, 0.95);
-      letter-spacing: 0.01em;
     }
     
     .hero-visual {
@@ -1255,16 +1249,11 @@ export class HomeComponent implements OnInit {
   private api = inject(ApiService);
   categories: Category[] = [];
   
-  // Lista de clientes para el carrusel del hero (estos puedes actualizarlos con clientes reales)
+  // Lista de clientes reales
   clients = [
-    { name: 'Agroindustrial del Sur' },
-    { name: 'Frigorífico Nacional' },
-    { name: 'Procesadora Austral' },
-    { name: 'Carnes Premium Chile' },
-    { name: 'Embutidos San Martín' },
-    { name: 'Industria Alimentaria Central' },
-    { name: 'Faenadora Los Andes' },
-    { name: 'Exportadora Pacífico' }
+    { name: 'Agrosuper', logo: 'assets/images/clients/agrosuper.png' },
+    { name: 'Sopraval', logo: 'assets/images/clients/sopraval.png' },
+    { name: 'Comafri', logo: 'assets/images/clients/Logo_Comafri-1.png' }
   ];
   
   // Proveedores reales cargados del catálogo

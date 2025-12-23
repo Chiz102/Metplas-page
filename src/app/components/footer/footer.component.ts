@@ -84,7 +84,6 @@ import { CompanyInfo } from '../../core/models/catalog.model';
         
         <div class="footer-bottom">
           <p>&copy; {{ currentYear }} {{ 'footer.rightsReserved' | translate }}</p>
-          <p class="credits">{{ 'footer.developedWith' | translate }} <span class="heart">♥</span> {{ 'footer.inChile' | translate }}</p>
         </div>
       </div>
     </footer>

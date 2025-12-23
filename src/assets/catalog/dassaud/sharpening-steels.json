@@ -1,0 +1,27 @@
+[
+  {
+    "item_name": "Afilador Broches Cruzadas X21",
+    "item_name_en": "X21 Cross Rod Sharpener",
+    "description": "Afilador profesional con broches cruzadas para un afilado rápido y eficiente. Diseño ergonómico para uso industrial.",
+    "description_en": "Professional cross rod sharpener for quick and efficient sharpening. Ergonomic design for industrial use.",
+    "image_path": "assets/images/products/affileur-broches-croisees-X21.png",
+    "gallery": []
+  },
+  {
+    "item_name": "Afilador X1",
+    "item_name_en": "X1 Sharpener",
+    "description": "Afilador compacto X1 de Dassaud & Fils. Ideal para afilado de precisión en entornos profesionales.",
+    "description_en": "Compact X1 sharpener by Dassaud & Fils. Ideal for precision sharpening in professional environments.",
+    "image_path": "assets/images/products/affileur-X1-dassaud-fils-600x360.png",
+    "gallery": []
+  },
+  {
+    "item_name": "Afilador X2",
+    "item_name_en": "X2 Sharpener",
+    "description": "Afilador profesional X2 con diseño mejorado para mayor durabilidad y rendimiento.",
+    "description_en": "Professional X2 sharpener with improved design for greater durability and performance.",
+    "image_path": "assets/images/products/dassaud-fils-affileur-X2-2.png",
+    "gallery": []
+  }
+]
+

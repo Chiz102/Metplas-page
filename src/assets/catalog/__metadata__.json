@@ -23,9 +23,6 @@
         "ziegler-metallgewebe.com_Sleeves.json",
         "ziegler-metallgewebe.com_Ultralight RS.json"
       ],
-      "metadata": "catalog/zeigler/__metadata__.json",
-      "metadata_url": "assets/catalog/zeigler/__metadata__.json",
-      "icon_url": "assets/images/zeigler-icon.png",
       "available_categories": {
         "eng": [
           "Aprons",
@@ -63,16 +60,19 @@
       "icon": "set_meal",
       "color": "#1976d2",
       "logo": "assets/images/suppliers/steen-logo.png",
-      "products_count": 5,
+      "products_count": 9,
       "files": [
-        "fish-poultry-equipment.json"
+        "fish-equipment.json",
+        "poultry-equipment.json"
       ],
       "available_categories": {
         "eng": [
-          "Fish & Poultry Equipment"
+          "Fish Equipment",
+          "Poultry Equipment"
         ],
         "esp": [
-          "Equipos para Pescado y Aves"
+          "Equipos para Pescado",
+          "Equipos para Aves"
         ]
       }
     },
@@ -86,28 +86,19 @@
       "icon": "content_cut",
       "color": "#d32f2f",
       "logo": "assets/images/suppliers/fabretall-logo.png",
-      "products_count": 13,
+      "products_count": 6,
       "files": [
-        "cutting-equipment.json",
-        "automation.json",
-        "knives.json",
-        "accessories.json",
-        "sharpeners.json"
+        "hygiene-equipment.json",
+        "professional-knives.json"
       ],
       "available_categories": {
         "eng": [
-          "Accessories",
-          "Sharpeners",
-          "Cutting Equipment",
-          "Automation",
-          "Knives"
+          "Hygiene Equipment",
+          "Professional Knives"
         ],
         "esp": [
-          "Accesorios",
-          "Afiladores",
-          "Equipos de Corte",
-          "Automatización",
-          "Cuchillos"
+          "Equipos de Higiene",
+          "Cuchillos Profesionales"
         ]
       }
     },
@@ -121,21 +112,16 @@
       "icon": "handyman",
       "color": "#6a1b9a",
       "logo": "assets/images/suppliers/bobet-logo.png",
-      "products_count": 2,
+      "products_count": 4,
       "files": [
-        "knife-scabbards.json",
-        "knife-holders.json"
+        "screws-fasteners.json"
       ],
       "available_categories": {
         "eng": [
-          "Knife Scabbards",
-          "Screwing",
-          "Knife Holders"
+          "Screws & Fasteners"
         ],
         "esp": [
-          "Fundas para Cuchillos",
-          "Tornillería",
-          "Portacuchillos"
+          "Tornillería y Sujetadores"
         ]
       }
     },
@@ -149,22 +135,16 @@
       "icon": "hardware",
       "color": "#455a64",
       "logo": "assets/images/suppliers/panacheind-logo.png",
-      "products_count": 3,
+      "products_count": 5,
       "files": [
-        "stainless-steel-fasteners.json",
-        "round-bars-wires.json",
-        "capillary-tubes.json"
+        "metal-fasteners.json"
       ],
       "available_categories": {
         "eng": [
-          "Fasteners",
-          "Round Bars & Wires",
-          "Capillary Tubes"
+          "Metal Fasteners"
         ],
         "esp": [
-          "Sujetadores",
-          "Barras y Alambres",
-          "Tubos Capilares"
+          "Sujetadores Metálicos"
         ]
       }
     },
@@ -194,6 +174,32 @@
           "Trimmers y Equipos",
           "Cabezales y Accesorios",
           "Cuchillas y Afilado"
+        ]
+      }
+    },
+    "dassaud": {
+      "name": "Dassaud & Fils",
+      "description": "Fabricante francés especializado en fusiles y afiladores profesionales desde 1830",
+      "description_en": "French manufacturer specialized in professional sharpening steels and rods since 1830",
+      "country": "Francia",
+      "country_en": "France",
+      "website": "https://www.dassaud.com",
+      "icon": "architecture",
+      "color": "#1565c0",
+      "logo": "assets/images/suppliers/dassaud-logo.png",
+      "products_count": 8,
+      "files": [
+        "sharpening-steels.json",
+        "sharpening-rods.json"
+      ],
+      "available_categories": {
+        "eng": [
+          "Sharpening Steels",
+          "Sharpening Rods"
+        ],
+        "esp": [
+          "Afiladores",
+          "Fusiles de Afilado"
         ]
       }
     }

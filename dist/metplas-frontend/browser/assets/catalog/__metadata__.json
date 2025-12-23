@@ -167,6 +167,35 @@
           "Tubos Capilares"
         ]
       }
+    },
+    "ibex": {
+      "name": "IBEX",
+      "description": "Más de 35 años suministrando productos de calidad y servicio a la industria de procesamiento de carne. Certificación ISO 9001:2015",
+      "description_en": "Over 35 years supplying quality products and service to the meat processing industry. ISO 9001:2015 certified",
+      "country": "Nueva Zelanda",
+      "country_en": "New Zealand",
+      "website": "https://ibexind.net",
+      "icon": "precision_manufacturing",
+      "color": "#ef6c00",
+      "logo": "assets/images/suppliers/ibex-logo.jpg",
+      "products_count": 10,
+      "files": [
+        "trimmers.json",
+        "heads-accessories.json",
+        "blades-sharpening.json"
+      ],
+      "available_categories": {
+        "eng": [
+          "Trimmers & Equipment",
+          "Heads & Accessories",
+          "Blades & Sharpening"
+        ],
+        "esp": [
+          "Trimmers y Equipos",
+          "Cabezales y Accesorios",
+          "Cuchillas y Afilado"
+        ]
+      }
     }
   }
 }
