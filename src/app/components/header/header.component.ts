@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { LanguageService } from '../../core/services/language.service';
+import { ApiService } from '../../core/services/api.service';
 
 @Component({
   selector: 'app-header',
@@ -25,22 +26,10 @@ import { LanguageService } from '../../core/services/language.service';
               {{ 'nav.catalog' | translate }}
               <span class="material-icons-outlined">expand_more</span>
             </a>
-            <div class="dropdown-menu">
-              <a routerLink="/catalogo/equipos" (click)="closeMenu()">
-                <span class="material-icons-outlined">precision_manufacturing</span>
-                {{ 'nav.equipment' | translate }}
-              </a>
-              <a routerLink="/catalogo/insumos" (click)="closeMenu()">
-                <span class="material-icons-outlined">inventory_2</span>
-                {{ 'nav.supplies' | translate }}
-              </a>
-              <a routerLink="/catalogo/servicios" (click)="closeMenu()">
-                <span class="material-icons-outlined">engineering</span>
-                {{ 'nav.services' | translate }}
-              </a>
-              <a routerLink="/catalogo/innovacion" (click)="closeMenu()">
-                <span class="material-icons-outlined">lightbulb</span>
-                {{ 'nav.innovation' | translate }}
+            <div class="dropdown-menu" style="max-height: 320px; overflow-y: auto; min-width: 260px;">
+              <a *ngFor="let supplier of suppliers()" [routerLink]="['/catalogo', supplier.slug]" (click)="closeMenu()">
+                <span class="material-icons-outlined">business</span>
+                {{ supplier.name }}
               </a>
             </div>
           </div>
@@ -205,6 +194,11 @@ import { LanguageService } from '../../core/services/language.service';
       visibility: hidden;
       transform: translateY(10px);
       transition: all var(--transition-base);
+      max-height: 320px;
+      overflow-y: auto;
+      min-width: 260px;
+      scrollbar-width: thin;
+      scrollbar-color: var(--color-blue) var(--color-blue-bg);
       
       a {
         display: flex;
@@ -232,6 +226,16 @@ import { LanguageService } from '../../core/services/language.service';
           transition: all var(--transition-fast);
         }
       }
+    }
+    
+    .dropdown-menu::-webkit-scrollbar {
+      width: 8px;
+      background: var(--color-blue-bg);
+      border-radius: 8px;
+    }
+    .dropdown-menu::-webkit-scrollbar-thumb {
+      background: var(--color-blue);
+      border-radius: 8px;
     }
     
     .header-actions {
@@ -404,9 +408,17 @@ import { LanguageService } from '../../core/services/language.service';
 })
 export class HeaderComponent {
   languageService = inject(LanguageService);
+  api = inject(ApiService);
   isScrolled = signal(false);
   menuOpen = signal(false);
-  
+  suppliers = signal<any[]>([]);
+
+  constructor() {
+    this.api.getSuppliers().subscribe(suppliers => {
+      this.suppliers.set(suppliers);
+    });
+  }
+
   setLanguage(lang: 'es' | 'en') {
     this.languageService.setLanguage(lang);
   };

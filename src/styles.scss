@@ -74,6 +74,7 @@
   --color-text-primary: #0f172a;
   --color-text-secondary: #334155;
   --color-text-muted: #64748b;
+  --color-text-muted-secondary: #b0b8c9;
   --color-text-on-blue: #ffffff;
   --color-text-on-green: #ffffff;
   
@@ -134,6 +135,11 @@
   --gradient-cta: linear-gradient(135deg, var(--color-cta) 0%, var(--color-accent-secondary) 100%);
   --gradient-hero: linear-gradient(135deg, #0c4a6e 0%, #075985 25%, #0369a1 50%, #059669 100%);
   --gradient-hero-overlay: linear-gradient(180deg, rgba(12, 74, 110, 0.95) 0%, rgba(5, 150, 105, 0.85) 100%);
+  
+  // ============================================
+  // HEADER
+  // ============================================
+  --color-header-primary: #fff;
 }
 
 // Reset & Base
@@ -815,9 +821,9 @@ a {
   --color-accent-glow: rgba(0, 180, 168, 0.4);
   --color-cta: #e63946;
   --color-cta-hover: #f1556c;
-  --color-surface: #0a2637;
-  --color-surface-elevated: #143847;
-  --color-text-primary: #ffffff;
+  --color-surface: #ffffff;
+  --color-surface-elevated: #dcdcdc;
+  --color-text-primary: #333333;
 }
 
 /* Purple & Gold theme */

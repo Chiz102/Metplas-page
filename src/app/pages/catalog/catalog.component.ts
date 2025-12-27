@@ -320,7 +320,7 @@ import { ApiService } from '../../core/services/api.service';
       position: relative;
       display: flex;
       flex-direction: column;
-      background: var(--color-surface);
+      background: var(--color-surface) !important;
       border: 2px solid var(--color-border);
       border-radius: var(--radius-xl);
       padding: var(--space-xl);
