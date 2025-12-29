@@ -59,7 +59,7 @@ import { Product } from '../../../core/models/catalog.model';
                 {{ supplier?.name }}
               </div>
               
-              <h1>{{ product.name }}</h1>
+              <h1 class="product-title">{{ product.name }}</h1>
               
               @if (product.category_name) {
                 <span class="category-tag">{{ product.category_name }}</span>
@@ -274,6 +274,13 @@ import { Product } from '../../../core/models/catalog.model';
         font-size: 2rem;
         margin-bottom: var(--space-md);
         line-height: 1.3;
+      }
+      
+      .product-title {
+        color: var(--color-header-primary);
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: var(--space-md);
       }
       
       .category-tag {

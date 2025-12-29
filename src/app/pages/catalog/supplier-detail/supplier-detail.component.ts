@@ -182,12 +182,13 @@ interface SupplierCategory {
         flex: 1;
         
         h1 {
+          color: var(--color-header-primary);
           font-size: 2.5rem;
           margin-bottom: var(--space-md);
-          background: linear-gradient(135deg, var(--color-text-primary), var(--supplier-color, var(--color-accent)));
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          background-clip: text;
+          background: none;
+          -webkit-background-clip: unset;
+          -webkit-text-fill-color: unset;
+          background-clip: unset;
         }
         
         .description {
@@ -238,9 +239,11 @@ interface SupplierCategory {
     .section-header {
       text-align: center;
       margin-bottom: var(--space-3xl);
+      color: var(--color-header-primary);
       
       h2 {
         margin-bottom: var(--space-sm);
+        color: inherit;
       }
       
       p {
