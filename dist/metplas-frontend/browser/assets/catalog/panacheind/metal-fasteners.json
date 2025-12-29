@@ -1,0 +1,44 @@
+[
+  {
+    "item_name": "Sujetadores de Bronce",
+    "item_name_en": "Bronze Fasteners",
+    "description": "Sujetadores de bronce de alta calidad. Excelente resistencia a la corrosión para aplicaciones marinas e industriales.",
+    "description_en": "High-quality bronze fasteners. Excellent corrosion resistance for marine and industrial applications.",
+    "image_path": "assets/images/products/bronze-fasteners.jpg",
+    "gallery": []
+  },
+  {
+    "item_name": "Sujetadores de Cobre",
+    "item_name_en": "Copper Fasteners",
+    "description": "Sujetadores de cobre puro. Conductividad eléctrica superior y resistencia antimicrobiana.",
+    "description_en": "Pure copper fasteners. Superior electrical conductivity and antimicrobial resistance.",
+    "image_path": "assets/images/products/copper-fasteners.jpg",
+    "gallery": []
+  },
+  {
+    "item_name": "Sujetadores de Inconel",
+    "item_name_en": "Inconel Fasteners",
+    "description": "Sujetadores de aleación Inconel. Resistencia extrema a altas temperaturas y corrosión.",
+    "description_en": "Inconel alloy fasteners. Extreme resistance to high temperatures and corrosion.",
+    "image_path": "assets/images/products/iconel-fasteners.jpg",
+    "gallery": []
+  },
+  {
+    "item_name": "Sujetadores de Acero Inoxidable",
+    "item_name_en": "Stainless Steel Fasteners",
+    "description": "Sujetadores de acero inoxidable premium. Durabilidad y resistencia para uso industrial.",
+    "description_en": "Premium stainless steel fasteners. Durability and strength for industrial use.",
+    "image_path": "assets/images/products/stainless-fasteners.jpg",
+    "gallery": []
+  },
+  {
+    "item_name": "Alambre de Acero",
+    "item_name_en": "Steel Wire",
+    "description": "Alambre de acero de alta calidad en varios calibres. Ideal para aplicaciones industriales diversas.",
+    "description_en": "High-quality steel wire in various gauges. Ideal for diverse industrial applications.",
+    "image_path": "assets/images/products/steel-wire.jpg",
+    "gallery": []
+  }
+]
+
+

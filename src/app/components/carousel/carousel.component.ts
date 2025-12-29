@@ -52,7 +52,25 @@ export interface CarouselItem {
   styles: [`
     // Carousel Section
     .carousel-section {
-      background: transparent;
+      background: 
+        linear-gradient(180deg, 
+          #ffffff 0%, 
+          #f0f9ff 30%,
+          #e0f2fe 50%,
+          #ccfbf1 70%,
+          #ecfdf5 100%
+        );
+      position: relative;
+      
+      &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: 
+          radial-gradient(ellipse 60% 40% at 100% 0%, rgba(6, 182, 212, 0.1) 0%, transparent 50%),
+          radial-gradient(ellipse 50% 30% at 0% 100%, rgba(34, 197, 94, 0.08) 0%, transparent 40%);
+        pointer-events: none;
+      }
     }
     
     .carousel-wrapper {
@@ -100,39 +118,61 @@ export interface CarouselItem {
       max-width: 100%;
       height: 100%;
       padding: var(--space-xl);
-      background: #ffffff;
-      border: 2px solid var(--color-border-light);
-      border-radius: var(--radius-lg);
-      transition: all var(--transition-base);
-      box-shadow: var(--shadow-md);
+      background: linear-gradient(145deg, #ffffff 0%, #f8fafc 50%, #f0f9ff 100%);
+      border: 2px solid transparent;
+      border-radius: 20px;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
       position: relative;
       overflow: hidden;
       
       &::before {
         content: '';
         position: absolute;
+        inset: 0;
+        border-radius: 20px;
+        padding: 2px;
+        background: linear-gradient(135deg, rgba(6, 182, 212, 0.4) 0%, rgba(34, 197, 94, 0.3) 50%, rgba(167, 139, 250, 0.2) 100%);
+        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        opacity: 0;
+        transition: opacity 0.4s ease;
+      }
+      
+      &::after {
+        content: '';
+        position: absolute;
         top: 0;
         left: 0;
         right: 0;
         height: 4px;
-        background: linear-gradient(90deg, var(--color-blue) 0%, var(--color-accent) 100%);
+        background: linear-gradient(90deg, #06b6d4 0%, #22c55e 50%, #a855f7 100%);
         transform: scaleX(0);
         transform-origin: left;
-        transition: transform var(--transition-base);
+        transition: transform 0.4s ease;
       }
       
       &:hover {
-        border-color: var(--color-accent);
-        box-shadow: var(--shadow-green);
-        transform: scale(1.03);
+        transform: translateY(-8px) scale(1.02);
+        box-shadow: 
+          0 25px 50px rgba(6, 182, 212, 0.2),
+          0 10px 20px rgba(34, 197, 94, 0.1);
+        background: linear-gradient(145deg, #ecfeff 0%, #f0fdfa 50%, #ffffff 100%);
         
         &::before {
+          opacity: 1;
+        }
+        
+        &::after {
           transform: scaleX(1);
         }
         
         .carousel-icon {
-          background: var(--color-green-gradient);
-          transform: scale(1.1);
+          background: linear-gradient(135deg, #0891b2 0%, #059669 50%, #7c3aed 100%);
+          transform: scale(1.1) rotate(5deg);
+          box-shadow: 0 10px 30px rgba(6, 182, 212, 0.4);
           
           .material-icons-outlined {
             color: #ffffff;
@@ -142,29 +182,34 @@ export interface CarouselItem {
     }
     
     .carousel-icon {
-      width: 64px;
-      height: 64px;
+      width: 68px;
+      height: 68px;
       display: flex;
       align-items: center;
       justify-content: center;
-      background: var(--color-surface-blue);
-      border: 2px solid var(--color-border-blue);
-      border-radius: var(--radius-lg);
+      background: linear-gradient(135deg, rgba(6, 182, 212, 0.15) 0%, rgba(34, 197, 94, 0.1) 100%);
+      border: 2px solid rgba(6, 182, 212, 0.25);
+      border-radius: 16px;
       margin-bottom: var(--space-lg);
-      transition: all var(--transition-base);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       
       .material-icons-outlined {
         font-size: 32px;
-        color: var(--color-blue);
-        transition: all var(--transition-base);
+        background: linear-gradient(135deg, #0891b2 0%, #059669 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        transition: all 0.3s ease;
       }
     }
     
     .carousel-card h3 {
-      font-size: 1.2rem;
+      font-size: 1.25rem;
       font-weight: 700;
       color: var(--color-text-primary);
       margin-bottom: var(--space-sm);
+      text-transform: none;
+      letter-spacing: 0;
     }
     
     .carousel-card p {
@@ -172,7 +217,8 @@ export interface CarouselItem {
       color: var(--color-text-secondary);
       flex: 1;
       margin-bottom: var(--space-md);
-      line-height: 1.6;
+      line-height: 1.7;
+      max-width: 100%;
     }
     
     .carousel-footer {
@@ -182,7 +228,7 @@ export interface CarouselItem {
       gap: var(--space-md);
       margin-top: var(--space-md);
       padding-top: var(--space-md);
-      border-top: 1px solid var(--color-border-light);
+      border-top: 1px solid rgba(6, 182, 212, 0.15);
     }
     
     .carousel-link {
@@ -190,21 +236,24 @@ export interface CarouselItem {
       align-items: center;
       gap: var(--space-xs);
       font-size: 0.9rem;
-      font-weight: 600;
-      color: var(--color-blue);
+      font-weight: 700;
+      background: linear-gradient(135deg, #0891b2 0%, #059669 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
       transition: all var(--transition-fast);
       text-decoration: none;
       
       .material-icons-outlined {
         font-size: 18px;
+        color: #0891b2;
         transition: transform var(--transition-fast);
       }
       
       &:hover {
-        color: var(--color-accent);
-        
         .material-icons-outlined {
-          transform: translateX(4px);
+          transform: translateX(6px);
+          color: #059669;
         }
       }
     }
@@ -220,34 +269,35 @@ export interface CarouselItem {
     .section-header {
       margin-bottom: var(--space-3xl);
       text-align: center;
+      position: relative;
       
       .section-label {
         display: inline-flex;
         align-items: center;
         gap: var(--space-sm);
-        padding: var(--space-sm) var(--space-lg);
-        background: var(--color-surface-blue);
-        border: 2px solid var(--color-border-blue);
+        padding: 10px 24px;
+        background: linear-gradient(135deg, rgba(6, 182, 212, 0.12) 0%, rgba(34, 197, 94, 0.08) 100%);
+        border: 2px solid rgba(6, 182, 212, 0.3);
         border-radius: var(--radius-full);
         font-size: 0.875rem;
-        font-weight: 600;
-        color: var(--color-blue);
+        font-weight: 700;
+        color: #0891b2;
         margin-bottom: var(--space-lg);
         
         &::before, &::after {
           content: '';
           width: 24px;
           height: 2px;
-          background: var(--color-blue);
+          background: linear-gradient(90deg, #06b6d4 0%, #22c55e 100%);
           border-radius: 2px;
         }
       }
       
       .section-title {
         font-size: 2.5rem;
-        font-weight: 700;
+        font-weight: 800;
         margin-bottom: var(--space-md);
-        background: linear-gradient(135deg, var(--color-text-primary) 0%, var(--color-blue) 100%);
+        background: linear-gradient(135deg, #0f172a 0%, #0891b2 50%, #059669 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;

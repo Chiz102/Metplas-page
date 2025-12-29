@@ -7,33 +7,15 @@
   "color": "#d32f2f",
   "categories": [
     {
-      "file": "accessories.json",
-      "name_es": "Accesorios",
-      "name_en": "Accessories",
-      "icon": "handyman"
+      "file": "hygiene-equipment.json",
+      "name_es": "Equipos de Higiene",
+      "name_en": "Hygiene Equipment",
+      "icon": "sanitizer"
     },
     {
-      "file": "sharpeners.json",
-      "name_es": "Afiladores",
-      "name_en": "Sharpeners",
-      "icon": "build"
-    },
-    {
-      "file": "cutting-equipment.json",
-      "name_es": "Equipos de Corte",
-      "name_en": "Cutting Equipment",
-      "icon": "precision_manufacturing"
-    },
-    {
-      "file": "automation.json",
-      "name_es": "Automatización",
-      "name_en": "Automation",
-      "icon": "smart_toy"
-    },
-    {
-      "file": "knives.json",
-      "name_es": "Cuchillos",
-      "name_en": "Knives",
+      "file": "professional-knives.json",
+      "name_es": "Cuchillos Profesionales",
+      "name_en": "Professional Knives",
       "icon": "content_cut"
     }
   ]

@@ -1,0 +1,28 @@
+[
+  {
+    "item_name": "Estación de Higiene HC-XL",
+    "item_name_en": "Hygiene Station HC-XL",
+    "description": "Estación de higiene profesional HC-XL. Diseño compacto para desinfección eficiente en plantas de procesamiento.",
+    "description_en": "Professional HC-XL hygiene station. Compact design for efficient disinfection in processing plants.",
+    "image_path": "assets/images/products/0000017_hygiene-station-hc-xl.png",
+    "gallery": []
+  },
+  {
+    "item_name": "Almacén Automatizado",
+    "item_name_en": "Automated Storage System",
+    "description": "Sistema de almacenamiento automatizado para optimizar el flujo de trabajo en plantas industriales.",
+    "description_en": "Automated storage system to optimize workflow in industrial plants.",
+    "image_path": "assets/images/products/Almacen_automatizado.png",
+    "gallery": []
+  },
+  {
+    "item_name": "Gancho de Sangrado",
+    "item_name_en": "Bleeding Hook",
+    "description": "Gancho de sangrado profesional para procesamiento de carne. Acero inoxidable de alta calidad.",
+    "description_en": "Professional bleeding hook for meat processing. High-quality stainless steel.",
+    "image_path": "assets/images/products/gancho_sangrado.png",
+    "gallery": []
+  }
+]
+
+

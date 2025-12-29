@@ -1,0 +1,36 @@
+[
+  {
+    "item_name": "Cortadora de Costillas ST350",
+    "item_name_en": "ST350 Chicken Spare Rib Cutter",
+    "description": "Cortadora ST350 para costillas de pollo. Diseñada específicamente para muslos de pollo.",
+    "description_en": "ST350 chicken spare rib cutter. Specifically designed for chicken thighs.",
+    "image_path": "assets/images/products/st350-chicken-spare-rib-cutter-for-chicken-thighs.png",
+    "gallery": []
+  },
+  {
+    "item_name": "Peladora Automática ST600K para Aves",
+    "item_name_en": "ST600K Automatic Skinning Machine for Poultry",
+    "description": "Máquina peladora automática ST600K especializada en procesamiento de aves.",
+    "description_en": "ST600K automatic skinning machine specialized in poultry processing.",
+    "image_path": "assets/images/products/st600k-automatic-skinning-machine-for-poultry.png",
+    "gallery": []
+  },
+  {
+    "item_name": "Peladora de Pechuga ST650",
+    "item_name_en": "ST650 Automatic Chicken Whole Breast Skinner",
+    "description": "Peladora automática ST650 para pechuga entera de pollo. Alta velocidad y precisión.",
+    "description_en": "ST650 automatic whole chicken breast skinner. High speed and precision.",
+    "image_path": "assets/images/products/st650-automatic-chicken-whole-breast-skinner.png",
+    "gallery": []
+  },
+  {
+    "item_name": "Deshuesadora Automática ST828",
+    "item_name_en": "ST828 Automatic Chicken Deboner",
+    "description": "Deshuesadora automática de pollo ST828. Procesamiento eficiente de alta capacidad.",
+    "description_en": "ST828 automatic chicken deboner. Efficient high-capacity processing.",
+    "image_path": "assets/images/products/st828-automatic-chicken-deboner.png",
+    "gallery": []
+  }
+]
+
+

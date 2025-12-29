@@ -4,6 +4,9 @@
 // Color Palette: White, Blue & Green
 // ============================================
 
+// Google Fonts Import - Premium Typography
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
 // CSS Variables - Organizational Colors: Green, Blue, White
 :root {
   // ============================================
@@ -78,9 +81,10 @@
   --color-text-on-green: #ffffff;
   
   // ============================================
-  // TYPOGRAPHY
+  // TYPOGRAPHY - Premium Industrial Fonts
   // ============================================
-  --font-primary: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-primary: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display: 'Space Grotesk', 'Outfit', sans-serif;
   --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
   
   // ============================================
@@ -126,14 +130,25 @@
   --shadow-cta: 0 4px 20px var(--color-cta-glow);
   --shadow-cta-hover: 0 8px 30px var(--color-cta-glow-hover);
   
-  // ============================================
-  // GRADIENTS
-  // ============================================
-  --gradient-accent: linear-gradient(135deg, var(--color-accent) 0%, var(--color-blue) 100%);
-  --gradient-accent-full: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-secondary) 100%);
-  --gradient-cta: linear-gradient(135deg, var(--color-cta) 0%, var(--color-accent-secondary) 100%);
-  --gradient-hero: linear-gradient(135deg, #0c4a6e 0%, #075985 25%, #0369a1 50%, #059669 100%);
-  --gradient-hero-overlay: linear-gradient(180deg, rgba(12, 74, 110, 0.95) 0%, rgba(5, 150, 105, 0.85) 100%);
+// ============================================
+// GRADIENTS - Expanded Palette
+// ============================================
+--gradient-accent: linear-gradient(135deg, var(--color-accent) 0%, var(--color-blue) 100%);
+--gradient-accent-full: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-secondary) 100%);
+--gradient-cta: linear-gradient(135deg, var(--color-cta) 0%, var(--color-accent-secondary) 100%);
+--gradient-hero: linear-gradient(135deg, #0c4a6e 0%, #075985 25%, #0369a1 50%, #059669 100%);
+--gradient-hero-overlay: linear-gradient(180deg, rgba(12, 74, 110, 0.95) 0%, rgba(5, 150, 105, 0.85) 100%);
+
+// New Premium Gradients
+--gradient-ocean: linear-gradient(135deg, #0c4a6e 0%, #0891b2 50%, #06b6d4 100%);
+--gradient-forest: linear-gradient(135deg, #064e3b 0%, #059669 50%, #34d399 100%);
+--gradient-aurora: linear-gradient(135deg, #1e3a8a 0%, #7c3aed 50%, #c084fc 100%);
+--gradient-sunset: linear-gradient(135deg, #0369a1 0%, #059669 33%, #34d399 66%, #a7f3d0 100%);
+--gradient-steel: linear-gradient(135deg, #1e293b 0%, #334155 50%, #475569 100%);
+--gradient-mesh: linear-gradient(135deg, rgba(6, 182, 212, 0.15) 0%, rgba(52, 211, 153, 0.1) 50%, rgba(167, 139, 250, 0.08) 100%);
+--gradient-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+--gradient-card: linear-gradient(145deg, #ffffff 0%, #f0f9ff 50%, #ecfdf5 100%);
+--gradient-card-hover: linear-gradient(145deg, #ecfdf5 0%, #f0f9ff 50%, #ffffff 100%);
 }
 
 // Reset & Base
@@ -191,11 +206,12 @@ body::after {
   opacity: 1;
 }
 
-// Typography
+// Typography - Premium Industrial Style
 h1, h2, h3, h4, h5, h6 {
-  font-weight: 600;
-  line-height: 1.2;
-  letter-spacing: -0.02em;
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
   margin-bottom: var(--space-md);
 }
 
@@ -204,16 +220,19 @@ h1, h2 {
 }
 
 h1 {
-  font-size: clamp(2.5rem, 6vw, 4.5rem);
-  font-weight: 700;
+  font-size: clamp(3rem, 7vw, 5rem);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
 }
 
 h2 {
-  font-size: clamp(2rem, 4vw, 3rem);
+  font-size: clamp(2.25rem, 5vw, 3.5rem);
+  font-weight: 700;
 }
 
 h3 {
-  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
 }
 
 h4 {

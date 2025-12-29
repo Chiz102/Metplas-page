@@ -1,0 +1,44 @@
+[
+  {
+    "item_name": "Fusil D82-0A-30",
+    "item_name_en": "D82-0A-30 Sharpening Rod",
+    "description": "Fusil de afilado profesional D82-0A-30. Acero de alta calidad para mantenimiento de filos en cuchillos industriales.",
+    "description_en": "Professional D82-0A-30 sharpening rod. High-quality steel for maintaining edges on industrial knives.",
+    "image_path": "assets/images/products/dassaud-fils-fusils-D82-0A-30.png",
+    "gallery": []
+  },
+  {
+    "item_name": "Fusil D83-0A-30",
+    "item_name_en": "D83-0A-30 Sharpening Rod",
+    "description": "Fusil de afilado D83-0A-30 con superficie texturizada para afilado eficiente.",
+    "description_en": "D83-0A-30 sharpening rod with textured surface for efficient sharpening.",
+    "image_path": "assets/images/products/dassaud-fils-fusils-D83-0A-30.png",
+    "gallery": []
+  },
+  {
+    "item_name": "Fusil D84-0A-30",
+    "item_name_en": "D84-0A-30 Sharpening Rod",
+    "description": "Fusil profesional D84 de la serie 0A-30. Diseñado para uso intensivo en industria alimentaria.",
+    "description_en": "Professional D84 rod from the 0A-30 series. Designed for intensive use in the food industry.",
+    "image_path": "assets/images/products/dassaud-fils-D84-0A-30.png",
+    "gallery": []
+  },
+  {
+    "item_name": "Fusil D85-0A-30",
+    "item_name_en": "D85-0A-30 Sharpening Rod",
+    "description": "Fusil D85-0A-30 con acabado premium para afilado de precisión.",
+    "description_en": "D85-0A-30 sharpening rod with premium finish for precision sharpening.",
+    "image_path": "assets/images/products/dassaud-fils-fils-D85-0A-30.png",
+    "gallery": []
+  },
+  {
+    "item_name": "Fusil D86-0A-30",
+    "item_name_en": "D86-0A-30 Sharpening Rod",
+    "description": "Fusil de gama alta D86-0A-30. Material resistente para uso profesional continuo.",
+    "description_en": "High-end D86-0A-30 sharpening rod. Resistant material for continuous professional use.",
+    "image_path": "assets/images/products/dassaud-fils-fusils-D86-0A-30.png",
+    "gallery": []
+  }
+]
+
+
