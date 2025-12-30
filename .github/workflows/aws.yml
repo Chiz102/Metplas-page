@@ -36,14 +36,14 @@ jobs:
           switches: -avzr --delete
           path: dist/
           remote_path: /tmp/deploy-dist/
-          remote_host: ec2-98-92-184-34.compute-1.amazonaws.com
+          remote_host: ec2-98-92-130-146.compute-1.amazonaws.com
           remote_user: ubuntu
           remote_key: ${{ secrets.METPLAS }}
 
       - name: Configure Nginx + move files into web root
         uses: appleboy/ssh-action@v1.0.3
         with:
-          host: ec2-98-92-184-34.compute-1.amazonaws.com
+          host: ec2-98-92-130-146.compute-1.amazonaws.com
           username: ubuntu
           key: ${{ secrets.METPLAS}}
           script: |
