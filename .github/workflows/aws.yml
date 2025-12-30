@@ -1,0 +1,102 @@
+name: Build & Deploy Angular (Nginx on EC2)
+
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install deps
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Detect dist folder (print)
+        run: |
+          echo "dist contents:"
+          ls -la dist
+          echo "index.html locations:"
+          find dist -maxdepth 6 -name index.html -print
+
+      - name: Upload dist to EC2
+        uses: burnett01/rsync-deployments@7.0.2
+        with:
+          switches: -avzr --delete
+          path: dist/
+          remote_path: /tmp/deploy-dist/
+          remote_host: ec2-98-92-184-34.compute-1.amazonaws.com
+          remote_user: ubuntu
+          remote_key: ${{ secrets.METPLAS }}
+
+      - name: Configure Nginx + move files into web root
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ec2-98-92-184-34.compute-1.amazonaws.com
+          username: ubuntu
+          key: ${{ secrets.METPLAS}}
+          script: |
+            set -e
+
+            # Install nginx if missing
+            if ! command -v nginx >/dev/null 2>&1; then
+              sudo apt-get update
+              sudo apt-get install -y nginx
+              sudo systemctl enable --now nginx
+            fi
+
+            # Find the folder containing index.html inside /tmp/deploy-dist
+            INDEX_DIR="$(dirname "$(sudo find /tmp/deploy-dist -maxdepth 8 -type f -name index.html | head -n 1)")"
+            if [ -z "$INDEX_DIR" ]; then
+              echo "ERROR: No index.html found in /tmp/deploy-dist"
+              sudo find /tmp/deploy-dist -maxdepth 4 -type d -print
+              exit 1
+            fi
+            echo "Using index dir: $INDEX_DIR"
+
+            # Deploy to nginx web root
+            sudo mkdir -p /var/www/myapp
+            sudo rm -rf /var/www/myapp/*
+            sudo cp -r "$INDEX_DIR"/* /var/www/myapp/
+
+            sudo chown -R www-data:www-data /var/www/myapp
+            sudo find /var/www/myapp -type d -exec chmod 755 {} \;
+            sudo find /var/www/myapp -type f -exec chmod 644 {} \;
+
+            # Nginx site config (SPA routing)
+            sudo tee /etc/nginx/sites-available/myapp >/dev/null <<'NGINX'
+            server {
+                listen 80;
+                server_name _;
+
+                root /var/www/myapp;
+                index index.html;
+
+                location / {
+                    try_files $uri $uri/ /index.html;
+                }
+
+                location ~* \.(?:css|js|png|jpg|jpeg|gif|svg|ico|woff2?)$ {
+                    expires 30d;
+                    add_header Cache-Control "public, max-age=2592000, immutable";
+                    try_files $uri =404;
+                }
+            }
+            NGINX
+
+            sudo ln -sf /etc/nginx/sites-available/myapp /etc/nginx/sites-enabled/myapp
+            sudo rm -f /etc/nginx/sites-enabled/default || true
+
+            sudo nginx -t
+            sudo systemctl reload nginx
