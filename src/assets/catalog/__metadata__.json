@@ -76,32 +76,6 @@
         ]
       }
     },
-    "fabretall": {
-      "name": "Fabretall",
-      "description": "Especialistas en cuchillería industrial y equipos de corte para la industria alimentaria",
-      "description_en": "Specialists in industrial cutlery and cutting equipment for the food industry",
-      "country": "España",
-      "country_en": "Spain",
-      "website": "https://fabretall.com",
-      "icon": "content_cut",
-      "color": "#d32f2f",
-      "logo": "assets/images/suppliers/fabretall-logo.png",
-      "products_count": 6,
-      "files": [
-        "hygiene-equipment.json",
-        "professional-knives.json"
-      ],
-      "available_categories": {
-        "eng": [
-          "Hygiene Equipment",
-          "Professional Knives"
-        ],
-        "esp": [
-          "Equipos de Higiene",
-          "Cuchillos Profesionales"
-        ]
-      }
-    },
     "bobet": {
       "name": "Bobet",
       "description": "Fabricante francés de accesorios profesionales para cuchillería industrial",

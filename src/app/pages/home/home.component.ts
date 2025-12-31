@@ -85,7 +85,7 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
             <div class="floating-badge badge-1">
               <span class="material-icons-outlined">verified</span>
               <span>Certificado</span>
-            </div>
+          </div>
             <div class="floating-badge badge-2">
               <span class="material-icons-outlined">local_shipping</span>
               <span>Envío Nacional</span>
@@ -104,7 +104,7 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
         <span>Scroll</span>
       </div>
     </section>
-
+      
     <!-- Clients Trust Section -->
     <section class="clients-trust-section">
       <div class="container">
@@ -112,11 +112,11 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
           <span class="trust-label">EMPRESAS QUE CONFÍAN EN NOSOTROS</span>
         </div>
         <div class="clients-logos">
-          @for (client of clients; track client.name) {
+            @for (client of clients; track client.name) {
             <div class="client-logo-wrapper">
               <img [src]="client.logo" [alt]="client.name" />
-            </div>
-          }
+              </div>
+            }
         </div>
       </div>
     </section>
@@ -134,7 +134,7 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
           </span>
           <h2>Marcas <span class="text-gradient">Líderes</span> Mundiales</h2>
           <p>Trabajamos con los fabricantes más reconocidos de la industria para garantizar productos de la más alta calidad.</p>
-        </div>
+      </div>
         
         <div class="suppliers-grid">
           @for (supplier of suppliers; track supplier.slug; let i = $index) {
@@ -144,14 +144,14 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
               <div class="card-shine"></div>
               <div class="card-content">
                 <div class="supplier-logo-wrapper">
-                  @if (supplier.logo) {
-                    <img [src]="supplier.logo" [alt]="supplier.name">
-                  } @else {
-                    <span class="material-icons-outlined">{{ supplier.icon || 'business' }}</span>
-                  }
-                </div>
+                @if (supplier.logo) {
+                  <img [src]="supplier.logo" [alt]="supplier.name">
+                } @else {
+                  <span class="material-icons-outlined">{{ supplier.icon || 'business' }}</span>
+                }
+              </div>
                 <h4>{{ supplier.name }}</h4>
-                @if (supplier.country) {
+              @if (supplier.country) {
                   <span class="supplier-origin">
                     <span class="material-icons-outlined">public</span>
                     {{ supplier.country }}
@@ -162,8 +162,8 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
                 <span class="material-icons-outlined">arrow_forward</span>
               </div>
             </a>
-          }
-        </div>
+                }
+              </div>
         
         <div class="suppliers-cta">
           <a routerLink="/catalogo" class="btn btn-primary">
@@ -185,7 +185,7 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
           <h2>Equipos de <span class="text-gradient">Alta Calidad</span></h2>
           <p>Descubre nuestra selección de productos industriales premium de marcas líderes mundiales.</p>
         </div>
-        
+
         <div class="gallery-grid">
           @for (product of featuredProducts; track product.name; let i = $index) {
             <div class="gallery-item glass-card" 
@@ -195,7 +195,7 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
                 <img [src]="product.image" [alt]="product.name" loading="lazy">
                 <div class="gallery-overlay">
                   <span class="gallery-category">{{ product.category }}</span>
-                </div>
+              </div>
               </div>
               <div class="gallery-info">
                 <h4>{{ product.name }}</h4>
@@ -203,7 +203,7 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
               </div>
               <a [routerLink]="['/catalogo', product.supplierSlug]" class="gallery-link">
                 <span class="material-icons-outlined">arrow_forward</span>
-              </a>
+            </a>
             </div>
           }
         </div>
@@ -294,19 +294,19 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
         <div class="cta-orb orb-2"></div>
       </div>
       <div class="container">
-        <div class="cta-content">
+          <div class="cta-content">
           <span class="cta-tag">¿Listo para comenzar?</span>
           <h2>Optimiza tu operación <span class="text-white">con los mejores equipos</span></h2>
           <p>Contáctanos hoy y descubre cómo podemos ayudarte a mejorar la eficiencia de tu negocio.</p>
           <div class="cta-buttons">
             <a routerLink="/contacto" class="btn-cta-primary">
-              <span class="material-icons-outlined">chat</span>
+                <span class="material-icons-outlined">chat</span>
               Solicitar Cotización
-            </a>
+              </a>
             <a href="tel:+56996154315" class="btn-cta-secondary">
-              <span class="material-icons-outlined">phone</span>
-              +569 9615 4315
-            </a>
+                <span class="material-icons-outlined">phone</span>
+                +569 9615 4315
+              </a>
           </div>
         </div>
       </div>
@@ -503,7 +503,7 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
       }
       
       .line-1, .line-3 {
-        color: #ffffff;
+      color: #ffffff;
         text-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
       }
       
@@ -555,15 +555,15 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
         flex-direction: column;
         align-items: stretch;
       }
-    }
-    
+      }
+      
     .btn-hero-primary {
       display: inline-flex;
       align-items: center;
       gap: 12px;
       padding: 18px 32px;
       background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-      color: #ffffff;
+          color: #ffffff;
       font-size: 1.1rem;
       font-weight: 700;
       text-decoration: none;
@@ -585,10 +585,10 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
       &:hover {
         transform: translateY(-4px);
         box-shadow: 0 16px 40px rgba(16, 185, 129, 0.5);
-        
+    
         .btn-icon {
           transform: translateX(4px);
-        }
+      }
       }
     }
     
@@ -624,7 +624,7 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
       gap: var(--space-xl);
       
       @media (max-width: 1024px) {
-        justify-content: center;
+      justify-content: center;
       }
       
       @media (max-width: 600px) {
@@ -644,16 +644,16 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
           font-family: var(--font-display);
           font-size: 2.5rem;
           font-weight: 800;
-          color: #34d399;
+        color: #34d399;
           line-height: 1;
-        }
-        
+    }
+    
         .stat-label {
           font-size: 0.85rem;
           color: rgba(255, 255, 255, 0.6);
           text-transform: uppercase;
           letter-spacing: 0.1em;
-        }
+    }
       }
       
       .stat-divider {
@@ -681,9 +681,9 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
       height: 420px;
       margin: 0 auto;
     }
-    
+      
     .showcase-ring {
-      position: absolute;
+        position: absolute;
       border-radius: 50%;
       border: 2px solid rgba(255, 255, 255, 0.1);
       
@@ -778,7 +778,7 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
     }
     
     .scroll-indicator {
-      position: absolute;
+        position: absolute;
       bottom: 30px;
       left: 50%;
       transform: translateX(-50%);
@@ -893,11 +893,11 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
         
         img {
           filter: grayscale(0%);
-          opacity: 1;
+      opacity: 1;
         }
       }
     }
-    
+
     /* ===== SUPPLIERS SHOWCASE ===== */
     .suppliers-showcase {
       padding: var(--space-4xl) 0;
@@ -1173,13 +1173,13 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
           -webkit-text-fill-color: transparent;
           background-clip: text;
         }
+        }
       }
-    }
-    
+      
     .features-intro {
       font-size: 1.15rem;
       color: var(--color-text-secondary);
-      margin-bottom: var(--space-2xl);
+        margin-bottom: var(--space-2xl);
       max-width: 100%;
     }
     
@@ -1211,28 +1211,28 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
           .material-icons-outlined {
             color: #ffffff;
           }
+          }
         }
       }
-    }
-    
-    .feature-icon {
+      
+      .feature-icon {
       width: 56px;
       height: 56px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       background: linear-gradient(135deg, rgba(5, 150, 105, 0.1) 0%, rgba(59, 130, 246, 0.08) 100%);
       border-radius: var(--radius-lg);
-      flex-shrink: 0;
+        flex-shrink: 0;
       transition: all 0.3s ease;
-      
-      .material-icons-outlined {
-        font-size: 26px;
+        
+        .material-icons-outlined {
+          font-size: 26px;
         color: var(--color-accent);
         transition: all 0.3s ease;
+        }
       }
-    }
-    
+      
     .feature-text {
       h4 {
         font-size: 1.1rem;
@@ -1286,15 +1286,15 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
       position: relative;
       height: 450px;
     }
-    
+      
     .vcard {
-      position: absolute;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
       justify-content: center;
       gap: var(--space-md);
-      border-radius: var(--radius-xl);
+        border-radius: var(--radius-xl);
       box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
       
       &.vcard-1 {
@@ -1356,11 +1356,11 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
       padding: var(--space-4xl) 0;
       overflow: hidden;
     }
-    
+      
     .cta-bg {
-      position: absolute;
-      inset: 0;
-      background: 
+        position: absolute;
+        inset: 0;
+        background: 
         linear-gradient(135deg, 
           #021526 0%, 
           #03346E 25%, 
@@ -1426,7 +1426,7 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
       border: 1px solid rgba(52, 211, 153, 0.4);
       border-radius: 100px;
       font-size: 0.85rem;
-      font-weight: 700;
+        font-weight: 700;
       color: #34d399;
       text-transform: uppercase;
       letter-spacing: 0.1em;
@@ -1455,16 +1455,16 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
       gap: var(--space-lg);
       flex-wrap: wrap;
     }
-    
+      
     .btn-cta-primary {
       display: inline-flex;
       align-items: center;
       gap: 10px;
       padding: 18px 32px;
-      background: #ffffff;
+        background: #ffffff;
       color: #0a3358;
       font-size: 1.05rem;
-      font-weight: 700;
+        font-weight: 700;
       text-decoration: none;
       border-radius: 14px;
       transition: all 0.3s ease;
@@ -1473,24 +1473,24 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
       .material-icons-outlined {
         font-size: 22px;
       }
-      
-      &:hover {
+        
+        &:hover {
         background: #34d399;
-        color: #ffffff;
+          color: #ffffff;
         transform: translateY(-4px);
         box-shadow: 0 16px 40px rgba(52, 211, 153, 0.4);
+        }
       }
-    }
-    
+      
     .btn-cta-secondary {
       display: inline-flex;
       align-items: center;
       gap: 10px;
       padding: 18px 28px;
-      background: rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.1);
       backdrop-filter: blur(10px);
       border: 2px solid rgba(255, 255, 255, 0.3);
-      color: #ffffff;
+        color: #ffffff;
       font-size: 1rem;
       font-weight: 600;
       text-decoration: none;
@@ -1500,9 +1500,9 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
       .material-icons-outlined {
         font-size: 20px;
       }
-      
-      &:hover {
-        background: rgba(255, 255, 255, 0.2);
+        
+        &:hover {
+          background: rgba(255, 255, 255, 0.2);
         border-color: rgba(255, 255, 255, 0.5);
         transform: translateY(-2px);
       }
@@ -1599,8 +1599,8 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
         
         .material-icons-outlined {
           transform: translateX(6px);
-        }
       }
+    }
     }
     
     /* ===== PRODUCTS GALLERY ===== */
@@ -1629,10 +1629,10 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
       
       &::after {
         content: '';
-        position: absolute;
-        top: 0;
+      position: absolute;
+      top: 0;
         left: 0;
-        right: 0;
+      right: 0;
         height: 4px;
         background: linear-gradient(90deg, 
           transparent 0%, 
@@ -1719,7 +1719,7 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
     }
     
     .gallery-overlay {
-      position: absolute;
+        position: absolute;
       inset: 0;
       background: linear-gradient(180deg, 
         rgba(6, 182, 212, 0.1) 0%, 
@@ -1892,18 +1892,18 @@ export class HomeComponent implements OnInit, AfterViewInit {
       supplierSlug: 'ziegler'
     },
     { 
-      name: 'Cuchillo Profesional', 
-      image: 'assets/images/products/ganivet-carnisser-caribou.jpg',
-      category: 'Cuchillería',
-      supplier: 'Fabretall',
-      supplierSlug: 'fabretall'
+      name: 'Trimmer Neumático IBEX', 
+      image: 'assets/images/products/ibex/pneumatic-trimmer/Pneumatic Trimmer 1.jpg',
+      category: 'Equipos',
+      supplier: 'IBEX',
+      supplierSlug: 'ibex'
     },
     { 
-      name: 'Estación de Higiene', 
-      image: 'assets/images/products/0000017_hygiene-station-hc-xl.png',
-      category: 'Higiene',
-      supplier: 'Fabretall',
-      supplierSlug: 'fabretall'
+      name: 'Fusil Afilador Dassaud', 
+      image: 'assets/images/products/dassaud/sharpening-steels/product-1.jpg',
+      category: 'Afilado',
+      supplier: 'Dassaud',
+      supplierSlug: 'dassaud'
     }
   ];
   
