@@ -42,6 +42,9 @@ jobs:
 
       - name: Configure Nginx + HTTPS + Deploy site
         uses: appleboy/ssh-action@v1.0.3
+        env:
+          SSL_CRT: ${{ secrets.SSL_CRT }}
+          SSL_KEY: ${{ secrets.SSL_KEY }}
         with:
           host: ec2-98-92-130-146.compute-1.amazonaws.com
           username: ubuntu
