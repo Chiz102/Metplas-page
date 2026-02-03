@@ -66,21 +66,21 @@ jobs:
             echo "Using index dir: $INDEX_DIR"
 
             # Deploy to nginx web root
-            sudo mkdir -p /var/www/myapp
-            sudo rm -rf /var/www/myapp/*
-            sudo cp -r "$INDEX_DIR"/* /var/www/myapp/
+            sudo mkdir -p /var/www/metplastech.cl
+            sudo rm -rf /var/www/metplastech.cl/*
+            sudo cp -r "$INDEX_DIR"/* /var/www/metplastech.cl/
 
-            sudo chown -R www-data:www-data /var/www/myapp
-            sudo find /var/www/myapp -type d -exec chmod 755 {} \;
-            sudo find /var/www/myapp -type f -exec chmod 644 {} \;
+            sudo chown -R www-data:www-data /var/www/metplastech.cl
+            sudo find /var/www/metplastech.cl -type d -exec chmod 755 {} \;
+            sudo find /var/www/metplastech.cl -type f -exec chmod 644 {} \;
 
             # Nginx site config (SPA routing)
-            sudo tee /etc/nginx/sites-available/myapp >/dev/null <<'NGINX'
+            sudo tee /etc/nginx/sites-available/metplastech.cl >/dev/null <<'NGINX'
             server {
                 listen 80;
                 server_name _;
 
-                root /var/www/myapp;
+                root /var/www/metplastech.cl;
                 index index.html;
 
                 location / {
@@ -95,7 +95,7 @@ jobs:
             }
             NGINX
 
-            sudo ln -sf /etc/nginx/sites-available/myapp /etc/nginx/sites-enabled/myapp
+            sudo ln -sf /etc/nginx/sites-available/metplastech.cl /etc/nginx/sites-enabled/metplastech.cl
             sudo rm -f /etc/nginx/sites-enabled/default || true
 
             sudo nginx -t
