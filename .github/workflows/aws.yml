@@ -65,7 +65,7 @@ jobs:
             sudo chmod 700 /etc/nginx/ssl/metplastech.cl
 
             echo "=== Writing SSL certs from secrets ==="
-            sudo tee /etc/nginx/ssl/metplastech.cl/cert.crt >/dev/null <<<"$SSL_cert"
+            sudo tee /etc/nginx/ssl/metplastech.cl/cert.crt >/dev/null <<<"$SSL_CRT"
             sudo tee /etc/nginx/ssl/metplastech.cl/privkey.key >/dev/null <<<"$SSL_KEY"
             sudo chmod 600 /etc/nginx/ssl/metplastech.cl/*
 
