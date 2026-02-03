@@ -46,7 +46,7 @@ jobs:
           host: ec2-98-92-130-146.compute-1.amazonaws.com
           username: ubuntu
           key: ${{ secrets.METPLAS }}
-          envs: SSL_cert,SSL_KEY
+          envs: SSL_CRT,SSL_KEY
           script: |
             set -e
 
