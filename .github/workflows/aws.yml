@@ -25,21 +25,22 @@ jobs:
           npm ci
           npm run build
 
-      # 4. PREPARE CONFIG FILES (Create them locally to avoid SSH errors)
-      - name: Create Config Files
+      # 4. PREPARE CONFIG FILES (Put them INSIDE 'dist' folder)
+      - name: Create Config Files in Dist
         env:
           SSL_CRT: ${{ secrets.SSL_CRT }}
           SSL_KEY: ${{ secrets.SSL_KEY }}
         run: |
-          # Create a 'configs' folder to hold our server files
-          mkdir -p configs/ssl
-          
-          # 1. Save SSL Secrets to local files
-          echo "$SSL_CRT" > configs/ssl/cert.crt
-          echo "$SSL_KEY" > configs/ssl/privkey.key
-          
-          # 2. Create Nginx Config File
-          cat > configs/metplastech.cl <<'EOF'
+          # Create an 'ssl' folder INSIDE dist
+          mkdir -p dist/ssl
+           
+          # 1. Write Secrets to files inside dist/ssl
+          echo "$SSL_CRT" > dist/ssl/cert.crt
+          echo "$SSL_KEY" > dist/ssl/privkey.key
+           
+          # 2. Write Nginx Config to dist/metplastech.cl
+          # We use 'EOF' (quoted) to prevent $host and $uri from being expanded by the shell
+          cat > dist/metplastech.cl <<'EOF'
           server {
               listen 80;
               server_name metplastech.cl www.metplastech.cl;
@@ -64,19 +65,18 @@ jobs:
           }
           EOF
 
-      # 5. Upload Everything (App + Configs) to EC2
-      - name: Upload Artifacts to EC2
+      # 5. Upload ONLY the 'dist' folder (Contains App + Configs now)
+      - name: Upload dist to EC2
         uses: burnett01/rsync-deployments@7.0.2
         with:
           switches: -avzr --delete
-          # We upload both the 'dist' folder and our new 'configs' folder
-          path: dist/ configs/
+          path: dist/
           remote_path: /tmp/deploy-dist/
           remote_host: ec2-98-92-130-146.compute-1.amazonaws.com
           remote_user: ubuntu
           remote_key: ${{ secrets.METPLAS }}
 
-      # 6. SSH: Move files to final destination (Simple & Safe)
+      # 6. SSH: Move files & Configure Nginx (CORRECTED)
       - name: Move Files & Reload Nginx
         uses: appleboy/ssh-action@v1.0.3
         with:
@@ -85,49 +85,62 @@ jobs:
           key: ${{ secrets.METPLAS }}
           script: |
             set -e
+            echo "--- Starting Deployment ---"
 
-            # --- A) Install Nginx if missing ---
+            # A) Install Nginx if missing
             if ! command -v nginx >/dev/null 2>&1; then
               sudo apt-get update && sudo apt-get install -y nginx
               sudo systemctl enable --now nginx
             fi
 
-            # --- B) Move SSL Certificates ---
-            # We look for the 'configs/ssl' folder we uploaded to /tmp
+            # B) Move SSL Certificates
+            # Checks if upload folder exists before moving
             if [ -d "/tmp/deploy-dist/ssl" ]; then
               sudo mkdir -p /etc/nginx/ssl/metplastech.cl
-              sudo chmod 777 /etc/nginx/ssl/metplastech.cl # Open briefly
-              
               sudo cp /tmp/deploy-dist/ssl/cert.crt /etc/nginx/ssl/metplastech.cl/cert.crt
               sudo cp /tmp/deploy-dist/ssl/privkey.key /etc/nginx/ssl/metplastech.cl/privkey.key
               
-              # Lock it down immediately
+              # Lock down permissions
               sudo chmod 700 /etc/nginx/ssl/metplastech.cl
-              sudo chmod 600 /etc/nginx/ssl/metplastech.cl/cert.crt
-              sudo chmod 600 /etc/nginx/ssl/metplastech.cl/privkey.key
+              sudo chmod 600 /etc/nginx/ssl/metplastech.cl/*
               echo "SSL Certs updated."
             fi
 
-            # --- C) Move Website Files ---
-            # Find the index.html inside the uploaded dist folder
+            # C) Move Website Files
+            # Automatically find index.html to locate the build root
             INDEX_PATH=$(find /tmp/deploy-dist -name index.html | head -n 1)
             INDEX_DIR=$(dirname "$INDEX_PATH")
 
             if [ -n "$INDEX_DIR" ]; then
               sudo mkdir -p /var/www/metplastech.cl/public_html
+              # Clear old files
               sudo rm -rf /var/www/metplastech.cl/public_html/*
+              # Move new files
               sudo cp -r "$INDEX_DIR"/* /var/www/metplastech.cl/public_html/
               
-              # Permissions
+              # Set Permissions
               sudo chown -R www-data:www-data /var/www/metplastech.cl
               sudo find /var/www/metplastech.cl -type d -exec chmod 755 {} \;
               sudo find /var/www/metplastech.cl -type f -exec chmod 644 {} \;
               echo "Website files updated."
             else
-              echo "ERROR: No index.html found in upload!"
+              echo "ERROR: Could not find index.html in uploaded files."
               exit 1
             fi
 
-            # --- D) Move Nginx Config ---
+            # D) Apply Nginx Config
+            # Move the config file from temp to sites-available
             if [ -f "/tmp/deploy-dist/metplastech.cl" ]; then
-              sudo cp /tmp/
+              sudo cp /tmp/deploy-dist/metplastech.cl /etc/nginx/sites-available/metplastech.cl
+              # Symlink to sites-enabled
+              sudo ln -sf /etc/nginx/sites-available/metplastech.cl /etc/nginx/sites-enabled/
+              # Remove default nginx config to prevent conflicts
+              sudo rm -f /etc/nginx/sites-enabled/default
+              echo "Nginx configuration updated."
+            fi
+
+            # E) Test & Restart
+            echo "Testing Nginx configuration..."
+            sudo nginx -t
+            sudo systemctl reload nginx
+            echo "--- Deployment Successfully Completed ---"
