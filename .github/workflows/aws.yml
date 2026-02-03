@@ -66,7 +66,7 @@ jobs:
             echo "Using index dir: $INDEX_DIR"
 
             # Deploy to nginx web root
-            sudo mkdir -p /var/www/metplastech.cl
+            sudo mkdir -p /var/www/metplastech.cl/public_html
             sudo rm -rf /var/www/metplastech.cl/*
             sudo cp -r "$INDEX_DIR"/* /var/www/metplastech.cl/public_html
 
