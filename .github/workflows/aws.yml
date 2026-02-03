@@ -9,63 +9,27 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Checkout Code
       - uses: actions/checkout@v4
 
-      # 2. Setup Node
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: "20"
           cache: "npm"
 
-      # 3. Install & Build
-      - name: Install & Build
+      - name: Install deps
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Detect dist folder (print)
         run: |
-          npm ci
-          npm run build
+          echo "dist contents:"
+          ls -la dist
+          echo "index.html locations:"
+          find dist -maxdepth 6 -name index.html -print
 
-      # 4. PREPARE CONFIG FILES (Put them INSIDE 'dist' folder)
-      - name: Create Config Files in Dist
-        env:
-          SSL_CRT: ${{ secrets.SSL_CRT }}
-          SSL_KEY: ${{ secrets.SSL_KEY }}
-        run: |
-          # Create an 'ssl' folder INSIDE dist
-          mkdir -p dist/ssl
-           
-          # 1. Write Secrets to files inside dist/ssl
-          echo "$SSL_CRT" > dist/ssl/cert.crt
-          echo "$SSL_KEY" > dist/ssl/privkey.key
-           
-          # 2. Write Nginx Config to dist/metplastech.cl
-          # We use 'EOF' (quoted) to prevent $host and $uri from being expanded by the shell
-          cat > dist/metplastech.cl <<'EOF'
-          server {
-              listen 80;
-              server_name metplastech.cl www.metplastech.cl;
-              return 301 https://$host$request_uri;
-          }
-
-          server {
-              listen 443 ssl http2;
-              server_name metplastech.cl www.metplastech.cl;
-
-              root /var/www/metplastech.cl/public_html;
-              index index.html index.php;
-
-              ssl_certificate      /etc/nginx/ssl/metplastech.cl/cert.crt;
-              ssl_certificate_key  /etc/nginx/ssl/metplastech.cl/privkey.key;
-
-              ssl_protocols TLSv1.2 TLSv1.3;
-
-              location / {
-                  try_files $uri $uri/ /index.html;
-              }
-          }
-          EOF
-
-      # 5. Upload ONLY the 'dist' folder (Contains App + Configs now)
       - name: Upload dist to EC2
         uses: burnett01/rsync-deployments@7.0.2
         with:
@@ -76,71 +40,83 @@ jobs:
           remote_user: ubuntu
           remote_key: ${{ secrets.METPLAS }}
 
-      # 6. SSH: Move files & Configure Nginx (CORRECTED)
-      - name: Move Files & Reload Nginx
+      - name: Configure Nginx + HTTPS + Deploy site
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ec2-98-92-130-146.compute-1.amazonaws.com
           username: ubuntu
           key: ${{ secrets.METPLAS }}
+          envs: SSL_cert,SSL_KEY
           script: |
             set -e
-            echo "--- Starting Deployment ---"
 
-            # A) Install Nginx if missing
+            echo "=== Installing Nginx if needed ==="
             if ! command -v nginx >/dev/null 2>&1; then
-              sudo apt-get update && sudo apt-get install -y nginx
+              sudo apt update
+              sudo apt install -y nginx
               sudo systemctl enable --now nginx
             fi
 
-            # B) Move SSL Certificates
-            # Checks if upload folder exists before moving
-            if [ -d "/tmp/deploy-dist/ssl" ]; then
-              sudo mkdir -p /etc/nginx/ssl/metplastech.cl
-              sudo cp /tmp/deploy-dist/ssl/cert.crt /etc/nginx/ssl/metplastech.cl/cert.crt
-              sudo cp /tmp/deploy-dist/ssl/privkey.key /etc/nginx/ssl/metplastech.cl/privkey.key
-              
-              # Lock down permissions
-              sudo chmod 700 /etc/nginx/ssl/metplastech.cl
-              sudo chmod 600 /etc/nginx/ssl/metplastech.cl/*
-              echo "SSL Certs updated."
-            fi
+            echo "=== Firewall ==="
+            sudo ufw allow 'Nginx Full' || true
 
-            # C) Move Website Files
-            # Automatically find index.html to locate the build root
-            INDEX_PATH=$(find /tmp/deploy-dist -name index.html | head -n 1)
-            INDEX_DIR=$(dirname "$INDEX_PATH")
+            echo "=== SSL directories ==="
+            sudo mkdir -p /etc/nginx/ssl/metplastech.cl
+            sudo chmod 700 /etc/nginx/ssl/metplastech.cl
 
-            if [ -n "$INDEX_DIR" ]; then
-              sudo mkdir -p /var/www/metplastech.cl/public_html
-              # Clear old files
-              sudo rm -rf /var/www/metplastech.cl/public_html/*
-              # Move new files
-              sudo cp -r "$INDEX_DIR"/* /var/www/metplastech.cl/public_html/
-              
-              # Set Permissions
-              sudo chown -R www-data:www-data /var/www/metplastech.cl
-              sudo find /var/www/metplastech.cl -type d -exec chmod 755 {} \;
-              sudo find /var/www/metplastech.cl -type f -exec chmod 644 {} \;
-              echo "Website files updated."
-            else
-              echo "ERROR: Could not find index.html in uploaded files."
+            echo "=== Writing SSL certs from secrets ==="
+            sudo tee /etc/nginx/ssl/metplastech.cl/cert.crt >/dev/null <<<"$SSL_cert"
+            sudo tee /etc/nginx/ssl/metplastech.cl/privkey.key >/dev/null <<<"$SSL_KEY"
+            sudo chmod 600 /etc/nginx/ssl/metplastech.cl/*
+
+            echo "=== Finding Angular build ==="
+            INDEX_DIR="$(dirname "$(sudo find /tmp/deploy-dist -maxdepth 8 -type f -name index.html | head -n 1)")"
+            if [ -z "$INDEX_DIR" ]; then
+              echo "ERROR: index.html not found"
               exit 1
             fi
+            echo "Using build dir: $INDEX_DIR"
 
-            # D) Apply Nginx Config
-            # Move the config file from temp to sites-available
-            if [ -f "/tmp/deploy-dist/metplastech.cl" ]; then
-              sudo cp /tmp/deploy-dist/metplastech.cl /etc/nginx/sites-available/metplastech.cl
-              # Symlink to sites-enabled
-              sudo ln -sf /etc/nginx/sites-available/metplastech.cl /etc/nginx/sites-enabled/
-              # Remove default nginx config to prevent conflicts
-              sudo rm -f /etc/nginx/sites-enabled/default
-              echo "Nginx configuration updated."
-            fi
+            echo "=== Deploying web files ==="
+            sudo mkdir -p /var/www/metplastech.cl/public_html
+            sudo rm -rf /var/www/metplastech.cl/public_html/*
+            sudo cp -r "$INDEX_DIR"/* /var/www/metplastech.cl/public_html/
 
-            # E) Test & Restart
-            echo "Testing Nginx configuration..."
+            sudo chown -R www-data:www-data /var/www/metplastech.cl
+            sudo chmod -R 755 /var/www/metplastech.cl
+
+            echo "=== Writing Nginx vhost ==="
+            sudo tee /etc/nginx/sites-available/metplastech.cl >/dev/null <<'NGINX'
+            server {
+                listen 80;
+                server_name metplastech.cl www.metplastech.cl;
+                return 301 https://$host$request_uri;
+            }
+
+            server {
+                listen 443 ssl http2;
+                server_name metplastech.cl www.metplastech.cl;
+
+                root /var/www/metplastech.cl/public_html;
+                index index.html index.php;
+
+                ssl_certificate     /etc/nginx/ssl/metplastech.cl/cert.crt;
+                ssl_certificate_key /etc/nginx/ssl/metplastech.cl/privkey.key;
+
+                ssl_protocols TLSv1.2 TLSv1.3;
+
+                location / {
+                    try_files $uri $uri/ /index.html;
+                }
+            }
+            NGINX
+
+            echo "=== Enabling site ==="
+            sudo ln -sf /etc/nginx/sites-available/metplastech.cl /etc/nginx/sites-enabled/metplastech.cl
+            sudo rm -f /etc/nginx/sites-enabled/default || true
+
+            echo "=== Testing & Reloading Nginx ==="
             sudo nginx -t
             sudo systemctl reload nginx
-            echo "--- Deployment Successfully Completed ---"
+
+            echo "=== DEPLOYMENT COMPLETE ==="
