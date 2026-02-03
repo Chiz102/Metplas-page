@@ -68,7 +68,7 @@ jobs:
             # Deploy to nginx web root
             sudo mkdir -p /var/www/metplastech.cl
             sudo rm -rf /var/www/metplastech.cl/*
-            sudo cp -r "$INDEX_DIR"/* /var/www/metplastech.cl/
+            sudo cp -r "$INDEX_DIR"/* /var/www/metplastech.cl/public_html
 
             sudo chown -R www-data:www-data /var/www/metplastech.cl
             sudo find /var/www/metplastech.cl -type d -exec chmod 755 {} \;
