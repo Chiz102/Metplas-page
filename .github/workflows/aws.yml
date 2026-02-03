@@ -1,48 +1,12 @@
-name: Build & Deploy Angular (Nginx on EC2)
-
-on:
-  push:
-    branches: ["main"]
-
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: "20"
-          cache: "npm"
-
-      - name: Install deps
-        run: npm ci
-
-      - name: Build
-        run: npm run build
-
-      - name: Upload dist to EC2
-        uses: burnett01/rsync-deployments@7.0.2
-        with:
-          switches: -avzr --delete
-          path: dist/
-          remote_path: /tmp/deploy-dist/
-          remote_host: ec2-98-92-130-146.compute-1.amazonaws.com
-          remote_user: ubuntu
-          remote_key: ${{ secrets.METPLAS }}
-
-      - name: Configure Nginx + SSL + Deploy
+- name: Configure Nginx + SSL + Deploy
         uses: appleboy/ssh-action@v1.0.3
         env:
-          # 1. Pass the secrets into the remote environment
           SSL_CRT: ${{ secrets.SSL_CRT }}
           SSL_KEY: ${{ secrets.SSL_KEY }}
         with:
           host: ec2-98-92-130-146.compute-1.amazonaws.com
           username: ubuntu
           key: ${{ secrets.METPLAS }}
-          # 2. Tell the script to use these variables
           envs: SSL_CRT,SSL_KEY
           script: |
             set -e
@@ -54,18 +18,20 @@ jobs:
               sudo systemctl enable --now nginx
             fi
 
-            # --- B) Create SSL Files (Integrates your Secrets) ---
+            # --- B) Create SSL Files ---
             sudo mkdir -p /etc/nginx/ssl/metplastech.cl
-            sudo chmod 700 /etc/nginx/ssl/metplastech.cl
+            # Temporarily open permissions so we can write variables
+            sudo chmod 777 /etc/nginx/ssl/metplastech.cl
 
-            # Write the secrets to the actual files on the server
             echo "$SSL_CRT" | sudo tee /etc/nginx/ssl/metplastech.cl/cert.crt > /dev/null
             echo "$SSL_KEY" | sudo tee /etc/nginx/ssl/metplastech.cl/privkey.key > /dev/null
             
-            # Secure the keys
-            sudo chmod 600 /etc/nginx/ssl/metplastech.cl/*
+            # Secure the folder and files specifically (Avoiding wildcard *)
+            sudo chmod 700 /etc/nginx/ssl/metplastech.cl
+            sudo chmod 600 /etc/nginx/ssl/metplastech.cl/cert.crt
+            sudo chmod 600 /etc/nginx/ssl/metplastech.cl/privkey.key
 
-            # --- C) Prepare Web Folder (public_html) ---
+            # --- C) Prepare Web Folder ---
             INDEX_DIR="$(dirname "$(sudo find /tmp/deploy-dist -maxdepth 8 -type f -name index.html | head -n 1)")"
             if [ -z "$INDEX_DIR" ]; then
               echo "ERROR: No index.html found"
@@ -73,17 +39,14 @@ jobs:
             fi
 
             sudo mkdir -p /var/www/metplastech.cl/public_html
-            # Empty the folder before copying
             sudo rm -rf /var/www/metplastech.cl/public_html/*
-            # Copy files
             sudo cp -r "$INDEX_DIR"/* /var/www/metplastech.cl/public_html
 
-            # Set Permissions
             sudo chown -R www-data:www-data /var/www/metplastech.cl
             sudo find /var/www/metplastech.cl -type d -exec chmod 755 {} \;
             sudo find /var/www/metplastech.cl -type f -exec chmod 644 {} \;
 
-            # --- D) Write Nginx Config (Matches your Manual Steps) ---
+            # --- D) Write Nginx Config ---
             sudo tee /etc/nginx/sites-available/metplastech.cl >/dev/null <<'NGINX'
             server {
                 listen 80;
@@ -98,7 +61,6 @@ jobs:
                 root /var/www/metplastech.cl/public_html;
                 index index.html index.php;
 
-                # Reference the files we created in Step B
                 ssl_certificate      /etc/nginx/ssl/metplastech.cl/cert.crt;
                 ssl_certificate_key  /etc/nginx/ssl/metplastech.cl/privkey.key;
 
@@ -117,4 +79,4 @@ jobs:
             sudo nginx -t
             sudo systemctl reload nginx
             
-            echo "Deployment with SSL Integration Complete!"
+            echo "Deployment SUCCESS!"
