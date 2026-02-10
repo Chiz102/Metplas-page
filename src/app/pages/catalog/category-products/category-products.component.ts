@@ -14,16 +14,17 @@ import { Product } from '../../../core/models/catalog.model';
     <nav class="breadcrumb">
       <div class="container">
         <a routerLink="/catalogo">{{ 'catalog.catalog' | translate }}</a>
-        <span class="separator">/</span>
+        <span class="sep">/</span>
         <a [routerLink]="['/catalogo', supplierSlug]">{{ supplier?.name }}</a>
-        <span class="separator">/</span>
+        <span class="sep">/</span>
         <span class="current">{{ categoryName }}</span>
       </div>
     </nav>
 
     <!-- Hero -->
-    <section class="category-hero" [style.--supplier-color]="supplier?.color">
-      <div class="container">
+    <section class="category-hero">
+      <div class="hero-deco-tl"></div>
+      <div class="container hero-inner">
         <a [routerLink]="['/catalogo', supplierSlug]" class="back-link">
           <span class="material-icons-outlined">arrow_back</span>
           {{ 'catalog.backToCategories' | translate }}
@@ -32,17 +33,18 @@ import { Product } from '../../../core/models/catalog.model';
         <p class="product-count">{{ products.length }} {{ 'catalog.productsAvailable' | translate }}</p>
       </div>
     </section>
+    
+    <div class="deco-bar"></div>
 
     <!-- Products Grid -->
-    <section class="section products-section">
+    <section class="products-section">
       <div class="container">
         @if (products.length > 0) {
           <div class="products-grid">
             @for (product of products; track product.id; let i = $index) {
               <a [routerLink]="['/producto', supplierSlug, product.slug]" 
                  class="product-card" 
-                 [style.animation-delay]="i * 60 + 'ms'"
-                 [style.--supplier-color]="supplier?.color">
+                 [style.animation-delay]="i * 60 + 'ms'">
                 <div class="product-image">
                   @if (product.image) {
                     <img [src]="product.image" [alt]="product.name" loading="lazy">
@@ -72,7 +74,7 @@ import { Product } from '../../../core/models/catalog.model';
             <span class="material-icons-outlined">inventory_2</span>
             <h3>{{ 'catalog.noProducts' | translate }}</h3>
             <p>{{ 'catalog.noProductsDesc' | translate }}</p>
-            <a [routerLink]="['/catalogo', supplierSlug]" class="btn btn-primary">
+            <a [routerLink]="['/catalogo', supplierSlug]" class="btn-green">
               <span class="material-icons-outlined">arrow_back</span>
               {{ 'catalog.backToCategories' | translate }}
             </a>
@@ -82,121 +84,113 @@ import { Product } from '../../../core/models/catalog.model';
     </section>
   `,
   styles: [`
+    :host { display: block; }
+    
     .breadcrumb {
-      padding: calc(80px + var(--space-lg)) 0 var(--space-lg);
-      background: var(--color-surface);
-      border-bottom: 1px solid var(--color-border);
+      padding: calc(80px + 1rem) 0 1rem;
+      background: #fff;
+      border-bottom: 1px solid #e2e8f0;
       
       .container {
         display: flex;
         align-items: center;
-        gap: var(--space-sm);
+        gap: 0.5rem;
         font-size: 0.9rem;
         flex-wrap: wrap;
       }
       
       a {
-        color: var(--color-text-muted);
+        color: #718096;
         text-decoration: none;
-        transition: color var(--transition-fast);
-        
-        &:hover {
-          color: var(--color-accent);
-        }
+        &:hover { color: #229443; }
       }
       
-      .separator {
-        color: var(--color-text-muted);
-      }
-      
-      .current {
-        color: var(--color-text-primary);
-        font-weight: 500;
-      }
+      .sep { color: #cbd5e1; }
+      .current { color: #0a2540; font-weight: 600; }
     }
     
     .category-hero {
-      padding: var(--space-2xl) 0;
-      background: linear-gradient(135deg, 
-        color-mix(in srgb, var(--supplier-color, var(--color-accent)) 10%, transparent) 0%,
-        transparent 50%);
+      position: relative;
+      padding: 2.5rem 0;
+      background: #fff;
+      overflow: hidden;
+    }
+    
+    .hero-deco-tl {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100px; height: 100%;
+      background: linear-gradient(135deg, #229443 0%, #229443 12%, #104F8E 12%, #104F8E 24%, transparent 24%);
+      pointer-events: none;
+      @media (max-width: 768px) { display: none; }
+    }
+    
+    .hero-inner { position: relative; z-index: 1; }
+    
+    .deco-bar {
+      height: 6px;
+      background: linear-gradient(90deg, #229443 0%, #104F8E 50%, #229443 100%);
+    }
+    
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #718096;
+      text-decoration: none;
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+      transition: color 0.2s ease;
       
-      .back-link {
-        display: inline-flex;
-        align-items: center;
-        gap: var(--space-sm);
-        color: var(--color-text-muted);
-        text-decoration: none;
-        font-size: 0.9rem;
-        margin-bottom: var(--space-lg);
-        transition: color var(--transition-fast);
-        
-        .material-icons-outlined {
-          font-size: 18px;
-        }
-        
-        &:hover {
-          color: var(--supplier-color, var(--color-accent));
-        }
-      }
-      
-      h1 {
-        font-size: 2.25rem;
-        margin-bottom: var(--space-sm);
-        color: var(--color-text-primary);
-      }
-      
-      .product-count {
-        color: var(--color-text-muted);
-        font-size: 1rem;
-      }
+      .material-icons-outlined { font-size: 18px; }
+      &:hover { color: #229443; }
+    }
+    
+    h1 {
+      font-size: 2.25rem;
+      color: #0a2540;
+      margin-bottom: 0.5rem;
+    }
+    
+    .product-count {
+      color: #718096;
+      font-size: 1rem;
+      font-style: italic;
     }
     
     .products-section {
-      padding-top: var(--space-2xl);
+      padding: 3rem 0 4rem;
+      background: #fff;
     }
     
     .products-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: var(--space-xl);
+      gap: 1.5rem;
       
-      @media (max-width: 1200px) {
-        grid-template-columns: repeat(3, 1fr);
-      }
-      
-      @media (max-width: 900px) {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      
-      @media (max-width: 540px) {
-        grid-template-columns: 1fr;
-      }
+      @media (max-width: 1200px) { grid-template-columns: repeat(3, 1fr); }
+      @media (max-width: 900px) { grid-template-columns: repeat(2, 1fr); }
+      @media (max-width: 540px) { grid-template-columns: 1fr; }
     }
     
     .product-card {
-      background: var(--color-surface);
-      border: 1px solid var(--color-border);
-      border-radius: var(--radius-xl);
+      background: #fff;
+      border: 2px solid #e2e8f0;
+      border-radius: 14px;
       overflow: hidden;
       text-decoration: none;
-      transition: all var(--transition-base);
+      transition: all 0.3s ease;
       animation: fadeInUp 0.5s ease forwards;
       opacity: 0;
       
       &:hover {
-        border-color: var(--supplier-color, var(--color-accent));
-        transform: translateY(-8px);
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        border-color: #229443;
+        transform: translateY(-6px);
+        box-shadow: 0 12px 32px rgba(16, 79, 142, 0.1);
         
         .product-image {
-          img {
-            transform: scale(1.08);
-          }
-          
-          .overlay {
-            opacity: 1;
-          }
+          img { transform: scale(1.05); }
+          .overlay { opacity: 1; }
         }
       }
       
@@ -204,13 +198,13 @@ import { Product } from '../../../core/models/catalog.model';
         position: relative;
         aspect-ratio: 1;
         overflow: hidden;
-        background: linear-gradient(145deg, #1a2744 0%, #0d1829 100%);
+        background: #f8fafc;
         
         img {
           width: 100%;
           height: 100%;
           object-fit: cover;
-          transition: transform var(--transition-base);
+          transition: transform 0.3s ease;
         }
         
         .placeholder {
@@ -220,100 +214,99 @@ import { Product } from '../../../core/models/catalog.model';
           align-items: center;
           justify-content: center;
           
-          .material-icons-outlined {
-            font-size: 64px;
-            color: var(--supplier-color, var(--color-accent));
-            opacity: 0.3;
-          }
+          .material-icons-outlined { font-size: 56px; color: #cbd5e1; }
         }
         
         .overlay {
           position: absolute;
           inset: 0;
           background: linear-gradient(to top, 
-            rgba(0, 0, 0, 0.8) 0%,
-            rgba(0, 0, 0, 0.4) 50%,
+            rgba(10, 37, 64, 0.8) 0%,
+            rgba(10, 37, 64, 0.3) 50%,
             transparent 100%);
           display: flex;
           align-items: flex-end;
           justify-content: center;
-          padding-bottom: var(--space-lg);
+          padding-bottom: 1rem;
           opacity: 0;
-          transition: opacity var(--transition-base);
+          transition: opacity 0.3s ease;
           
           .view-btn {
             display: flex;
             align-items: center;
-            gap: var(--space-sm);
-            padding: var(--space-sm) var(--space-lg);
-            background: var(--supplier-color, var(--color-accent));
+            gap: 0.5rem;
+            padding: 8px 18px;
+            background: #229443;
             color: white;
-            border-radius: var(--radius-full);
-            font-size: 0.875rem;
-            font-weight: 500;
+            border-radius: 100px;
+            font-size: 0.8rem;
+            font-weight: 600;
             
-            .material-icons-outlined {
-              font-size: 18px;
-            }
+            .material-icons-outlined { font-size: 16px; }
           }
         }
       }
       
       .product-info {
-        padding: var(--space-lg);
+        padding: 1rem 1.25rem;
         
         h3 {
-          font-size: 1rem;
-          font-weight: 600;
-          color: var(--color-text-primary);
-          margin-bottom: var(--space-xs);
-          line-height: 1.4;
+          font-size: 0.95rem;
+          font-weight: 700;
+          color: #0a2540;
+          margin-bottom: 0.25rem;
+          line-height: 1.3;
         }
         
         .description {
-          font-size: 0.85rem;
-          color: var(--color-text-muted);
+          font-size: 0.8rem;
+          color: #718096;
           display: -webkit-box;
           -webkit-line-clamp: 2;
           -webkit-box-orient: vertical;
           overflow: hidden;
+          max-width: 100%;
         }
       }
     }
     
     .empty-state {
       text-align: center;
-      padding: var(--space-4xl);
-      background: var(--color-surface);
-      border: 1px solid var(--color-border);
-      border-radius: var(--radius-xl);
+      padding: 4rem;
+      background: #f8fafc;
+      border: 2px solid #e2e8f0;
+      border-radius: 16px;
       
-      .material-icons-outlined {
-        font-size: 80px;
-        color: var(--color-accent);
-        opacity: 0.4;
-        margin-bottom: var(--space-lg);
-      }
+      .material-icons-outlined { font-size: 64px; color: #cbd5e1; margin-bottom: 1rem; }
+      h3 { margin-bottom: 0.5rem; color: #0a2540; }
+      p { color: #718096; margin-bottom: 1.5rem; }
+    }
+    
+    .btn-green {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      background: linear-gradient(135deg, #229443, #2ecc71);
+      color: #fff;
+      font-size: 0.95rem;
+      font-weight: 700;
+      text-decoration: none;
+      border-radius: 10px;
+      transition: all 0.3s ease;
       
-      h3 {
-        margin-bottom: var(--space-sm);
-      }
+      .material-icons-outlined { font-size: 18px; }
       
-      p {
-        color: var(--color-text-muted);
-        margin-bottom: var(--space-xl);
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(34, 148, 67, 0.3);
+        color: #fff;
       }
     }
     
     @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   `]
 })
@@ -336,21 +329,13 @@ export class CategoryProductsComponent implements OnInit {
   }
 
   loadData() {
-    // Cargar proveedor
     this.api.getSupplierBySlug(this.supplierSlug).subscribe(supplier => {
       this.supplier = supplier;
     });
 
-    // Cargar productos de la categoría
     this.api.getProductsByCategory(this.supplierSlug, this.categorySlug).subscribe(result => {
       this.products = result.products;
       this.categoryName = result.categoryName;
     });
   }
 }
-
-
-
-
-
-

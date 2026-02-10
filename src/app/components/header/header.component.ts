@@ -26,7 +26,7 @@ import { ApiService } from '../../core/services/api.service';
               {{ 'nav.catalog' | translate }}
               <span class="material-icons-outlined">expand_more</span>
             </a>
-            <div class="dropdown-menu" style="max-height: 320px; overflow-y: auto; min-width: 260px;">
+            <div class="dropdown-menu">
               <a *ngFor="let supplier of suppliers()" [routerLink]="['/catalogo', supplier.slug]" (click)="closeMenu()">
                 <span class="material-icons-outlined">business</span>
                 {{ supplier.name }}
@@ -42,15 +42,13 @@ import { ApiService } from '../../core/services/api.service';
             <button 
               class="lang-btn" 
               [class.active]="languageService.currentLanguage() === 'es'"
-              (click)="setLanguage('es')"
-              [attr.aria-label]="'Español'">
+              (click)="setLanguage('es')">
               ES
             </button>
             <button 
               class="lang-btn" 
               [class.active]="languageService.currentLanguage() === 'en'"
-              (click)="setLanguage('en')"
-              [attr.aria-label]="'English'">
+              (click)="setLanguage('en')">
               EN
             </button>
           </div>
@@ -65,6 +63,8 @@ import { ApiService } from '../../core/services/api.service';
           </button>
         </div>
       </nav>
+      <!-- Green accent line under header -->
+      <div class="header-accent-line"></div>
     </header>
   `,
   styles: [`
@@ -74,27 +74,18 @@ import { ApiService } from '../../core/services/api.service';
       left: 0;
       right: 0;
       z-index: 1000;
-      padding: var(--space-md) 0;
-      transition: all var(--transition-base);
+      background: linear-gradient(135deg, #0a2540 0%, #104F8E 100%);
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
       
-      &::before {
-        content: '';
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(180deg, rgba(248, 251, 255, 0.95) 0%, rgba(248, 251, 255, 0.9) 100%);
-        backdrop-filter: blur(20px) saturate(180%);
-        -webkit-backdrop-filter: blur(20px) saturate(180%);
-        border-bottom: 1px solid transparent;
-        transition: all var(--transition-base);
+      &.scrolled {
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
       }
-      
-      &.scrolled::before {
-        background: linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(248, 251, 255, 0.96) 100%);
-        border-bottom-color: rgba(21, 101, 192, 0.15);
-        box-shadow: 
-          0 4px 20px rgba(21, 101, 192, 0.1),
-          0 2px 8px rgba(0, 137, 123, 0.08);
-      }
+    }
+    
+    .header-accent-line {
+      height: 4px;
+      background: linear-gradient(90deg, #229443 0%, #35b856 50%, #229443 100%);
     }
     
     nav {
@@ -102,8 +93,8 @@ import { ApiService } from '../../core/services/api.service';
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: var(--space-xl);
-      z-index: 1;
+      gap: 1.5rem;
+      padding: 0.75rem 0;
     }
     
     .logo {
@@ -111,53 +102,52 @@ import { ApiService } from '../../core/services/api.service';
       align-items: center;
       text-decoration: none;
       
-      &:hover {
-        .logo-image {
-          filter: drop-shadow(0 4px 12px rgba(16, 79, 142, 0.3));
-          transform: translateY(-2px);
-        }
+      &:hover .logo-image {
+        transform: translateY(-2px);
       }
     }
     
     .logo-image {
       height: 48px;
       width: auto;
-      transition: all var(--transition-base);
+      transition: transform 0.3s ease;
     }
     
     .nav-links {
       display: flex;
       align-items: center;
-      gap: var(--space-lg);
+      gap: 0.25rem;
       
       > a, .dropdown-trigger {
         display: flex;
         align-items: center;
-        gap: var(--space-xs);
-        padding: var(--space-sm) var(--space-md);
-        font-size: 0.95rem;
-        font-weight: 500;
-        color: #2c4a6b;
+        gap: 4px;
+        padding: 8px 16px;
+        font-size: 0.9rem;
+        font-weight: 700;
+        color: rgba(255, 255, 255, 0.85);
         text-decoration: none;
-        border-radius: var(--radius-md);
-        transition: all var(--transition-fast);
+        border-radius: 8px;
+        transition: all 0.2s ease;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
         
         &:hover {
-          color: #1565c0;
-          background: linear-gradient(145deg, rgba(227, 242, 253, 0.8) 0%, rgba(224, 242, 241, 0.6) 100%);
-          transform: translateY(-1px);
+          color: #fff;
+          background: rgba(255, 255, 255, 0.1);
         }
         
         &.active {
-          color: #00897b;
-          background: linear-gradient(145deg, rgba(224, 242, 241, 0.9) 0%, rgba(227, 242, 253, 0.7) 100%);
-          font-weight: 600;
-          box-shadow: 0 2px 8px rgba(0, 137, 123, 0.15);
+          color: #fff;
+          text-decoration: underline;
+          text-underline-offset: 4px;
+          text-decoration-thickness: 2px;
+          text-decoration-color: #229443;
         }
         
         .material-icons-outlined {
           font-size: 18px;
-          transition: transform var(--transition-fast);
+          transition: transform 0.2s ease;
         }
       }
     }
@@ -171,7 +161,6 @@ import { ApiService } from '../../core/services/api.service';
           visibility: visible;
           transform: translateY(0);
         }
-        
         .dropdown-trigger .material-icons-outlined {
           transform: rotate(180deg);
         }
@@ -182,109 +171,73 @@ import { ApiService } from '../../core/services/api.service';
       position: absolute;
       top: 100%;
       left: 0;
-      min-width: 260px;
-      padding: var(--space-sm);
-      background: linear-gradient(145deg, #ffffff 0%, #f8fbff 100%);
-      border: 2px solid rgba(21, 101, 192, 0.15);
-      border-radius: var(--radius-lg);
-      box-shadow: 
-        0 8px 30px rgba(21, 101, 192, 0.15),
-        0 4px 12px rgba(0, 137, 123, 0.1);
+      min-width: 240px;
+      padding: 8px;
+      background: #fff;
+      border: 2px solid #e2e8f0;
+      border-radius: 12px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
       opacity: 0;
       visibility: hidden;
-      transform: translateY(10px);
-      transition: all var(--transition-base);
+      transform: translateY(8px);
+      transition: all 0.25s ease;
       max-height: 320px;
       overflow-y: auto;
-      min-width: 260px;
-      scrollbar-width: thin;
-      scrollbar-color: var(--color-blue) var(--color-blue-bg);
       
       a {
         display: flex;
         align-items: center;
-        gap: var(--space-md);
-        padding: var(--space-md);
-        color: #2c4a6b;
+        gap: 10px;
+        padding: 10px 14px;
+        color: #0a2540;
         text-decoration: none;
-        border-radius: var(--radius-md);
-        transition: all var(--transition-fast);
+        border-radius: 8px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        transition: all 0.2s ease;
         
         &:hover {
-          background: linear-gradient(145deg, rgba(224, 242, 241, 0.8) 0%, rgba(227, 242, 253, 0.6) 100%);
-          color: #00897b;
-          
-          .material-icons-outlined {
-            transform: scale(1.1);
-            color: #00897b;
-          }
+          background: #f0f9ff;
+          color: #104F8E;
         }
         
         .material-icons-outlined {
-          font-size: 22px;
-          color: #1565c0;
-          transition: all var(--transition-fast);
+          font-size: 20px;
+          color: #104F8E;
         }
       }
     }
     
-    .dropdown-menu::-webkit-scrollbar {
-      width: 8px;
-      background: var(--color-blue-bg);
-      border-radius: 8px;
-    }
-    .dropdown-menu::-webkit-scrollbar-thumb {
-      background: var(--color-blue);
-      border-radius: 8px;
-    }
-    
     .header-actions {
-      display: flex !important;
+      display: flex;
       align-items: center;
-      gap: var(--space-md);
-      position: relative;
-      z-index: 1001;
+      gap: 0.75rem;
     }
     
     .language-selector {
-      display: flex !important;
-      visibility: visible !important;
-      opacity: 1 !important;
+      display: flex;
       align-items: center;
-      gap: 0;
       padding: 3px;
-      background: linear-gradient(145deg, #f8fbff 0%, #ffffff 100%);
-      border: 2px solid rgba(21, 101, 192, 0.2);
-      border-radius: var(--radius-full);
-      position: relative;
-      z-index: 1002;
-      box-shadow: 0 2px 8px rgba(21, 101, 192, 0.1);
+      background: rgba(255, 255, 255, 0.1);
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-radius: 100px;
       
       .lang-btn {
-        padding: var(--space-xs) var(--space-sm);
+        padding: 4px 10px;
         font-size: 0.75rem;
-        font-weight: 600;
-        color: #5c7a99;
+        font-weight: 700;
+        color: rgba(255, 255, 255, 0.6);
         background: transparent;
         border: none;
-        border-radius: var(--radius-full);
+        border-radius: 100px;
         cursor: pointer;
-        transition: all var(--transition-fast);
-        min-width: 32px;
-        text-align: center;
-        line-height: 1.2;
-        letter-spacing: 0.02em;
+        transition: all 0.2s ease;
         
-        &:hover {
-          color: #1565c0;
-          background: rgba(21, 101, 192, 0.1);
-        }
+        &:hover { color: #fff; }
         
         &.active {
-          color: #ffffff;
-          background: linear-gradient(135deg, #1565c0 0%, #2196f3 100%);
-          box-shadow: 0 2px 8px rgba(21, 101, 192, 0.3);
-          font-weight: 700;
+          color: #0a2540;
+          background: #fff;
         }
       }
     }
@@ -292,36 +245,29 @@ import { ApiService } from '../../core/services/api.service';
     .phone-link {
       display: flex;
       align-items: center;
-      gap: var(--space-sm);
-      padding: var(--space-sm) var(--space-md);
-      color: #00897b;
+      gap: 6px;
+      padding: 8px 16px;
+      color: #fff;
       text-decoration: none;
-      background: linear-gradient(145deg, #e0f2f1 0%, #ffffff 100%);
-      border: 2px solid rgba(0, 137, 123, 0.25);
-      border-radius: var(--radius-full);
-      transition: all var(--transition-fast);
+      background: transparent;
+      border: 2px solid rgba(255, 255, 255, 0.35);
+      border-radius: 100px;
+      transition: all 0.2s ease;
       
       &:hover {
-        background: linear-gradient(135deg, #00897b 0%, #26a69a 100%);
-        border-color: #00897b;
-        color: #ffffff;
-        box-shadow: 0 4px 16px rgba(0, 137, 123, 0.35);
-        transform: translateY(-2px);
-        
-        .material-icons-outlined {
-          color: #ffffff;
-        }
+        background: rgba(255, 255, 255, 0.15);
+        border-color: rgba(255, 255, 255, 0.6);
       }
       
       .material-icons-outlined {
-        font-size: 18px;
-        color: #00897b;
-        transition: color var(--transition-fast);
+        font-size: 16px;
+        color: #229443;
+        transition: color 0.2s ease;
       }
       
       .phone-text {
-        font-size: 0.875rem;
-        font-weight: 600;
+        font-size: 0.85rem;
+        font-weight: 700;
       }
     }
     
@@ -332,36 +278,25 @@ import { ApiService } from '../../core/services/api.service';
       align-items: center;
       justify-content: center;
       background: transparent;
-      border: 1px solid var(--color-border);
-      border-radius: var(--radius-md);
-      color: var(--color-text-primary);
+      border: 2px solid #e2e8f0;
+      border-radius: 10px;
+      color: #0a2540;
       cursor: pointer;
-      transition: all var(--transition-fast);
+      transition: all 0.2s ease;
       
       &:hover {
-        border-color: var(--color-accent);
-        color: var(--color-accent);
+        border-color: #104F8E;
+        color: #104F8E;
       }
     }
     
     @media (max-width: 1024px) {
-      .phone-text {
-        display: none;
-      }
-      
-      .phone-link {
-        padding: var(--space-sm);
-      }
-      
-      .language-selector {
-        order: -1;
-      }
+      .phone-text { display: none; }
+      .phone-link { padding: 8px; }
     }
     
     @media (max-width: 768px) {
-      .menu-toggle {
-        display: flex;
-      }
+      .menu-toggle { display: flex; }
       
       .nav-links {
         position: fixed;
@@ -371,12 +306,12 @@ import { ApiService } from '../../core/services/api.service';
         bottom: 0;
         flex-direction: column;
         align-items: stretch;
-        padding: var(--space-lg);
-        background: var(--color-primary);
+        padding: 1rem;
+        background: #fff;
         opacity: 0;
         visibility: hidden;
         transform: translateX(100%);
-        transition: all var(--transition-base);
+        transition: all 0.3s ease;
         overflow-y: auto;
         
         &.active {
@@ -386,21 +321,18 @@ import { ApiService } from '../../core/services/api.service';
         }
         
         > a, .dropdown-trigger {
-          padding: var(--space-md);
-          font-size: 1.125rem;
+          padding: 12px;
+          font-size: 1.1rem;
         }
         
-        .dropdown {
-          .dropdown-menu {
-            position: static;
-            opacity: 1;
-            visibility: visible;
-            transform: none;
-            box-shadow: none;
-            background: transparent;
-            border: none;
-            padding-left: var(--space-lg);
-          }
+        .dropdown .dropdown-menu {
+          position: static;
+          opacity: 1;
+          visibility: visible;
+          transform: none;
+          box-shadow: none;
+          border: none;
+          padding-left: 1rem;
         }
       }
     }
@@ -436,4 +368,3 @@ export class HeaderComponent {
     this.menuOpen.set(false);
   }
 }
-
