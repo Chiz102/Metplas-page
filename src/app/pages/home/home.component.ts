@@ -1888,7 +1888,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
       name: 'Guante Euroflex Standard', 
       image: 'assets/images/products/Euroflex Standard.jpg',
       category: 'Seguridad',
-      supplier: 'Ziegler',
+      supplier: 'Euroflex',
       supplierSlug: 'ziegler'
     },
     { 
