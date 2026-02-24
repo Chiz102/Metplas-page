@@ -69,10 +69,7 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
         </div>
       </div>
     </section>
-    
-    <!-- Decorative Bar -->
-    <div class="deco-bar"></div>
-    
+
     <!-- Stats Section -->
     <section class="stats-section">
       <div class="container">
@@ -94,15 +91,7 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
         </div>
       </div>
     </section>
-    
-    <!-- Logo Divider -->
-    <div class="logo-divider">
-      <img src="assets/images/logo.png" alt="Metplas Technologies">
-    </div>
-    
-    <!-- Decorative Bar -->
-    <div class="deco-bar"></div>
-    
+
     <!-- Clients & Solutions Section -->
     <section class="clients-solutions">
       <div class="container cs-grid">
@@ -211,7 +200,7 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
         <h2 class="feat-title">EQUIPOS DE<br><strong>ALTA CALIDAD</strong></h2>
         <div class="feat-bar"></div>
         <div class="feat-desc-pill">
-          <p class="feat-desc">Descubre nuestra selección de productos industriales premium de marcas líderes mundiales.</p>
+          <p class="feat-desc">Descubre nuestra selección de productos industriales   de marcas líderes mundiales.</p>
         </div>
         
         <div class="products-carousel">
@@ -250,10 +239,7 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
         </div>
       </div>
     </section>
-    
-    <!-- Decorative Bar -->
-    <div class="deco-bar"></div>
-    
+
     <!-- Why Choose Us -->
     <section class="why-section">
       <div class="container why-layout">
@@ -307,23 +293,11 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
         </div>
       </div>
     </section>
-    
-    <!-- Pre-CTA: Logo + Ready Badge -->
-    <section class="pre-cta">
-      <div class="container pre-cta-inner">
-        <img src="assets/images/logo.png" alt="Metplas Technologies" class="pre-cta-logo">
-        <div class="pre-cta-badge">
-          <span>¿LISTO PARA COMENZAR?</span>
-        </div>
-      </div>
-    </section>
-    
-    <!-- Decorative Bar Angular -->
-    <div class="deco-bar-angle"></div>
-    
+
     <!-- CTA Section - Dark Navy -->
     <section class="cta-section">
       <div class="container cta-inner">
+        <div class="cta-ready-badge">¿LISTO PARA COMENZAR?</div>
         <h2>OPTIMIZA TU OPERACIÓN<br><span>CON LOS MEJORES EQUIPOS</span></h2>
         <p>Contáctanos hoy y descubre cómo podemos ayudarte a mejorar la eficiencia de tu negocio</p>
         <div class="cta-buttons">
@@ -562,24 +536,31 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
       position: absolute;
       border-radius: 50%;
       border: 2px solid;
-      
+
       &.ring-1 {
         inset: 0;
-        border-color: rgba(16, 79, 142, 0.15);
-        background: rgba(16, 79, 142, 0.03);
+        border-color: rgba(34, 148, 67, 0.18);
+        background: rgba(34, 148, 67, 0.03);
       }
       &.ring-2 {
         inset: 35px;
-        border-color: rgba(16, 79, 142, 0.12);
-        background: rgba(16, 79, 142, 0.05);
+        border-color: rgba(34, 148, 67, 0.28);
+        background: rgba(34, 148, 67, 0.05);
+        border-style: dashed;
+        animation: spinRing 18s linear infinite;
       }
       &.ring-3 {
         inset: 70px;
-        border-color: rgba(16, 79, 142, 0.1);
-        background: rgba(16, 79, 142, 0.07);
+        border-color: rgba(34, 148, 67, 0.4);
+        background: rgba(34, 148, 67, 0.06);
       }
     }
-    
+
+    @keyframes spinRing {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
     .ring-center {
       position: absolute;
       inset: 100px;
@@ -588,8 +569,8 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
       justify-content: center;
       background: #fff;
       border-radius: 50%;
-      border: 3px solid rgba(16, 79, 142, 0.2);
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+      border: 3px solid rgba(34, 148, 67, 0.35);
+      box-shadow: 0 10px 40px rgba(34, 148, 67, 0.12), 0 4px 15px rgba(0, 0, 0, 0.08);
       
       .showcase-logo {
         width: 75%;
@@ -630,7 +611,7 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
 
     /* ===== STATS ===== */
     .stats-section {
-      padding: 3rem 0;
+      padding: 2rem 0 3rem;
       background: #fff;
     }
     
@@ -697,8 +678,8 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
 
     /* ===== CLIENTS & SOLUTIONS ===== */
     .clients-solutions {
-      padding: 4rem 0;
-      background: #fff;
+      padding: 3rem 0 4rem;
+      background: linear-gradient(180deg, #fff 0%, #f5faff 100%);
     }
     
     .cs-grid {
@@ -821,8 +802,8 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
 
     /* ===== SUPPLIERS ===== */
     .suppliers-section {
-      padding: 4rem 0;
-      background: linear-gradient(180deg, #f8fafc 0%, #fff 100%);
+      padding: 4rem 0 5rem;
+      background: linear-gradient(180deg, #f5faff 0%, #eaf4fb 100%);
     }
     
     .sup-layout {
@@ -1261,7 +1242,7 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
     /* ===== WHY CHOOSE US ===== */
     .why-section {
       padding: 5rem 0;
-      background: #fff;
+      background: linear-gradient(180deg, #f0f7ff 0%, #fff 40%);
     }
     
     .why-layout {
@@ -1476,9 +1457,25 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
 
     /* ===== CTA SECTION ===== */
     .cta-section {
-      padding: 4rem 0;
+      padding: 5rem 0 4rem;
       background: linear-gradient(180deg, #0a2540 0%, #0d3562 50%, #0a2540 100%);
       text-align: center;
+      clip-path: polygon(0 3%, 100% 0%, 100% 100%, 0% 100%);
+      margin-top: -2px;
+    }
+
+    .cta-ready-badge {
+      display: inline-block;
+      padding: 8px 28px;
+      background: rgba(34, 148, 67, 0.2);
+      border: 1px solid rgba(34, 148, 67, 0.45);
+      border-radius: 100px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #81d4a2;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
     }
     
     .cta-inner {

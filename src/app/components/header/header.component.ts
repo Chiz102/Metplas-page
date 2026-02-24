@@ -278,15 +278,15 @@ import { ApiService } from '../../core/services/api.service';
       align-items: center;
       justify-content: center;
       background: transparent;
-      border: 2px solid #e2e8f0;
+      border: 2px solid rgba(255, 255, 255, 0.3);
       border-radius: 10px;
-      color: #0a2540;
+      color: #fff;
       cursor: pointer;
       transition: all 0.2s ease;
       
       &:hover {
-        border-color: #104F8E;
-        color: #104F8E;
+        border-color: rgba(255, 255, 255, 0.6);
+        background: rgba(255, 255, 255, 0.1);
       }
     }
     
@@ -307,7 +307,7 @@ import { ApiService } from '../../core/services/api.service';
         flex-direction: column;
         align-items: stretch;
         padding: 1rem;
-        background: #fff;
+        background: linear-gradient(180deg, #0a2540 0%, #104F8E 100%);
         opacity: 0;
         visibility: hidden;
         transform: translateX(100%);
@@ -333,6 +333,18 @@ import { ApiService } from '../../core/services/api.service';
           box-shadow: none;
           border: none;
           padding-left: 1rem;
+          background: transparent;
+          
+          a {
+            color: rgba(255, 255, 255, 0.8);
+            
+            &:hover {
+              color: #fff;
+              background: rgba(255, 255, 255, 0.1);
+            }
+            
+            .material-icons-outlined { color: #229443; }
+          }
         }
       }
     }

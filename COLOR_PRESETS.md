@@ -45,7 +45,7 @@ Copy and paste these entire color variable sets into `src/styles.scss` `:root` t
 --color-text-muted: rgba(255, 255, 255, 0.5);
 ```
 
-### 2. DARK PURPLE & GOLD - Premium Look
+### 2. DARK PURPLE & GOLD -   Look
 ```scss
 // ============================================
 // DARK PURPLE & GOLD THEME
