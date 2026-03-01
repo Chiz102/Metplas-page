@@ -17,10 +17,10 @@ import { ApiService } from '../../core/services/api.service';
         </a>
 
         <div class="nav-links" [class.active]="menuOpen()">
-          <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" 
+          <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
              (click)="closeMenu()">{{ 'nav.home' | translate }}</a>
           <a routerLink="/somos" routerLinkActive="active" (click)="closeMenu()">{{ 'nav.about' | translate }}</a>
-          
+
           <div class="dropdown">
             <a routerLink="/catalogo" routerLinkActive="active" class="dropdown-trigger">
               {{ 'nav.catalog' | translate }}
@@ -33,37 +33,36 @@ import { ApiService } from '../../core/services/api.service';
               </a>
             </div>
           </div>
-          
+
           <a routerLink="/contacto" routerLinkActive="active" (click)="closeMenu()">{{ 'nav.contact' | translate }}</a>
         </div>
 
         <div class="header-actions">
           <div class="language-selector">
-            <button 
-              class="lang-btn" 
+            <button
+              class="lang-btn"
               [class.active]="languageService.currentLanguage() === 'es'"
               (click)="setLanguage('es')">
               ES
             </button>
-            <button 
-              class="lang-btn" 
+            <button
+              class="lang-btn"
               [class.active]="languageService.currentLanguage() === 'en'"
               (click)="setLanguage('en')">
               EN
             </button>
           </div>
-          
+
           <a href="tel:+56996154315" class="phone-link">
             <span class="material-icons-outlined">phone</span>
             <span class="phone-text">+569 9615 4315</span>
           </a>
-          
+
           <button class="menu-toggle" (click)="toggleMenu()" [attr.aria-expanded]="menuOpen()">
             <span class="material-icons-outlined">{{ menuOpen() ? 'close' : 'menu' }}</span>
           </button>
         </div>
       </nav>
-      <!-- Green accent line under header -->
       <div class="header-accent-line"></div>
     </header>
   `,
@@ -74,87 +73,86 @@ import { ApiService } from '../../core/services/api.service';
       left: 0;
       right: 0;
       z-index: 1000;
-      background: linear-gradient(135deg, #0a2540 0%, #104F8E 100%);
+      background: #204C81;
       transition: all 0.3s ease;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
-      
+      box-shadow: 0 2px 16px rgba(0, 0, 0, 0.25);
+
       &.scrolled {
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+        background: #163560;
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
       }
     }
-    
+
     .header-accent-line {
-      height: 4px;
-      background: linear-gradient(90deg, #229443 0%, #35b856 50%, #229443 100%);
+      height: 3px;
+      background: linear-gradient(90deg, #4FAD47 0%, #5eca56 50%, #4FAD47 100%);
     }
-    
+
     nav {
       position: relative;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 1.5rem;
-      padding: 0.75rem 0;
+      padding: 0.6rem 0;
     }
-    
+
     .logo {
       display: flex;
       align-items: center;
       text-decoration: none;
-      
+
       &:hover .logo-image {
         transform: translateY(-2px);
       }
     }
-    
+
     .logo-image {
       height: 48px;
       width: auto;
       transition: transform 0.3s ease;
+      filter: brightness(0) invert(1);
     }
-    
+
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 0.25rem;
-      
+      gap: 0.15rem;
+
       > a, .dropdown-trigger {
         display: flex;
         align-items: center;
         gap: 4px;
-        padding: 8px 16px;
-        font-size: 0.9rem;
+        padding: 8px 18px;
+        font-size: 0.875rem;
         font-weight: 700;
-        color: rgba(255, 255, 255, 0.85);
+        color: #D5E9F9;
         text-decoration: none;
-        border-radius: 8px;
+        border-radius: 100px;
         transition: all 0.2s ease;
         text-transform: uppercase;
-        letter-spacing: 0.04em;
-        
+        letter-spacing: 0.05em;
+
         &:hover {
-          color: #fff;
-          background: rgba(255, 255, 255, 0.1);
+          color: #ffffff;
+          background: rgba(255, 255, 255, 0.12);
         }
-        
+
         &.active {
-          color: #fff;
-          text-decoration: underline;
-          text-underline-offset: 4px;
-          text-decoration-thickness: 2px;
-          text-decoration-color: #229443;
+          color: #204C81;
+          background: #4FAD47;
         }
-        
+
         .material-icons-outlined {
           font-size: 18px;
           transition: transform 0.2s ease;
         }
       }
     }
-    
+
     .dropdown {
       position: relative;
-      
+
       &:hover {
         .dropdown-menu {
           opacity: 1;
@@ -166,111 +164,114 @@ import { ApiService } from '../../core/services/api.service';
         }
       }
     }
-    
+
     .dropdown-menu {
       position: absolute;
-      top: 100%;
+      top: calc(100% + 8px);
       left: 0;
-      min-width: 240px;
-      padding: 8px;
-      background: #fff;
-      border: 2px solid #e2e8f0;
-      border-radius: 12px;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+      min-width: 220px;
+      padding: 6px;
+      background: #163560;
+      border: 1.5px solid rgba(213, 233, 249, 0.2);
+      border-radius: 14px;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
       opacity: 0;
       visibility: hidden;
       transform: translateY(8px);
       transition: all 0.25s ease;
       max-height: 320px;
       overflow-y: auto;
-      
+
       a {
         display: flex;
         align-items: center;
         gap: 10px;
         padding: 10px 14px;
-        color: #0a2540;
+        color: #D5E9F9;
         text-decoration: none;
-        border-radius: 8px;
+        border-radius: 10px;
         font-size: 0.9rem;
-        font-weight: 500;
+        font-weight: 600;
         transition: all 0.2s ease;
-        
+
         &:hover {
-          background: #f0f9ff;
-          color: #104F8E;
+          background: rgba(255, 255, 255, 0.1);
+          color: #ffffff;
         }
-        
+
         .material-icons-outlined {
-          font-size: 20px;
-          color: #104F8E;
+          font-size: 18px;
+          color: #4FAD47;
         }
       }
     }
-    
+
     .header-actions {
       display: flex;
       align-items: center;
       gap: 0.75rem;
     }
-    
+
     .language-selector {
       display: flex;
       align-items: center;
       padding: 3px;
-      background: rgba(255, 255, 255, 0.1);
-      border: 2px solid rgba(255, 255, 255, 0.3);
+      background: rgba(255, 255, 255, 0.08);
+      border: 1.5px solid rgba(213, 233, 249, 0.35);
       border-radius: 100px;
-      
+
       .lang-btn {
-        padding: 4px 10px;
+        padding: 4px 12px;
         font-size: 0.75rem;
         font-weight: 700;
-        color: rgba(255, 255, 255, 0.6);
+        color: #D5E9F9;
         background: transparent;
         border: none;
         border-radius: 100px;
         cursor: pointer;
         transition: all 0.2s ease;
-        
-        &:hover { color: #fff; }
-        
+        letter-spacing: 0.04em;
+
+        &:hover { color: #ffffff; }
+
         &.active {
-          color: #0a2540;
-          background: #fff;
+          color: #204C81;
+          background: #ffffff;
         }
       }
     }
-    
+
     .phone-link {
       display: flex;
       align-items: center;
-      gap: 6px;
-      padding: 8px 16px;
-      color: #fff;
+      gap: 7px;
+      padding: 9px 18px;
+      color: #ffffff;
       text-decoration: none;
-      background: transparent;
-      border: 2px solid rgba(255, 255, 255, 0.35);
+      background: #4FAD47;
+      border: none;
       border-radius: 100px;
       transition: all 0.2s ease;
-      
+      box-shadow: 0 2px 12px rgba(79, 173, 71, 0.4);
+
       &:hover {
-        background: rgba(255, 255, 255, 0.15);
-        border-color: rgba(255, 255, 255, 0.6);
+        background: #3d9136;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 18px rgba(79, 173, 71, 0.55);
+        color: #ffffff;
       }
-      
+
       .material-icons-outlined {
         font-size: 16px;
-        color: #229443;
-        transition: color 0.2s ease;
+        color: #ffffff;
       }
-      
+
       .phone-text {
         font-size: 0.85rem;
         font-weight: 700;
       }
     }
-    
+
     .menu-toggle {
       display: none;
       width: 44px;
@@ -278,53 +279,56 @@ import { ApiService } from '../../core/services/api.service';
       align-items: center;
       justify-content: center;
       background: transparent;
-      border: 2px solid rgba(255, 255, 255, 0.3);
+      border: 1.5px solid rgba(213, 233, 249, 0.4);
       border-radius: 10px;
-      color: #fff;
+      color: #ffffff;
       cursor: pointer;
       transition: all 0.2s ease;
-      
+
       &:hover {
-        border-color: rgba(255, 255, 255, 0.6);
+        border-color: #ffffff;
         background: rgba(255, 255, 255, 0.1);
       }
     }
-    
+
     @media (max-width: 1024px) {
       .phone-text { display: none; }
-      .phone-link { padding: 8px; }
+      .phone-link { padding: 9px; }
     }
-    
+
     @media (max-width: 768px) {
       .menu-toggle { display: flex; }
-      
+
       .nav-links {
         position: fixed;
-        top: 70px;
+        top: 68px;
         left: 0;
         right: 0;
         bottom: 0;
         flex-direction: column;
         align-items: stretch;
         padding: 1rem;
-        background: linear-gradient(180deg, #0a2540 0%, #104F8E 100%);
+        background: #204C81;
+        border-top: 2px solid rgba(213, 233, 249, 0.2);
         opacity: 0;
         visibility: hidden;
         transform: translateX(100%);
         transition: all 0.3s ease;
         overflow-y: auto;
-        
+
         &.active {
           opacity: 1;
           visibility: visible;
           transform: translateX(0);
         }
-        
+
         > a, .dropdown-trigger {
-          padding: 12px;
-          font-size: 1.1rem;
+          padding: 12px 16px;
+          font-size: 1rem;
+          border-radius: 10px;
+          color: #D5E9F9;
         }
-        
+
         .dropdown .dropdown-menu {
           position: static;
           opacity: 1;
@@ -333,17 +337,14 @@ import { ApiService } from '../../core/services/api.service';
           box-shadow: none;
           border: none;
           padding-left: 1rem;
-          background: transparent;
-          
+          background: rgba(255, 255, 255, 0.07);
+          border-radius: 10px;
+          margin-top: 4px;
+
           a {
-            color: rgba(255, 255, 255, 0.8);
-            
-            &:hover {
-              color: #fff;
-              background: rgba(255, 255, 255, 0.1);
-            }
-            
-            .material-icons-outlined { color: #229443; }
+            color: #D5E9F9;
+            &:hover { color: #ffffff; background: rgba(255, 255, 255, 0.1); }
+            .material-icons-outlined { color: #4FAD47; }
           }
         }
       }

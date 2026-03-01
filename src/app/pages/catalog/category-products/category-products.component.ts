@@ -102,11 +102,11 @@ import { Product } from '../../../core/models/catalog.model';
       a {
         color: #718096;
         text-decoration: none;
-        &:hover { color: #229443; }
+        &:hover { color: #4FAD47; }
       }
       
       .sep { color: #cbd5e1; }
-      .current { color: #0a2540; font-weight: 600; }
+      .current { color: #204C81; font-weight: 600; }
     }
     
     .category-hero {
@@ -120,7 +120,7 @@ import { Product } from '../../../core/models/catalog.model';
       position: absolute;
       top: 0; left: 0;
       width: 100px; height: 100%;
-      background: linear-gradient(135deg, #229443 0%, #229443 12%, #104F8E 12%, #104F8E 24%, transparent 24%);
+      background: linear-gradient(135deg, #4FAD47 0%, #4FAD47 12%, #2667A9 12%, #2667A9 24%, transparent 24%);
       pointer-events: none;
       @media (max-width: 768px) { display: none; }
     }
@@ -129,7 +129,7 @@ import { Product } from '../../../core/models/catalog.model';
     
     .deco-bar {
       height: 6px;
-      background: linear-gradient(90deg, #229443 0%, #104F8E 50%, #229443 100%);
+      background: linear-gradient(90deg, #4FAD47 0%, #2667A9 50%, #4FAD47 100%);
     }
     
     .back-link {
@@ -143,12 +143,12 @@ import { Product } from '../../../core/models/catalog.model';
       transition: color 0.2s ease;
       
       .material-icons-outlined { font-size: 18px; }
-      &:hover { color: #229443; }
+      &:hover { color: #4FAD47; }
     }
     
     h1 {
       font-size: 2.25rem;
-      color: #0a2540;
+      color: #204C81;
       margin-bottom: 0.5rem;
     }
     
@@ -184,9 +184,9 @@ import { Product } from '../../../core/models/catalog.model';
       opacity: 0;
       
       &:hover {
-        border-color: #229443;
+        border-color: #4FAD47;
         transform: translateY(-6px);
-        box-shadow: 0 12px 32px rgba(16, 79, 142, 0.1);
+        box-shadow: 0 12px 32px rgba(38, 103, 169, 0.1);
         
         .product-image {
           img { transform: scale(1.05); }
@@ -221,8 +221,8 @@ import { Product } from '../../../core/models/catalog.model';
           position: absolute;
           inset: 0;
           background: linear-gradient(to top, 
-            rgba(10, 37, 64, 0.8) 0%,
-            rgba(10, 37, 64, 0.3) 50%,
+            rgba(32, 76, 129, 0.8) 0%,
+            rgba(32, 76, 129, 0.3) 50%,
             transparent 100%);
           display: flex;
           align-items: flex-end;
@@ -236,7 +236,7 @@ import { Product } from '../../../core/models/catalog.model';
             align-items: center;
             gap: 0.5rem;
             padding: 8px 18px;
-            background: #229443;
+            background: #4FAD47;
             color: white;
             border-radius: 100px;
             font-size: 0.8rem;
@@ -253,7 +253,7 @@ import { Product } from '../../../core/models/catalog.model';
         h3 {
           font-size: 0.95rem;
           font-weight: 700;
-          color: #0a2540;
+          color: #204C81;
           margin-bottom: 0.25rem;
           line-height: 1.3;
         }
@@ -278,7 +278,7 @@ import { Product } from '../../../core/models/catalog.model';
       border-radius: 16px;
       
       .material-icons-outlined { font-size: 64px; color: #cbd5e1; margin-bottom: 1rem; }
-      h3 { margin-bottom: 0.5rem; color: #0a2540; }
+      h3 { margin-bottom: 0.5rem; color: #204C81; }
       p { color: #718096; margin-bottom: 1.5rem; }
     }
     
@@ -287,7 +287,7 @@ import { Product } from '../../../core/models/catalog.model';
       align-items: center;
       gap: 8px;
       padding: 12px 24px;
-      background: linear-gradient(135deg, #229443, #2ecc71);
+      background: linear-gradient(135deg, #4FAD47, #5eca56);
       color: #fff;
       font-size: 0.95rem;
       font-weight: 700;
@@ -299,7 +299,7 @@ import { Product } from '../../../core/models/catalog.model';
       
       &:hover {
         transform: translateY(-2px);
-        box-shadow: 0 8px 25px rgba(34, 148, 67, 0.3);
+        box-shadow: 0 8px 25px rgba(79, 173, 71, 0.3);
         color: #fff;
       }
     }

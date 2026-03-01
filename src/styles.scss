@@ -1,11 +1,12 @@
 // ============================================
 // METPLASTECH - Global Styles
-// Clean Corporate Design
-// Color Palette: White, Blue (#104F8E) & Green (#229443)
+// Corporate Design
+// Color Palette: Green (#4FAD47), Blue (#2667A9), Dark Blue (#204C81), Light Blue (#D5E9F9), Gray (#C4C4C4)
+// Typography: Montserrat + Times New Roman
 // ============================================
 
-// Google Fonts Import - Clean Corporate Typography
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+// Google Fonts Import - Montserrat
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700&display=swap');
 
 // CSS Variables
 :root {
@@ -16,65 +17,74 @@
   --color-primary-light: #f8fafc;
   --color-primary-dark: #f1f5f9;
   --color-primary-darker: #e2e8f0;
-  
+
   // ============================================
-  // CORPORATE BLUE - #104F8E
+  // CORPORATE BLUE - #2667A9
   // ============================================
-  --color-blue: #104F8E;
-  --color-blue-light: #1a6bb5;
-  --color-blue-lighter: #2a85d0;
-  --color-blue-dark: #0c3d6e;
-  --color-blue-darker: #092d52;
-  --color-blue-bg: #e8f0f8;
-  --color-blue-bg-light: #f0f6fc;
-  
+  --color-blue: #2667A9;
+  --color-blue-light: #3278be;
+  --color-blue-lighter: #4a90d0;
+  --color-blue-dark: #204C81;
+  --color-blue-darker: #163560;
+  --color-blue-bg: #D5E9F9;
+  --color-blue-bg-light: #eaf4fd;
+
   // ============================================
-  // ACCENT GREEN - #229443
+  // ACCENT GREEN - #4FAD47
   // ============================================
-  --color-accent: #229443;
-  --color-accent-light: rgba(34, 148, 67, 0.12);
-  --color-accent-medium: rgba(34, 148, 67, 0.2);
-  --color-accent-strong: rgba(34, 148, 67, 0.35);
-  --color-accent-secondary: #2ecc71;
-  --color-accent-bright: #34d399;
-  
+  --color-accent: #4FAD47;
+  --color-accent-light: rgba(79, 173, 71, 0.12);
+  --color-accent-medium: rgba(79, 173, 71, 0.2);
+  --color-accent-strong: rgba(79, 173, 71, 0.35);
+  --color-accent-secondary: #5eca56;
+  --color-accent-bright: #72d66b;
+
   // ============================================
   // CTA COLORS
   // ============================================
-  --color-cta: #229443;
-  --color-cta-hover: #1b7a37;
-  
+  --color-cta: #4FAD47;
+  --color-cta-hover: #3d9136;
+
   // ============================================
   // NEUTRALS
   // ============================================
   --color-surface: #ffffff;
   --color-surface-elevated: #f8fafc;
-  --color-surface-blue: #f0f6fc;
-  --color-surface-green: #ecfdf5;
-  
+  --color-surface-blue: #D5E9F9;
+  --color-surface-green: #edfaec;
+
+  // ============================================
+  // GRAY - #C4C4C4 (lighter at 28% opacity)
+  // ============================================
+  --color-gray: #C4C4C4;
+  --color-gray-light: rgba(196, 196, 196, 0.28);
+  --color-gray-medium: rgba(196, 196, 196, 0.5);
+  --color-gray-dark: #8a8a8a;
+
   // ============================================
   // BORDERS
   // ============================================
   --color-border: #e2e8f0;
-  --color-border-strong: #cbd5e1;
-  --color-border-green: rgba(34, 148, 67, 0.3);
-  --color-border-blue: rgba(16, 79, 142, 0.3);
-  --color-border-light: rgba(148, 163, 184, 0.3);
-  
+  --color-border-strong: #C4C4C4;
+  --color-border-green: rgba(79, 173, 71, 0.3);
+  --color-border-blue: rgba(38, 103, 169, 0.3);
+  --color-border-light: rgba(196, 196, 196, 0.28);
+
   // ============================================
   // TEXT COLORS
   // ============================================
-  --color-text-primary: #0a2540;
+  --color-text-primary: #204C81;
   --color-text-secondary: #4a5568;
-  --color-text-muted: #718096;
+  --color-text-muted: #8a8a8a;
   --color-text-on-blue: #ffffff;
   --color-text-on-green: #ffffff;
-  
+
   // ============================================
   // TYPOGRAPHY
   // ============================================
-  --font-primary: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-display: 'Space Grotesk', 'Outfit', sans-serif;
+  --font-primary: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display: 'Montserrat', sans-serif;
+  --font-serif: 'Times New Roman', Times, Georgia, serif;
   --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
   
   // ============================================
@@ -148,8 +158,8 @@ body {
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
   font-weight: 700;
-  line-height: 1.1;
-  letter-spacing: -0.03em;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
   margin-bottom: var(--space-md);
   color: var(--color-text-primary);
 }
@@ -162,7 +172,7 @@ h1 {
   font-size: clamp(2.5rem, 6vw, 4.5rem);
   font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: -0.02em;
+  letter-spacing: 0.01em;
 }
 
 h2 {
@@ -181,6 +191,20 @@ h4 {
 p {
   color: var(--color-text-secondary);
   max-width: 65ch;
+}
+
+// Serif utility classes (Times New Roman)
+.font-serif {
+  font-family: var(--font-serif);
+}
+
+.font-serif-bold {
+  font-family: var(--font-serif);
+  font-weight: 700;
+}
+
+.font-italic {
+  font-style: italic;
 }
 
 a {
@@ -247,15 +271,15 @@ a {
 .deco-bar {
   height: 12px;
   background: linear-gradient(to bottom,
-    #229443 0%, #229443 25%,
-    #104F8E 25%, #104F8E 75%,
-    #229443 75%, #229443 100%
+    #4FAD47 0%, #4FAD47 25%,
+    #2667A9 25%, #2667A9 75%,
+    #4FAD47 75%, #4FAD47 100%
   );
 }
 
 .deco-bar-angle {
   height: 60px;
-  background: linear-gradient(135deg, #229443 0%, #229443 30%, #104F8E 30%, #104F8E 70%, #229443 70%, #229443 100%);
+  background: linear-gradient(135deg, #4FAD47 0%, #4FAD47 30%, #2667A9 30%, #2667A9 70%, #4FAD47 70%, #4FAD47 100%);
   clip-path: polygon(0 0, 100% 30%, 100% 100%, 0 70%);
 }
 
@@ -304,16 +328,16 @@ a {
   }
   
   &-primary {
-    background: linear-gradient(135deg, #229443, #2ecc71);
+    background: linear-gradient(135deg, #4FAD47, #5eca56);
     color: #ffffff;
-    box-shadow: 0 4px 15px rgba(34, 148, 67, 0.3);
-    
+    box-shadow: 0 4px 15px rgba(79, 173, 71, 0.3);
+
     &:hover {
       transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(34, 148, 67, 0.4);
+      box-shadow: 0 8px 25px rgba(79, 173, 71, 0.4);
       color: #ffffff;
     }
-    
+
     &:active {
       transform: translateY(0);
     }
@@ -411,6 +435,7 @@ a {
 .text-center { text-align: center; }
 .text-accent { color: var(--color-accent); }
 .text-blue { color: var(--color-blue); }
+.text-blue-dark { color: var(--color-blue-dark); }
 .text-muted { color: var(--color-text-muted); }
 .font-mono { font-family: var(--font-mono); }
 .font-bold { font-weight: 700; }

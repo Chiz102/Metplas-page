@@ -184,9 +184,9 @@ import { ContactMessage, CompanyInfo } from '../../core/models/catalog.model';
     .deco-bar {
       height: 12px;
       background: linear-gradient(to bottom,
-        #229443 0%, #229443 25%,
-        #104F8E 25%, #104F8E 75%,
-        #229443 75%, #229443 100%
+        #4FAD47 0%, #4FAD47 25%,
+        #2667A9 25%, #2667A9 75%,
+        #4FAD47 75%, #4FAD47 100%
       );
     }
 
@@ -203,7 +203,7 @@ import { ContactMessage, CompanyInfo } from '../../core/models/catalog.model';
       position: absolute;
       top: 0; left: 0;
       width: 180px; height: 100%;
-      background: linear-gradient(135deg, #229443 0%, #229443 8%, #104F8E 8%, #104F8E 16%, transparent 16%);
+      background: linear-gradient(135deg, #4FAD47 0%, #4FAD47 8%, #2667A9 8%, #2667A9 16%, transparent 16%);
       pointer-events: none;
       @media (max-width: 768px) { display: none; }
     }
@@ -212,7 +212,7 @@ import { ContactMessage, CompanyInfo } from '../../core/models/catalog.model';
       position: absolute;
       bottom: 0; right: 0;
       width: 180px; height: 100%;
-      background: linear-gradient(-45deg, #229443 0%, #229443 8%, #104F8E 8%, #104F8E 16%, transparent 16%);
+      background: linear-gradient(-45deg, #4FAD47 0%, #4FAD47 8%, #2667A9 8%, #2667A9 16%, transparent 16%);
       pointer-events: none;
       @media (max-width: 768px) { display: none; }
     }
@@ -225,24 +225,24 @@ import { ContactMessage, CompanyInfo } from '../../core/models/catalog.model';
       gap: 8px;
       padding: 10px 24px;
       background: #f0f9ff;
-      border: 2px solid #104F8E;
+      border: 2px solid #2667A9;
       border-radius: 100px;
       font-size: 0.85rem;
       font-weight: 700;
-      color: #104F8E;
+      color: #2667A9;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       margin-bottom: 1.5rem;
       
-      .material-icons-outlined { font-size: 18px; color: #229443; }
+      .material-icons-outlined { font-size: 18px; color: #4FAD47; }
     }
     
     h1 {
-      color: #0a2540;
+      color: #204C81;
       margin-bottom: 1rem;
       
       .accent {
-        color: #229443;
+        color: #4FAD47;
       }
     }
     
@@ -272,7 +272,7 @@ import { ContactMessage, CompanyInfo } from '../../core/models/catalog.model';
     .form-wrapper {
       padding: 2rem;
       background: #f8fafc;
-      border: 2px solid #229443;
+      border: 2px solid #4FAD47;
       border-radius: 16px;
       
       .form-header {
@@ -281,7 +281,7 @@ import { ContactMessage, CompanyInfo } from '../../core/models/catalog.model';
         h2 {
           margin-bottom: 0.5rem;
           font-size: 1.5rem;
-          color: #0a2540;
+          color: #204C81;
         }
         
         p {
@@ -304,8 +304,8 @@ import { ContactMessage, CompanyInfo } from '../../core/models/catalog.model';
       
       &-success {
         background: rgba(34, 148, 67, 0.1);
-        border: 1px solid #229443;
-        color: #229443;
+        border: 1px solid #4FAD47;
+        color: #4FAD47;
       }
       
       &-error {
@@ -330,7 +330,7 @@ import { ContactMessage, CompanyInfo } from '../../core/models/catalog.model';
         display: block;
         font-size: 0.9rem;
         font-weight: 700;
-        color: #0a2540;
+        color: #204C81;
         margin-bottom: 0.5rem;
       }
       
@@ -339,7 +339,7 @@ import { ContactMessage, CompanyInfo } from '../../core/models/catalog.model';
         padding: 12px 16px;
         font-family: inherit;
         font-size: 0.95rem;
-        color: #0a2540;
+        color: #204C81;
         background: #fff;
         border: 2px solid #e2e8f0;
         border-radius: 10px;
@@ -349,7 +349,7 @@ import { ContactMessage, CompanyInfo } from '../../core/models/catalog.model';
         
         &:focus {
           outline: none;
-          border-color: #104F8E;
+          border-color: #2667A9;
           box-shadow: 0 0 0 3px rgba(16, 79, 142, 0.1);
         }
       }
@@ -367,7 +367,7 @@ import { ContactMessage, CompanyInfo } from '../../core/models/catalog.model';
       gap: 8px;
       width: 100%;
       padding: 14px;
-      background: linear-gradient(135deg, #229443, #2ecc71);
+      background: linear-gradient(135deg, #4FAD47, #2ecc71);
       color: #fff;
       font-size: 1rem;
       font-weight: 700;
@@ -407,13 +407,13 @@ import { ContactMessage, CompanyInfo } from '../../core/models/catalog.model';
     .info-card {
       padding: 2rem;
       background: #fff;
-      border: 2px solid #229443;
+      border: 2px solid #4FAD47;
       border-radius: 16px;
       
       h3 {
         margin-bottom: 0.25rem;
         font-size: 1.3rem;
-        color: #0a2540;
+        color: #204C81;
       }
       
       .info-subtitle {
@@ -457,8 +457,8 @@ import { ContactMessage, CompanyInfo } from '../../core/models/catalog.model';
         .material-icons-outlined { font-size: 22px; color: #fff; }
         svg { width: 22px; height: 22px; color: #fff; }
         
-        &.blue { background: #e0f2fe; .material-icons-outlined { color: #104F8E; } }
-        &.green { background: #dcfce7; svg { color: #229443; } }
+        &.blue { background: #e0f2fe; .material-icons-outlined { color: #2667A9; } }
+        &.green { background: #dcfce7; svg { color: #4FAD47; } }
       }
       
       div {
@@ -475,7 +475,7 @@ import { ContactMessage, CompanyInfo } from '../../core/models/catalog.model';
       .info-value {
         font-size: 0.95rem;
         font-weight: 700;
-        color: #0a2540;
+        color: #204C81;
       }
     }
     
@@ -491,9 +491,9 @@ import { ContactMessage, CompanyInfo } from '../../core/models/catalog.model';
         gap: 8px;
         font-size: 1rem;
         margin-bottom: 1rem;
-        color: #0a2540;
+        color: #204C81;
         
-        .material-icons-outlined { color: #104F8E; }
+        .material-icons-outlined { color: #2667A9; }
       }
     }
     
@@ -512,7 +512,7 @@ import { ContactMessage, CompanyInfo } from '../../core/models/catalog.model';
       &:last-child { border-bottom: none; }
       
       span:first-child { color: #4a5568; font-weight: 600; }
-      span:last-child { font-weight: 700; color: #0a2540; }
+      span:last-child { font-weight: 700; color: #204C81; }
     }
     
     /* Animations */

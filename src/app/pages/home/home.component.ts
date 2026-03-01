@@ -94,32 +94,12 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
 
     <!-- Clients & Solutions Section -->
     <section class="clients-solutions">
-      <div class="container cs-grid">
-        <div class="cs-left">
-          <div class="cs-header-box">
-            <span class="cs-small">EMPRESAS QUE</span>
-            <strong>CONFÍAN EN NOSOTROS</strong>
-          </div>
-          <div class="trust-circle">
-            <div class="trust-bg">
-              <span class="material-icons-outlined trust-icon">handshake</span>
-              <span class="material-icons-outlined check-icon">check_circle</span>
-            </div>
-            @for (client of clients; track client.name; let i = $index) {
-              <div class="orbit-item" [class]="'pos-' + i">
-                <img [src]="client.logo" [alt]="client.name">
-              </div>
-            }
-          </div>
+      <div class="container cs-centered">
+        <div class="cs-header-box">
+          <span class="cs-small">PRODUCTOS DESTACADOS</span>
+          <strong>NUESTRAS SOLUCIONES</strong>
         </div>
-        
-        <div class="cs-right">
-          <div class="cs-header-box right">
-            <span class="cs-small">PRODUCTOS DESTACADOS</span>
-            <strong>NUESTRAS SOLUCIONES</strong>
-          </div>
-          <app-carousel [items]="carouselItems" [itemsVisible]="1"></app-carousel>
-        </div>
+        <app-carousel [items]="carouselItems" [itemsVisible]="1"></app-carousel>
       </div>
     </section>
     
@@ -320,29 +300,29 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
     .deco-bar {
       height: 14px;
       background: linear-gradient(to bottom,
-        #229443 0%, #229443 22%,
-        #104F8E 22%, #104F8E 78%,
-        #229443 78%, #229443 100%
+        #4FAD47 0%, #4FAD47 22%,
+        #2667A9 22%, #2667A9 78%,
+        #4FAD47 78%, #4FAD47 100%
       );
       position: relative;
       z-index: 5;
-      box-shadow: 0 2px 8px rgba(16, 79, 142, 0.2);
+      box-shadow: 0 2px 8px rgba(38, 103, 169, 0.2);
     }
-    
+
     .deco-bar-angle {
       height: 50px;
       position: relative;
       z-index: 5;
       overflow: hidden;
-      
+
       &::before {
         content: '';
         position: absolute;
         inset: 0;
         background: linear-gradient(to bottom,
-          #229443 0%, #229443 22%,
-          #104F8E 22%, #104F8E 78%,
-          #229443 78%, #229443 100%
+          #4FAD47 0%, #4FAD47 22%,
+          #2667A9 22%, #2667A9 78%,
+          #4FAD47 78%, #4FAD47 100%
         );
         clip-path: polygon(4% 0%, 96% 0%, 100% 100%, 0% 100%);
       }
@@ -355,31 +335,31 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
       display: flex;
       align-items: center;
       padding: 100px 0 60px;
-      background: #ffffff;
+      background: linear-gradient(160deg, #daeefa 0%, #edf6fd 35%, #f5faff 65%, #ffffff 100%);
       overflow: hidden;
     }
-    
+
     .hero-deco-tl {
       position: absolute;
       top: 0;
       left: 0;
-      width: 200px;
+      width: 260px;
       height: 100%;
-      background: linear-gradient(135deg, #229443 0%, #229443 8%, #104F8E 8%, #104F8E 16%, transparent 16%);
+      background: linear-gradient(135deg, #4FAD47 0%, #4FAD47 10%, #204C81 10%, #204C81 21%, rgba(32,76,129,0.07) 21%, transparent 38%);
       pointer-events: none;
-      
+
       @media (max-width: 768px) { display: none; }
     }
-    
+
     .hero-deco-br {
       position: absolute;
       bottom: 0;
       right: 0;
-      width: 200px;
+      width: 260px;
       height: 100%;
-      background: linear-gradient(-45deg, #229443 0%, #229443 8%, #104F8E 8%, #104F8E 16%, transparent 16%);
+      background: linear-gradient(-45deg, #4FAD47 0%, #4FAD47 10%, #204C81 10%, #204C81 21%, rgba(32,76,129,0.07) 21%, transparent 38%);
       pointer-events: none;
-      
+
       @media (max-width: 768px) { display: none; }
     }
     
@@ -401,120 +381,115 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      padding: 10px 20px;
-      background: #f0f9ff;
-      border: 2px solid #104F8E;
+      padding: 8px 18px;
+      background: transparent;
+      border: none;
       border-radius: 100px;
-      margin-bottom: 1.5rem;
-      
+      margin-bottom: 1.25rem;
+
       .badge-dot {
         width: 8px;
         height: 8px;
-        background: #229443;
+        background: #4FAD47;
         border-radius: 50%;
         animation: pulse 2s infinite;
+        flex-shrink: 0;
       }
-      
+
       span:last-child {
-        font-size: 0.85rem;
+        font-size: 0.8rem;
         font-weight: 700;
-        color: #104F8E;
-        letter-spacing: 0.08em;
+        color: #4FAD47;
+        letter-spacing: 0.1em;
         text-transform: uppercase;
       }
     }
-    
+
     @keyframes pulse {
-      0%, 100% { box-shadow: 0 0 0 0 rgba(34, 148, 67, 0.5); }
-      50% { box-shadow: 0 0 0 6px rgba(34, 148, 67, 0); }
+      0%, 100% { box-shadow: 0 0 0 0 rgba(79, 173, 71, 0.5); }
+      50% { box-shadow: 0 0 0 6px rgba(79, 173, 71, 0); }
     }
-    
+
     .hero h1 {
       margin-bottom: 1.5rem;
-      
+
       span { display: block; }
-      
-      .line-1, .line-3 {
-        color: #0a2540;
+
+      .line-1, .line-2, .line-3 {
+        color: #204C81;
         font-size: clamp(2.5rem, 6vw, 4.2rem);
         font-weight: 900;
         text-transform: uppercase;
-        letter-spacing: -0.02em;
-      }
-      
-      .line-2 {
-        color: #104F8E;
-        font-size: clamp(2.5rem, 6vw, 4.2rem);
-        font-weight: 900;
-        text-transform: uppercase;
-        letter-spacing: -0.02em;
+        letter-spacing: -0.01em;
+        line-height: 1.05;
       }
     }
-    
+
     .hero-desc {
-      font-size: 1.15rem;
-      color: #4a5568;
+      font-size: 1.05rem;
+      color: #2667A9;
       font-style: italic;
       line-height: 1.7;
       max-width: 520px;
       margin-bottom: 2rem;
-      
+
       @media (max-width: 1024px) { margin: 0 auto 2rem; }
     }
-    
+
     .hero-actions {
       display: flex;
       gap: 1rem;
-      
+
       @media (max-width: 1024px) { justify-content: center; }
       @media (max-width: 480px) { flex-direction: column; }
     }
-    
+
     .btn-primary-green {
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      padding: 16px 28px;
-      background: linear-gradient(135deg, #104F8E 0%, #1a6bc4 100%);
+      padding: 14px 28px;
+      background: #204C81;
       color: #fff;
-      font-size: 1rem;
+      font-size: 0.95rem;
       font-weight: 700;
       text-decoration: none;
-      border-radius: 12px;
+      border-radius: 10px;
       text-transform: uppercase;
-      letter-spacing: 0.03em;
+      letter-spacing: 0.04em;
       transition: all 0.3s ease;
-      box-shadow: 0 4px 15px rgba(16, 79, 142, 0.3);
-      
+      box-shadow: 0 4px 15px rgba(32, 76, 129, 0.25);
+
       .material-icons-outlined { font-size: 20px; }
-      
+
       &:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 8px 25px rgba(16, 79, 142, 0.4);
+        background: #2667A9;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(38, 103, 169, 0.35);
         color: #fff;
       }
     }
-    
+
     .btn-outline-dark {
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      padding: 16px 28px;
+      padding: 14px 28px;
       background: transparent;
-      border: 2px solid #0a2540;
-      color: #0a2540;
-      font-size: 1rem;
+      border: 2px solid #204C81;
+      color: #204C81;
+      font-size: 0.95rem;
       font-weight: 700;
       text-decoration: none;
-      border-radius: 12px;
+      border-radius: 10px;
       text-transform: uppercase;
-      letter-spacing: 0.03em;
+      letter-spacing: 0.04em;
       transition: all 0.3s ease;
-      
+
       .material-icons-outlined { font-size: 20px; }
-      
+
       &:hover {
-        background: #0a2540;
+        background: #204C81;
         color: #fff;
         transform: translateY(-2px);
       }
@@ -539,20 +514,20 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
 
       &.ring-1 {
         inset: 0;
-        border-color: rgba(34, 148, 67, 0.18);
-        background: rgba(34, 148, 67, 0.03);
+        border-color: rgba(213, 233, 249, 0.8);
+        background: rgba(213, 233, 249, 0.25);
       }
       &.ring-2 {
         inset: 35px;
-        border-color: rgba(34, 148, 67, 0.28);
-        background: rgba(34, 148, 67, 0.05);
+        border-color: rgba(38, 103, 169, 0.2);
+        background: rgba(213, 233, 249, 0.35);
         border-style: dashed;
         animation: spinRing 18s linear infinite;
       }
       &.ring-3 {
         inset: 70px;
-        border-color: rgba(34, 148, 67, 0.4);
-        background: rgba(34, 148, 67, 0.06);
+        border-color: rgba(38, 103, 169, 0.3);
+        background: rgba(213, 233, 249, 0.45);
       }
     }
 
@@ -569,16 +544,16 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
       justify-content: center;
       background: #fff;
       border-radius: 50%;
-      border: 3px solid rgba(34, 148, 67, 0.35);
-      box-shadow: 0 10px 40px rgba(34, 148, 67, 0.12), 0 4px 15px rgba(0, 0, 0, 0.08);
-      
+      border: 3px solid rgba(38, 103, 169, 0.2);
+      box-shadow: 0 10px 40px rgba(38, 103, 169, 0.15), 0 4px 15px rgba(0, 0, 0, 0.06);
+
       .showcase-logo {
         width: 75%;
         height: auto;
         object-fit: contain;
       }
     }
-    
+
     .float-badge {
       position: absolute;
       display: flex;
@@ -586,19 +561,19 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
       gap: 6px;
       padding: 8px 14px;
       background: #fff;
-      border: 1px solid #e2e8f0;
+      border: 1px solid #D5E9F9;
       border-radius: 50px;
       font-size: 0.75rem;
       font-weight: 600;
-      color: #0a2540;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      color: #204C81;
+      box-shadow: 0 4px 12px rgba(38, 103, 169, 0.1);
       animation: floatBadge 4s ease-in-out infinite;
-      
+
       .material-icons-outlined {
         font-size: 16px;
-        color: #229443;
+        color: #4FAD47;
       }
-      
+
       &.fb-1 { top: 10%; left: -15%; animation-delay: 0s; }
       &.fb-2 { top: 55%; right: -20%; animation-delay: 1.3s; }
       &.fb-3 { bottom: 5%; left: -5%; animation-delay: 2.6s; }
@@ -611,103 +586,92 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
 
     /* ===== STATS ===== */
     .stats-section {
-      padding: 2rem 0 3rem;
-      background: #fff;
+      padding: 2.5rem 0 3rem;
+      background: #204C81;
     }
-    
+
     .stats-frame {
       display: flex;
       justify-content: center;
       align-items: center;
       gap: 3rem;
-      padding: 2rem 0;
+      padding: 1.5rem 0;
       max-width: 800px;
       margin: 0 auto;
-      
+
       @media (max-width: 768px) {
         flex-direction: column;
         gap: 1.5rem;
         padding: 1.5rem;
       }
     }
-    
+
     .stat-divider {
       width: 1px;
       height: 50px;
-      background: #cbd5e0;
-      
+      background: rgba(255, 255, 255, 0.25);
+
       @media (max-width: 768px) {
         width: 60px;
         height: 1px;
-        background: #cbd5e0;
+        background: rgba(255, 255, 255, 0.25);
       }
     }
-    
+
     .stat-item {
       text-align: center;
     }
-    
+
     .stat-num {
       display: block;
       font-family: var(--font-display);
       font-size: 3.5rem;
       font-weight: 900;
-      color: #229443;
+      color: #ffffff;
       line-height: 1;
-      font-style: italic;
-    }
-    
-    .stat-txt {
-      font-size: 0.85rem;
-      font-weight: 700;
-      color: #4a5568;
-      letter-spacing: 0.12em;
     }
 
-    /* ===== LOGO DIVIDER ===== */
-    .logo-divider {
-      padding: 3rem 0;
-      text-align: center;
-      background: #fff;
-      
-      img {
-        height: 80px;
-        width: auto;
-      }
+    .stat-txt {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #4FAD47;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
     }
 
     /* ===== CLIENTS & SOLUTIONS ===== */
     .clients-solutions {
       padding: 3rem 0 4rem;
-      background: linear-gradient(180deg, #fff 0%, #f5faff 100%);
+      background: linear-gradient(180deg, #eaf4fd 0%, #d8ecf8 40%, #e8f4fc 100%);
+      border-top: 3px solid #D5E9F9;
+      border-bottom: 3px solid #D5E9F9;
     }
     
-    .cs-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-      align-items: start;
-      
-      @media (max-width: 1024px) {
-        grid-template-columns: 1fr;
-      }
+    .cs-centered {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      max-width: 860px;
+      margin: 0 auto;
+
+      .cs-header-box { margin-bottom: 1.5rem; }
     }
     
     .cs-header-box {
       display: inline-block;
       padding: 14px 32px;
-      background: linear-gradient(135deg, #0a2540 0%, #104F8E 100%);
+      background: linear-gradient(135deg, #204C81 0%, #2667A9 100%);
       border: none;
       border-radius: 12px;
       margin-bottom: 2rem;
       text-align: center;
-      box-shadow: 0 4px 15px rgba(10, 37, 64, 0.2);
+      box-shadow: 0 4px 15px rgba(32, 76, 129, 0.2);
       
       .cs-small {
         display: block;
         font-size: 0.8rem;
         font-weight: 600;
-        color: #81d4a2;
+        color: #4FAD47;
         letter-spacing: 0.08em;
       }
       
@@ -718,92 +682,17 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
       }
       
       &.right {
-        background: linear-gradient(135deg, #0a2540 0%, #0d3562 100%);
+        background: linear-gradient(135deg, #204C81 0%, #204C81 100%);
         
-        .cs-small { color: #7dd3a0; }
+        .cs-small { color: #4FAD47; }
         strong { color: #fff; }
-      }
-    }
-    
-    /* Trust Circle */
-    .trust-circle {
-      position: relative;
-      width: 300px;
-      height: 300px;
-      margin: 0 auto;
-    }
-    
-    .trust-bg {
-      position: absolute;
-      inset: 20px;
-      background: radial-gradient(circle, #a5d6a7 0%, #66bb6a 40%, #43a047 70%, #2e7d32 100%);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 8px 30px rgba(34, 148, 67, 0.25);
-      
-      .trust-icon {
-        font-size: 80px;
-        color: #fff;
-        opacity: 0.4;
-      }
-      
-      .check-icon {
-        position: absolute;
-        font-size: 48px;
-        color: #fff;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
-      }
-    }
-    
-    .orbit-item {
-      position: absolute;
-      width: 60px;
-      height: 60px;
-      background: #fff;
-      border-radius: 50%;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: 2px solid #e2e8f0;
-      z-index: 2;
-      animation: orbitFloat 4s ease-in-out infinite;
-      
-      img {
-        width: 70%;
-        height: 70%;
-        object-fit: contain;
-      }
-      
-      &.pos-0 { top: -5%; right: 10%; animation-delay: 0s; }
-      &.pos-1 { left: -8%; top: 50%; animation-delay: 1.3s; }
-      &.pos-2 { bottom: 0; right: 2%; animation-delay: 2.6s; }
-    }
-    
-    @keyframes orbitFloat {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-6px); }
-    }
-    
-    .cs-right {
-      min-height: 300px;
-      display: flex;
-      flex-direction: column;
-      
-      app-carousel {
-        flex: 1;
       }
     }
 
     /* ===== SUPPLIERS ===== */
     .suppliers-section {
       padding: 4rem 0 5rem;
-      background: linear-gradient(180deg, #f5faff 0%, #eaf4fb 100%);
+      background: linear-gradient(180deg, #ffffff 0%, #f0f7ff 60%, #e8f4fd 100%);
     }
     
     .sup-layout {
@@ -827,12 +716,12 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
       width: 200px;
       height: 200px;
       border-radius: 50%;
-      background: radial-gradient(circle at 40% 40%, #a5d6a7 0%, #66bb6a 30%, #43a047 60%, #2e7d32 100%);
+      background: radial-gradient(circle at 40% 40%, #5eca56 0%, #4FAD47 30%, #3d9136 60%, #2d6e28 100%);
       display: flex;
       align-items: center;
       justify-content: center;
-      border: 5px solid #229443;
-      box-shadow: 0 8px 30px rgba(34, 148, 67, 0.25);
+      border: 5px solid #4FAD47;
+      box-shadow: 0 8px 30px rgba(79, 173, 71, 0.25);
       position: relative;
       overflow: hidden;
       
@@ -857,13 +746,13 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
     .sup-title {
       text-align: center;
       font-size: 1.8rem;
-      color: #0a2540;
+      color: #204C81;
       margin-bottom: 1rem;
       text-transform: uppercase;
       letter-spacing: 0.02em;
       
       strong { 
-        color: #104F8E; 
+        color: #2667A9; 
         font-size: 2.2rem;
         display: block;
       }
@@ -884,7 +773,7 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
       align-items: center;
       gap: 8px;
       padding: 10px 22px;
-      background: linear-gradient(135deg, #0a2540 0%, #104F8E 100%);
+      background: linear-gradient(135deg, #204C81 0%, #2667A9 100%);
       border: none;
       border-radius: 100px;
       font-size: 0.8rem;
@@ -892,12 +781,12 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
       color: #fff;
       letter-spacing: 0.1em;
       margin-bottom: 1.5rem;
-      box-shadow: 0 4px 12px rgba(10, 37, 64, 0.2);
+      box-shadow: 0 4px 12px rgba(32, 76, 129, 0.2);
       
       .badge-dot {
         width: 8px;
         height: 8px;
-        background: #229443;
+        background: #4FAD47;
         border-radius: 50%;
       }
     }
@@ -926,9 +815,9 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
       transition: all 0.3s ease;
       
       &:hover {
-        border-color: #104F8E;
+        border-color: #2667A9;
         transform: translateY(-4px);
-        box-shadow: 0 12px 30px rgba(16, 79, 142, 0.12);
+        box-shadow: 0 12px 30px rgba(38, 103, 169, 0.12);
         background: #f0f9ff;
       }
     }
@@ -947,7 +836,7 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
       
       .material-icons-outlined {
         font-size: 36px;
-        color: #104F8E;
+        color: #2667A9;
       }
     }
     
@@ -977,7 +866,7 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
     /* ===== FEATURED PRODUCTS (Dark Navy) ===== */
     .featured-section {
       padding: 4rem 0;
-      background: linear-gradient(180deg, #0a2540 0%, #0d3562 50%, #0a2540 100%);
+      background: linear-gradient(180deg, #204C81 0%, #204C81 50%, #204C81 100%);
       text-align: center;
       position: relative;
     }
@@ -1010,7 +899,7 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
       
       .material-icons-outlined {
         font-size: 18px;
-        color: #81d4a2;
+        color: #4FAD47;
       }
     }
     
@@ -1031,7 +920,7 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
       width: 400px;
       max-width: 80%;
       height: 6px;
-      background: linear-gradient(90deg, #229443 0%, #104F8E 50%, #229443 100%);
+      background: linear-gradient(90deg, #4FAD47 0%, #2667A9 50%, #4FAD47 100%);
       border-radius: 3px;
       margin: 0 auto 1.5rem;
     }
@@ -1039,8 +928,8 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
     .feat-desc-pill {
       display: inline-block;
       padding: 10px 30px;
-      background: rgba(34, 148, 67, 0.15);
-      border: 1px solid rgba(34, 148, 67, 0.35);
+      background: rgba(79, 173, 71, 0.15);
+      border: 1px solid rgba(79, 173, 71, 0.35);
       border-radius: 100px;
       margin-bottom: 3rem;
     }
@@ -1078,14 +967,14 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
       
       .material-icons-outlined {
         font-size: 44px;
-        color: #229443;
+        color: #4FAD47;
         transition: all 0.3s ease;
         filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
       }
       
       &:hover {
         .material-icons-outlined {
-          color: #2ecc71;
+          color: #5eca56;
           transform: scale(1.15);
         }
       }
@@ -1097,10 +986,10 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
       }
       
       &.sup-nav:hover {
-        background: rgba(16, 79, 142, 0.08);
+        background: rgba(38, 103, 169, 0.08);
         
         .material-icons-outlined {
-          color: #104F8E;
+          color: #2667A9;
         }
       }
       
@@ -1124,7 +1013,7 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
         transition: all 0.3s ease;
         
         &.active {
-          background: #229443;
+          background: #4FAD47;
           width: 12px;
           height: 12px;
         }
@@ -1134,7 +1023,7 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
     .sup-footer .pagination-dots .dot {
       background: #cbd5e0;
       
-      &.active { background: #104F8E; }
+      &.active { background: #2667A9; }
     }
     
     .products-row {
@@ -1206,7 +1095,7 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
       .prod-brand {
         font-size: 0.8rem;
         font-weight: 600;
-        color: #229443;
+        color: #4FAD47;
         text-transform: uppercase;
         letter-spacing: 0.05em;
       }
@@ -1234,15 +1123,16 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
       
       &:hover {
         background: #fff;
-        color: #0a2540;
+        color: #204C81;
         transform: translateY(-2px);
       }
     }
 
     /* ===== WHY CHOOSE US ===== */
     .why-section {
-      padding: 5rem 0;
-      background: linear-gradient(180deg, #f0f7ff 0%, #fff 40%);
+      padding: 4rem 0 5rem;
+      background: #f0f7ff;
+      border-top: 3px solid #D5E9F9;
     }
     
     .why-layout {
@@ -1260,44 +1150,48 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 10px 22px;
-      background: linear-gradient(135deg, #0a2540 0%, #104F8E 100%);
-      border: none;
+      padding: 8px 20px;
+      background: rgba(79, 173, 71, 0.15);
+      border: 1.5px solid rgba(79, 173, 71, 0.55);
       border-radius: 100px;
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       font-weight: 700;
-      color: #fff;
-      letter-spacing: 0.05em;
+      color: #4FAD47;
+      letter-spacing: 0.06em;
       margin-bottom: 1.5rem;
-      box-shadow: 0 4px 12px rgba(10, 37, 64, 0.2);
-      
-      .material-icons-outlined { font-size: 18px; color: #81d4a2; }
+
+      .material-icons-outlined { font-size: 17px; color: #4FAD47; }
     }
     
     .why-content {
+      background: linear-gradient(145deg, #1b3f6e 0%, #204C81 60%, #2a6aad 100%);
+      border-radius: 24px;
+      padding: 3rem 2.5rem;
+      box-shadow: 0 16px 48px rgba(32, 76, 129, 0.22);
+
       h2 {
         font-size: clamp(1.8rem, 4vw, 2.8rem);
-        color: #0a2540;
+        color: #fff;
         margin-bottom: 1rem;
         text-transform: uppercase;
         line-height: 1.1;
-        
+
         em {
           font-style: italic;
           font-weight: 600;
         }
-        
+
         strong {
-          color: #104F8E;
+          color: #D5E9F9;
           font-size: clamp(2.5rem, 5vw, 3.5rem);
         }
       }
     }
     
     .why-intro {
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       font-weight: 500;
-      color: #4a5568;
+      color: rgba(255, 255, 255, 0.65);
       letter-spacing: 0.03em;
       line-height: 1.6;
       margin-bottom: 2rem;
@@ -1313,30 +1207,33 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
     .wf-item {
       display: flex;
       gap: 1rem;
-      padding: 1.2rem;
-      background: #f8fafc;
-      border: 2px solid #e2e8f0;
+      padding: 1.2rem 1.4rem;
+      background: rgba(255, 255, 255, 0.07);
+      border: 1.5px solid rgba(255, 255, 255, 0.14);
+      border-left: 4px solid #4FAD47;
       border-radius: 16px;
       transition: all 0.3s ease;
-      
+
       &:hover {
-        border-color: #229443;
+        background: rgba(255, 255, 255, 0.12);
+        border-color: rgba(255, 255, 255, 0.25);
+        border-left-color: #5eca56;
         transform: translateX(6px);
-        box-shadow: 0 8px 20px rgba(34, 148, 67, 0.1);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
       }
-      
+
       h4 {
         font-size: 1rem;
         font-weight: 700;
-        color: #0a2540;
+        color: #ffffff;
         margin-bottom: 4px;
         text-transform: none;
         letter-spacing: 0;
       }
-      
+
       p {
         font-size: 0.85rem;
-        color: #718096;
+        color: rgba(255, 255, 255, 0.65);
         font-style: italic;
         margin: 0;
         line-height: 1.5;
@@ -1345,18 +1242,18 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
     }
     
     .wf-icon {
-      width: 48px;
-      height: 48px;
+      width: 46px;
+      height: 46px;
       display: flex;
       align-items: center;
       justify-content: center;
-      border-radius: 14px;
+      border-radius: 12px;
       flex-shrink: 0;
-      
-      .material-icons-outlined { font-size: 24px; color: #fff; }
-      
-      &.green { background: linear-gradient(135deg, #229443, #2ecc71); }
-      &.blue { background: linear-gradient(135deg, #104F8E, #1a6bc4); }
+
+      .material-icons-outlined { font-size: 22px; color: #fff; }
+
+      &.green { background: linear-gradient(135deg, #3d9136, #4FAD47); }
+      &.blue { background: linear-gradient(135deg, #163560, #2667A9); }
     }
     
     /* Diamond Frame */
@@ -1366,7 +1263,12 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
       align-items: center;
       justify-content: center;
       gap: 2rem;
-      
+      background: #fff;
+      border-radius: 24px;
+      padding: 3rem 2rem;
+      box-shadow: 0 8px 32px rgba(38, 103, 169, 0.1);
+      border: 2px solid #D5E9F9;
+
       @media (max-width: 1024px) { display: none; }
     }
     
@@ -1387,7 +1289,7 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
         content: '';
         position: absolute;
         inset: 0;
-        border: 3px solid #229443;
+        border: 3px solid #4FAD47;
         transform: rotate(45deg);
         border-radius: 16px;
       }
@@ -1396,7 +1298,7 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
         content: '';
         position: absolute;
         inset: 12px;
-        border: 3px solid #104F8E;
+        border: 3px solid #2667A9;
         transform: rotate(45deg);
         border-radius: 12px;
       }
@@ -1416,63 +1318,23 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
       50% { transform: translateY(-6px); }
     }
 
-    /* ===== PRE-CTA ===== */
-    .pre-cta {
-      padding: 3rem 0;
-      background: #fff;
-    }
-    
-    .pre-cta-inner {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 3rem;
-      
-      @media (max-width: 768px) {
-        flex-direction: column;
-        gap: 1.5rem;
-      }
-    }
-    
-    .pre-cta-logo {
-      height: 100px;
-      width: auto;
-    }
-    
-    .pre-cta-badge {
-      padding: 18px 44px;
-      background: linear-gradient(135deg, #0a2540 0%, #104F8E 100%);
-      border: none;
-      border-radius: 16px;
-      box-shadow: 0 6px 20px rgba(10, 37, 64, 0.25);
-      
-      span {
-        font-size: 1.5rem;
-        font-weight: 800;
-        color: #fff;
-        letter-spacing: 0.05em;
-        text-transform: uppercase;
-      }
-    }
-
     /* ===== CTA SECTION ===== */
     .cta-section {
       padding: 5rem 0 4rem;
-      background: linear-gradient(180deg, #0a2540 0%, #0d3562 50%, #0a2540 100%);
+      background: #204C81;
       text-align: center;
-      clip-path: polygon(0 3%, 100% 0%, 100% 100%, 0% 100%);
-      margin-top: -2px;
+      border-top: 4px solid #4FAD47;
     }
 
     .cta-ready-badge {
       display: inline-block;
       padding: 8px 28px;
-      background: rgba(34, 148, 67, 0.2);
-      border: 1px solid rgba(34, 148, 67, 0.45);
+      background: rgba(79, 173, 71, 0.2);
+      border: 1px solid rgba(79, 173, 71, 0.45);
       border-radius: 100px;
       font-size: 0.8rem;
       font-weight: 700;
-      color: #81d4a2;
+      color: #4FAD47;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       margin-bottom: 1.25rem;
@@ -1515,7 +1377,7 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
       align-items: center;
       gap: 8px;
       padding: 16px 28px;
-      background: linear-gradient(135deg, #229443 0%, #2ecc71 100%);
+      background: linear-gradient(135deg, #4FAD47 0%, #5eca56 100%);
       color: #fff;
       font-size: 1rem;
       font-weight: 700;
@@ -1523,13 +1385,13 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
       border-radius: 12px;
       text-transform: uppercase;
       transition: all 0.3s ease;
-      box-shadow: 0 6px 20px rgba(34, 148, 67, 0.3);
+      box-shadow: 0 6px 20px rgba(79, 173, 71, 0.3);
       
       .material-icons-outlined { font-size: 20px; }
       
       &:hover {
         transform: translateY(-3px);
-        box-shadow: 0 10px 30px rgba(34, 148, 67, 0.4);
+        box-shadow: 0 10px 30px rgba(79, 173, 71, 0.4);
         color: #fff;
       }
     }
@@ -1540,7 +1402,7 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
       gap: 8px;
       padding: 16px 28px;
       background: #fff;
-      color: #0a2540;
+      color: #204C81;
       font-size: 1rem;
       font-weight: 700;
       text-decoration: none;
@@ -1601,7 +1463,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
       name: 'Guante Euroflex Standard', 
       image: 'assets/images/products/Euroflex Standard.jpg',
       category: 'Seguridad',
-      supplier: 'ZIEGLER',
+      supplier: 'Euroflex',
       supplierSlug: 'ziegler'
     },
     { 
@@ -1629,7 +1491,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
       name: 'Delantal Malla Metálica', 
       image: 'assets/images/products/Ecomesh Apron.jpg',
       category: 'Protección',
-      supplier: 'ZIEGLER',
+      supplier: 'Euroflex',
       supplierSlug: 'ziegler'
     }
   ];

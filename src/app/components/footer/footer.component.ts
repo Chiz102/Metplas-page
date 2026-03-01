@@ -78,9 +78,9 @@ import { CompanyInfo } from '../../core/models/catalog.model';
     .footer-deco-bar {
       height: 12px;
       background: linear-gradient(to bottom,
-        #229443 0%, #229443 25%,
-        #104F8E 25%, #104F8E 75%,
-        #229443 75%, #229443 100%
+        #4FAD47 0%, #4FAD47 25%,
+        #2667A9 25%, #2667A9 75%,
+        #4FAD47 75%, #4FAD47 100%
       );
     }
     
@@ -133,11 +133,11 @@ import { CompanyInfo } from '../../core/models/catalog.model';
       h4 {
         font-size: 1rem;
         font-weight: 700;
-        color: #0a2540;
+        color: #204C81;
         margin-bottom: 1rem;
         text-decoration: underline;
         text-underline-offset: 4px;
-        text-decoration-color: #104F8E;
+        text-decoration-color: #2667A9;
         text-decoration-thickness: 2px;
       }
       
@@ -154,7 +154,7 @@ import { CompanyInfo } from '../../core/models/catalog.model';
           transition: all 0.2s ease;
           
           &:hover {
-            color: #104F8E;
+            color: #2667A9;
             padding-left: 6px;
           }
         }
@@ -178,12 +178,12 @@ import { CompanyInfo } from '../../core/models/catalog.model';
       
       .material-icons-outlined {
         font-size: 18px;
-        color: #104F8E;
+        color: #2667A9;
         flex-shrink: 0;
         margin-top: 2px;
       }
       
-      &:hover { color: #104F8E; }
+      &:hover { color: #2667A9; }
     }
     
     .footer-bottom {

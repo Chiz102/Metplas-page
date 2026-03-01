@@ -103,7 +103,7 @@ export interface CarouselItem {
       }
       
       &:hover .material-icons-outlined {
-        color: #104F8E;
+        color: #2667A9;
         transform: scale(1.1);
       }
     }
@@ -142,7 +142,7 @@ export interface CarouselItem {
       
       &.has-image {
         border: none;
-        background: #0a2540;
+        background: #204C81;
       }
       
       &:hover {
@@ -156,15 +156,15 @@ export interface CarouselItem {
         .card-overlay {
           background: linear-gradient(
             180deg,
-            rgba(10, 37, 64, 0.2) 0%,
-            rgba(10, 37, 64, 0.75) 55%,
-            rgba(10, 37, 64, 0.92) 100%
+            rgba(32, 76, 129, 0.2) 0%,
+            rgba(32, 76, 129, 0.75) 55%,
+            rgba(32, 76, 129, 0.92) 100%
           );
         }
-        
+
         .card-icon.light {
-          background: rgba(34, 148, 67, 0.35);
-          border-color: rgba(34, 148, 67, 0.5);
+          background: rgba(79, 173, 71, 0.35);
+          border-color: rgba(79, 173, 71, 0.5);
         }
       }
     }
@@ -186,9 +186,9 @@ export interface CarouselItem {
       inset: 0;
       background: linear-gradient(
         180deg,
-        rgba(10, 37, 64, 0.15) 0%,
-        rgba(10, 37, 64, 0.65) 50%,
-        rgba(10, 37, 64, 0.88) 100%
+        rgba(32, 76, 129, 0.15) 0%,
+        rgba(32, 76, 129, 0.65) 50%,
+        rgba(32, 76, 129, 0.88) 100%
       );
       transition: background 0.4s ease;
     }
@@ -220,7 +220,7 @@ export interface CarouselItem {
       
       .material-icons-outlined {
         font-size: 24px;
-        color: #104F8E;
+        color: #2667A9;
       }
       
       &.light {
@@ -236,17 +236,17 @@ export interface CarouselItem {
     .carousel-card h3 {
       font-size: 1.15rem;
       font-weight: 700;
-      color: #0a2540;
+      color: #204C81;
       margin-bottom: 0.4rem;
       text-transform: none;
       letter-spacing: 0;
-      
-      .has-image & {
-        color: #fff;
-        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-      }
     }
-    
+
+    .carousel-card.has-image h3 {
+      color: #fff;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+
     .carousel-card p {
       font-size: 0.85rem;
       color: #4a5568;
@@ -257,10 +257,10 @@ export interface CarouselItem {
       -webkit-line-clamp: 3;
       -webkit-box-orient: vertical;
       overflow: hidden;
-      
-      .has-image & {
-        color: rgba(255, 255, 255, 0.85);
-      }
+    }
+
+    .carousel-card.has-image p {
+      color: rgba(255, 255, 255, 0.9);
     }
     
     .card-footer {
@@ -282,7 +282,7 @@ export interface CarouselItem {
       gap: 4px;
       font-size: 0.85rem;
       font-weight: 700;
-      color: #104F8E;
+      color: #2667A9;
       text-decoration: none;
       transition: all 0.3s ease;
       
@@ -298,17 +298,17 @@ export interface CarouselItem {
       }
       
       &:hover {
-        color: #229443;
-        
+        color: #4FAD47;
+
         .material-icons-outlined {
           transform: translateX(4px);
-          color: #229443;
+          color: #4FAD47;
         }
       }
-      
+
       &.light:hover {
-        color: #2ecc71;
-        .material-icons-outlined { color: #2ecc71; }
+        color: #5eca56;
+        .material-icons-outlined { color: #5eca56; }
       }
     }
     
@@ -329,7 +329,7 @@ export interface CarouselItem {
       transition: all 0.3s ease;
       
       &.active {
-        background: #104F8E;
+        background: #2667A9;
         width: 24px;
         border-radius: 4px;
       }

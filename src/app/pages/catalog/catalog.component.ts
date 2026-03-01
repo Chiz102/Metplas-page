@@ -153,7 +153,7 @@ import { ApiService } from '../../core/services/api.service';
       position: absolute;
       top: 0; left: 0;
       width: 180px; height: 100%;
-      background: linear-gradient(135deg, #229443 0%, #229443 8%, #104F8E 8%, #104F8E 16%, transparent 16%);
+      background: linear-gradient(135deg, #4FAD47 0%, #4FAD47 8%, #2667A9 8%, #2667A9 16%, transparent 16%);
       pointer-events: none;
       @media (max-width: 768px) { display: none; }
     }
@@ -162,7 +162,7 @@ import { ApiService } from '../../core/services/api.service';
       position: absolute;
       bottom: 0; right: 0;
       width: 180px; height: 100%;
-      background: linear-gradient(-45deg, #229443 0%, #229443 8%, #104F8E 8%, #104F8E 16%, transparent 16%);
+      background: linear-gradient(-45deg, #4FAD47 0%, #4FAD47 8%, #2667A9 8%, #2667A9 16%, transparent 16%);
       pointer-events: none;
       @media (max-width: 768px) { display: none; }
     }
@@ -175,23 +175,23 @@ import { ApiService } from '../../core/services/api.service';
       gap: 8px;
       padding: 10px 24px;
       background: #f0f9ff;
-      border: 2px solid #104F8E;
+      border: 2px solid #2667A9;
       border-radius: 100px;
       font-size: 0.85rem;
       font-weight: 700;
-      color: #104F8E;
+      color: #2667A9;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       margin-bottom: 1.5rem;
       
-      .material-icons-outlined { font-size: 18px; color: #229443; }
+      .material-icons-outlined { font-size: 18px; color: #4FAD47; }
     }
     
     h1 {
-      color: #0a2540;
+      color: #204C81;
       margin-bottom: 1rem;
       
-      .accent { color: #229443; }
+      .accent { color: #4FAD47; }
     }
     
     .hero-desc {
@@ -209,7 +209,7 @@ import { ApiService } from '../../core/services/api.service';
       gap: 2rem;
       padding: 1.25rem 2.5rem;
       background: #f8fafc;
-      border: 2px solid #229443;
+      border: 2px solid #4FAD47;
       border-radius: 16px;
       
       .stat-item { text-align: center; }
@@ -219,7 +219,7 @@ import { ApiService } from '../../core/services/api.service';
         font-family: var(--font-display);
         font-size: 2rem;
         font-weight: 800;
-        color: #104F8E;
+        color: #2667A9;
         line-height: 1;
       }
       
@@ -274,14 +274,14 @@ import { ApiService } from '../../core/services/api.service';
       
       .card-top-accent {
         height: 4px;
-        background: linear-gradient(90deg, #229443 0%, #104F8E 100%);
+        background: linear-gradient(90deg, #4FAD47 0%, #2667A9 100%);
         transform: scaleX(0);
         transform-origin: left;
         transition: transform 0.4s ease;
       }
       
       &:hover {
-        border-color: #229443;
+        border-color: #4FAD47;
         box-shadow: 0 12px 40px rgba(16, 79, 142, 0.12);
         transform: translateY(-4px);
         
@@ -293,7 +293,7 @@ import { ApiService } from '../../core/services/api.service';
         }
         
         .view-btn {
-          color: #229443;
+          color: #4FAD47;
           .material-icons-outlined { transform: translateX(4px); }
         }
       }
@@ -323,7 +323,7 @@ import { ApiService } from '../../core/services/api.service';
       transition: all 0.3s ease;
       
       img { width: 55%; height: 55%; object-fit: contain; }
-      .material-icons-outlined { font-size: 32px; color: #104F8E; }
+      .material-icons-outlined { font-size: 32px; color: #2667A9; }
     }
     
     .country-badge {
@@ -336,7 +336,7 @@ import { ApiService } from '../../core/services/api.service';
       border-radius: 100px;
       font-size: 0.8rem;
       font-weight: 600;
-      color: #104F8E;
+      color: #2667A9;
       
       .material-icons-outlined { font-size: 14px; }
     }
@@ -347,7 +347,7 @@ import { ApiService } from '../../core/services/api.service';
       h3 {
         font-size: 1.4rem;
         font-weight: 700;
-        color: #0a2540;
+        color: #204C81;
         margin-bottom: 0.5rem;
         text-transform: none;
         letter-spacing: 0;
@@ -382,8 +382,8 @@ import { ApiService } from '../../core/services/api.service';
         
         &-more {
           background: rgba(34, 148, 67, 0.1);
-          border-color: #229443;
-          color: #229443;
+          border-color: #4FAD47;
+          color: #4FAD47;
         }
       }
     }
@@ -403,7 +403,7 @@ import { ApiService } from '../../core/services/api.service';
         font-weight: 500;
         color: #718096;
         
-        .material-icons-outlined { font-size: 16px; color: #229443; }
+        .material-icons-outlined { font-size: 16px; color: #4FAD47; }
       }
       
       .view-btn {
@@ -412,7 +412,7 @@ import { ApiService } from '../../core/services/api.service';
         gap: 6px;
         font-size: 0.85rem;
         font-weight: 700;
-        color: #104F8E;
+        color: #2667A9;
         transition: all 0.3s ease;
         
         .material-icons-outlined { font-size: 16px; transition: transform 0.3s ease; }
@@ -431,7 +431,7 @@ import { ApiService } from '../../core/services/api.service';
       gap: 2rem;
       padding: 2.5rem;
       background: #fff;
-      border: 2px solid #229443;
+      border: 2px solid #4FAD47;
       border-radius: 16px;
       box-shadow: 0 8px 30px rgba(16, 79, 142, 0.08);
       
@@ -447,7 +447,7 @@ import { ApiService } from '../../core/services/api.service';
       display: flex;
       align-items: center;
       justify-content: center;
-      background: linear-gradient(135deg, #229443, #104F8E);
+      background: linear-gradient(135deg, #4FAD47, #2667A9);
       border-radius: 16px;
       flex-shrink: 0;
       
@@ -459,7 +459,7 @@ import { ApiService } from '../../core/services/api.service';
       
       h2 {
         font-size: 1.5rem;
-        color: #0a2540;
+        color: #204C81;
         margin-bottom: 0.5rem;
       }
       
@@ -486,7 +486,7 @@ import { ApiService } from '../../core/services/api.service';
       align-items: center;
       gap: 8px;
       padding: 14px 24px;
-      background: linear-gradient(135deg, #229443, #2ecc71);
+      background: linear-gradient(135deg, #4FAD47, #2ecc71);
       color: #fff;
       font-size: 0.95rem;
       font-weight: 700;

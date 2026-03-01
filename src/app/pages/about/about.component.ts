@@ -170,9 +170,9 @@ import { RouterLink } from '@angular/router';
     .deco-bar {
       height: 12px;
       background: linear-gradient(to bottom,
-        #229443 0%, #229443 25%,
-        #104F8E 25%, #104F8E 75%,
-        #229443 75%, #229443 100%
+        #4FAD47 0%, #4FAD47 25%,
+        #2667A9 25%, #2667A9 75%,
+        #4FAD47 75%, #4FAD47 100%
       );
     }
     
@@ -186,9 +186,9 @@ import { RouterLink } from '@angular/router';
         position: absolute;
         inset: 0;
         background: linear-gradient(to bottom,
-          #229443 0%, #229443 25%,
-          #104F8E 25%, #104F8E 75%,
-          #229443 75%, #229443 100%
+          #4FAD47 0%, #4FAD47 25%,
+          #2667A9 25%, #2667A9 75%,
+          #4FAD47 75%, #4FAD47 100%
         );
         clip-path: polygon(4% 0%, 96% 0%, 100% 100%, 0% 100%);
       }
@@ -207,7 +207,7 @@ import { RouterLink } from '@angular/router';
       position: absolute;
       top: 0; left: 0;
       width: 180px; height: 100%;
-      background: linear-gradient(135deg, #229443 0%, #229443 8%, #104F8E 8%, #104F8E 16%, transparent 16%);
+      background: linear-gradient(135deg, #4FAD47 0%, #4FAD47 8%, #2667A9 8%, #2667A9 16%, transparent 16%);
       pointer-events: none;
       @media (max-width: 768px) { display: none; }
     }
@@ -216,7 +216,7 @@ import { RouterLink } from '@angular/router';
       position: absolute;
       bottom: 0; right: 0;
       width: 180px; height: 100%;
-      background: linear-gradient(-45deg, #229443 0%, #229443 8%, #104F8E 8%, #104F8E 16%, transparent 16%);
+      background: linear-gradient(-45deg, #4FAD47 0%, #4FAD47 8%, #2667A9 8%, #2667A9 16%, transparent 16%);
       pointer-events: none;
       @media (max-width: 768px) { display: none; }
     }
@@ -229,20 +229,20 @@ import { RouterLink } from '@angular/router';
       gap: 10px;
       padding: 10px 24px;
       background: #f0f9ff;
-      border: 2px solid #104F8E;
+      border: 2px solid #2667A9;
       border-radius: 100px;
       margin-bottom: 1.5rem;
       
       .badge-dot {
         width: 8px; height: 8px;
-        background: #229443;
+        background: #4FAD47;
         border-radius: 50%;
       }
       
       span:last-child {
         font-size: 0.85rem;
         font-weight: 700;
-        color: #104F8E;
+        color: #2667A9;
         letter-spacing: 0.08em;
         text-transform: uppercase;
       }
@@ -255,14 +255,14 @@ import { RouterLink } from '@angular/router';
       
       .h1-line {
         font-size: clamp(1.8rem, 4vw, 2.8rem);
-        color: #104F8E;
+        color: #2667A9;
         font-weight: 900;
         text-transform: uppercase;
       }
       
       .h1-big {
         font-size: clamp(2.5rem, 6vw, 4.5rem);
-        color: #0a2540;
+        color: #204C81;
         font-weight: 900;
         text-transform: uppercase;
       }
@@ -280,7 +280,7 @@ import { RouterLink } from '@angular/router';
     /* ===== ABOUT SECTION ===== */
     .about-section {
       padding: 4rem 0;
-      background: linear-gradient(180deg, #0a2540 0%, #0d3562 50%, #0a2540 100%);
+      background: linear-gradient(180deg, #204C81 0%, #0d3562 50%, #204C81 100%);
     }
     
     .about-grid {
@@ -320,7 +320,7 @@ import { RouterLink } from '@angular/router';
         margin-bottom: 1.5rem;
         font-style: italic;
         
-        .accent { color: #229443; }
+        .accent { color: #4FAD47; }
       }
       
       .about-intro {
@@ -360,7 +360,7 @@ import { RouterLink } from '@angular/router';
         content: '';
         position: absolute;
         inset: 0;
-        border: 4px solid #229443;
+        border: 4px solid #4FAD47;
         transform: rotate(45deg);
         border-radius: 20px;
       }
@@ -369,7 +369,7 @@ import { RouterLink } from '@angular/router';
         content: '';
         position: absolute;
         inset: 10px;
-        border: 4px solid #104F8E;
+        border: 4px solid #2667A9;
         transform: rotate(45deg);
         border-radius: 16px;
       }
@@ -411,7 +411,7 @@ import { RouterLink } from '@angular/router';
       transition: all 0.3s ease;
       
       &:hover {
-        border-color: #229443;
+        border-color: #4FAD47;
         transform: translateY(-4px);
         box-shadow: 0 10px 25px rgba(34, 148, 67, 0.1);
       }
@@ -419,7 +419,7 @@ import { RouterLink } from '@angular/router';
       h4 {
         font-size: 1rem;
         font-weight: 700;
-        color: #229443;
+        color: #4FAD47;
         margin-bottom: 4px;
         text-transform: none;
         letter-spacing: 0;
@@ -446,8 +446,8 @@ import { RouterLink } from '@angular/router';
       
       .material-icons-outlined { font-size: 24px; color: #fff; }
       
-      &.green { background: linear-gradient(135deg, #229443, #2ecc71); }
-      &.blue { background: linear-gradient(135deg, #104F8E, #1a6bc4); }
+      &.green { background: linear-gradient(135deg, #4FAD47, #2ecc71); }
+      &.blue { background: linear-gradient(135deg, #2667A9, #1a6bc4); }
     }
     
     /* ===== MISSION ===== */
@@ -465,11 +465,11 @@ import { RouterLink } from '@angular/router';
       display: inline-block;
       padding: 10px 28px;
       background: #fff;
-      border: 2px solid #0a2540;
+      border: 2px solid #204C81;
       border-radius: 8px;
       font-size: 0.85rem;
       font-weight: 700;
-      color: #0a2540;
+      color: #204C81;
       letter-spacing: 0.1em;
       text-transform: uppercase;
     }
@@ -488,11 +488,11 @@ import { RouterLink } from '@angular/router';
       h3 {
         font-size: 2rem;
         font-weight: 900;
-        color: #0a2540;
+        color: #204C81;
         margin-bottom: 1rem;
         text-transform: uppercase;
         
-        &:first-of-type { color: #229443; }
+        &:first-of-type { color: #4FAD47; }
       }
       
       p {
@@ -514,20 +514,20 @@ import { RouterLink } from '@angular/router';
       display: flex;
       align-items: center;
       justify-content: center;
-      background: linear-gradient(135deg, #229443, #104F8E);
+      background: linear-gradient(135deg, #4FAD47, #2667A9);
       border-radius: 14px;
       margin: 0 auto 1rem;
       
       .material-icons-outlined { font-size: 28px; color: #fff; }
     }
     
-    .mission-card:first-child h3 { color: #229443; }
-    .mission-card:last-child h3 { color: #104F8E; }
+    .mission-card:first-child h3 { color: #4FAD47; }
+    .mission-card:last-child h3 { color: #2667A9; }
     
     /* ===== CTA ===== */
     .cta-section {
       padding: 4rem 0;
-      background: linear-gradient(180deg, #0a2540 0%, #0d3562 50%, #0a2540 100%);
+      background: linear-gradient(180deg, #204C81 0%, #0d3562 50%, #204C81 100%);
       text-align: center;
     }
     
@@ -553,7 +553,7 @@ import { RouterLink } from '@angular/router';
       text-transform: uppercase;
       margin-bottom: 1rem;
       
-      .cta-accent { color: #229443; }
+      .cta-accent { color: #4FAD47; }
     }
     
     .cta-section p,
@@ -576,7 +576,7 @@ import { RouterLink } from '@angular/router';
       align-items: center;
       gap: 8px;
       padding: 16px 28px;
-      background: linear-gradient(135deg, #229443, #2ecc71);
+      background: linear-gradient(135deg, #4FAD47, #2ecc71);
       color: #fff;
       font-size: 1rem;
       font-weight: 700;
@@ -596,7 +596,7 @@ import { RouterLink } from '@angular/router';
       gap: 8px;
       padding: 16px 28px;
       background: #fff;
-      color: #0a2540;
+      color: #204C81;
       font-size: 1rem;
       font-weight: 700;
       text-decoration: none;
