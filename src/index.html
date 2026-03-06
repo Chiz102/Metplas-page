@@ -1,57 +1,87 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="utf-8">
   <title>Metplastech Technologies SPA | Equipos e Insumos Industriales</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Metplastech Technologies SPA - Equipos Trimmer, Rectificadores, Insumos industriales, EPP y servicios de innovación en Curicó, Chile.">
-  <meta name="keywords" content="metplastech, equipos industriales, trimmer, rectificadores, insumos, EPP, Curicó, Chile">
+  <meta name="description"
+    content="Metplastech Technologies SPA - Equipos Trimmer, Rectificadores, Insumos industriales, EPP y servicios de innovación en Curicó, Chile.">
+  <meta name="keywords"
+    content="metplastech, equipos industriales, trimmer, rectificadores, insumos, EPP, Curicó, Chile">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+
   <!-- Apply saved theme early to avoid FOUC -->
   <script>
-    (function(){
+    (function () {
       try {
         var t = localStorage.getItem('metplas:theme');
         if (t) document.documentElement.setAttribute('data-theme', t);
-      } catch(e) { /* ignore */ }
+      } catch (e) { /* ignore */ }
     })();
   </script>
-  
+
   <!-- GitHub Pages SPA redirect handler -->
   <script>
-    (function(l) {
-      if (l.search[1] === '/' ) {
-        var decoded = l.search.slice(1).split('&').map(function(s) { 
+    (function (l) {
+      if (l.search[1] === '/') {
+        var decoded = l.search.slice(1).split('&').map(function (s) {
           return s.replace(/~and~/g, '&')
         }).join('?');
         window.history.replaceState(null, null,
-            l.pathname.slice(0, -1) + decoded + l.hash
+          l.pathname.slice(0, -1) + decoded + l.hash
         );
       }
     }(window.location))
   </script>
-  
+
   <!-- Google Fonts - Plus Jakarta Sans + JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+
   <!-- Material Icons -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
-  
+
   <!-- n8n Chat Integration -->
   <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
   <script type="module">
     import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
-
     createChat({
-      webhookUrl: 'https://n8n.fluxia.cl/webhook/226df4af-55a7-4f4a-97e1-f5c2ea5347c7/chat'
+      webhookUrl: 'https://n8n.fluxia.cl/webhook/38504c89-c3c9-45d3-87a6-41a8d4ae1bb9/chat',
+      target: '#n8n-chat',
+      showWelcomeScreen: false,
+      initialMessages: [
+        '¡Hola! 👋',
+        'Soy tu asistente de bodega Metplastech.',
+        '¿En qué puedo ayudarte con el inventario hoy?'
+      ],
+      i18n: {
+        en: {
+          title: 'Metplastech AI',
+          subtitle: 'Asistente de Bodega',
+          footer: 'Metplastech - Central de Stock',
+          getStarted: 'Nueva Conversación',
+          inputPlaceholder: 'Escribe tu consulta aquí...',
+        },
+        es: {
+          title: 'Metplastech AI',
+          subtitle: 'Asistente de Bodega',
+          footer: 'Metplastech - Central de Stock',
+          getStarted: 'Nueva Conversación',
+          inputPlaceholder: 'Escribe tu consulta aquí...',
+        },
+      },
     });
   </script>
 </head>
+
 <body>
   <app-root></app-root>
+  <div id="n8n-chat"></div>
 </body>
-</html>
 
+</html>

@@ -1,4 +1,4 @@
-// ============================================
+﻿// ============================================
 // METPLASTECH - Global Styles
 // Modern Industrial Tech Aesthetic
 // Color Palette: White, Blue & Green
@@ -885,3 +885,88 @@ a {
   --color-text-primary: #fff8f2;
 }
 
+
+/* n8n Chat Customization - Full Portal Integration */
+:root {
+  --chat--color--primary: #38b44a;
+  --chat--color--secondary: #0d5596;
+  --chat--spacing: 1rem;
+  --chat--border-radius: 12px;
+  --chat--font-family: 'Inter', sans-serif;
+
+  --chat--window--width: 380px;
+  --chat--window--height: 580px;
+  --chat--window--border-radius: 20px;
+  --chat--window--z-index: 3000;
+  --chat--window--box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+
+  --chat--header--background: #46bd6e;
+  --chat--header--color: #ffffff;
+  --chat--header--title-color: #ffffff;
+  --chat--header--subtitle-color: #ffffff;
+  --chat--heading--font-size: 1.2rem;
+  --chat--subtitle--font-size: 0.85rem;
+
+  --chat--toggle--background: #38b44a;
+  --chat--toggle--hover--background: #2d913b;
+  --chat--toggle--active--background: #247530;
+  --chat--toggle--size: 60px;
+
+  --chat--message--bot--background: #3d8bff;
+  --chat--message--bot--color: #1e293b;
+  --chat--message--user--background: #38b44a;
+  --chat--message--user--color: #ffffff;
+  --chat--message--border-radius: 14px;
+
+  --chat--body--background: #f8fafc;
+  --chat--input--background: #ffffff;
+}
+
+[data-theme='dark'] {
+  --chat--header--background: #0d5596;
+  --chat--body--background: #0a1118;
+  --chat--message--bot--background: #1e293b;
+  --chat--message--bot--color: #f8fafc;
+  --chat--input--background: #0f172a;
+  --chat--input--text-color: #ffffff;
+}
+
+.n8n-chat-widget {
+  font-family: var(--chat--font-family) !important;
+
+  .chat-header {
+    background: radial-gradient(circle at top right, #156dbd, #0d5596) !important;
+    padding-left: 60px !important;
+    position: relative;
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 35px;
+      height: 35px;
+      background-image: url('/assets/logo.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    h1, h2, .chat-header-title, .chat-header-subtitle {
+      font-family: 'Inter', sans-serif !important;
+      font-weight: 700 !important;
+      color: #ffffff !important;
+      opacity: 1 !important;
+      margin: 0 !important;
+      line-height: 1.2 !important;
+    }
+
+    .chat-header-subtitle {
+      color: #ffffff !important;
+      opacity: 0.9 !important;
+      font-size: 0.8rem !important;
+      font-weight: 400 !important;
+    }
+  }
+}
