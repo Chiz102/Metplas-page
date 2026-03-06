@@ -39,6 +39,16 @@
   
   <!-- Material Icons -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+  
+  <!-- n8n Chat Integration -->
+  <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
+  <script type="module">
+    import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+
+    createChat({
+      webhookUrl: 'https://n8n.fluxia.cl/webhook/226df4af-55a7-4f4a-97e1-f5c2ea5347c7/chat'
+    });
+  </script>
 </head>
 <body>
   <app-root></app-root>
