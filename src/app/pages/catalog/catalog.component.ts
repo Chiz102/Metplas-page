@@ -253,11 +253,16 @@ import { ApiService } from '../../core/services/api.service';
     
     .suppliers-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
       gap: 2rem;
       
-      @media (max-width: 500px) {
+      @media (max-width: 768px) {
         grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      @media (max-width: 350px) {
+        grid-template-columns: minmax(0, 1fr);
       }
     }
     

@@ -426,7 +426,7 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
     }
 
     .hero-desc {
-      font-size: 1.05rem;
+      font-size: 1rem;
       color: #2667A9;
       font-style: italic;
       line-height: 1.7;
@@ -918,7 +918,7 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
     
     .feat-bar {
       width: 400px;
-      max-width: 80%;
+      max-width: 100%;
       height: 6px;
       background: linear-gradient(90deg, #4FAD47 0%, #2667A9 50%, #4FAD47 100%);
       border-radius: 3px;
@@ -1031,10 +1031,11 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
       grid-template-columns: repeat(3, 1fr);
       gap: 1.5rem;
       flex: 1;
+      width: 100%;
       
       @media (max-width: 768px) {
         grid-template-columns: 1fr;
-        max-width: 400px;
+        max-width: 100%;
         margin: 0 auto;
       }
     }
@@ -1048,9 +1049,13 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
       transition: all 0.3s ease;
       
       &.center {
-        transform: scale(1.05);
+        transform: none;
         border-color: rgba(255, 255, 255, 0.25);
         background: rgba(255, 255, 255, 0.1);
+        
+        @media (min-width: 769px) {
+          transform: scale(1.05);
+        }
       }
       
       &:hover {
@@ -1442,60 +1447,60 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
 export class HomeComponent implements OnInit, AfterViewInit {
   private api = inject(ApiService);
   categories: Category[] = [];
-  
+
   clients = [
     { name: 'Agrosuper', logo: 'assets/images/clients/agrosuper.png' },
     { name: 'Sopraval', logo: 'assets/images/clients/sopraval.png' },
     { name: 'Comafri', logo: 'assets/images/clients/Logo_Comafri-1.png' }
   ];
-  
+
   suppliers: any[] = [];
-  
+
   featuredProducts = [
-    { 
-      name: 'Trimmer Neumático IBEX', 
+    {
+      name: 'Trimmer Neumático IBEX',
       image: 'assets/images/products/IBEX-Pneumatic-Trimmers-with-EBC-35-128-Heads.jpg',
       category: 'Equipos de Corte',
       supplier: 'IBEX',
       supplierSlug: 'ibex'
     },
-    { 
-      name: 'Guante Euroflex Standard', 
+    {
+      name: 'Guante Euroflex Standard',
       image: 'assets/images/products/Euroflex Standard.jpg',
       category: 'Seguridad',
       supplier: 'Euroflex',
       supplierSlug: 'ziegler'
     },
-    { 
-      name: 'Afilador Profesional', 
+    {
+      name: 'Afilador Profesional',
       image: 'assets/images/products/B SHARP grinding sharpener.jpg',
       category: 'Afilado',
       supplier: 'Bobet',
       supplierSlug: 'bobet'
     },
-    { 
-      name: 'Desescamadora ST600', 
+    {
+      name: 'Desescamadora ST600',
       image: 'assets/images/products/automatic-fish-skinner-st600v-long-model.png',
       category: 'Equipos para Pescado',
       supplier: 'STEEN',
       supplierSlug: 'steen'
     },
-    { 
-      name: 'Fusil Profesional Dassaud', 
+    {
+      name: 'Fusil Profesional Dassaud',
       image: 'assets/images/products/dassaud-fils-fusils-D82-0A-30.png',
       category: 'Afilado',
       supplier: 'DASSAUD',
       supplierSlug: 'dassaud'
     },
-    { 
-      name: 'Delantal Malla Metálica', 
+    {
+      name: 'Delantal Malla Metálica',
       image: 'assets/images/products/Ecomesh Apron.jpg',
       category: 'Protección',
       supplier: 'Euroflex',
       supplierSlug: 'ziegler'
     }
   ];
-  
+
   carouselItems: CarouselItem[] = [
     {
       id: 1,
@@ -1604,11 +1609,11 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.api.getCategories().subscribe(cats => {
       this.categories = cats;
     });
-    
+
     this.api.getSuppliers().subscribe(suppliers => {
       this.suppliers = suppliers;
     });
   }
-  
-  ngAfterViewInit() {}
+
+  ngAfterViewInit() { }
 }
