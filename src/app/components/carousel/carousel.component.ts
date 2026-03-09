@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy, ChangeDetectorRef, ElementRef, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
@@ -8,6 +8,8 @@ export interface CarouselItem {
   icon: string;
   title: string;
   description: string;
+  image?: string;
+  link?: string;
   isClone?: boolean;
 }
 
@@ -16,64 +18,64 @@ export interface CarouselItem {
   standalone: true,
   imports: [CommonModule, RouterLink, TranslateModule],
   template: `
-    <section class="section carousel-section">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-label">{{ 'carousel.featuredProducts' | translate }}</span>
-          <h2 class="section-title">{{ 'carousel.ourSolutions' | translate }}</h2>
-        </div>
-
-        <div class="carousel-wrapper" (mouseenter)="onCarouselHover(true)" (mouseleave)="onCarouselHover(false)">
-          <div class="carousel-container" [style.--carousel-items-visible]="itemsVisible">
-            <div class="carousel-track" [style.transform]="'translateX(' + carouselOffset + ')'" [style.transition]="carouselTransition">
-              @for (item of carouselItemsWithClones; track item.id + '-' + item.isClone; let i = $index) {
-                <div class="carousel-item">
-                  <div class="carousel-card">
-                    <div class="carousel-icon">
+    <div class="carousel-wrap">
+      <div class="carousel-outer" (mouseenter)="onCarouselHover(true)" (mouseleave)="onCarouselHover(false)">
+        <button class="carousel-nav carousel-nav-prev" (click)="carouselPrev()">
+          <span class="material-icons-outlined">chevron_left</span>
+        </button>
+        
+        <div class="carousel-viewport" #viewport>
+          <div class="carousel-track"
+               [style.transform]="'translateX(' + carouselOffset + ')'"
+               [style.transition]="carouselTransition">
+            @for (item of displayItems; track $index) {
+              <div class="carousel-slide" [style.width.%]="100 / itemsVisible">
+                <div class="carousel-card" [class.has-image]="!!item.image">
+                  @if (item.image) {
+                    <div class="card-bg">
+                      <img [src]="item.image" [alt]="item.title | translate" loading="lazy">
+                    </div>
+                    <div class="card-overlay"></div>
+                  }
+                  <div class="card-content" [class.on-image]="!!item.image">
+                    <div class="card-icon" [class.light]="!!item.image">
                       <span class="material-icons-outlined">{{ item.icon }}</span>
                     </div>
                     <h3>{{ item.title | translate }}</h3>
                     <p>{{ item.description | translate }}</p>
-                    <div class="carousel-footer">
-                      <a routerLink="/catalogo" class="carousel-link">
+                    <div class="card-footer">
+                      <a [routerLink]="item.link || '/catalogo'" class="card-link" [class.light]="!!item.image">
                         {{ 'carousel.viewMore' | translate }}
                         <span class="material-icons-outlined">arrow_forward</span>
                       </a>
                     </div>
                   </div>
                 </div>
-              }
-            </div>
+              </div>
+            }
           </div>
         </div>
+        
+        <button class="carousel-nav carousel-nav-next" (click)="carouselNext()">
+          <span class="material-icons-outlined">chevron_right</span>
+        </button>
       </div>
-    </section>
+      
+      <div class="carousel-dots">
+        @for (item of items; track item.id; let i = $index) {
+          <span class="cdot" [class.active]="i === activeIndex" (click)="goTo(i)"></span>
+        }
+      </div>
+    </div>
   `,
   styles: [`
-    // Carousel Section
-    .carousel-section {
-      background: 
-        linear-gradient(180deg, 
-          #ffffff 0%, 
-          #f0f9ff 30%,
-          #e0f2fe 50%,
-          #ccfbf1 70%,
-          #ecfdf5 100%
-        );
-      position: relative;
-      
-      &::before {
-        content: '';
-        position: absolute;
-        inset: 0;
-        background: 
-          radial-gradient(ellipse 60% 40% at 100% 0%, rgba(6, 182, 212, 0.1) 0%, transparent 50%),
-          radial-gradient(ellipse 50% 30% at 0% 100%, rgba(34, 197, 94, 0.08) 0%, transparent 40%);
-        pointer-events: none;
-      }
+    :host { display: block; }
+    
+    .carousel-wrap {
+      width: 100%;
     }
     
-    .carousel-wrapper {
+    .carousel-outer {
       display: flex;
       align-items: center;
       gap: 0;
@@ -81,322 +83,365 @@ export interface CarouselItem {
       width: 100%;
     }
     
-    .carousel-container {
+    .carousel-nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: all 0.3s ease;
+      padding: 0;
+      
+      .material-icons-outlined {
+        font-size: 30px;
+        color: #718096;
+        transition: all 0.3s ease;
+      }
+      
+      &:hover .material-icons-outlined {
+        color: #2667A9;
+        transform: scale(1.1);
+      }
+    }
+    
+    .carousel-viewport {
       flex: 1;
       overflow: hidden;
-      border-radius: 0;
-      background: transparent;
-      border: none;
-      height: 400px;
-      --carousel-items-visible: 3;
-      
-      @media (max-width: 768px) {
-        height: 300px;
-      }
+      border-radius: 16px;
     }
     
     .carousel-track {
       display: flex;
       transition: transform 0.5s cubic-bezier(0.35, 0, 0.25, 1);
-      gap: 0;
-      padding: 0;
-      height: 100%;
+      will-change: transform;
     }
     
-    .carousel-item {
-      flex: 0 0 calc(100% / var(--carousel-items-visible));
-      padding: var(--space-lg);
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    .carousel-slide {
+      flex-shrink: 0;
+      padding: 4px;
+      box-sizing: border-box;
     }
     
+    /* ===== CARD ===== */
     .carousel-card {
+      position: relative;
       display: flex;
       flex-direction: column;
       width: 100%;
-      max-width: 100%;
-      height: 100%;
-      padding: var(--space-xl);
-      background: linear-gradient(145deg, #ffffff 0%, #f8fafc 50%, #f0f9ff 100%);
-      border: 2px solid transparent;
-      border-radius: 20px;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-      position: relative;
+      height: 280px;
+      border-radius: 14px;
       overflow: hidden;
+      background: linear-gradient(145deg, #f0f7ff 0%, #e8f4fd 50%, #dbeafe 100%);
+      border: 2px solid #e2e8f0;
+      transition: all 0.4s ease;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
       
-      &::before {
-        content: '';
-        position: absolute;
-        inset: 0;
-        border-radius: 20px;
-        padding: 2px;
-        background: linear-gradient(135deg, rgba(6, 182, 212, 0.4) 0%, rgba(34, 197, 94, 0.3) 50%, rgba(167, 139, 250, 0.2) 100%);
-        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-        mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-        -webkit-mask-composite: xor;
-        mask-composite: exclude;
-        opacity: 0;
-        transition: opacity 0.4s ease;
-      }
-      
-      &::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 4px;
-        background: linear-gradient(90deg, #06b6d4 0%, #22c55e 50%, #a855f7 100%);
-        transform: scaleX(0);
-        transform-origin: left;
-        transition: transform 0.4s ease;
+      &.has-image {
+        border: none;
+        background: #204C81;
       }
       
       &:hover {
-        transform: translateY(-8px) scale(1.02);
-        box-shadow: 
-          0 25px 50px rgba(6, 182, 212, 0.2),
-          0 10px 20px rgba(34, 197, 94, 0.1);
-        background: linear-gradient(145deg, #ecfeff 0%, #f0fdfa 50%, #ffffff 100%);
+        box-shadow: 0 12px 35px rgba(16, 79, 142, 0.18);
+        transform: translateY(-4px);
         
-        &::before {
-          opacity: 1;
+        .card-bg img {
+          transform: scale(1.08);
         }
         
-        &::after {
-          transform: scaleX(1);
+        .card-overlay {
+          background: linear-gradient(
+            180deg,
+            rgba(32, 76, 129, 0.2) 0%,
+            rgba(32, 76, 129, 0.75) 55%,
+            rgba(32, 76, 129, 0.92) 100%
+          );
         }
-        
-        .carousel-icon {
-          background: linear-gradient(135deg, #0891b2 0%, #059669 50%, #7c3aed 100%);
-          transform: scale(1.1) rotate(5deg);
-          box-shadow: 0 10px 30px rgba(6, 182, 212, 0.4);
-          
-          .material-icons-outlined {
-            color: #ffffff;
-          }
+
+        .card-icon.light {
+          background: rgba(79, 173, 71, 0.35);
+          border-color: rgba(79, 173, 71, 0.5);
         }
       }
     }
     
-    .carousel-icon {
-      width: 68px;
-      height: 68px;
+    .card-bg {
+      position: absolute;
+      inset: 0;
+      
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.6s ease;
+      }
+    }
+    
+    .card-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(32, 76, 129, 0.15) 0%,
+        rgba(32, 76, 129, 0.65) 50%,
+        rgba(32, 76, 129, 0.88) 100%
+      );
+      transition: background 0.4s ease;
+    }
+    
+    .card-content {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      padding: 1.25rem;
+      
+      &.on-image {
+        justify-content: flex-end;
+      }
+    }
+    
+    .card-icon {
+      width: 48px;
+      height: 48px;
       display: flex;
       align-items: center;
       justify-content: center;
-      background: linear-gradient(135deg, rgba(6, 182, 212, 0.15) 0%, rgba(34, 197, 94, 0.1) 100%);
-      border: 2px solid rgba(6, 182, 212, 0.25);
-      border-radius: 16px;
-      margin-bottom: var(--space-lg);
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      background: rgba(16, 79, 142, 0.08);
+      border: 2px solid rgba(16, 79, 142, 0.15);
+      border-radius: 12px;
+      margin-bottom: 0.75rem;
+      transition: all 0.3s ease;
       
       .material-icons-outlined {
-        font-size: 32px;
-        background: linear-gradient(135deg, #0891b2 0%, #059669 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        transition: all 0.3s ease;
+        font-size: 24px;
+        color: #2667A9;
+      }
+      
+      &.light {
+        background: rgba(255, 255, 255, 0.12);
+        border-color: rgba(255, 255, 255, 0.2);
+        
+        .material-icons-outlined {
+          color: #fff;
+        }
       }
     }
     
     .carousel-card h3 {
-      font-size: 1.25rem;
+      font-size: 1.15rem;
       font-weight: 700;
-      color: var(--color-text-primary);
-      margin-bottom: var(--space-sm);
+      color: #204C81;
+      margin-bottom: 0.4rem;
       text-transform: none;
       letter-spacing: 0;
     }
-    
+
+    .carousel-card.has-image h3 {
+      color: #fff;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+
     .carousel-card p {
-      font-size: 0.95rem;
-      color: var(--color-text-secondary);
-      flex: 1;
-      margin-bottom: var(--space-md);
-      line-height: 1.7;
-      max-width: 100%;
+      font-size: 0.85rem;
+      color: #4a5568;
+      flex: 0;
+      margin-bottom: 0.6rem;
+      line-height: 1.5;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .carousel-card.has-image p {
+      color: rgba(255, 255, 255, 0.9);
     }
     
-    .carousel-footer {
+    .card-footer {
       display: flex;
       justify-content: flex-end;
       align-items: center;
-      gap: var(--space-md);
-      margin-top: var(--space-md);
-      padding-top: var(--space-md);
-      border-top: 1px solid rgba(6, 182, 212, 0.15);
+      margin-top: auto;
+      padding-top: 0.6rem;
+      border-top: 1px solid rgba(16, 79, 142, 0.12);
+      
+      .has-image & {
+        border-color: rgba(255, 255, 255, 0.15);
+      }
     }
     
-    .carousel-link {
+    .card-link {
       display: flex;
       align-items: center;
-      gap: var(--space-xs);
-      font-size: 0.9rem;
+      gap: 4px;
+      font-size: 0.85rem;
       font-weight: 700;
-      background: linear-gradient(135deg, #0891b2 0%, #059669 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      transition: all var(--transition-fast);
+      color: #2667A9;
       text-decoration: none;
+      transition: all 0.3s ease;
       
       .material-icons-outlined {
         font-size: 18px;
-        color: #0891b2;
-        transition: transform var(--transition-fast);
+        transition: transform 0.3s ease;
+      }
+      
+      &.light {
+        color: #fff;
+        
+        .material-icons-outlined { color: #fff; }
       }
       
       &:hover {
-        .material-icons-outlined {
-          transform: translateX(6px);
-          color: #059669;
-        }
-      }
-    }
-    
-    .carousel-indicators {
-      display: none;
-    }
-    
-    .indicator {
-      display: none;
-    }
+        color: #4FAD47;
 
-    .section-header {
-      margin-bottom: var(--space-3xl);
-      text-align: center;
-      position: relative;
-      
-      .section-label {
-        display: inline-flex;
-        align-items: center;
-        gap: var(--space-sm);
-        padding: 10px 24px;
-        background: linear-gradient(135deg, rgba(6, 182, 212, 0.12) 0%, rgba(34, 197, 94, 0.08) 100%);
-        border: 2px solid rgba(6, 182, 212, 0.3);
-        border-radius: var(--radius-full);
-        font-size: 0.875rem;
-        font-weight: 700;
-        color: #0891b2;
-        margin-bottom: var(--space-lg);
-        
-        &::before, &::after {
-          content: '';
-          width: 24px;
-          height: 2px;
-          background: linear-gradient(90deg, #06b6d4 0%, #22c55e 100%);
-          border-radius: 2px;
+        .material-icons-outlined {
+          transform: translateX(4px);
+          color: #4FAD47;
         }
       }
+
+      &.light:hover {
+        color: #5eca56;
+        .material-icons-outlined { color: #5eca56; }
+      }
+    }
+    
+    /* ===== DOTS ===== */
+    .carousel-dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 1rem;
+    }
+    
+    .cdot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #cbd5e0;
+      cursor: pointer;
+      transition: all 0.3s ease;
       
-      .section-title {
-        font-size: 2.5rem;
-        font-weight: 800;
-        margin-bottom: var(--space-md);
-        background: linear-gradient(135deg, #0f172a 0%, #0891b2 50%, #059669 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
+      &.active {
+        background: #2667A9;
+        width: 24px;
+        border-radius: 4px;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .carousel-card {
+        height: 260px;
       }
       
-      .section-description {
-        font-size: 1.125rem;
-        color: var(--color-text-secondary);
-        max-width: 600px;
-        margin: 0 auto;
+      .carousel-nav {
+        width: 28px;
+        .material-icons-outlined { font-size: 24px; }
       }
     }
   `]
 })
 export class CarouselComponent implements OnInit, OnDestroy {
   @Input() items: CarouselItem[] = [];
-  @Input() itemsVisible: number = 3;
+  @Input() itemsVisible: number = 1;
+  @ViewChild('viewport') viewport!: ElementRef;
 
-  carouselIndex = 0;
-  carouselOffset = '0%';
+  currentIndex = 0;
   carouselTransition = 'transform 0.5s cubic-bezier(0.35, 0, 0.25, 1)';
-  carouselAutoRotateInterval: any;
-  carouselIsHovered = false;
+  private autoInterval: any;
+  private isHovered = false;
 
   constructor(private cdr: ChangeDetectorRef) {}
 
-  get translatePercent(): number {
-    return 100 / this.itemsVisible;
+  /** Items to display: originals + clones for infinite loop */
+  get displayItems(): CarouselItem[] {
+    if (!this.items.length) return [];
+    const clones = this.items.slice(0, this.itemsVisible).map(item => ({ ...item, isClone: true }));
+    return [...this.items, ...clones];
   }
 
-  get carouselItemsWithClones(): CarouselItem[] {
-    return [...this.items, ...this.items.slice(0, this.itemsVisible).map(item => ({ ...item, isClone: true }))] as CarouselItem[];
+  get carouselOffset(): string {
+    const pct = -(this.currentIndex * (100 / this.itemsVisible));
+    return pct + '%';
+  }
+
+  get activeIndex(): number {
+    return this.currentIndex % this.items.length;
   }
 
   ngOnInit() {
-    this.startCarouselAutoRotate();
+    this.startAutoRotate();
   }
 
   ngOnDestroy() {
-    if (this.carouselAutoRotateInterval) {
-      clearInterval(this.carouselAutoRotateInterval);
-    }
+    this.stopAutoRotate();
   }
 
-  startCarouselAutoRotate() {
-    this.carouselAutoRotateInterval = setInterval(() => {
-      if (!this.carouselIsHovered) {
-        this.carouselNext();
-      }
-    }, 4000);
+  startAutoRotate() {
+    this.autoInterval = setInterval(() => {
+      if (!this.isHovered) this.carouselNext();
+    }, 4500);
+  }
+
+  stopAutoRotate() {
+    if (this.autoInterval) clearInterval(this.autoInterval);
   }
 
   onCarouselHover(hovered: boolean) {
-    this.carouselIsHovered = hovered;
+    this.isHovered = hovered;
   }
 
   carouselNext() {
-    this.carouselIndex++;
-    this.updateCarouselOffset();
+    this.carouselTransition = 'transform 0.5s cubic-bezier(0.35, 0, 0.25, 1)';
+    this.currentIndex++;
 
-    if (this.carouselIndex === (this.items.length / this.itemsVisible) + 2) {
-      console.log('Reached end, waiting for animation to finish...');
+    if (this.currentIndex >= this.items.length) {
+      // After transitioning to the clone, snap back
+      setTimeout(() => {
+        this.carouselTransition = 'none';
+        this.currentIndex = 0;
+        this.cdr.detectChanges();
 
-      const track = document.querySelector('.carousel-track') as HTMLElement;
-      if (track) {
-        const resetCarousel = () => {
-          console.log('Animation finished, resetting...');
-          this.carouselTransition = 'none';
-          this.carouselIndex = 0;
-          this.updateCarouselOffset();
-          this.cdr.markForCheck();
-
-          setTimeout(() => {
-            console.log('Re-enabling transition');
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
             this.carouselTransition = 'transform 0.5s cubic-bezier(0.35, 0, 0.25, 1)';
-            this.cdr.markForCheck();
-            track.removeEventListener('transitionend', resetCarousel);
-          }, 10);
-        };
-
-        track.addEventListener('transitionend', resetCarousel, { once: true });
-      }
+            this.cdr.detectChanges();
+          });
+        });
+      }, 520);
     }
   }
 
   carouselPrev() {
-    if (this.carouselIndex > 0) {
-      this.carouselIndex--;
-      this.updateCarouselOffset();
+    if (this.currentIndex > 0) {
+      this.carouselTransition = 'transform 0.5s cubic-bezier(0.35, 0, 0.25, 1)';
+      this.currentIndex--;
+    } else {
+      // Jump to end clone-free
+      this.carouselTransition = 'none';
+      this.currentIndex = this.items.length - 1;
+      this.cdr.detectChanges();
+      requestAnimationFrame(() => {
+        this.carouselTransition = 'transform 0.5s cubic-bezier(0.35, 0, 0.25, 1)';
+        this.cdr.detectChanges();
+      });
     }
   }
 
-  carouselGoTo(index: number) {
-    this.carouselIndex = index;
-    this.updateCarouselOffset();
+  goTo(index: number) {
+    this.carouselTransition = 'transform 0.5s cubic-bezier(0.35, 0, 0.25, 1)';
+    this.currentIndex = index;
+    this.restartAutoRotate();
   }
 
-  private updateCarouselOffset() {
-    console.log('Updating carousel offset for index:', this.carouselIndex);
-    this.carouselOffset = (-this.carouselIndex * this.translatePercent) + '%';
+  private restartAutoRotate() {
+    this.stopAutoRotate();
+    this.startAutoRotate();
   }
 }

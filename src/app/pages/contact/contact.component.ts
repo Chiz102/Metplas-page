@@ -12,196 +12,165 @@ import { ContactMessage, CompanyInfo } from '../../core/models/catalog.model';
   template: `
     <!-- Hero -->
     <section class="page-hero">
-      <div class="container">
-        <span class="hero-label animate-fade-in-up">
+      <div class="hero-deco-tl"></div>
+      <div class="hero-deco-br"></div>
+      
+      <div class="container hero-inner">
+        <div class="hero-badge animate-in">
           <span class="material-icons-outlined">mail</span>
           {{ 'contact.contactUs' | translate }}
-        </span>
-        <h1 class="animate-fade-in-up delay-1">{{ 'contact.howCanWeHelp' | translate }} <span class="text-gradient">{{ 'contact.help' | translate }}</span>?</h1>
-        <p class="hero-description animate-fade-in-up delay-2">
-          {{ 'contact.helpDescription' | translate }}
-        </p>
+        </div>
+        <h1 class="animate-in d1">{{ 'contact.howCanWeHelp' | translate }} <span class="accent">{{ 'contact.help' | translate }}</span>?</h1>
+        <p class="hero-desc animate-in d2">{{ 'contact.helpDescription' | translate }}</p>
       </div>
     </section>
+    
+    <!-- Decorative Bar -->
+    <div class="deco-bar"></div>
 
     <!-- Contact Content -->
-    <section class="section">
-      <div class="container">
-        <div class="contact-grid">
-          <!-- Contact Form -->
-          <div class="contact-form-wrapper">
-            <div class="form-header">
-              <h2>{{ 'contact.sendMessage' | translate }}</h2>
-              <p>{{ 'contact.formDescription' | translate }}</p>
-            </div>
-
-            @if (successMessage()) {
-              <div class="alert alert-success">
-                <span class="material-icons-outlined">check_circle</span>
-                {{ successMessage() }}
-              </div>
-            }
-
-            @if (errorMessage()) {
-              <div class="alert alert-error">
-                <span class="material-icons-outlined">error</span>
-                {{ errorMessage() }}
-              </div>
-            }
-
-            <form (ngSubmit)="submitForm()" #contactForm="ngForm">
-              <div class="form-row">
-                <div class="form-group">
-                  <label for="name">{{ 'contact.fullName' | translate }}</label>
-                  <input 
-                    type="text" 
-                    id="name" 
-                    name="name"
-                    [(ngModel)]="formData.name"
-                    required
-                    [placeholder]="'contact.namePlaceholder' | translate">
-                </div>
-                
-                <div class="form-group">
-                  <label for="email">{{ 'contact.email' | translate }}</label>
-                  <input 
-                    type="email" 
-                    id="email" 
-                    name="email"
-                    [(ngModel)]="formData.email"
-                    required
-                    [placeholder]="'contact.emailPlaceholder' | translate">
-                </div>
-              </div>
-
-              <div class="form-row">
-                <div class="form-group">
-                  <label for="phone">{{ 'contact.phone' | translate }}</label>
-                  <input 
-                    type="tel" 
-                    id="phone" 
-                    name="phone"
-                    [(ngModel)]="formData.phone"
-                    [placeholder]="'contact.phonePlaceholder' | translate">
-                </div>
-                
-                <div class="form-group">
-                  <label for="company">{{ 'contact.company' | translate }}</label>
-                  <input 
-                    type="text" 
-                    id="company" 
-                    name="company"
-                    [(ngModel)]="formData.company"
-                    [placeholder]="'contact.companyPlaceholder' | translate">
-                </div>
-              </div>
-
-              <div class="form-group">
-                <label for="subject">{{ 'contact.subject' | translate }}</label>
-                <input 
-                  type="text" 
-                  id="subject" 
-                  name="subject"
-                  [(ngModel)]="formData.subject"
-                  required
-                  [placeholder]="'contact.subjectPlaceholder' | translate">
-              </div>
-
-              <div class="form-group">
-                <label for="message">{{ 'contact.message' | translate }}</label>
-                <textarea 
-                  id="message" 
-                  name="message"
-                  [(ngModel)]="formData.message"
-                  required
-                  rows="5"
-                  [placeholder]="'contact.messagePlaceholder' | translate"></textarea>
-              </div>
-
-              <button 
-                type="submit" 
-                class="btn btn-primary btn-lg submit-btn"
-                [disabled]="isSubmitting() || !contactForm.valid">
-                @if (isSubmitting()) {
-                  <span class="material-icons-outlined spinning">sync</span>
-                  {{ 'contact.sending' | translate }}
-                } @else {
-                  <span class="material-icons-outlined">send</span>
-                  {{ 'contact.send' | translate }}
-                }
-              </button>
-            </form>
+    <section class="contact-section">
+      <div class="container contact-grid">
+        <!-- Contact Form -->
+        <div class="form-wrapper">
+          <div class="form-header">
+            <h2>{{ 'contact.sendMessage' | translate }}</h2>
+            <p>{{ 'contact.formDescription' | translate }}</p>
           </div>
 
-          <!-- Contact Info -->
-          <div class="contact-info">
-            <div class="info-card">
-              <h3>{{ 'contact.contactInfo' | translate }}</h3>
-              <p>{{ 'contact.contactInfoDesc' | translate }}</p>
+          @if (successMessage()) {
+            <div class="alert alert-success">
+              <span class="material-icons-outlined">check_circle</span>
+              {{ successMessage() }}
+            </div>
+          }
 
-              <div class="info-items">
-                <a [href]="'tel:' + (company?.phone?.replace(' ', '') || '+56996154315')" class="info-item">
-                  <span class="info-icon">
-                    <span class="material-icons-outlined">phone</span>
-                  </span>
-                  <div>
-                    <span class="info-label">{{ 'common.phone' | translate }}</span>
-                    <span class="info-value">{{ company?.phone || '+569 9615 4315' }}</span>
-                  </div>
-                </a>
+          @if (errorMessage()) {
+            <div class="alert alert-error">
+              <span class="material-icons-outlined">error</span>
+              {{ errorMessage() }}
+            </div>
+          }
 
-                <a [href]="'mailto:' + (company?.email || 'contacto@metplastech.cl')" class="info-item">
-                  <span class="info-icon">
-                    <span class="material-icons-outlined">mail</span>
-                  </span>
-                  <div>
-                    <span class="info-label">{{ 'common.email' | translate }}</span>
-                    <span class="info-value">{{ company?.email || 'contacto@metplastech.cl' }}</span>
-                  </div>
-                </a>
-
-                <a [href]="whatsappUrl" target="_blank" class="info-item whatsapp">
-                  <span class="info-icon whatsapp-icon">
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-                    </svg>
-                  </span>
-                  <div>
-                    <span class="info-label">WhatsApp</span>
-                    <span class="info-value">{{ 'contact.writeUsDirect' | translate }}</span>
-                  </div>
-                </a>
-
-                <div class="info-item">
-                  <span class="info-icon">
-                    <span class="material-icons-outlined">location_on</span>
-                  </span>
-                  <div>
-                    <span class="info-label">{{ 'contact.location' | translate }}</span>
-                    <span class="info-value">{{ company?.address || 'Curicó – Región del Maule – Chile' }}</span>
-                  </div>
-                </div>
+          <form (ngSubmit)="submitForm()" #contactForm="ngForm">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="name">{{ 'contact.fullName' | translate }}*</label>
+                <input type="text" id="name" name="name" [(ngModel)]="formData.name" required
+                       [placeholder]="'contact.namePlaceholder' | translate">
+              </div>
+              <div class="form-group">
+                <label for="email">{{ 'contact.email' | translate }}*</label>
+                <input type="email" id="email" name="email" [(ngModel)]="formData.email" required
+                       [placeholder]="'contact.emailPlaceholder' | translate">
               </div>
             </div>
 
-            <div class="hours-card">
-              <h4>
-                <span class="material-icons-outlined">schedule</span>
-                {{ 'contact.businessHours' | translate }}
-              </h4>
-              <div class="hours-list">
-                <div class="hours-row">
-                  <span>{{ 'contact.mondayFriday' | translate }}</span>
-                  <span>9:00 - 18:00</span>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="phone">{{ 'contact.phone' | translate }}</label>
+                <input type="tel" id="phone" name="phone" [(ngModel)]="formData.phone"
+                       [placeholder]="'contact.phonePlaceholder' | translate">
+              </div>
+              <div class="form-group">
+                <label for="company">{{ 'contact.company' | translate }}</label>
+                <input type="text" id="company" name="company" [(ngModel)]="formData.company"
+                       [placeholder]="'contact.companyPlaceholder' | translate">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="subject">{{ 'contact.subject' | translate }}*</label>
+              <input type="text" id="subject" name="subject" [(ngModel)]="formData.subject" required
+                     [placeholder]="'contact.subjectPlaceholder' | translate">
+            </div>
+
+            <div class="form-group">
+              <label for="message">{{ 'contact.message' | translate }}*</label>
+              <textarea id="message" name="message" [(ngModel)]="formData.message" required rows="5"
+                        [placeholder]="'contact.messagePlaceholder' | translate"></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn" [disabled]="isSubmitting() || !contactForm.valid">
+              @if (isSubmitting()) {
+                <span class="material-icons-outlined spinning">sync</span>
+                {{ 'contact.sending' | translate }}
+              } @else {
+                <span class="material-icons-outlined">send</span>
+                {{ 'contact.send' | translate }}
+              }
+            </button>
+          </form>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="contact-info">
+          <div class="info-card">
+            <h3>{{ 'contact.contactInfo' | translate }}</h3>
+            <p class="info-subtitle">{{ 'contact.contactInfoDesc' | translate }}</p>
+
+            <div class="info-items">
+              <a [href]="'tel:' + (company?.phone?.replace(' ', '') || '+56996154315')" class="info-item">
+                <span class="info-icon blue">
+                  <span class="material-icons-outlined">phone</span>
+                </span>
+                <div>
+                  <span class="info-label">{{ 'common.phone' | translate }}</span>
+                  <span class="info-value">{{ company?.phone || '+569 9615 4315' }}</span>
                 </div>
-                <div class="hours-row">
-                  <span>{{ 'contact.saturday' | translate }}</span>
-                  <span>9:00 - 13:00</span>
+              </a>
+
+              <a [href]="'mailto:' + (company?.email || 'contacto@metplastech.cl')" class="info-item">
+                <span class="info-icon blue">
+                  <span class="material-icons-outlined">mail</span>
+                </span>
+                <div>
+                  <span class="info-label">{{ 'common.email' | translate }}</span>
+                  <span class="info-value">{{ company?.email || 'contacto@metplastech.cl' }}</span>
                 </div>
-                <div class="hours-row">
-                  <span>{{ 'contact.sunday' | translate }}</span>
-                  <span>{{ 'contact.closed' | translate }}</span>
+              </a>
+
+              <a [href]="whatsappUrl" target="_blank" class="info-item">
+                <span class="info-icon green">
+                  <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                  </svg>
+                </span>
+                <div>
+                  <span class="info-label">WhatsApp</span>
+                  <span class="info-value">{{ 'contact.writeUsDirect' | translate }}</span>
                 </div>
+              </a>
+
+              <div class="info-item">
+                <span class="info-icon blue">
+                  <span class="material-icons-outlined">location_on</span>
+                </span>
+                <div>
+                  <span class="info-label">{{ 'contact.location' | translate }}</span>
+                  <span class="info-value">{{ company?.address || 'Curicó – Región del Maule – Chile' }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="hours-card">
+            <h4>
+              <span class="material-icons-outlined">schedule</span>
+              {{ 'contact.businessHours' | translate }}
+            </h4>
+            <div class="hours-list">
+              <div class="hours-row">
+                <span>{{ 'contact.mondayFriday' | translate }}</span>
+                <span>9:00 - 18:00</span>
+              </div>
+              <div class="hours-row">
+                <span>{{ 'contact.saturday' | translate }}</span>
+                <span>9:00 - 13:00</span>
+              </div>
+              <div class="hours-row">
+                <span>{{ 'contact.sunday' | translate }}</span>
+                <span>{{ 'contact.closed' | translate }}</span>
               </div>
             </div>
           </div>
@@ -210,107 +179,115 @@ import { ContactMessage, CompanyInfo } from '../../core/models/catalog.model';
     </section>
   `,
   styles: [`
+    :host { display: block; }
+    
+    .deco-bar {
+      height: 12px;
+      background: linear-gradient(to bottom,
+        #4FAD47 0%, #4FAD47 25%,
+        #2667A9 25%, #2667A9 75%,
+        #4FAD47 75%, #4FAD47 100%
+      );
+    }
+
+    /* ===== HERO ===== */
     .page-hero {
-      padding: calc(80px + var(--space-4xl)) 0 var(--space-2xl);
-      text-align: center;
-      background: linear-gradient(135deg, #093562 0%, #104F8E 40%, #1565c0 70%, #1a7335 100%);
       position: relative;
-      
-      &::before {
-        content: '';
-        position: absolute;
-        inset: 0;
-        background: 
-          radial-gradient(ellipse 80% 60% at 80% 0%, rgba(34, 148, 67, 0.2) 0%, transparent 50%),
-          radial-gradient(ellipse 100% 50% at 20% 100%, rgba(16, 79, 142, 0.25) 0%, transparent 40%);
-        pointer-events: none;
-      }
-      
-      h1 {
-        color: #ffffff;
-      }
+      padding: calc(100px + 3rem) 0 3rem;
+      text-align: center;
+      background: #fff;
+      overflow: hidden;
     }
     
-    .hero-label {
+    .hero-deco-tl {
+      position: absolute;
+      top: 0; left: 0;
+      width: 180px; height: 100%;
+      background: linear-gradient(135deg, #4FAD47 0%, #4FAD47 8%, #2667A9 8%, #2667A9 16%, transparent 16%);
+      pointer-events: none;
+      @media (max-width: 768px) { display: none; }
+    }
+    
+    .hero-deco-br {
+      position: absolute;
+      bottom: 0; right: 0;
+      width: 180px; height: 100%;
+      background: linear-gradient(-45deg, #4FAD47 0%, #4FAD47 8%, #2667A9 8%, #2667A9 16%, transparent 16%);
+      pointer-events: none;
+      @media (max-width: 768px) { display: none; }
+    }
+    
+    .hero-inner { position: relative; z-index: 1; }
+    
+    .hero-badge {
       display: inline-flex;
       align-items: center;
-      gap: var(--space-sm);
-      padding: var(--space-sm) var(--space-lg);
-      background: rgba(255, 255, 255, 0.15);
-      backdrop-filter: blur(10px);
-      border: 2px solid rgba(255, 255, 255, 0.3);
-      border-radius: var(--radius-full);
-      font-size: 0.875rem;
-      font-weight: 600;
-      color: #ffffff;
-      margin-bottom: var(--space-lg);
-      position: relative;
-      z-index: 1;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+      gap: 8px;
+      padding: 10px 24px;
+      background: #f0f9ff;
+      border: 2px solid #2667A9;
+      border-radius: 100px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #2667A9;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
       
-      .material-icons-outlined {
-        font-size: 18px;
-        color: #4ade80;
-      }
+      .material-icons-outlined { font-size: 18px; color: #4FAD47; }
     }
     
     h1 {
-      margin-bottom: var(--space-md);
+      color: #204C81;
+      margin-bottom: 1rem;
       
-      .text-gradient {
-        background: linear-gradient(135deg, #4ade80 0%, #34d399 50%, #2dd4bf 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
+      .accent {
+        color: #4FAD47;
       }
     }
     
-    .hero-description {
-      font-size: 1.125rem;
-      color: rgba(255, 255, 255, 0.9);
+    .hero-desc {
+      font-size: 1.1rem;
+      color: #4a5568;
+      font-style: italic;
       max-width: 500px;
       margin: 0 auto;
       line-height: 1.7;
     }
     
+    /* ===== CONTACT SECTION ===== */
+    .contact-section {
+      padding: 4rem 0;
+      background: #fff;
+    }
+    
     .contact-grid {
       display: grid;
       grid-template-columns: 1.2fr 1fr;
-      gap: var(--space-3xl);
+      gap: 3rem;
       
-      @media (max-width: 1024px) {
-        grid-template-columns: 1fr;
-      }
+      @media (max-width: 1024px) { grid-template-columns: 1fr; }
     }
     
-    .contact-form-wrapper {
-      padding: var(--space-2xl);
-      background: linear-gradient(135deg, var(--color-blue-bg) 0%, var(--color-blue-bg-light) 50%, rgba(59, 130, 246, 0.08) 100%);
-      border: 2px solid var(--color-blue);
-      border-radius: var(--radius-xl);
-      box-shadow: 0 8px 32px rgba(30, 64, 175, 0.15);
-      position: relative;
-      
-      &::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 4px;
-        background: var(--color-blue-gradient-light);
-        border-radius: var(--radius-xl) var(--radius-xl) 0 0;
-      }
+    .form-wrapper {
+      padding: 2rem;
+      background: #f8fafc;
+      border: 2px solid #4FAD47;
+      border-radius: 16px;
       
       .form-header {
-        margin-bottom: var(--space-2xl);
+        margin-bottom: 2rem;
         
         h2 {
-          margin-bottom: var(--space-sm);
+          margin-bottom: 0.5rem;
+          font-size: 1.5rem;
+          color: #204C81;
         }
         
         p {
-          color: var(--color-text-muted);
+          color: #718096;
+          font-style: italic;
+          max-width: 100%;
         }
       }
     }
@@ -318,82 +295,62 @@ import { ContactMessage, CompanyInfo } from '../../core/models/catalog.model';
     .alert {
       display: flex;
       align-items: center;
-      gap: var(--space-md);
-      padding: var(--space-md) var(--space-lg);
-      border-radius: var(--radius-md);
-      margin-bottom: var(--space-xl);
+      gap: 0.75rem;
+      padding: 1rem;
+      border-radius: 10px;
+      margin-bottom: 1.5rem;
       
-      .material-icons-outlined {
-        font-size: 24px;
-      }
+      .material-icons-outlined { font-size: 24px; }
       
       &-success {
-        background: var(--color-accent-secondary-medium);
-        border: 1px solid var(--color-accent-secondary);
-        color: var(--color-accent-secondary);
+        background: rgba(34, 148, 67, 0.1);
+        border: 1px solid #4FAD47;
+        color: #4FAD47;
       }
       
       &-error {
-        background: rgba(255, 68, 68, 0.1);
-        border: 1px solid rgba(255, 68, 68, 0.3);
-        color: #ff4444;
+        background: rgba(239, 68, 68, 0.1);
+        border: 1px solid #ef4444;
+        color: #ef4444;
       }
     }
     
     .form-row {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: var(--space-lg);
+      gap: 1rem;
       
-      @media (max-width: 640px) {
-        grid-template-columns: 1fr;
-      }
+      @media (max-width: 640px) { grid-template-columns: 1fr; }
     }
     
     .form-group {
-      margin-bottom: var(--space-lg);
+      margin-bottom: 1rem;
       
       label {
         display: block;
-        font-size: 0.95rem;
-        font-weight: 600;
-        color: var(--color-blue);
-        margin-bottom: var(--space-sm);
-      }
-      
-      label[for="name"]::after,
-      label[for="email"]::after,
-      label[for="subject"]::after,
-      label[for="message"]::after {
-        content: ' *';
-        color: var(--color-accent);
+        font-size: 0.9rem;
+        font-weight: 700;
+        color: #204C81;
+        margin-bottom: 0.5rem;
       }
       
       input, textarea {
         width: 100%;
-        padding: var(--space-md) var(--space-lg);
-        font-family: var(--font-primary);
-        font-size: 1rem;
-        color: var(--color-text-primary);
-        background: #ffffff;
-        border: 2px solid var(--color-border-blue);
-        border-radius: var(--radius-md);
-        transition: all var(--transition-base);
+        padding: 12px 16px;
+        font-family: inherit;
+        font-size: 0.95rem;
+        color: #204C81;
+        background: #fff;
+        border: 2px solid #e2e8f0;
+        border-radius: 10px;
+        transition: all 0.2s ease;
         
-        &::placeholder {
-          color: var(--color-text-muted);
-        }
+        &::placeholder { color: #a0aec0; }
         
         &:focus {
           outline: none;
-          border-color: var(--color-blue);
-          box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.15), 0 0 0 1px var(--color-blue);
-          background: #ffffff;
-        }
-        
-        &:focus:invalid {
-          border-color: #ef4444;
-          box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+          border-color: #2667A9;
+          box-shadow: 0 0 0 3px rgba(16, 79, 142, 0.1);
         }
       }
       
@@ -404,18 +361,35 @@ import { ContactMessage, CompanyInfo } from '../../core/models/catalog.model';
     }
     
     .submit-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
       width: 100%;
-      margin-top: var(--space-md);
+      padding: 14px;
+      background: linear-gradient(135deg, #4FAD47, #2ecc71);
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 700;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      
+      .material-icons-outlined { font-size: 20px; }
+      
+      &:hover:not(:disabled) {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(34, 148, 67, 0.3);
+      }
       
       &:disabled {
         opacity: 0.6;
         cursor: not-allowed;
-        transform: none !important;
       }
       
-      .spinning {
-        animation: spin 1s linear infinite;
-      }
+      .spinning { animation: spin 1s linear infinite; }
     }
     
     @keyframes spin {
@@ -423,93 +397,68 @@ import { ContactMessage, CompanyInfo } from '../../core/models/catalog.model';
       to { transform: rotate(360deg); }
     }
     
+    /* Info Card */
     .contact-info {
       display: flex;
       flex-direction: column;
-      gap: var(--space-xl);
+      gap: 1.5rem;
     }
     
     .info-card {
-      padding: var(--space-2xl);
-      background: #ffffff;
-      border: 2px solid var(--color-border);
-      border-radius: var(--radius-xl);
-      box-shadow: var(--shadow-lg);
-      position: relative;
-      overflow: hidden;
-      
-      &::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 4px;
-        background: var(--color-green-gradient);
-      }
+      padding: 2rem;
+      background: #fff;
+      border: 2px solid #4FAD47;
+      border-radius: 16px;
       
       h3 {
-        margin-bottom: var(--space-sm);
-        color: var(--color-text-primary);
+        margin-bottom: 0.25rem;
+        font-size: 1.3rem;
+        color: #204C81;
       }
       
-      > p {
-        color: var(--color-text-muted);
-        margin-bottom: var(--space-xl);
+      .info-subtitle {
+        color: #718096;
+        font-style: italic;
+        margin-bottom: 1.5rem;
+        max-width: 100%;
       }
     }
     
     .info-items {
       display: flex;
       flex-direction: column;
-      gap: var(--space-md);
+      gap: 0.75rem;
     }
     
     .info-item {
       display: flex;
       align-items: center;
-      gap: var(--space-lg);
-      padding: var(--space-md);
+      gap: 1rem;
+      padding: 0.75rem;
       text-decoration: none;
-      border-radius: var(--radius-md);
-      transition: all var(--transition-fast);
+      border-radius: 10px;
+      transition: all 0.2s ease;
       border: 1px solid transparent;
       
       &:hover {
-        background: var(--color-surface-green);
-        border-color: var(--color-border);
-        
-        .info-icon {
-          transform: scale(1.05);
-        }
+        background: #f0f9ff;
+        border-color: #e2e8f0;
       }
       
       .info-icon {
-        width: 52px;
-        height: 52px;
+        width: 48px;
+        height: 48px;
         display: flex;
         align-items: center;
         justify-content: center;
-        background: var(--color-surface-blue);
-        border: 2px solid var(--color-border-blue);
-        border-radius: var(--radius-md);
-        transition: all var(--transition-fast);
+        border-radius: 12px;
+        flex-shrink: 0;
         
-        .material-icons-outlined {
-          font-size: 24px;
-          color: var(--color-blue);
-        }
+        .material-icons-outlined { font-size: 22px; color: #fff; }
+        svg { width: 22px; height: 22px; color: #fff; }
         
-        &.whatsapp-icon {
-          background: rgba(37, 211, 102, 0.1);
-          border-color: rgba(37, 211, 102, 0.3);
-          
-          svg {
-            width: 24px;
-            height: 24px;
-            color: #25d366;
-          }
-        }
+        &.blue { background: #e0f2fe; .material-icons-outlined { color: #2667A9; } }
+        &.green { background: #dcfce7; svg { color: #4FAD47; } }
       }
       
       div {
@@ -518,66 +467,65 @@ import { ContactMessage, CompanyInfo } from '../../core/models/catalog.model';
       }
       
       .info-label {
-        font-size: 0.85rem;
-        color: var(--color-text-muted);
+        font-size: 0.8rem;
+        color: #718096;
         font-weight: 500;
       }
       
       .info-value {
-        font-size: 1rem;
-        font-weight: 600;
-        color: var(--color-text-primary);
-      }
-      
-      &.whatsapp:hover {
-        background: rgba(37, 211, 102, 0.1);
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: #204C81;
       }
     }
     
     .hours-card {
-      padding: var(--space-xl);
-      background: var(--color-surface-blue);
-      border: 2px solid var(--color-border-blue);
-      border-radius: var(--radius-xl);
+      padding: 1.5rem;
+      background: #f0f9ff;
+      border: 2px solid #e2e8f0;
+      border-radius: 16px;
       
       h4 {
         display: flex;
         align-items: center;
-        gap: var(--space-sm);
-        font-size: 1.1rem;
-        margin-bottom: var(--space-lg);
-        color: var(--color-text-primary);
+        gap: 8px;
+        font-size: 1rem;
+        margin-bottom: 1rem;
+        color: #204C81;
         
-        .material-icons-outlined {
-          color: var(--color-blue);
-        }
+        .material-icons-outlined { color: #2667A9; }
       }
     }
     
     .hours-list {
       display: flex;
       flex-direction: column;
-      gap: var(--space-sm);
+      gap: 0.5rem;
     }
     
     .hours-row {
       display: flex;
       justify-content: space-between;
-      padding: var(--space-sm) 0;
-      border-bottom: 1px solid var(--color-border);
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #e2e8f0;
       
-      &:last-child {
-        border-bottom: none;
-      }
+      &:last-child { border-bottom: none; }
       
-      span:first-child {
-        color: var(--color-text-secondary);
-      }
-      
-      span:last-child {
-        font-weight: 500;
-        color: var(--color-text-primary);
-      }
+      span:first-child { color: #4a5568; font-weight: 600; }
+      span:last-child { font-weight: 700; color: #204C81; }
+    }
+    
+    /* Animations */
+    .animate-in {
+      animation: slideUp 0.7s ease forwards;
+      opacity: 0;
+      transform: translateY(25px);
+    }
+    .d1 { animation-delay: 0.1s; }
+    .d2 { animation-delay: 0.2s; }
+    
+    @keyframes slideUp {
+      to { opacity: 1; transform: translateY(0); }
     }
   `]
 })
@@ -618,14 +566,7 @@ export class ContactComponent {
     this.api.sendContactMessage(this.formData).subscribe({
       next: (response) => {
         this.successMessage.set(response.message);
-        this.formData = {
-          name: '',
-          email: '',
-          phone: '',
-          company: '',
-          subject: '',
-          message: ''
-        };
+        this.formData = { name: '', email: '', phone: '', company: '', subject: '', message: '' };
         this.isSubmitting.set(false);
       },
       error: () => {
@@ -635,4 +576,3 @@ export class ContactComponent {
     });
   }
 }
-
