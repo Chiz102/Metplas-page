@@ -63,8 +63,8 @@ class Command(BaseCommand):
             slug='dick',
             defaults={
                 'name': 'Dick',
-                'description_es': 'Fabricante premium de cuchillos y herramientas profesionales.',
-                'description_en': 'Premium manufacturer of professional knives and tools.',
+                'description_es': 'Fabricante   de cuchillos y herramientas profesionales.',
+                'description_en': '  manufacturer of professional knives and tools.',
                 'country': 'Alemania',
                 'icon': 'hardware',
                 'color': '#2e7d32',

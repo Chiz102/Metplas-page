@@ -9,114 +9,109 @@ import { RouterLink } from '@angular/router';
   template: `
     <!-- Hero Section -->
     <section class="page-hero">
-      <div class="hero-bg">
-        <div class="hero-gradient"></div>
-        <div class="hero-mesh"></div>
-        <div class="hero-orb orb-1"></div>
-        <div class="hero-orb orb-2"></div>
-      </div>
+      <div class="hero-deco-tl"></div>
+      <div class="hero-deco-br"></div>
       
-      <div class="container hero-content">
-        <div class="hero-badge animate-slide-in">
+      <div class="container hero-inner">
+        <div class="hero-badge animate-in">
           <span class="badge-dot"></span>
           <span>Nuestra Empresa</span>
         </div>
         
-        <h1 class="animate-slide-in delay-1">
-          <span class="line-1">Somos</span>
-          <span class="line-2 text-gradient">Metplastech</span>
+        <h1 class="animate-in d1">
+          <span class="h1-line">SOMOS</span>
+          <span class="h1-big">METPLASTECH</span>
         </h1>
         
-        <p class="hero-description animate-slide-in delay-2">
+        <p class="hero-desc animate-in d2">
           Una empresa chilena dedicada a proporcionar soluciones tecnológicas e industriales 
           de la más alta calidad.
         </p>
       </div>
     </section>
+    
+    <!-- Decorative Bar -->
+    <div class="deco-bar"></div>
 
     <!-- About Content -->
-    <section class="section about-section">
-      <div class="container">
-        <div class="about-grid">
-          <div class="about-content">
-            <div class="section-tag">
-              <span class="material-icons-outlined">history</span>
-              Nuestra Historia
-            </div>
-            
-            <h2>Más de <span class="text-gradient">15 años</span> de experiencia</h2>
-            
-            <p class="about-intro">
-              Metplastech Technologies SPA nace de la necesidad de ofrecer al mercado chileno 
-              equipos e insumos industriales de alta calidad, respaldados por un servicio 
-              técnico especializado y una atención personalizada.
-            </p>
-            <p>
-              Ubicados en Curicó, Región del Maule, hemos construido una sólida reputación 
-              basada en la confianza, la innovación y el compromiso con nuestros clientes.
-            </p>
-            
-            <div class="values-grid">
-              <div class="value-card">
-                <div class="value-icon">
-                  <span class="material-icons-outlined">verified</span>
-                </div>
-                <h4>Calidad</h4>
-                <p>Productos certificados con los más altos estándares internacionales.</p>
-              </div>
-              
-              <div class="value-card">
-                <div class="value-icon">
-                  <span class="material-icons-outlined">handshake</span>
-                </div>
-                <h4>Confianza</h4>
-                <p>Relaciones duraderas basadas en transparencia y honestidad.</p>
-              </div>
-              
-              <div class="value-card">
-                <div class="value-icon">
-                  <span class="material-icons-outlined">rocket_launch</span>
-                </div>
-                <h4>Innovación</h4>
-                <p>Constantemente buscando nuevas soluciones para tu industria.</p>
-              </div>
-              
-              <div class="value-card">
-                <div class="value-icon">
-                  <span class="material-icons-outlined">groups</span>
-                </div>
-                <h4>Servicio</h4>
-                <p>Atención personalizada y soporte técnico especializado.</p>
-              </div>
-            </div>
+    <section class="about-section">
+      <div class="container about-grid">
+        <div class="about-content">
+          <div class="section-badge">
+            <span class="material-icons-outlined">lightbulb</span>
+            ¿Por qué Elegirnos?
           </div>
           
-          <div class="about-visual">
-            <div class="visual-stack">
-              <div class="vcard vcard-main">
-                <img src="assets/images/logo.png" alt="Metplastech" class="vcard-logo">
-              </div>
-              <div class="vcard vcard-accent">
-                <span class="material-icons-outlined">precision_manufacturing</span>
-              </div>
-              <div class="vcard vcard-small">
-                <span class="material-icons-outlined">engineering</span>
-              </div>
+          <h2>MÁS DE <span class="accent">15 AÑOS</span> DE<br>EXPERIENCIA</h2>
+          
+          <p class="about-intro">
+            Metplastech Technologies SPA nace de la necesidad de ofrecer al mercado chileno 
+            equipos e insumos industriales de alta calidad, respaldados por un servicio 
+            técnico especializado y una atención personalizada.
+          </p>
+          <p>
+            Ubicados en Curicó, Región del Maule, hemos construido una sólida reputación 
+            basada en la confianza, la innovación y el compromiso con nuestros clientes.
+          </p>
+        </div>
+        
+        <div class="about-visual">
+          <div class="diamond-frame">
+            <img src="assets/images/logo.png" alt="Metplastech">
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Decorative Bar Angular -->
+    <div class="deco-bar-angle"></div>
+    
+    <!-- Values Section -->
+    <section class="values-section">
+      <div class="container">
+        <div class="values-grid">
+          <div class="value-card">
+            <div class="value-icon green">
+              <span class="material-icons-outlined">verified</span>
             </div>
+            <h4>Calidad</h4>
+            <p>Productos certificados con los más altos estándares internacionales.</p>
+          </div>
+          
+          <div class="value-card">
+            <div class="value-icon blue">
+              <span class="material-icons-outlined">rocket_launch</span>
+            </div>
+            <h4>Innovación</h4>
+            <p>Constantemente buscando nuevas soluciones para tu industria.</p>
+          </div>
+          
+          <div class="value-card">
+            <div class="value-icon green">
+              <span class="material-icons-outlined">handshake</span>
+            </div>
+            <h4>Confianza</h4>
+            <p>Relaciones duraderas basadas en transparencia y honestidad.</p>
+          </div>
+          
+          <div class="value-card">
+            <div class="value-icon blue">
+              <span class="material-icons-outlined">groups</span>
+            </div>
+            <h4>Servicio</h4>
+            <p>Atención personalizada y soporte técnico especializado.</p>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Mission & Vision -->
-    <section class="section mission-section">
+    <section class="mission-section">
       <div class="container">
         <div class="section-header">
-          <div class="section-tag">
-            <span class="material-icons-outlined">flag</span>
-            Nuestro Propósito
+          <div class="section-badge-center">
+            <span>NUESTRO PROPÓSITO</span>
           </div>
-          <h2>Misión y <span class="text-gradient">Visión</span></h2>
         </div>
         
         <div class="mission-grid">
@@ -124,7 +119,7 @@ import { RouterLink } from '@angular/router';
             <div class="mission-icon">
               <span class="material-icons-outlined">flag</span>
             </div>
-            <h3>Misión</h3>
+            <h3>MISIÓN</h3>
             <p>
               Proveer a la industria chilena equipos, insumos y servicios de la más alta 
               calidad, contribuyendo al desarrollo y la eficiencia operacional de nuestros 
@@ -136,7 +131,7 @@ import { RouterLink } from '@angular/router';
             <div class="mission-icon">
               <span class="material-icons-outlined">visibility</span>
             </div>
-            <h3>Visión</h3>
+            <h3>VISIÓN</h3>
             <p>
               Ser reconocidos como el principal referente en soluciones tecnológicas e 
               industriales en Chile, destacando por nuestra innovación, calidad y 
@@ -146,219 +141,259 @@ import { RouterLink } from '@angular/router';
         </div>
       </div>
     </section>
+    
+    <!-- Decorative Bar Angular -->
+    <div class="deco-bar-angle"></div>
 
     <!-- CTA -->
     <section class="cta-section">
-      <div class="cta-bg">
-        <div class="cta-pattern"></div>
-      </div>
-      <div class="container">
-        <div class="cta-content">
-          <span class="cta-tag">¿Listo para comenzar?</span>
-          <h2>Conoce nuestros <span class="text-white">productos</span></h2>
-          <p>Explora nuestro catálogo completo o contáctanos para una asesoría personalizada.</p>
-          <div class="cta-buttons">
-            <a routerLink="/catalogo" class="btn-cta-primary">
-              <span class="material-icons-outlined">grid_view</span>
-              Ver Catálogo
-            </a>
-            <a routerLink="/contacto" class="btn-cta-secondary">
-              <span class="material-icons-outlined">mail</span>
-              Contactar
-            </a>
-          </div>
+      <div class="container cta-inner">
+        <span class="cta-tag">¿LISTO PARA COMENZAR?</span>
+        <h2>CONOCE NUESTROS<br><span class="cta-accent">PRODUCTOS</span></h2>
+        <p>Explora nuestro catálogo completo o contáctanos para una asesoría personalizada.</p>
+        <div class="cta-buttons">
+          <a routerLink="/catalogo" class="btn-cta-green">
+            <span class="material-icons-outlined">grid_view</span>
+            VER CATÁLOGO
+          </a>
+          <a routerLink="/contacto" class="btn-cta-white">
+            <span class="material-icons-outlined">mail</span>
+            CONTÁCTANOS
+          </a>
         </div>
       </div>
     </section>
   `,
   styles: [`
-    /* ===== HERO SECTION ===== */
+    :host { display: block; }
+    
+    .deco-bar {
+      height: 12px;
+      background: linear-gradient(to bottom,
+        #4FAD47 0%, #4FAD47 25%,
+        #2667A9 25%, #2667A9 75%,
+        #4FAD47 75%, #4FAD47 100%
+      );
+    }
+    
+    .deco-bar-angle {
+      height: 50px;
+      position: relative;
+      overflow: hidden;
+      
+      &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to bottom,
+          #4FAD47 0%, #4FAD47 25%,
+          #2667A9 25%, #2667A9 75%,
+          #4FAD47 75%, #4FAD47 100%
+        );
+        clip-path: polygon(4% 0%, 96% 0%, 100% 100%, 0% 100%);
+      }
+    }
+
+    /* ===== HERO ===== */
     .page-hero {
       position: relative;
-      padding: calc(100px + var(--space-3xl)) 0 var(--space-3xl);
+      padding: calc(100px + 3rem) 0 3rem;
       text-align: center;
+      background: #fff;
       overflow: hidden;
     }
     
-    .hero-bg {
+    .hero-deco-tl {
       position: absolute;
-      inset: 0;
-      background: linear-gradient(145deg, #041e35 0%, #0a3358 30%, #0d4278 60%, #0f5a4a 100%);
+      top: 0; left: 0;
+      width: 180px; height: 100%;
+      background: linear-gradient(135deg, #4FAD47 0%, #4FAD47 8%, #2667A9 8%, #2667A9 16%, transparent 16%);
+      pointer-events: none;
+      @media (max-width: 768px) { display: none; }
     }
     
-    .hero-gradient {
+    .hero-deco-br {
       position: absolute;
-      inset: 0;
-      background: 
-        radial-gradient(ellipse 80% 50% at 50% 20%, rgba(20, 184, 166, 0.25) 0%, transparent 50%),
-        radial-gradient(ellipse 60% 40% at 80% 80%, rgba(59, 130, 246, 0.2) 0%, transparent 40%);
+      bottom: 0; right: 0;
+      width: 180px; height: 100%;
+      background: linear-gradient(-45deg, #4FAD47 0%, #4FAD47 8%, #2667A9 8%, #2667A9 16%, transparent 16%);
+      pointer-events: none;
+      @media (max-width: 768px) { display: none; }
     }
     
-    .hero-mesh {
-      position: absolute;
-      inset: 0;
-      background-image: 
-        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-      background-size: 60px 60px;
-      mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 20%, transparent 70%);
-    }
-    
-    .hero-orb {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(80px);
-      
-      &.orb-1 {
-        width: 400px;
-        height: 400px;
-        top: -100px;
-        left: 10%;
-        background: radial-gradient(circle, rgba(52, 211, 153, 0.25) 0%, transparent 70%);
-      }
-      
-      &.orb-2 {
-        width: 350px;
-        height: 350px;
-        bottom: -80px;
-        right: 10%;
-        background: radial-gradient(circle, rgba(59, 130, 246, 0.2) 0%, transparent 70%);
-      }
-    }
-    
-    .hero-content {
-      position: relative;
-      z-index: 1;
-    }
+    .hero-inner { position: relative; z-index: 1; }
     
     .hero-badge {
       display: inline-flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
       padding: 10px 24px;
-      background: rgba(255, 255, 255, 0.08);
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.15);
+      background: #f0f9ff;
+      border: 2px solid #2667A9;
       border-radius: 100px;
-      margin-bottom: var(--space-lg);
+      margin-bottom: 1.5rem;
       
       .badge-dot {
-        width: 8px;
-        height: 8px;
-        background: #34d399;
+        width: 8px; height: 8px;
+        background: #4FAD47;
         border-radius: 50%;
-        animation: dotPulse 2s ease-in-out infinite;
       }
       
       span:last-child {
-        font-size: 0.9rem;
-        font-weight: 600;
-        color: rgba(255, 255, 255, 0.9);
-        letter-spacing: 0.05em;
+        font-size: 0.85rem;
+        font-weight: 700;
+        color: #2667A9;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
       }
-    }
-    
-    @keyframes dotPulse {
-      0%, 100% { box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.5); }
-      50% { box-shadow: 0 0 0 8px rgba(52, 211, 153, 0); }
     }
     
     .page-hero h1 {
-      margin-bottom: var(--space-lg);
+      margin-bottom: 1.5rem;
       
-      span {
-        display: block;
+      span { display: block; }
+      
+      .h1-line {
+        font-size: clamp(1.8rem, 4vw, 2.8rem);
+        color: #2667A9;
+        font-weight: 900;
+        text-transform: uppercase;
       }
       
-      .line-1 {
-        color: #ffffff;
-        text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-      }
-      
-      .line-2.text-gradient {
-        background: linear-gradient(135deg, #34d399 0%, #60a5fa 50%, #a78bfa 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        filter: drop-shadow(0 4px 20px rgba(52, 211, 153, 0.4));
+      .h1-big {
+        font-size: clamp(2.5rem, 6vw, 4.5rem);
+        color: #204C81;
+        font-weight: 900;
+        text-transform: uppercase;
       }
     }
     
-    .hero-description {
-      font-size: 1.2rem;
-      color: rgba(255, 255, 255, 0.8);
-      max-width: 600px;
+    .hero-desc {
+      font-size: 1.1rem;
+      color: #4a5568;
+      font-style: italic;
+      max-width: 550px;
       margin: 0 auto;
       line-height: 1.7;
     }
     
     /* ===== ABOUT SECTION ===== */
     .about-section {
-      background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+      padding: 4rem 0;
+      background: linear-gradient(180deg, #204C81 0%, #0d3562 50%, #204C81 100%);
     }
     
     .about-grid {
       display: grid;
       grid-template-columns: 1.2fr 1fr;
-      gap: var(--space-4xl);
-      align-items: start;
+      gap: 4rem;
+      align-items: center;
       
       @media (max-width: 1024px) {
         grid-template-columns: 1fr;
       }
     }
     
-    .section-tag {
+    .section-badge {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 10px 20px;
-      background: linear-gradient(135deg, rgba(5, 150, 105, 0.1) 0%, rgba(59, 130, 246, 0.08) 100%);
-      border: 2px solid var(--color-accent);
+      padding: 8px 18px;
+      background: rgba(249, 115, 22, 0.15);
+      border: 2px solid #f97316;
       border-radius: 100px;
       font-size: 0.85rem;
       font-weight: 700;
-      color: var(--color-accent);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-bottom: var(--space-lg);
+      color: #f97316;
+      letter-spacing: 0.05em;
+      margin-bottom: 1.5rem;
       
-      .material-icons-outlined {
-        font-size: 18px;
-      }
+      .material-icons-outlined { font-size: 18px; }
     }
     
     .about-content {
       h2 {
-        margin-bottom: var(--space-xl);
+        color: #fff;
+        font-size: clamp(1.8rem, 4vw, 2.5rem);
+        font-weight: 900;
+        text-transform: uppercase;
+        margin-bottom: 1.5rem;
+        font-style: italic;
         
-        .text-gradient {
-          background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-blue) 100%);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          background-clip: text;
-        }
+        .accent { color: #4FAD47; }
       }
       
       .about-intro {
-        font-size: 1.15rem;
-        margin-bottom: var(--space-lg);
+        font-size: 1.05rem;
+        color: rgba(255, 255, 255, 0.85);
+        font-style: italic;
+        margin-bottom: 1rem;
+        line-height: 1.7;
+        max-width: 100%;
       }
       
       > p {
-        font-size: 1.05rem;
-        line-height: 1.8;
-        margin-bottom: var(--space-lg);
-        color: var(--color-text-secondary);
+        font-size: 1rem;
+        color: rgba(255, 255, 255, 0.7);
+        font-style: italic;
+        line-height: 1.7;
         max-width: 100%;
       }
+    }
+    
+    .about-visual {
+      display: flex;
+      justify-content: center;
+      
+      @media (max-width: 1024px) { display: none; }
+    }
+    
+    .diamond-frame {
+      width: 320px;
+      height: 320px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      
+      &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border: 4px solid #4FAD47;
+        transform: rotate(45deg);
+        border-radius: 20px;
+      }
+      
+      &::after {
+        content: '';
+        position: absolute;
+        inset: 10px;
+        border: 4px solid #2667A9;
+        transform: rotate(45deg);
+        border-radius: 16px;
+      }
+      
+      img {
+        width: 55%;
+        height: auto;
+        object-fit: contain;
+        z-index: 1;
+      }
+    }
+    
+    /* ===== VALUES ===== */
+    .values-section {
+      padding: 4rem 0;
+      background: #fff;
     }
     
     .values-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: var(--space-lg);
-      margin-top: var(--space-2xl);
+      gap: 1.5rem;
+      max-width: 900px;
+      margin: 0 auto;
       
       @media (max-width: 640px) {
         grid-template-columns: 1fr;
@@ -366,354 +401,225 @@ import { RouterLink } from '@angular/router';
     }
     
     .value-card {
-      padding: var(--space-xl);
-      background: #ffffff;
-      border: 2px solid var(--color-border-light);
-      border-radius: 20px;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      padding: 1.5rem;
+      background: #f8fafc;
+      border: 2px solid #e2e8f0;
+      border-radius: 16px;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      transition: all 0.3s ease;
       
       &:hover {
-        border-color: var(--color-accent);
-        transform: translateY(-6px);
-        box-shadow: 0 20px 50px rgba(5, 150, 105, 0.15);
-        
-        .value-icon {
-          transform: scale(1.1) rotate(5deg);
-          background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-blue) 100%);
-          
-          .material-icons-outlined {
-            color: #ffffff;
-          }
-        }
+        border-color: #4FAD47;
+        transform: translateY(-4px);
+        box-shadow: 0 10px 25px rgba(34, 148, 67, 0.1);
+      }
+      
+      h4 {
+        font-size: 1rem;
+        font-weight: 700;
+        color: #4FAD47;
+        margin-bottom: 4px;
+        text-transform: none;
+        letter-spacing: 0;
+      }
+      
+      p {
+        font-size: 0.85rem;
+        color: #718096;
+        font-style: italic;
+        margin: 0;
+        line-height: 1.5;
+        max-width: 100%;
       }
     }
     
     .value-icon {
-      width: 56px;
-      height: 56px;
+      width: 48px;
+      height: 48px;
       display: flex;
       align-items: center;
       justify-content: center;
-      background: linear-gradient(135deg, rgba(5, 150, 105, 0.12) 0%, rgba(59, 130, 246, 0.1) 100%);
       border-radius: 14px;
-      margin-bottom: var(--space-md);
-      transition: all 0.4s ease;
+      flex-shrink: 0;
       
-      .material-icons-outlined {
-        font-size: 26px;
-        color: var(--color-accent);
-        transition: color 0.3s ease;
-      }
-    }
-    
-    .value-card h4 {
-      font-size: 1.15rem;
-      font-weight: 700;
-      color: var(--color-text-primary);
-      margin-bottom: var(--space-sm);
-      text-transform: none;
-      letter-spacing: 0;
-    }
-    
-    .value-card p {
-      font-size: 0.9rem;
-      color: var(--color-text-muted);
-      margin: 0;
-      line-height: 1.6;
-      max-width: 100%;
-    }
-    
-    .about-visual {
-      @media (max-width: 1024px) {
-        display: none;
-      }
-    }
-    
-    .visual-stack {
-      position: relative;
-      height: 500px;
-    }
-    
-    .vcard {
-      position: absolute;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: var(--space-md);
-      border-radius: 24px;
-      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.2);
+      .material-icons-outlined { font-size: 24px; color: #fff; }
       
-      &.vcard-main {
-        top: 15%;
-        right: 0;
-        width: 300px;
-        height: 300px;
-        background: linear-gradient(145deg, #ffffff 0%, #f8fafc 50%, #f0f9ff 100%);
-        border: 3px solid rgba(6, 182, 212, 0.3);
-        z-index: 3;
-        
-        .vcard-logo {
-          width: 70%;
-          height: auto;
-          object-fit: contain;
-          filter: drop-shadow(0 4px 15px rgba(0, 0, 0, 0.1));
-        }
-      }
-      
-      &.vcard-accent {
-        top: 0;
-        right: 50%;
-        width: 120px;
-        height: 120px;
-        background: linear-gradient(145deg, #10b981 0%, #059669 100%);
-        z-index: 2;
-        animation: cardFloat 5s ease-in-out infinite;
-        
-        .material-icons-outlined {
-          font-size: 48px;
-          color: #ffffff;
-        }
-      }
-      
-      &.vcard-small {
-        bottom: 15%;
-        right: 55%;
-        width: 100px;
-        height: 100px;
-        background: linear-gradient(145deg, #3b82f6 0%, #1d4ed8 100%);
-        z-index: 1;
-        animation: cardFloat 6s ease-in-out infinite reverse;
-        
-        .material-icons-outlined {
-          font-size: 40px;
-          color: #ffffff;
-        }
-      }
+      &.green { background: linear-gradient(135deg, #4FAD47, #2ecc71); }
+      &.blue { background: linear-gradient(135deg, #2667A9, #1a6bc4); }
     }
     
-    @keyframes cardFloat {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-12px); }
-    }
-    
-    /* ===== MISSION SECTION ===== */
+    /* ===== MISSION ===== */
     .mission-section {
-      background: linear-gradient(180deg, #f0f9ff 0%, #ecfdf5 50%, #f8fafc 100%);
+      padding: 4rem 0;
+      background: #f8fafc;
     }
     
     .section-header {
       text-align: center;
-      margin-bottom: var(--space-3xl);
-      
-      h2 {
-        margin-bottom: 0;
-        
-        .text-gradient {
-          background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-blue) 100%);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          background-clip: text;
-        }
-      }
+      margin-bottom: 3rem;
+    }
+    
+    .section-badge-center {
+      display: inline-block;
+      padding: 10px 28px;
+      background: #fff;
+      border: 2px solid #204C81;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #204C81;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
     }
     
     .mission-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: var(--space-xl);
+      gap: 2rem;
       
-      @media (max-width: 768px) {
-        grid-template-columns: 1fr;
-      }
+      @media (max-width: 768px) { grid-template-columns: 1fr; }
     }
     
     .mission-card {
-      padding: var(--space-2xl);
-      background: #ffffff;
-      border: 2px solid var(--color-border-light);
-      border-radius: 24px;
-      transition: all 0.4s ease;
+      text-align: center;
       
-      &:hover {
-        transform: translateY(-6px);
-        box-shadow: 0 25px 60px rgba(5, 150, 105, 0.15);
-        border-color: var(--color-accent);
+      h3 {
+        font-size: 2rem;
+        font-weight: 900;
+        color: #204C81;
+        margin-bottom: 1rem;
+        text-transform: uppercase;
         
-        .mission-icon {
-          transform: scale(1.1);
-        }
+        &:first-of-type { color: #4FAD47; }
+      }
+      
+      p {
+        font-size: 0.95rem;
+        color: #4a5568;
+        font-style: italic;
+        line-height: 1.7;
+        max-width: 100%;
+        padding: 1rem;
+        background: rgba(16, 79, 142, 0.05);
+        border: 1px solid rgba(16, 79, 142, 0.15);
+        border-radius: 12px;
       }
     }
     
     .mission-icon {
-      width: 72px;
-      height: 72px;
+      width: 56px;
+      height: 56px;
       display: flex;
       align-items: center;
       justify-content: center;
-      background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-blue) 100%);
-      border-radius: 18px;
-      margin-bottom: var(--space-lg);
-      box-shadow: 0 12px 30px rgba(5, 150, 105, 0.3);
-      transition: transform 0.4s ease;
+      background: linear-gradient(135deg, #4FAD47, #2667A9);
+      border-radius: 14px;
+      margin: 0 auto 1rem;
       
-      .material-icons-outlined {
-        font-size: 36px;
-        color: #ffffff;
-      }
+      .material-icons-outlined { font-size: 28px; color: #fff; }
     }
     
-    .mission-card h3 {
-      font-size: 1.5rem;
-      margin-bottom: var(--space-md);
-      color: var(--color-text-primary);
-      text-transform: none;
-      letter-spacing: 0;
-    }
+    .mission-card:first-child h3 { color: #4FAD47; }
+    .mission-card:last-child h3 { color: #2667A9; }
     
-    .mission-card p {
-      font-size: 1.05rem;
-      line-height: 1.8;
-      margin: 0;
-      color: var(--color-text-secondary);
-      max-width: 100%;
-    }
-    
-    /* ===== CTA SECTION ===== */
+    /* ===== CTA ===== */
     .cta-section {
-      position: relative;
-      padding: var(--space-4xl) 0;
-      overflow: hidden;
-    }
-    
-    .cta-bg {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, #041e35 0%, #0a3358 40%, #0d4278 70%, #0f5a4a 100%);
-    }
-    
-    .cta-pattern {
-      position: absolute;
-      inset: 0;
-      background: 
-        radial-gradient(circle at 30% 50%, rgba(52, 211, 153, 0.15) 0%, transparent 40%),
-        radial-gradient(circle at 70% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 30%);
-    }
-    
-    .cta-content {
-      position: relative;
-      z-index: 1;
+      padding: 4rem 0;
+      background: linear-gradient(180deg, #204C81 0%, #0d3562 50%, #204C81 100%);
       text-align: center;
-      max-width: 700px;
-      margin: 0 auto;
     }
+    
+    .cta-inner { max-width: 700px; margin: 0 auto; }
     
     .cta-tag {
       display: inline-block;
-      padding: 8px 20px;
-      background: rgba(52, 211, 153, 0.2);
-      border: 1px solid rgba(52, 211, 153, 0.4);
+      padding: 8px 24px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.3);
       border-radius: 100px;
       font-size: 0.85rem;
       font-weight: 700;
-      color: #34d399;
-      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.8);
       letter-spacing: 0.1em;
-      margin-bottom: var(--space-lg);
+      margin-bottom: 2rem;
     }
     
     .cta-section h2 {
-      color: #34d399;
-      margin-bottom: var(--space-md);
+      color: #fff;
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 900;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
       
-      .text-white {
-        color: #ffffff;
-      }
+      .cta-accent { color: #4FAD47; }
     }
     
-    .cta-section > .container > .cta-content > p {
-      font-size: 1.15rem;
-      color: rgba(255, 255, 255, 0.8);
-      margin-bottom: var(--space-2xl);
+    .cta-section p,
+    .cta-inner > p {
+      color: rgba(255, 255, 255, 0.7);
+      font-style: italic;
+      margin-bottom: 2.5rem;
       max-width: 100%;
     }
     
     .cta-buttons {
       display: flex;
       justify-content: center;
-      gap: var(--space-lg);
+      gap: 1rem;
       flex-wrap: wrap;
     }
     
-    .btn-cta-primary {
+    .btn-cta-green {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
-      padding: 18px 32px;
-      background: #ffffff;
-      color: #0a3358;
-      font-size: 1.05rem;
+      gap: 8px;
+      padding: 16px 28px;
+      background: linear-gradient(135deg, #4FAD47, #2ecc71);
+      color: #fff;
+      font-size: 1rem;
       font-weight: 700;
       text-decoration: none;
-      border-radius: 14px;
+      border-radius: 12px;
+      text-transform: uppercase;
       transition: all 0.3s ease;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 6px 20px rgba(34, 148, 67, 0.3);
       
-      .material-icons-outlined {
-        font-size: 22px;
-      }
-      
-      &:hover {
-        background: #34d399;
-        color: #ffffff;
-        transform: translateY(-4px);
-        box-shadow: 0 16px 40px rgba(52, 211, 153, 0.4);
-      }
+      .material-icons-outlined { font-size: 20px; }
+      &:hover { transform: translateY(-3px); color: #fff; }
     }
     
-    .btn-cta-secondary {
+    .btn-cta-white {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
-      padding: 18px 28px;
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px);
-      border: 2px solid rgba(255, 255, 255, 0.3);
-      color: #ffffff;
+      gap: 8px;
+      padding: 16px 28px;
+      background: #fff;
+      color: #204C81;
       font-size: 1rem;
-      font-weight: 600;
+      font-weight: 700;
       text-decoration: none;
-      border-radius: 14px;
+      border-radius: 12px;
+      text-transform: uppercase;
       transition: all 0.3s ease;
       
-      .material-icons-outlined {
-        font-size: 20px;
-      }
-      
-      &:hover {
-        background: rgba(255, 255, 255, 0.2);
-        border-color: rgba(255, 255, 255, 0.5);
-        transform: translateY(-2px);
-      }
+      .material-icons-outlined { font-size: 20px; }
+      &:hover { transform: translateY(-3px); }
     }
     
-    /* ===== ANIMATIONS ===== */
-    .animate-slide-in {
-      animation: slideIn 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    /* Animations */
+    .animate-in {
+      animation: slideUp 0.7s ease forwards;
       opacity: 0;
-      transform: translateY(30px);
+      transform: translateY(25px);
     }
+    .d1 { animation-delay: 0.1s; }
+    .d2 { animation-delay: 0.2s; }
     
-    @keyframes slideIn {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    @keyframes slideUp {
+      to { opacity: 1; transform: translateY(0); }
     }
-    
-    .delay-1 { animation-delay: 0.1s; }
-    .delay-2 { animation-delay: 0.2s; }
   `]
 })
 export class AboutComponent {}

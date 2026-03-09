@@ -1,0 +1,47 @@
+[
+  {
+    "provider": "ibex",
+    "category": "Heads & Accessories",
+    "category_es": "Cabezales y Accesorios",
+    "item_name": "IBEX EBC Trimmer Head Assembly",
+    "item_name_es": "Ensamblaje de Cabezales EBC IBEX",
+    "description": "Modular trimmer heads with depth gauges, available in sizes 35-180",
+    "description_es": "Cabezales modulares con medidores de profundidad, disponibles en tamaños 35-180",
+    "image_path": "images/IBEX-EBC-Modular-Trimmer-heads-&-Depth-Gauges.jpg",
+    "gallery": [
+      "images/IBEX-EBC-Modular-Trimmer-Heads-35-to-180.jpg"
+    ],
+    "image_url": ""
+  },
+  {
+    "provider": "ibex",
+    "category": "Heads & Accessories",
+    "category_es": "Cabezales y Accesorios",
+    "item_name": "IBEX EZY TRIM Head Assembly",
+    "item_name_es": "Ensamblaje de Cabezales EZY TRIM IBEX",
+    "description": "EZY series trimmer heads with multiple configurations",
+    "description_es": "Cabezales de la serie EZY con múltiples configuraciones",
+    "image_path": "images/EZY-Heads.jpg",
+    "gallery": [
+      "images/heads-top-4s_Top_JPG_11.jpg",
+      "images/heads-top-4s_Top_JPG_7.jpg"
+    ],
+    "image_url": ""
+  },
+  {
+    "provider": "ibex",
+    "category": "Heads & Accessories",
+    "category_es": "Cabezales y Accesorios",
+    "item_name": "IBEX EZY2 TRIM Head Assembly",
+    "item_name_es": "Ensamblaje de Cabezales EZY2 TRIM IBEX",
+    "description": "Advanced EZY2 trimmer heads with depth gauge options",
+    "description_es": "Cabezales avanzados EZY2 con opciones de medidor de profundidad",
+    "image_path": "images/EZY2-TRIM-Head2.jpg",
+    "gallery": [
+      "images/EZY2-TRIM-Head3.jpg",
+      "images/Head-Depth-Gauge-2-jpg-2.jpg"
+    ],
+    "image_url": ""
+  }
+]
+
