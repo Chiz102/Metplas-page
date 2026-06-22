@@ -153,6 +153,23 @@
           "Fusiles de Afilado"
         ]
       }
+    },
+    "sterilair": {
+      "name": "Sterilair Swiss",
+      "description": "Proveedor suizo especializado en soluciones de higiene y protección para la industria alimentaria",
+      "description_en": "Swiss supplier specializing in hygiene and protection solutions for the food industry",
+      "country": "Suiza",
+      "country_en": "Switzerland",
+      "website": "https://www.sterilair.com/es/productos.html",
+      "icon": "medical_services",
+      "logo": "assets/images/suppliers/sterilair.jpg",
+      "color": "#0b5273",
+      "products_count": 0,
+      "files": [],
+      "available_categories": {
+        "eng": [],
+        "esp": []
+      }
     }
   }
 }
