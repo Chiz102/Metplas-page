@@ -30,7 +30,8 @@ import { Product } from '../../../core/models/catalog.model';
             <div class="product-gallery">
               <div class="main-image">
                 @if (product.video) {
-                  <video [src]="product.video" controls autoplay muted loop playsinline></video>
+                  <video #mainVid [src]="product.video" [muted]="true" controls autoplay loop playsinline
+                         (loadstart)="mainVid.muted = true"></video>
                 } @else if (currentImage || product.image) {
                   <img [src]="currentImage || product.image" [alt]="product.name">
                 } @else {
@@ -128,7 +129,8 @@ import { Product } from '../../../core/models/catalog.model';
                  [style.animation-delay]="i * 80 + 'ms'">
                 <div class="related-image">
                   @if (related.video) {
-                    <video [src]="related.video" autoplay muted loop playsinline preload="metadata"></video>
+                    <video #relVid [src]="related.video" [muted]="true" autoplay loop playsinline preload="metadata"
+                           (loadstart)="relVid.muted = true"></video>
                   } @else if (related.image) {
                     <img [src]="related.image" [alt]="related.name">
                   } @else {

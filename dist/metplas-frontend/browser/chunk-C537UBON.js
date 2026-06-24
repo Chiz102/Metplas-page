@@ -27,6 +27,7 @@ import {
   ɵɵproperty,
   ɵɵpureFunction1,
   ɵɵpureFunction2,
+  ɵɵreference,
   ɵɵrepeater,
   ɵɵrepeaterCreate,
   ɵɵrepeaterTrackByIdentity,
@@ -47,94 +48,101 @@ var _c0 = (a0) => ["/catalogo", a0];
 var _c1 = (a0, a1) => ["/producto", a0, a1];
 function ProductDetailComponent_Conditional_15_Conditional_3_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275element(0, "video", 11);
+    const _r1 = \u0275\u0275getCurrentView();
+    \u0275\u0275elementStart(0, "video", 24, 0);
+    \u0275\u0275listener("loadstart", function ProductDetailComponent_Conditional_15_Conditional_3_Template_video_loadstart_0_listener() {
+      \u0275\u0275restoreView(_r1);
+      const mainVid_r2 = \u0275\u0275reference(1);
+      return \u0275\u0275resetView(mainVid_r2.muted = true);
+    });
+    \u0275\u0275elementEnd();
   }
   if (rf & 2) {
-    const ctx_r0 = \u0275\u0275nextContext(2);
-    \u0275\u0275property("src", ctx_r0.product.video, \u0275\u0275sanitizeUrl);
+    const ctx_r2 = \u0275\u0275nextContext(2);
+    \u0275\u0275property("src", ctx_r2.product.video, \u0275\u0275sanitizeUrl)("muted", true);
   }
 }
 function ProductDetailComponent_Conditional_15_Conditional_4_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275element(0, "img", 22);
+    \u0275\u0275element(0, "img", 25);
   }
   if (rf & 2) {
-    const ctx_r0 = \u0275\u0275nextContext(2);
-    \u0275\u0275property("src", ctx_r0.currentImage || ctx_r0.product.image, \u0275\u0275sanitizeUrl)("alt", ctx_r0.product.name);
+    const ctx_r2 = \u0275\u0275nextContext(2);
+    \u0275\u0275property("src", ctx_r2.currentImage || ctx_r2.product.image, \u0275\u0275sanitizeUrl)("alt", ctx_r2.product.name);
   }
 }
 function ProductDetailComponent_Conditional_15_Conditional_5_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "div", 23)(1, "span", 15);
+    \u0275\u0275elementStart(0, "div", 26)(1, "span", 17);
     \u0275\u0275text(2);
     \u0275\u0275elementEnd()();
   }
   if (rf & 2) {
-    const ctx_r0 = \u0275\u0275nextContext(2);
+    const ctx_r2 = \u0275\u0275nextContext(2);
     \u0275\u0275advance(2);
-    \u0275\u0275textInterpolate((ctx_r0.supplier == null ? null : ctx_r0.supplier.icon) || "inventory_2");
+    \u0275\u0275textInterpolate((ctx_r2.supplier == null ? null : ctx_r2.supplier.icon) || "inventory_2");
   }
 }
 function ProductDetailComponent_Conditional_15_Conditional_6_For_2_Template(rf, ctx) {
   if (rf & 1) {
-    const _r2 = \u0275\u0275getCurrentView();
-    \u0275\u0275elementStart(0, "button", 25);
+    const _r4 = \u0275\u0275getCurrentView();
+    \u0275\u0275elementStart(0, "button", 28);
     \u0275\u0275listener("click", function ProductDetailComponent_Conditional_15_Conditional_6_For_2_Template_button_click_0_listener() {
-      const img_r3 = \u0275\u0275restoreView(_r2).$implicit;
-      const ctx_r0 = \u0275\u0275nextContext(3);
-      return \u0275\u0275resetView(ctx_r0.selectImage(img_r3));
+      const img_r5 = \u0275\u0275restoreView(_r4).$implicit;
+      const ctx_r2 = \u0275\u0275nextContext(3);
+      return \u0275\u0275resetView(ctx_r2.selectImage(img_r5));
     });
-    \u0275\u0275element(1, "img", 22);
+    \u0275\u0275element(1, "img", 25);
     \u0275\u0275elementEnd();
   }
   if (rf & 2) {
-    const img_r3 = ctx.$implicit;
-    const ctx_r0 = \u0275\u0275nextContext(3);
-    \u0275\u0275classProp("active", ctx_r0.currentImage === img_r3);
+    const img_r5 = ctx.$implicit;
+    const ctx_r2 = \u0275\u0275nextContext(3);
+    \u0275\u0275classProp("active", ctx_r2.currentImage === img_r5);
     \u0275\u0275advance();
-    \u0275\u0275property("src", img_r3, \u0275\u0275sanitizeUrl)("alt", ctx_r0.product.name);
+    \u0275\u0275property("src", img_r5, \u0275\u0275sanitizeUrl)("alt", ctx_r2.product.name);
   }
 }
 function ProductDetailComponent_Conditional_15_Conditional_6_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "div", 12);
-    \u0275\u0275repeaterCreate(1, ProductDetailComponent_Conditional_15_Conditional_6_For_2_Template, 2, 4, "button", 24, \u0275\u0275repeaterTrackByIdentity);
+    \u0275\u0275elementStart(0, "div", 14);
+    \u0275\u0275repeaterCreate(1, ProductDetailComponent_Conditional_15_Conditional_6_For_2_Template, 2, 4, "button", 27, \u0275\u0275repeaterTrackByIdentity);
     \u0275\u0275elementEnd();
   }
   if (rf & 2) {
-    const ctx_r0 = \u0275\u0275nextContext(2);
+    const ctx_r2 = \u0275\u0275nextContext(2);
     \u0275\u0275advance();
-    \u0275\u0275repeater(ctx_r0.getAllImages());
+    \u0275\u0275repeater(ctx_r2.getAllImages());
   }
 }
 function ProductDetailComponent_Conditional_15_Conditional_14_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "span", 17);
+    \u0275\u0275elementStart(0, "span", 19);
     \u0275\u0275text(1);
     \u0275\u0275elementEnd();
   }
   if (rf & 2) {
-    const ctx_r0 = \u0275\u0275nextContext(2);
+    const ctx_r2 = \u0275\u0275nextContext(2);
     \u0275\u0275advance();
-    \u0275\u0275textInterpolate(ctx_r0.product.category_name);
+    \u0275\u0275textInterpolate(ctx_r2.product.category_name);
   }
 }
 function ProductDetailComponent_Conditional_15_Conditional_15_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "p", 18);
+    \u0275\u0275elementStart(0, "p", 20);
     \u0275\u0275text(1);
     \u0275\u0275elementEnd();
   }
   if (rf & 2) {
-    const ctx_r0 = \u0275\u0275nextContext(2);
+    const ctx_r2 = \u0275\u0275nextContext(2);
     \u0275\u0275advance();
-    \u0275\u0275textInterpolate(ctx_r0.product.short_description);
+    \u0275\u0275textInterpolate(ctx_r2.product.short_description);
   }
 }
 function ProductDetailComponent_Conditional_15_Conditional_16_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "div", 19)(1, "h3");
-    \u0275\u0275element(2, "span", 26);
+    \u0275\u0275elementStart(0, "div", 21)(1, "h3");
+    \u0275\u0275element(2, "span", 29);
     \u0275\u0275text(3);
     \u0275\u0275pipe(4, "translate");
     \u0275\u0275elementEnd();
@@ -143,16 +151,16 @@ function ProductDetailComponent_Conditional_15_Conditional_16_Template(rf, ctx) 
     \u0275\u0275elementEnd()();
   }
   if (rf & 2) {
-    const ctx_r0 = \u0275\u0275nextContext(2);
+    const ctx_r2 = \u0275\u0275nextContext(2);
     \u0275\u0275advance(3);
     \u0275\u0275textInterpolate1(" ", \u0275\u0275pipeBind1(4, 2, "product.description"), " ");
     \u0275\u0275advance(3);
-    \u0275\u0275textInterpolate(ctx_r0.product.description);
+    \u0275\u0275textInterpolate(ctx_r2.product.description);
   }
 }
 function ProductDetailComponent_Conditional_15_Conditional_17_For_7_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "div", 28)(1, "dt");
+    \u0275\u0275elementStart(0, "div", 31)(1, "dt");
     \u0275\u0275text(2);
     \u0275\u0275elementEnd();
     \u0275\u0275elementStart(3, "dd");
@@ -160,49 +168,49 @@ function ProductDetailComponent_Conditional_15_Conditional_17_For_7_Template(rf,
     \u0275\u0275elementEnd()();
   }
   if (rf & 2) {
-    const spec_r4 = ctx.$implicit;
+    const spec_r6 = ctx.$implicit;
     \u0275\u0275advance(2);
-    \u0275\u0275textInterpolate(spec_r4.key);
+    \u0275\u0275textInterpolate(spec_r6.key);
     \u0275\u0275advance(2);
-    \u0275\u0275textInterpolate(spec_r4.value);
+    \u0275\u0275textInterpolate(spec_r6.value);
   }
 }
 function ProductDetailComponent_Conditional_15_Conditional_17_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "div", 19)(1, "h3");
-    \u0275\u0275element(2, "span", 26);
+    \u0275\u0275elementStart(0, "div", 21)(1, "h3");
+    \u0275\u0275element(2, "span", 29);
     \u0275\u0275text(3);
     \u0275\u0275pipe(4, "translate");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(5, "dl", 27);
-    \u0275\u0275repeaterCreate(6, ProductDetailComponent_Conditional_15_Conditional_17_For_7_Template, 5, 2, "div", 28, _forTrack0);
+    \u0275\u0275elementStart(5, "dl", 30);
+    \u0275\u0275repeaterCreate(6, ProductDetailComponent_Conditional_15_Conditional_17_For_7_Template, 5, 2, "div", 31, _forTrack0);
     \u0275\u0275elementEnd()();
   }
   if (rf & 2) {
-    const ctx_r0 = \u0275\u0275nextContext(2);
+    const ctx_r2 = \u0275\u0275nextContext(2);
     \u0275\u0275advance(3);
     \u0275\u0275textInterpolate1(" ", \u0275\u0275pipeBind1(4, 1, "product.specifications"), " ");
     \u0275\u0275advance(3);
-    \u0275\u0275repeater(ctx_r0.getSpecifications());
+    \u0275\u0275repeater(ctx_r2.getSpecifications());
   }
 }
 function ProductDetailComponent_Conditional_15_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "div", 7)(1, "div", 9)(2, "div", 10);
-    \u0275\u0275template(3, ProductDetailComponent_Conditional_15_Conditional_3_Template, 1, 1, "video", 11)(4, ProductDetailComponent_Conditional_15_Conditional_4_Template, 1, 2)(5, ProductDetailComponent_Conditional_15_Conditional_5_Template, 3, 1);
+    \u0275\u0275elementStart(0, "div", 9)(1, "div", 11)(2, "div", 12);
+    \u0275\u0275template(3, ProductDetailComponent_Conditional_15_Conditional_3_Template, 2, 2, "video", 13)(4, ProductDetailComponent_Conditional_15_Conditional_4_Template, 1, 2)(5, ProductDetailComponent_Conditional_15_Conditional_5_Template, 3, 1);
     \u0275\u0275elementEnd();
-    \u0275\u0275template(6, ProductDetailComponent_Conditional_15_Conditional_6_Template, 3, 0, "div", 12);
+    \u0275\u0275template(6, ProductDetailComponent_Conditional_15_Conditional_6_Template, 3, 0, "div", 14);
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(7, "div", 13)(8, "div", 14)(9, "span", 15);
+    \u0275\u0275elementStart(7, "div", 15)(8, "div", 16)(9, "span", 17);
     \u0275\u0275text(10);
     \u0275\u0275elementEnd();
     \u0275\u0275text(11);
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(12, "h1", 16);
+    \u0275\u0275elementStart(12, "h1", 18);
     \u0275\u0275text(13);
     \u0275\u0275elementEnd();
-    \u0275\u0275template(14, ProductDetailComponent_Conditional_15_Conditional_14_Template, 2, 1, "span", 17)(15, ProductDetailComponent_Conditional_15_Conditional_15_Template, 2, 1, "p", 18)(16, ProductDetailComponent_Conditional_15_Conditional_16_Template, 7, 4, "div", 19)(17, ProductDetailComponent_Conditional_15_Conditional_17_Template, 8, 3, "div", 19);
-    \u0275\u0275elementStart(18, "div", 20)(19, "a", 21)(20, "span", 15);
+    \u0275\u0275template(14, ProductDetailComponent_Conditional_15_Conditional_14_Template, 2, 1, "span", 19)(15, ProductDetailComponent_Conditional_15_Conditional_15_Template, 2, 1, "p", 20)(16, ProductDetailComponent_Conditional_15_Conditional_16_Template, 7, 4, "div", 21)(17, ProductDetailComponent_Conditional_15_Conditional_17_Template, 8, 3, "div", 21);
+    \u0275\u0275elementStart(18, "div", 22)(19, "a", 23)(20, "span", 17);
     \u0275\u0275text(21, "mail");
     \u0275\u0275elementEnd();
     \u0275\u0275text(22);
@@ -210,93 +218,100 @@ function ProductDetailComponent_Conditional_15_Template(rf, ctx) {
     \u0275\u0275elementEnd()()()();
   }
   if (rf & 2) {
-    const ctx_r0 = \u0275\u0275nextContext();
+    const ctx_r2 = \u0275\u0275nextContext();
     \u0275\u0275advance(3);
-    \u0275\u0275conditional(3, ctx_r0.product.video ? 3 : ctx_r0.currentImage || ctx_r0.product.image ? 4 : 5);
+    \u0275\u0275conditional(3, ctx_r2.product.video ? 3 : ctx_r2.currentImage || ctx_r2.product.image ? 4 : 5);
     \u0275\u0275advance(3);
-    \u0275\u0275conditional(6, ctx_r0.getAllImages().length > 1 ? 6 : -1);
+    \u0275\u0275conditional(6, ctx_r2.getAllImages().length > 1 ? 6 : -1);
     \u0275\u0275advance(4);
-    \u0275\u0275textInterpolate((ctx_r0.supplier == null ? null : ctx_r0.supplier.icon) || "business");
+    \u0275\u0275textInterpolate((ctx_r2.supplier == null ? null : ctx_r2.supplier.icon) || "business");
     \u0275\u0275advance();
-    \u0275\u0275textInterpolate1(" ", ctx_r0.supplier == null ? null : ctx_r0.supplier.name, " ");
+    \u0275\u0275textInterpolate1(" ", ctx_r2.supplier == null ? null : ctx_r2.supplier.name, " ");
     \u0275\u0275advance(2);
-    \u0275\u0275textInterpolate(ctx_r0.product.name);
+    \u0275\u0275textInterpolate(ctx_r2.product.name);
     \u0275\u0275advance();
-    \u0275\u0275conditional(14, ctx_r0.product.category_name ? 14 : -1);
+    \u0275\u0275conditional(14, ctx_r2.product.category_name ? 14 : -1);
     \u0275\u0275advance();
-    \u0275\u0275conditional(15, ctx_r0.product.short_description ? 15 : -1);
+    \u0275\u0275conditional(15, ctx_r2.product.short_description ? 15 : -1);
     \u0275\u0275advance();
-    \u0275\u0275conditional(16, ctx_r0.product.description ? 16 : -1);
+    \u0275\u0275conditional(16, ctx_r2.product.description ? 16 : -1);
     \u0275\u0275advance();
-    \u0275\u0275conditional(17, ctx_r0.product.specifications && ctx_r0.hasSpecifications() ? 17 : -1);
+    \u0275\u0275conditional(17, ctx_r2.product.specifications && ctx_r2.hasSpecifications() ? 17 : -1);
     \u0275\u0275advance(5);
     \u0275\u0275textInterpolate1(" ", \u0275\u0275pipeBind1(23, 10, "product.contactUs"), " ");
   }
 }
 function ProductDetailComponent_Conditional_16_For_8_Conditional_2_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275element(0, "video", 34);
+    const _r7 = \u0275\u0275getCurrentView();
+    \u0275\u0275elementStart(0, "video", 39, 1);
+    \u0275\u0275listener("loadstart", function ProductDetailComponent_Conditional_16_For_8_Conditional_2_Template_video_loadstart_0_listener() {
+      \u0275\u0275restoreView(_r7);
+      const relVid_r8 = \u0275\u0275reference(1);
+      return \u0275\u0275resetView(relVid_r8.muted = true);
+    });
+    \u0275\u0275elementEnd();
   }
   if (rf & 2) {
-    const related_r5 = \u0275\u0275nextContext().$implicit;
-    \u0275\u0275property("src", related_r5.video, \u0275\u0275sanitizeUrl);
+    const related_r9 = \u0275\u0275nextContext().$implicit;
+    \u0275\u0275property("src", related_r9.video, \u0275\u0275sanitizeUrl)("muted", true);
   }
 }
 function ProductDetailComponent_Conditional_16_For_8_Conditional_3_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275element(0, "img", 22);
+    \u0275\u0275element(0, "img", 25);
   }
   if (rf & 2) {
-    const related_r5 = \u0275\u0275nextContext().$implicit;
-    \u0275\u0275property("src", related_r5.image, \u0275\u0275sanitizeUrl)("alt", related_r5.name);
+    const related_r9 = \u0275\u0275nextContext().$implicit;
+    \u0275\u0275property("src", related_r9.image, \u0275\u0275sanitizeUrl)("alt", related_r9.name);
   }
 }
 function ProductDetailComponent_Conditional_16_For_8_Conditional_4_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "span", 15);
+    \u0275\u0275elementStart(0, "span", 17);
     \u0275\u0275text(1, "inventory_2");
     \u0275\u0275elementEnd();
   }
 }
 function ProductDetailComponent_Conditional_16_For_8_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "a", 32)(1, "div", 33);
-    \u0275\u0275template(2, ProductDetailComponent_Conditional_16_For_8_Conditional_2_Template, 1, 1, "video", 34)(3, ProductDetailComponent_Conditional_16_For_8_Conditional_3_Template, 1, 2)(4, ProductDetailComponent_Conditional_16_For_8_Conditional_4_Template, 2, 0);
+    \u0275\u0275elementStart(0, "a", 35)(1, "div", 36);
+    \u0275\u0275template(2, ProductDetailComponent_Conditional_16_For_8_Conditional_2_Template, 2, 2, "video", 37)(3, ProductDetailComponent_Conditional_16_For_8_Conditional_3_Template, 1, 2)(4, ProductDetailComponent_Conditional_16_For_8_Conditional_4_Template, 2, 0);
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(5, "span", 35);
+    \u0275\u0275elementStart(5, "span", 38);
     \u0275\u0275text(6);
     \u0275\u0275elementEnd()();
   }
   if (rf & 2) {
-    const related_r5 = ctx.$implicit;
-    const i_r6 = ctx.$index;
-    const ctx_r0 = \u0275\u0275nextContext(2);
-    \u0275\u0275styleProp("animation-delay", i_r6 * 80 + "ms");
-    \u0275\u0275property("routerLink", \u0275\u0275pureFunction2(5, _c1, ctx_r0.supplierSlug, related_r5.slug));
+    const related_r9 = ctx.$implicit;
+    const i_r10 = ctx.$index;
+    const ctx_r2 = \u0275\u0275nextContext(2);
+    \u0275\u0275styleProp("animation-delay", i_r10 * 80 + "ms");
+    \u0275\u0275property("routerLink", \u0275\u0275pureFunction2(5, _c1, ctx_r2.supplierSlug, related_r9.slug));
     \u0275\u0275advance(2);
-    \u0275\u0275conditional(2, related_r5.video ? 2 : related_r5.image ? 3 : 4);
+    \u0275\u0275conditional(2, related_r9.video ? 2 : related_r9.image ? 3 : 4);
     \u0275\u0275advance(4);
-    \u0275\u0275textInterpolate(related_r5.name);
+    \u0275\u0275textInterpolate(related_r9.name);
   }
 }
 function ProductDetailComponent_Conditional_16_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "section", 8);
-    \u0275\u0275element(1, "div", 29);
-    \u0275\u0275elementStart(2, "div", 1)(3, "h2");
+    \u0275\u0275elementStart(0, "section", 10);
+    \u0275\u0275element(1, "div", 32);
+    \u0275\u0275elementStart(2, "div", 3)(3, "h2");
     \u0275\u0275text(4);
     \u0275\u0275pipe(5, "translate");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(6, "div", 30);
-    \u0275\u0275repeaterCreate(7, ProductDetailComponent_Conditional_16_For_8_Template, 7, 8, "a", 31, _forTrack1);
+    \u0275\u0275elementStart(6, "div", 33);
+    \u0275\u0275repeaterCreate(7, ProductDetailComponent_Conditional_16_For_8_Template, 7, 8, "a", 34, _forTrack1);
     \u0275\u0275elementEnd()()();
   }
   if (rf & 2) {
-    const ctx_r0 = \u0275\u0275nextContext();
+    const ctx_r2 = \u0275\u0275nextContext();
     \u0275\u0275advance(4);
     \u0275\u0275textInterpolate(\u0275\u0275pipeBind1(5, 1, "product.relatedProducts"));
     \u0275\u0275advance(3);
-    \u0275\u0275repeater(ctx_r0.relatedProducts);
+    \u0275\u0275repeater(ctx_r2.relatedProducts);
   }
 }
 var ProductDetailComponent = class _ProductDetailComponent {
@@ -359,28 +374,28 @@ var ProductDetailComponent = class _ProductDetailComponent {
     };
   }
   static {
-    this.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _ProductDetailComponent, selectors: [["app-product-detail"]], standalone: true, features: [\u0275\u0275StandaloneFeature], decls: 17, vars: 10, consts: [[1, "breadcrumb"], [1, "container"], ["routerLink", "/catalogo"], [1, "sep"], [3, "routerLink"], [1, "current"], [1, "product-section"], [1, "product-layout"], [1, "related-section"], [1, "product-gallery"], [1, "main-image"], ["controls", "", "autoplay", "", "muted", "", "loop", "", "playsinline", "", 3, "src"], [1, "thumbnail-strip"], [1, "product-info"], [1, "supplier-badge"], [1, "material-icons-outlined"], [1, "product-title"], [1, "category-tag"], [1, "short-description"], [1, "detail-block"], [1, "product-actions"], ["routerLink", "/contacto", 1, "btn-outline-blue"], [3, "src", "alt"], [1, "placeholder"], [1, "thumbnail", 3, "active"], [1, "thumbnail", 3, "click"], [1, "bar"], [1, "spec-list"], [1, "spec-item"], [1, "deco-bar-sm"], [1, "related-grid"], [1, "related-card", 3, "routerLink", "animation-delay"], [1, "related-card", 3, "routerLink"], [1, "related-image"], ["autoplay", "", "muted", "", "loop", "", "playsinline", "", "preload", "metadata", 3, "src"], [1, "related-name"]], template: function ProductDetailComponent_Template(rf, ctx) {
+    this.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _ProductDetailComponent, selectors: [["app-product-detail"]], standalone: true, features: [\u0275\u0275StandaloneFeature], decls: 17, vars: 10, consts: [["mainVid", ""], ["relVid", ""], [1, "breadcrumb"], [1, "container"], ["routerLink", "/catalogo"], [1, "sep"], [3, "routerLink"], [1, "current"], [1, "product-section"], [1, "product-layout"], [1, "related-section"], [1, "product-gallery"], [1, "main-image"], ["controls", "", "autoplay", "", "loop", "", "playsinline", "", 3, "src", "muted"], [1, "thumbnail-strip"], [1, "product-info"], [1, "supplier-badge"], [1, "material-icons-outlined"], [1, "product-title"], [1, "category-tag"], [1, "short-description"], [1, "detail-block"], [1, "product-actions"], ["routerLink", "/contacto", 1, "btn-outline-blue"], ["controls", "", "autoplay", "", "loop", "", "playsinline", "", 3, "loadstart", "src", "muted"], [3, "src", "alt"], [1, "placeholder"], [1, "thumbnail", 3, "active"], [1, "thumbnail", 3, "click"], [1, "bar"], [1, "spec-list"], [1, "spec-item"], [1, "deco-bar-sm"], [1, "related-grid"], [1, "related-card", 3, "routerLink", "animation-delay"], [1, "related-card", 3, "routerLink"], [1, "related-image"], ["autoplay", "", "loop", "", "playsinline", "", "preload", "metadata", 3, "src", "muted"], [1, "related-name"], ["autoplay", "", "loop", "", "playsinline", "", "preload", "metadata", 3, "loadstart", "src", "muted"]], template: function ProductDetailComponent_Template(rf, ctx) {
       if (rf & 1) {
-        \u0275\u0275elementStart(0, "nav", 0)(1, "div", 1)(2, "a", 2);
+        \u0275\u0275elementStart(0, "nav", 2)(1, "div", 3)(2, "a", 4);
         \u0275\u0275text(3);
         \u0275\u0275pipe(4, "translate");
         \u0275\u0275elementEnd();
-        \u0275\u0275elementStart(5, "span", 3);
+        \u0275\u0275elementStart(5, "span", 5);
         \u0275\u0275text(6, "/");
         \u0275\u0275elementEnd();
-        \u0275\u0275elementStart(7, "a", 4);
+        \u0275\u0275elementStart(7, "a", 6);
         \u0275\u0275text(8);
         \u0275\u0275elementEnd();
-        \u0275\u0275elementStart(9, "span", 3);
+        \u0275\u0275elementStart(9, "span", 5);
         \u0275\u0275text(10, "/");
         \u0275\u0275elementEnd();
-        \u0275\u0275elementStart(11, "span", 5);
+        \u0275\u0275elementStart(11, "span", 7);
         \u0275\u0275text(12);
         \u0275\u0275elementEnd()()();
-        \u0275\u0275elementStart(13, "section", 6)(14, "div", 1);
-        \u0275\u0275template(15, ProductDetailComponent_Conditional_15_Template, 24, 12, "div", 7);
+        \u0275\u0275elementStart(13, "section", 8)(14, "div", 3);
+        \u0275\u0275template(15, ProductDetailComponent_Conditional_15_Template, 24, 12, "div", 9);
         \u0275\u0275elementEnd()();
-        \u0275\u0275template(16, ProductDetailComponent_Conditional_16_Template, 9, 3, "section", 8);
+        \u0275\u0275template(16, ProductDetailComponent_Conditional_16_Template, 9, 3, "section", 10);
       }
       if (rf & 2) {
         \u0275\u0275advance(3);
@@ -400,9 +415,9 @@ var ProductDetailComponent = class _ProductDetailComponent {
   }
 };
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(ProductDetailComponent, { className: "ProductDetailComponent", filePath: "src\\app\\pages\\catalog\\product-detail\\product-detail.component.ts", lineNumber: 451 });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(ProductDetailComponent, { className: "ProductDetailComponent", filePath: "src\\app\\pages\\catalog\\product-detail\\product-detail.component.ts", lineNumber: 453 });
 })();
 export {
   ProductDetailComponent
 };
-//# sourceMappingURL=chunk-ZH63WXU3.js.map
+//# sourceMappingURL=chunk-C537UBON.js.map

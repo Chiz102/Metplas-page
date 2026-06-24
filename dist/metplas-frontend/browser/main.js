@@ -4971,11 +4971,11 @@ var routes = [
   },
   {
     path: "catalogo/:supplier/:category",
-    loadComponent: () => import("./chunk-F6J54IXH.js").then((m) => m.CategoryProductsComponent)
+    loadComponent: () => import("./chunk-PQCJIG4Z.js").then((m) => m.CategoryProductsComponent)
   },
   {
     path: "producto/:supplier/:slug",
-    loadComponent: () => import("./chunk-ZH63WXU3.js").then((m) => m.ProductDetailComponent)
+    loadComponent: () => import("./chunk-C537UBON.js").then((m) => m.ProductDetailComponent)
   },
   {
     path: "contacto",

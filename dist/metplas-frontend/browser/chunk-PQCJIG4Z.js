@@ -18,14 +18,19 @@ import {
   ɵɵelement,
   ɵɵelementEnd,
   ɵɵelementStart,
+  ɵɵgetCurrentView,
+  ɵɵlistener,
   ɵɵnextContext,
   ɵɵpipe,
   ɵɵpipeBind1,
   ɵɵproperty,
   ɵɵpureFunction1,
   ɵɵpureFunction2,
+  ɵɵreference,
   ɵɵrepeater,
   ɵɵrepeaterCreate,
+  ɵɵresetView,
+  ɵɵrestoreView,
   ɵɵsanitizeUrl,
   ɵɵstyleProp,
   ɵɵtemplate,
@@ -41,93 +46,100 @@ var _c0 = (a0) => ["/catalogo", a0];
 var _c1 = (a0, a1) => ["/producto", a0, a1];
 function CategoryProductsComponent_Conditional_29_For_2_Conditional_2_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275element(0, "video", 18);
+    const _r1 = \u0275\u0275getCurrentView();
+    \u0275\u0275elementStart(0, "video", 24, 0);
+    \u0275\u0275listener("loadstart", function CategoryProductsComponent_Conditional_29_For_2_Conditional_2_Template_video_loadstart_0_listener() {
+      \u0275\u0275restoreView(_r1);
+      const vid_r2 = \u0275\u0275reference(1);
+      return \u0275\u0275resetView(vid_r2.muted = true);
+    });
+    \u0275\u0275elementEnd();
   }
   if (rf & 2) {
-    const product_r1 = \u0275\u0275nextContext().$implicit;
-    \u0275\u0275property("src", product_r1.video, \u0275\u0275sanitizeUrl);
+    const product_r3 = \u0275\u0275nextContext().$implicit;
+    \u0275\u0275property("src", product_r3.video, \u0275\u0275sanitizeUrl)("muted", true);
   }
 }
 function CategoryProductsComponent_Conditional_29_For_2_Conditional_3_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275element(0, "img", 23);
+    \u0275\u0275element(0, "img", 25);
   }
   if (rf & 2) {
-    const product_r1 = \u0275\u0275nextContext().$implicit;
-    \u0275\u0275property("src", product_r1.image, \u0275\u0275sanitizeUrl)("alt", product_r1.name);
+    const product_r3 = \u0275\u0275nextContext().$implicit;
+    \u0275\u0275property("src", product_r3.image, \u0275\u0275sanitizeUrl)("alt", product_r3.name);
   }
 }
 function CategoryProductsComponent_Conditional_29_For_2_Conditional_4_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "div", 24)(1, "span", 10);
+    \u0275\u0275elementStart(0, "div", 26)(1, "span", 11);
     \u0275\u0275text(2);
     \u0275\u0275elementEnd()();
   }
   if (rf & 2) {
-    const ctx_r1 = \u0275\u0275nextContext(3);
+    const ctx_r3 = \u0275\u0275nextContext(3);
     \u0275\u0275advance(2);
-    \u0275\u0275textInterpolate((ctx_r1.supplier == null ? null : ctx_r1.supplier.icon) || "inventory_2");
+    \u0275\u0275textInterpolate((ctx_r3.supplier == null ? null : ctx_r3.supplier.icon) || "inventory_2");
   }
 }
 function CategoryProductsComponent_Conditional_29_For_2_Conditional_14_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "p", 22);
+    \u0275\u0275elementStart(0, "p", 23);
     \u0275\u0275text(1);
     \u0275\u0275elementEnd();
   }
   if (rf & 2) {
-    const product_r1 = \u0275\u0275nextContext().$implicit;
+    const product_r3 = \u0275\u0275nextContext().$implicit;
     \u0275\u0275advance();
-    \u0275\u0275textInterpolate(product_r1.short_description);
+    \u0275\u0275textInterpolate(product_r3.short_description);
   }
 }
 function CategoryProductsComponent_Conditional_29_For_2_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "a", 16)(1, "div", 17);
-    \u0275\u0275template(2, CategoryProductsComponent_Conditional_29_For_2_Conditional_2_Template, 1, 1, "video", 18)(3, CategoryProductsComponent_Conditional_29_For_2_Conditional_3_Template, 1, 2)(4, CategoryProductsComponent_Conditional_29_For_2_Conditional_4_Template, 3, 1);
-    \u0275\u0275elementStart(5, "div", 19)(6, "span", 20)(7, "span", 10);
+    \u0275\u0275elementStart(0, "a", 17)(1, "div", 18);
+    \u0275\u0275template(2, CategoryProductsComponent_Conditional_29_For_2_Conditional_2_Template, 2, 2, "video", 19)(3, CategoryProductsComponent_Conditional_29_For_2_Conditional_3_Template, 1, 2)(4, CategoryProductsComponent_Conditional_29_For_2_Conditional_4_Template, 3, 1);
+    \u0275\u0275elementStart(5, "div", 20)(6, "span", 21)(7, "span", 11);
     \u0275\u0275text(8, "visibility");
     \u0275\u0275elementEnd();
     \u0275\u0275text(9);
     \u0275\u0275pipe(10, "translate");
     \u0275\u0275elementEnd()()();
-    \u0275\u0275elementStart(11, "div", 21)(12, "h3");
+    \u0275\u0275elementStart(11, "div", 22)(12, "h3");
     \u0275\u0275text(13);
     \u0275\u0275elementEnd();
-    \u0275\u0275template(14, CategoryProductsComponent_Conditional_29_For_2_Conditional_14_Template, 2, 1, "p", 22);
+    \u0275\u0275template(14, CategoryProductsComponent_Conditional_29_For_2_Conditional_14_Template, 2, 1, "p", 23);
     \u0275\u0275elementEnd()();
   }
   if (rf & 2) {
-    const product_r1 = ctx.$implicit;
-    const i_r3 = ctx.$index;
-    const ctx_r1 = \u0275\u0275nextContext(2);
-    \u0275\u0275styleProp("animation-delay", i_r3 * 60 + "ms");
-    \u0275\u0275property("routerLink", \u0275\u0275pureFunction2(9, _c1, ctx_r1.supplierSlug, product_r1.slug));
+    const product_r3 = ctx.$implicit;
+    const i_r5 = ctx.$index;
+    const ctx_r3 = \u0275\u0275nextContext(2);
+    \u0275\u0275styleProp("animation-delay", i_r5 * 60 + "ms");
+    \u0275\u0275property("routerLink", \u0275\u0275pureFunction2(9, _c1, ctx_r3.supplierSlug, product_r3.slug));
     \u0275\u0275advance(2);
-    \u0275\u0275conditional(2, product_r1.video ? 2 : product_r1.image ? 3 : 4);
+    \u0275\u0275conditional(2, product_r3.video ? 2 : product_r3.image ? 3 : 4);
     \u0275\u0275advance(7);
     \u0275\u0275textInterpolate1(" ", \u0275\u0275pipeBind1(10, 7, "catalog.viewProduct"), " ");
     \u0275\u0275advance(4);
-    \u0275\u0275textInterpolate(product_r1.name);
+    \u0275\u0275textInterpolate(product_r3.name);
     \u0275\u0275advance();
-    \u0275\u0275conditional(14, product_r1.short_description ? 14 : -1);
+    \u0275\u0275conditional(14, product_r3.short_description ? 14 : -1);
   }
 }
 function CategoryProductsComponent_Conditional_29_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "div", 14);
-    \u0275\u0275repeaterCreate(1, CategoryProductsComponent_Conditional_29_For_2_Template, 15, 12, "a", 15, _forTrack0);
+    \u0275\u0275elementStart(0, "div", 15);
+    \u0275\u0275repeaterCreate(1, CategoryProductsComponent_Conditional_29_For_2_Template, 15, 12, "a", 16, _forTrack0);
     \u0275\u0275elementEnd();
   }
   if (rf & 2) {
-    const ctx_r1 = \u0275\u0275nextContext();
+    const ctx_r3 = \u0275\u0275nextContext();
     \u0275\u0275advance();
-    \u0275\u0275repeater(ctx_r1.products);
+    \u0275\u0275repeater(ctx_r3.products);
   }
 }
 function CategoryProductsComponent_Conditional_30_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "div", 25)(1, "span", 10);
+    \u0275\u0275elementStart(0, "div", 27)(1, "span", 11);
     \u0275\u0275text(2, "inventory_2");
     \u0275\u0275elementEnd();
     \u0275\u0275elementStart(3, "h3");
@@ -138,7 +150,7 @@ function CategoryProductsComponent_Conditional_30_Template(rf, ctx) {
     \u0275\u0275text(7);
     \u0275\u0275pipe(8, "translate");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(9, "a", 26)(10, "span", 10);
+    \u0275\u0275elementStart(9, "a", 28)(10, "span", 11);
     \u0275\u0275text(11, "arrow_back");
     \u0275\u0275elementEnd();
     \u0275\u0275text(12);
@@ -146,13 +158,13 @@ function CategoryProductsComponent_Conditional_30_Template(rf, ctx) {
     \u0275\u0275elementEnd()();
   }
   if (rf & 2) {
-    const ctx_r1 = \u0275\u0275nextContext();
+    const ctx_r3 = \u0275\u0275nextContext();
     \u0275\u0275advance(4);
     \u0275\u0275textInterpolate(\u0275\u0275pipeBind1(5, 4, "catalog.noProducts"));
     \u0275\u0275advance(3);
     \u0275\u0275textInterpolate(\u0275\u0275pipeBind1(8, 6, "catalog.noProductsDesc"));
     \u0275\u0275advance(2);
-    \u0275\u0275property("routerLink", \u0275\u0275pureFunction1(10, _c0, ctx_r1.supplierSlug));
+    \u0275\u0275property("routerLink", \u0275\u0275pureFunction1(10, _c0, ctx_r3.supplierSlug));
     \u0275\u0275advance(3);
     \u0275\u0275textInterpolate1(" ", \u0275\u0275pipeBind1(13, 8, "catalog.backToCategories"), " ");
   }
@@ -189,27 +201,27 @@ var CategoryProductsComponent = class _CategoryProductsComponent {
     };
   }
   static {
-    this.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _CategoryProductsComponent, selectors: [["app-category-products"]], standalone: true, features: [\u0275\u0275StandaloneFeature], decls: 31, vars: 20, consts: [[1, "breadcrumb"], [1, "container"], ["routerLink", "/catalogo"], [1, "sep"], [3, "routerLink"], [1, "current"], [1, "category-hero"], [1, "hero-deco-tl"], [1, "container", "hero-inner"], [1, "back-link", 3, "routerLink"], [1, "material-icons-outlined"], [1, "product-count"], [1, "deco-bar"], [1, "products-section"], [1, "products-grid"], [1, "product-card", 3, "routerLink", "animation-delay"], [1, "product-card", 3, "routerLink"], [1, "product-image"], ["autoplay", "", "muted", "", "loop", "", "playsinline", "", "preload", "metadata", 3, "src"], [1, "overlay"], [1, "view-btn"], [1, "product-info"], [1, "description"], ["loading", "lazy", 3, "src", "alt"], [1, "placeholder"], [1, "empty-state"], [1, "btn-green", 3, "routerLink"]], template: function CategoryProductsComponent_Template(rf, ctx) {
+    this.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _CategoryProductsComponent, selectors: [["app-category-products"]], standalone: true, features: [\u0275\u0275StandaloneFeature], decls: 31, vars: 20, consts: [["vid", ""], [1, "breadcrumb"], [1, "container"], ["routerLink", "/catalogo"], [1, "sep"], [3, "routerLink"], [1, "current"], [1, "category-hero"], [1, "hero-deco-tl"], [1, "container", "hero-inner"], [1, "back-link", 3, "routerLink"], [1, "material-icons-outlined"], [1, "product-count"], [1, "deco-bar"], [1, "products-section"], [1, "products-grid"], [1, "product-card", 3, "routerLink", "animation-delay"], [1, "product-card", 3, "routerLink"], [1, "product-image"], ["autoplay", "", "loop", "", "playsinline", "", "preload", "metadata", 3, "src", "muted"], [1, "overlay"], [1, "view-btn"], [1, "product-info"], [1, "description"], ["autoplay", "", "loop", "", "playsinline", "", "preload", "metadata", 3, "loadstart", "src", "muted"], ["loading", "lazy", 3, "src", "alt"], [1, "placeholder"], [1, "empty-state"], [1, "btn-green", 3, "routerLink"]], template: function CategoryProductsComponent_Template(rf, ctx) {
       if (rf & 1) {
-        \u0275\u0275elementStart(0, "nav", 0)(1, "div", 1)(2, "a", 2);
+        \u0275\u0275elementStart(0, "nav", 1)(1, "div", 2)(2, "a", 3);
         \u0275\u0275text(3);
         \u0275\u0275pipe(4, "translate");
         \u0275\u0275elementEnd();
-        \u0275\u0275elementStart(5, "span", 3);
+        \u0275\u0275elementStart(5, "span", 4);
         \u0275\u0275text(6, "/");
         \u0275\u0275elementEnd();
-        \u0275\u0275elementStart(7, "a", 4);
+        \u0275\u0275elementStart(7, "a", 5);
         \u0275\u0275text(8);
         \u0275\u0275elementEnd();
-        \u0275\u0275elementStart(9, "span", 3);
+        \u0275\u0275elementStart(9, "span", 4);
         \u0275\u0275text(10, "/");
         \u0275\u0275elementEnd();
-        \u0275\u0275elementStart(11, "span", 5);
+        \u0275\u0275elementStart(11, "span", 6);
         \u0275\u0275text(12);
         \u0275\u0275elementEnd()()();
-        \u0275\u0275elementStart(13, "section", 6);
-        \u0275\u0275element(14, "div", 7);
-        \u0275\u0275elementStart(15, "div", 8)(16, "a", 9)(17, "span", 10);
+        \u0275\u0275elementStart(13, "section", 7);
+        \u0275\u0275element(14, "div", 8);
+        \u0275\u0275elementStart(15, "div", 9)(16, "a", 10)(17, "span", 11);
         \u0275\u0275text(18, "arrow_back");
         \u0275\u0275elementEnd();
         \u0275\u0275text(19);
@@ -218,13 +230,13 @@ var CategoryProductsComponent = class _CategoryProductsComponent {
         \u0275\u0275elementStart(21, "h1");
         \u0275\u0275text(22);
         \u0275\u0275elementEnd();
-        \u0275\u0275elementStart(23, "p", 11);
+        \u0275\u0275elementStart(23, "p", 12);
         \u0275\u0275text(24);
         \u0275\u0275pipe(25, "translate");
         \u0275\u0275elementEnd()()();
-        \u0275\u0275element(26, "div", 12);
-        \u0275\u0275elementStart(27, "section", 13)(28, "div", 1);
-        \u0275\u0275template(29, CategoryProductsComponent_Conditional_29_Template, 3, 0, "div", 14)(30, CategoryProductsComponent_Conditional_30_Template, 14, 12);
+        \u0275\u0275element(26, "div", 13);
+        \u0275\u0275elementStart(27, "section", 14)(28, "div", 2);
+        \u0275\u0275template(29, CategoryProductsComponent_Conditional_29_Template, 3, 0, "div", 15)(30, CategoryProductsComponent_Conditional_30_Template, 14, 12);
         \u0275\u0275elementEnd()();
       }
       if (rf & 2) {
@@ -251,9 +263,9 @@ var CategoryProductsComponent = class _CategoryProductsComponent {
   }
 };
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(CategoryProductsComponent, { className: "CategoryProductsComponent", filePath: "src\\app\\pages\\catalog\\category-products\\category-products.component.ts", lineNumber: 315 });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(CategoryProductsComponent, { className: "CategoryProductsComponent", filePath: "src\\app\\pages\\catalog\\category-products\\category-products.component.ts", lineNumber: 316 });
 })();
 export {
   CategoryProductsComponent
 };
-//# sourceMappingURL=chunk-F6J54IXH.js.map
+//# sourceMappingURL=chunk-PQCJIG4Z.js.map

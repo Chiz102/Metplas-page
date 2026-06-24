@@ -47,7 +47,8 @@ import { Product } from '../../../core/models/catalog.model';
                  [style.animation-delay]="i * 60 + 'ms'">
                 <div class="product-image">
                   @if (product.video) {
-                    <video [src]="product.video" autoplay muted loop playsinline preload="metadata"></video>
+                    <video #vid [src]="product.video" [muted]="true" autoplay loop playsinline preload="metadata"
+                           (loadstart)="vid.muted = true"></video>
                   } @else if (product.image) {
                     <img [src]="product.image" [alt]="product.name" loading="lazy">
                   } @else {
