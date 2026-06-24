@@ -8,6 +8,14 @@
   "website": "https://www.sterilair.com/es/productos.html",
   "icon": "medical_services",
   "color": "#0b5273",
-  "categories": [],
+  "categories": [
+    {
+      "file": "productos.json",
+      "name_es": "Esterilización UV-C",
+      "name_en": "UV-C Sterilization",
+      "icon": "sanitizer",
+      "productCount": 3
+    }
+  ],
   "image_base_path": "assets/images/products/"
 }
