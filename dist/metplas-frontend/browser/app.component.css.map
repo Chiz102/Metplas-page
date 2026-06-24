@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["app.component.ts"],
+  "sourcesContent": ["\n    main {\n      min-height: 100vh;\n    }\n  "],
+  "mappings": ";AACI;AACE,cAAA;;",
+  "names": []
+}

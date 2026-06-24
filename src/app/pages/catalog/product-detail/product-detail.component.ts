@@ -29,7 +29,9 @@ import { Product } from '../../../core/models/catalog.model';
             <!-- Image Section -->
             <div class="product-gallery">
               <div class="main-image">
-                @if (currentImage || product.image) {
+                @if (product.video) {
+                  <video [src]="product.video" controls autoplay muted loop playsinline></video>
+                } @else if (currentImage || product.image) {
                   <img [src]="currentImage || product.image" [alt]="product.name">
                 } @else {
                   <div class="placeholder">
@@ -125,7 +127,9 @@ import { Product } from '../../../core/models/catalog.model';
                  class="related-card"
                  [style.animation-delay]="i * 80 + 'ms'">
                 <div class="related-image">
-                  @if (related.image) {
+                  @if (related.video) {
+                    <video [src]="related.video" autoplay muted loop playsinline preload="metadata"></video>
+                  } @else if (related.image) {
                     <img [src]="related.image" [alt]="related.name">
                   } @else {
                     <span class="material-icons-outlined">inventory_2</span>
@@ -193,9 +197,10 @@ import { Product } from '../../../core/models/catalog.model';
         border-radius: 16px;
         overflow: hidden;
         margin-bottom: 1rem;
-        
+
         img { width: 100%; height: 100%; object-fit: cover; }
-        
+        video { width: 100%; height: 100%; object-fit: contain; background: #000; }
+
         .placeholder {
           width: 100%;
           height: 100%;
@@ -422,8 +427,8 @@ import { Product } from '../../../core/models/catalog.model';
         align-items: center;
         justify-content: center;
         transition: border-color 0.2s ease;
-        
-        img { width: 100%; height: 100%; object-fit: cover; }
+
+        img, video { width: 100%; height: 100%; object-fit: cover; }
         .material-icons-outlined { font-size: 32px; color: #cbd5e1; }
       }
       

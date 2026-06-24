@@ -32,6 +32,7 @@ export interface Product {
   description: string;
   specifications: Record<string, string>;
   image?: string;
+  video?: string;
   gallery: string[];
   is_featured: boolean;
   order: number;

@@ -220,6 +220,33 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
       </div>
     </section>
 
+    <!-- Sterilair Product Videos -->
+    <section class="sterilair-videos-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">STÉRILAIR</span>
+          <h2>Soluciones en<br><strong>Filtro y Barreras UVC</strong></h2>
+          <p>Explora los videos de nuestros tres productos Sterilair: filtro de aire, filtro de agua y barreras UVC.</p>
+        </div>
+        <div class="video-grid">
+          @for (video of sterilairVideos; track video.title) {
+            <div class="video-card">
+              <div class="video-frame">
+                <video controls preload="metadata" [attr.aria-label]="video.title">
+                  <source [src]="video.src" type="video/mp4">
+                  Tu navegador no soporta videos HTML5.
+                </video>
+              </div>
+              <div class="video-info">
+                <h3>{{ video.title }}</h3>
+                <p>{{ video.subtitle }}</p>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+    </section>
+
     <!-- Why Choose Us -->
     <section class="why-section">
       <div class="container why-layout">
@@ -1133,6 +1160,113 @@ import { CarouselComponent, CarouselItem } from '../../components/carousel/carou
       }
     }
 
+    .sterilair-videos-section {
+      padding: 5rem 0 3rem;
+      background: #f7fbff;
+      border-top: 2px solid rgba(38, 103, 169, 0.12);
+      border-bottom: 2px solid rgba(38, 103, 169, 0.12);
+    }
+
+    .sterilair-videos-section .section-header {
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto 2.5rem;
+    }
+
+    .sterilair-videos-section .section-label {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 18px;
+      background: #204c81;
+      color: #fff;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .sterilair-videos-section h2 {
+      color: #204c81;
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.1;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+    }
+
+    .sterilair-videos-section p {
+      color: #42526e;
+      font-size: 1rem;
+      max-width: 650px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.5rem;
+      align-items: stretch;
+    }
+
+    .video-card {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      background: #fff;
+      border-radius: 24px;
+      box-shadow: 0 16px 40px rgba(32, 76, 129, 0.08);
+      overflow: hidden;
+      border: 1px solid #e7eff8;
+    }
+
+    .video-frame {
+      position: relative;
+      overflow: hidden;
+      background: #000;
+    }
+
+    .video-frame video {
+      width: 100%;
+      height: 100%;
+      display: block;
+      max-height: 240px;
+      object-fit: cover;
+      background: #000;
+    }
+
+    .video-info {
+      padding: 1.25rem 1.5rem 1.5rem;
+    }
+
+    .video-info h3 {
+      margin: 0 0 0.5rem;
+      font-size: 1.05rem;
+      color: #204c81;
+      line-height: 1.2;
+      text-transform: uppercase;
+    }
+
+    .video-info p {
+      margin: 0;
+      color: #5a7184;
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    @media (max-width: 992px) {
+      .video-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .video-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
     /* ===== WHY CHOOSE US ===== */
     .why-section {
       padding: 4rem 0 5rem;
@@ -1549,6 +1683,24 @@ export class HomeComponent implements OnInit, AfterViewInit {
       description: 'carousel.item6.description',
       image: 'assets/images/products/IBEX-EBC-Modular-Trimmer-Heads-35-to-180.jpg',
       link: '/catalogo/ibex'
+    }
+  ];
+
+  sterilairVideos = [
+    {
+      title: 'Filtro de aire',
+      subtitle: 'Solución Sterilair para purificación de aire industrial.',
+      src: 'assets/videos/Filtro_de_aire.mp4'
+    },
+    {
+      title: 'Filtro de agua',
+      subtitle: 'Solución Sterilair para tratamiento y filtrado de agua.',
+      src: 'assets/videos/Filtro_de_agua.mp4'
+    },
+    {
+      title: 'Barreras UVC',
+      subtitle: 'Protección Sterilair con barreras UVC para superficies.',
+      src: 'assets/videos/Barreras_UCV_para_superficies.mp4'
     }
   ];
 

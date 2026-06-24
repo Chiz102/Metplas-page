@@ -1,0 +1,35 @@
+[
+  {
+    "item_name_es": "Filtro de Aire UV-C",
+    "item_name": "UV-C Air Filter",
+    "category_es": "Esterilización UV-C",
+    "category": "UV-C Sterilization",
+    "description_es": "Sistema de purificación de aire por luz ultravioleta UV-C que elimina virus, bacterias y hongos en suspensión. Ideal para salas de proceso, cámaras frías y zonas de envasado en la industria alimentaria, mejorando la calidad del aire sin químicos.",
+    "description": "UV-C ultraviolet air purification system that eliminates airborne viruses, bacteria and fungi. Ideal for processing rooms, cold chambers and packaging areas in the food industry, improving air quality without chemicals.",
+    "video": "assets/Videos/Filtro_de_aire.mp4",
+    "image_path": "",
+    "gallery": []
+  },
+  {
+    "item_name_es": "Filtro de Agua UV-C",
+    "item_name": "UV-C Water Filter",
+    "category_es": "Esterilización UV-C",
+    "category": "UV-C Sterilization",
+    "description_es": "Equipo de desinfección de agua mediante radiación ultravioleta UV-C, sin uso de químicos. Garantiza agua microbiológicamente segura para procesos productivos, limpieza y consumo, eliminando microorganismos patógenos de forma continua.",
+    "description": "UV-C ultraviolet water disinfection unit, chemical-free. Ensures microbiologically safe water for production processes, cleaning and consumption, continuously eliminating pathogenic microorganisms.",
+    "video": "assets/Videos/Filtro_de_agua.mp4",
+    "image_path": "",
+    "gallery": []
+  },
+  {
+    "item_name_es": "Barreras UV-C para Superficies",
+    "item_name": "UV-C Surface Barriers",
+    "category_es": "Esterilización UV-C",
+    "category": "UV-C Sterilization",
+    "description_es": "Barreras de luz UV-C para la descontaminación continua de superficies y cintas transportadoras. Reducen la carga microbiana en línea de producción sin interrumpir la operación, ideales para zonas de alto requerimiento higiénico.",
+    "description": "UV-C light barriers for continuous decontamination of surfaces and conveyor belts. They reduce microbial load on the production line without interrupting operation, ideal for high-hygiene areas.",
+    "video": "assets/Videos/Barreras_UCV_para_superficies.mp4",
+    "image_path": "",
+    "gallery": []
+  }
+]

@@ -46,7 +46,9 @@ import { Product } from '../../../core/models/catalog.model';
                  class="product-card" 
                  [style.animation-delay]="i * 60 + 'ms'">
                 <div class="product-image">
-                  @if (product.image) {
+                  @if (product.video) {
+                    <video [src]="product.video" autoplay muted loop playsinline preload="metadata"></video>
+                  } @else if (product.image) {
                     <img [src]="product.image" [alt]="product.name" loading="lazy">
                   } @else {
                     <div class="placeholder">
@@ -189,7 +191,7 @@ import { Product } from '../../../core/models/catalog.model';
         box-shadow: 0 12px 32px rgba(38, 103, 169, 0.1);
         
         .product-image {
-          img { transform: scale(1.05); }
+          img, video { transform: scale(1.05); }
           .overlay { opacity: 1; }
         }
       }
@@ -199,14 +201,14 @@ import { Product } from '../../../core/models/catalog.model';
         aspect-ratio: 1;
         overflow: hidden;
         background: #f8fafc;
-        
-        img {
+
+        img, video {
           width: 100%;
           height: 100%;
           object-fit: cover;
           transition: transform 0.3s ease;
         }
-        
+
         .placeholder {
           width: 100%;
           height: 100%;
