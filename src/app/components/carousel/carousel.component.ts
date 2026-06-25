@@ -9,6 +9,7 @@ export interface CarouselItem {
   title: string;
   description: string;
   image?: string;
+  video?: string;
   link?: string;
   isClone?: boolean;
 }
@@ -30,14 +31,20 @@ export interface CarouselItem {
                [style.transition]="carouselTransition">
             @for (item of displayItems; track $index) {
               <div class="carousel-slide" [style.width.%]="100 / itemsVisible">
-                <div class="carousel-card" [class.has-image]="!!item.image">
-                  @if (item.image) {
+                <div class="carousel-card" [class.has-image]="!!item.image || !!item.video">
+                  @if (item.video) {
+                    <div class="card-bg">
+                      <video #cv [src]="item.video" [muted]="true" autoplay loop playsinline
+                             preload="metadata" (loadstart)="cv.muted = true"></video>
+                    </div>
+                    <div class="card-overlay"></div>
+                  } @else if (item.image) {
                     <div class="card-bg">
                       <img [src]="item.image" [alt]="item.title | translate" loading="lazy">
                     </div>
                     <div class="card-overlay"></div>
                   }
-                  <div class="card-content" [class.on-image]="!!item.image">
+                  <div class="card-content" [class.on-image]="!!item.image || !!item.video">
                     <div class="card-icon" [class.light]="!!item.image">
                       <span class="material-icons-outlined">{{ item.icon }}</span>
                     </div>
@@ -149,7 +156,7 @@ export interface CarouselItem {
         box-shadow: 0 12px 35px rgba(16, 79, 142, 0.18);
         transform: translateY(-4px);
         
-        .card-bg img {
+        .card-bg img, .card-bg video {
           transform: scale(1.08);
         }
         
@@ -172,8 +179,8 @@ export interface CarouselItem {
     .card-bg {
       position: absolute;
       inset: 0;
-      
-      img {
+
+      img, video {
         width: 100%;
         height: 100%;
         object-fit: cover;

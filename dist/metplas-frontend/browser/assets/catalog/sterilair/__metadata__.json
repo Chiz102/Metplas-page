@@ -11,8 +11,8 @@
   "categories": [
     {
       "file": "productos.json",
-      "name_es": "Esterilización UV-C",
-      "name_en": "UV-C Sterilization",
+      "name_es": "Desinfección UVC",
+      "name_en": "UVC Disinfection",
       "icon": "sanitizer",
       "productCount": 3
     }

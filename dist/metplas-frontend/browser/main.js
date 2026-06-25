@@ -4955,7 +4955,7 @@ var AppComponent = class _AppComponent {
 var routes = [
   {
     path: "",
-    loadComponent: () => import("./chunk-A2ZD7RBX.js").then((m) => m.HomeComponent)
+    loadComponent: () => import("./chunk-OPHF7IXJ.js").then((m) => m.HomeComponent)
   },
   {
     path: "somos",
